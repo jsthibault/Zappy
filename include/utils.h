@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update mar. mai 13 16:46:42 2014 lefloc_l
+** Last update mar. mai 13 17:03:07 2014 lefloc_l
 */
 
 #ifndef UTILS_H_
@@ -30,7 +30,7 @@ typedef enum	e_bool
 ** Useful functions.
 */
 
-int		is_num(char *);
-int		is_float(char *);
+t_bool		is_num(char *);
+t_bool		is_float(char *);
 
 #endif /* !UTILS_H_ */
