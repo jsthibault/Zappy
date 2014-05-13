@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:20:14 2014 lefloc_l
-** Last update mar. mai 13 16:26:01 2014 lefloc_l
+** Last update mar. mai 13 17:23:41 2014 lefloc_l
 */
 
 #include <string.h>
@@ -38,5 +38,10 @@ t_bool	convert_to_int(char *av[], int ac, int *i, size_t *n)
     return (FALSE);
   *n = atoi(av[*i + 1]);
   *i += 1;
+  if (*n == 0)
+  {
+    fprintf(stderr, "Can't be 0.\n");
+    return (FALSE);
+  }
   return (TRUE);
 }
