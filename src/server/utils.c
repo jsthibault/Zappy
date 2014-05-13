@@ -5,10 +5,12 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update mar. mai 13 17:16:08 2014 lefloc_l
+** Last update Tue May 13 19:35:40 2014 arnaud drain
 */
 
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #include "utils.h"
 
 t_bool		is_num(char *str)
@@ -43,4 +45,9 @@ t_bool		is_float(char *str)
     }
   }
   return (TRUE);
+}
+
+int	write_socket(int fd, char *str)
+{
+  return (write(fd, str, strlen(str)));
 }

@@ -5,10 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update mar. mai 13 16:51:36 2014 lefloc_l
+** Last update Tue May 13 19:40:47 2014 arnaud drain
 */
 
 #include "options.h"
+#include "server.h"
 
 static void	print_man()
 {
@@ -31,6 +32,7 @@ int		main(int argc, const char *argv[])
     print_man();
     return (FALSE);
   }
-  dump_options(&options);
+  //dump_options(&options);
+  launch_srv(&options);
   return (0);
 }
