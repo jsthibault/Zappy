@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update mar. mai 13 16:25:37 2014 lefloc_l
+** Last update mar. mai 13 16:52:13 2014 lefloc_l
 */
 
 #include <string.h>
@@ -55,6 +55,5 @@ void		dump_options(t_options *options)
       options->max_clients, options->delai, options->nb_team_names);
   for (i = 0; i < options->nb_team_names; ++i)
     printf("\t%s\n", options->team_names[i]);
-
   printf("===== END OPTIONS ======\n");
 }
