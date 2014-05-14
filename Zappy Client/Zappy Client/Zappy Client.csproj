@@ -38,6 +38,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Interface\Controls\Control.cs" />
     <Compile Include="Interface\Controls\Container.cs" />
+    <Compile Include="Interface\Controls\Label.cs" />
     <Compile Include="Interface\Controls\Window.cs" />
     <Compile Include="Interface\Events\EventType.cs" />
     <Compile Include="Interface\Extension\Mouse.cs" />
