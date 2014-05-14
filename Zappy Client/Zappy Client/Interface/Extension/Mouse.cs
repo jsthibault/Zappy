@@ -53,9 +53,13 @@ namespace Zappy_Client.Interface
         /// <param name="mouse"></param>
         /// <param name="button"></param>
         /// <returns></returns>
-        public static Boolean IsMouseDown(this MouseState mouse, ButtonState button)
+        public static Boolean IsMouseDown(this MouseState mouse)
         {
-            return button == ButtonState.Pressed;
+            if (mouse.LeftButton == ButtonState.Pressed || mouse.RightButton == ButtonState.Pressed || mouse.MiddleButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -66,7 +70,11 @@ namespace Zappy_Client.Interface
         /// <returns></returns>
         public static Boolean IsMouseUp(this MouseState mouse, ButtonState button)
         {
-            return button == ButtonState.Released;
+            if (mouse.LeftButton == ButtonState.Released || mouse.RightButton == ButtonState.Released || mouse.MiddleButton == ButtonState.Released)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

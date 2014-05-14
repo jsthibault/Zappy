@@ -92,6 +92,7 @@ namespace Zappy_Client.Interface
                     control.Update();
                 }
             }
+            base.Update();
         }
 
         /// <summary>

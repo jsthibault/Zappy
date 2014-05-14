@@ -25,9 +25,15 @@ namespace Zappy_Client
             this.Engine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
 
             this.win1 = new Window(this.Engine, "Hey", 20, 20, 300, 250);
+            this.win1.OnClick += win1_OnHover;
             this.win2 = new Window(this.Engine, "Hey2", 50, 50, 300, 250);
             this.Engine.AddContainer(this.win1);
-            this.Engine.AddContainer(this.win2);
+            //this.Engine.AddContainer(this.win2);
+        }
+
+        void win1_OnHover(object sender)
+        {
+            System.Windows.Forms.MessageBox.Show("Click");
         }
 
         protected override void Initialize()

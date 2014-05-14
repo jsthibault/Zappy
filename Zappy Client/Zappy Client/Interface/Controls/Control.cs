@@ -37,8 +37,6 @@ namespace Zappy_Client.Interface
         protected ControlState State { get; set; }
 
         public event MonoGameEventHandler OnHover;
-        public event MonoGameEventHandler OnEnter;
-        public event MonoGameEventHandler OnLeave;
         public event MonoGameEventHandler OnClick;
         public event MonoGameEventHandler OnPress;
 
@@ -107,66 +105,73 @@ namespace Zappy_Client.Interface
 
         #region METHODS
 
+        /// <summary>
+        /// Abstract initialize method
+        /// </summary>
         public abstract void Initialize();
 
+        /// <summary>
+        /// Virtual base update method
+        /// </summary>
         public virtual void Update()
         {
-                
+            if (Mouse.GetState().IsInRectangle(this.Rectangle) == true)
+            {
+                this.MouseHover();
+                if (Mouse.GetState().IsMouseDown() == true)
+                {
+                    this.MousePress();
+                }
+                if (Mouse.GetState().MouseClick(MouseButton.LeftButton) == true || Mouse.GetState().MouseClick(MouseButton.RightButton) == true ||
+                    Mouse.GetState().MouseClick(MouseButton.MiddleButton) == true)
+                {
+                    this.MouseClick();
+                }
+            }
         }
 
+        /// <summary>
+        /// Abstract draw method
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public abstract void Draw(SpriteBatch spriteBatch);
 
         #endregion
 
         #region VIRTUAL
 
+        /// <summary>
+        /// Mouse hover event
+        /// </summary>
         public virtual void MouseHover()
         {
             this.State = ControlState.Hover;
-            if (this.Focus == false)
-            {
-                this.Focus = true;
-                if (this.OnEnter != null)
-                {
-                    this.OnEnter(this);
-                }
-            }
             if (this.OnHover != null)
             {
                 this.OnHover(this);
             }
         }
 
+        /// <summary>
+        /// Mouse press event
+        /// </summary>
         public virtual void MousePress()
         {
-            if (this.Focus == true)
+            this.State = ControlState.Press;
+            if (this.OnPress != null)
             {
-                this.State = ControlState.Press;
-                if (this.OnPress != null)
-                {
-                    this.OnPress(this);
-                }
+                this.OnPress(this);
             }
         }
 
+        /// <summary>
+        /// Mouse click event
+        /// </summary>
         public virtual void MouseClick()
         {
             if (this.OnClick != null)
             {
                 this.OnClick(this);
-            }
-        }
-
-        public virtual void MouseLeave()
-        {
-            if (this.Focus == true)
-            {
-                this.Focus = false;
-                this.State = ControlState.Normal;
-                if (this.OnLeave != null)
-                {
-                    this.OnLeave(this);
-                }
             }
         }
 
