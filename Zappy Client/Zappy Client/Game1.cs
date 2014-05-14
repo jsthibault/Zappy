@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Zappy_Client.Interface;
 
 namespace Zappy_Client
 {
@@ -13,12 +14,20 @@ namespace Zappy_Client
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        UI Engine;
+        Window win1, win2;
 
         public Game1()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.Engine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
+
+            this.win1 = new Window(this.Engine, "Hey", 20, 20, 300, 250);
+            this.win2 = new Window(this.Engine, "Hey2", 50, 50, 300, 250);
+            this.Engine.AddContainer(this.win1);
+            this.Engine.AddContainer(this.win2);
         }
 
         protected override void Initialize()
@@ -45,7 +54,9 @@ namespace Zappy_Client
             {
                 Exit();
             }
-            // TODO: Add your update logic here
+
+            // Update engine controls
+            this.Engine.Update();
 
             base.Update(gameTime);
         }
@@ -54,7 +65,7 @@ namespace Zappy_Client
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            this.Engine.Draw();
 
             base.Draw(gameTime);
         }
