@@ -32,7 +32,7 @@ namespace Zappy_Client.Interface
         public String Name { get; protected set; }
         public String Text { get; set; }
 
-        protected Control ParentControl { get; set; }
+        public Control ParentControl { get; set; }
         protected UI Engine { get; set; }
         protected ControlState State { get; set; }
 
@@ -78,7 +78,7 @@ namespace Zappy_Client.Interface
                 }
                 else
                 {
-                    return new Vector2(this.X + this.ParentControl.X, this.Y + this.ParentControl.Y);
+                    return new Vector2(this.X + this.ParentControl.X + 10, this.Y + this.ParentControl.Y + 25);
                 }
             }
         }
@@ -100,6 +100,8 @@ namespace Zappy_Client.Interface
             this.Focus = false;
             this.Name = name;
         }
+
+        ~Control() { }
 
         #endregion
 

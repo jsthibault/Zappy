@@ -25,6 +25,10 @@ namespace Zappy_Client.Interface
         public Boolean CloseButton { get; set; }
         public Boolean Movable { get; set; }
 
+        public event MonoGameEventHandler OnClose;
+        private Rectangle CloseButtonRectangle { get; set; }
+        private ControlState CloseButtonState { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -39,6 +43,7 @@ namespace Zappy_Client.Interface
         {
             this.CloseButton = true;
             this.Movable = true;
+            this.Initialize();
         }
 
         /// <summary>
@@ -55,6 +60,7 @@ namespace Zappy_Client.Interface
         {
             this.CloseButton = true;
             this.Movable = true;
+            this.Initialize();
         }
 
         /// <summary>
@@ -73,6 +79,7 @@ namespace Zappy_Client.Interface
             this.CloseButton = true;
             this.Movable = true;
             this.Text = text;
+            this.Initialize();
         }
 
         /// <summary>
@@ -92,6 +99,7 @@ namespace Zappy_Client.Interface
             this.CloseButton = true;
             this.Movable = movable;
             this.Text = text;
+            this.Initialize();
         }
 
         /// <summary>
@@ -112,6 +120,7 @@ namespace Zappy_Client.Interface
             this.CloseButton = closeButton;
             this.Movable = movable;
             this.Text = text;
+            this.Initialize();
         }
 
         #endregion
@@ -123,6 +132,9 @@ namespace Zappy_Client.Interface
         /// </summary>
         public override void Initialize()
         {
+            this.CloseButtonState = ControlState.Normal;
+            this.CloseButtonRectangle = new Rectangle(this.Rectangle.Right - (this.Engine.Textures["WindowCloseButton"].Width / 2), this.Rectangle.Top + 9,
+                            this.Engine.Textures["WindowCloseButton"].Width / 4, this.Engine.Textures["WindowCloseButton"].Height);
             base.Initialize();
         }
 
@@ -134,6 +146,24 @@ namespace Zappy_Client.Interface
             if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentWindow.Rectangle) == false ||
                 this == this.Engine.CurrentWindow)
             {
+                this.CloseButtonRectangle = new Rectangle(this.Rectangle.Right - (this.Engine.Textures["WindowCloseButton"].Width / 2), this.Rectangle.Top + 9,
+                            this.Engine.Textures["WindowCloseButton"].Width / 4, this.Engine.Textures["WindowCloseButton"].Height);
+                if (Mouse.GetState().IsInRectangle(this.CloseButtonRectangle) == true)
+                {
+                    this.CloseButtonState = ControlState.Hover;
+                    if (Mouse.GetState().MouseDown(MouseButton.LeftButton) == true)
+                    {
+                        this.CloseButtonState = ControlState.Press;
+                    }
+                    if (Mouse.GetState().MouseClick(MouseButton.LeftButton) == true)
+                    {
+                        this.OnCloseWindow();
+                    }
+                }
+                else
+                {
+                    this.CloseButtonState = ControlState.Normal;
+                }
                 if (Mouse.GetState().MouseDown(MouseButton.LeftButton) == true)
                 {
                     if (Mouse.GetState().IsInRectangle(this.Engine.CurrentWindow.Rectangle) == false)
@@ -158,7 +188,11 @@ namespace Zappy_Client.Interface
         {
             Color _winColor = Color.White * 0.9f;
 
-            if (this != this.Engine.CurrentWindow)
+            if (this.Enabled == false)
+            {
+                _winColor = Color.SlateGray; // provisoire
+            }
+            else if (this != this.Engine.CurrentWindow)
             {
                 _winColor = Color.White * 0.8f;
             }
@@ -185,7 +219,10 @@ namespace Zappy_Client.Interface
 
             if (String.IsNullOrEmpty(this.Text) == false)
             {
+                spriteBatch.DrawCenteredText(this.Engine.Fonts["TrebuchetMSBold"], new Rectangle(this.X, this.Y + 2, this.Width, 25), this.Text, Color.FromNonPremultiplied(238, 221, 130, 255));
             }
+
+            this.DrawExitButton(spriteBatch);
 
             base.Draw(spriteBatch);
         }
@@ -220,6 +257,41 @@ namespace Zappy_Client.Interface
             {
                 this.Engine.CurrentMovingWindow = null;
             }
+        }
+
+        private void DrawExitButton(SpriteBatch spriteBatch)
+        {
+            if (this.CloseButton == true)
+            {
+                Rectangle _source = new Microsoft.Xna.Framework.Rectangle(0, 0, 
+                    this.Engine.Textures["WindowCloseButton"].Width / 4, this.Engine.Textures["WindowCloseButton"].Height);
+                if (this.CloseButtonState == ControlState.Hover)
+                {
+                    _source.X = this.Engine.Textures["WindowCloseButton"].Width / 4;
+                }
+                else if (this.CloseButtonState == ControlState.Press)
+                {
+                    _source.X = this.Engine.Textures["WindowCloseButton"].Width / 2;
+                }
+                else if (this.Enabled == false)
+                {
+                    _source.X = (this.Engine.Textures["WindowCloseButton"].Width / 4) * 3;
+                }
+                spriteBatch.Draw(this.Engine.Textures["WindowCloseButton"], this.CloseButtonRectangle, _source, Color.White);
+            }
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        public virtual void OnCloseWindow()
+        {
+            if (this.OnClose != null)
+            {
+                this.OnClose(this);
+            }
+            this.Engine.DeleteControl(this.Name);
         }
 
         #endregion

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using Zappy_Client.Interface;
+using Zappy_Client.Core;
 
 namespace Zappy_Client
 {
@@ -17,23 +18,29 @@ namespace Zappy_Client
         UI Engine;
         Window win1, win2;
 
+        /// <summary>
+        /// Custom Window
+        /// </summary>
+        LoginWnd LoginWindow;
+
         public Game1()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
             this.Engine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
 
-            this.win1 = new Window(this.Engine, "Hey", 20, 20, 300, 250);
-            this.win1.OnClick += win1_OnHover;
-            this.win2 = new Window(this.Engine, "Hey2", 50, 50, 300, 250);
-            this.Engine.AddContainer(this.win1);
-            //this.Engine.AddContainer(this.win2);
-        }
+            this.win1 = new Window(this.Engine, "Hey", 20, 20, 300, 250, "Login");
+            this.win1.AddControl(new Label(this.Engine, "Label1", 0, 0, "Connexion"));
 
-        void win1_OnHover(object sender)
-        {
-            System.Windows.Forms.MessageBox.Show("Click");
+            this.win2 = new Window(this.Engine, "Hey2", 50, 50, 300, 250, "Other window");
+
+            //this.Engine.AddContainer(this.win1);
+            //this.Engine.AddContainer(this.win2);
+
+            this.LoginWindow = new LoginWnd(this.Engine);
+            this.Engine.AddContainer(this.LoginWindow);
         }
 
         protected override void Initialize()

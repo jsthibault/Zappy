@@ -87,7 +87,7 @@ namespace Zappy_Client.Interface
         {
             foreach (Control control in this.Controls)
             {
-                if (control.Visible == true)
+                if (control.Visible == true && control.Enabled == true)
                 {
                     control.Update();
                 }
@@ -118,6 +118,7 @@ namespace Zappy_Client.Interface
         {
             if (this.Controls.Contains(control) == false)
             {
+                control.ParentControl = this;
                 this.Controls.Add(control);
             }
         }

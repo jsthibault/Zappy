@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\LoginWnd.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Interface\Controls\Control.cs" />
     <Compile Include="Interface\Controls\Container.cs" />
@@ -42,6 +43,9 @@
     <Compile Include="Interface\Controls\Window.cs" />
     <Compile Include="Interface\Events\EventType.cs" />
     <Compile Include="Interface\Extension\Mouse.cs" />
+    <Compile Include="Interface\Extension\SpriteBatch.cs" />
+    <Compile Include="Interface\Managers\CursorManager.cs" />
+    <Compile Include="Interface\Managers\FontManager.cs" />
     <Compile Include="Interface\Managers\TextureManager.cs" />
     <Compile Include="Interface\UI.cs" />
     <Compile Include="Program.cs" />
@@ -69,8 +73,11 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Theme\Window\ButtWndExit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Theme\Window\WndTile00.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Window\WndTile01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -108,7 +115,19 @@
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Theme\Cursors\" />
     <Folder Include="Network\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Theme\Font\Arial Black9.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Theme\Font\TrebuchetMS10.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Theme\Font\TrebuchetMS10Bold.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

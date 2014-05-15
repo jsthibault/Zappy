@@ -30,8 +30,8 @@ namespace Zappy_Client.Interface
         public Int32 ClientWidth { get; private set; }
         public Int32 ClientHeight { get; private set; }
 
-        public SpriteFont Font { get; internal set; }
 
+        internal FontManager Fonts { get; set; }
         internal TextureManager Textures { get; set; }
 
         internal List<Container> Contrainers { get; set; }
@@ -73,11 +73,18 @@ namespace Zappy_Client.Interface
             /* Initialize spriteBatch */
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
 
+            /* Load sprite font */
+            this.Fonts = new FontManager();
+            this.Fonts["TrebuchetMS"] = this.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
+            this.Fonts["TrebuchetMSBold"] = this.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10Bold");
+            this.Fonts["ArialBlack"] = this.Content.Load<SpriteFont>("Theme//Font//Arial Black9");
+
             /* Load window tiles */
             for (Int32 i = 0; i < 12; ++i)
             {
                 this.Textures["Window" + i.ToString()] = this.Content.Load<Texture2D>(@"Theme\Window\WndTile" + i.ToString("00") + ".png");
             }
+            this.Textures["WindowCloseButton"] = this.Content.Load<Texture2D>("Theme//Window//ButtWndExit.png");
         }
 
         /// <summary>
@@ -94,11 +101,11 @@ namespace Zappy_Client.Interface
             {
                 (this.CurrentMovingWindow as Window).ProcessMoves();
             }
-            foreach (Container container in this.Contrainers)
+            for (Int32 i = 0; i < this.Contrainers.Count; ++i)
             {
-                if (container.Visible == true)
+                if (this.Contrainers[i].Visible == true && this.Contrainers[i].Enabled == true)
                 {
-                    container.Update();
+                    this.Contrainers[i].Update();
                 }
             }
         }
@@ -117,7 +124,10 @@ namespace Zappy_Client.Interface
                     window.Draw(this.SpriteBatch);
                 }
             }
-            this.CurrentWindow.Draw(this.SpriteBatch);
+            if (this.CurrentWindow != null)
+            {
+                this.CurrentWindow.Draw(this.SpriteBatch);
+            }
             this.SpriteBatch.End();
         }
 
@@ -149,6 +159,14 @@ namespace Zappy_Client.Interface
                 if (control.Name == name)
                 {
                     this.Contrainers.Remove(control as Container);
+                    if (this.Contrainers.Count > 0)
+                    {
+                        this.CurrentWindow = this.Contrainers.Last() as Window;
+                    }
+                    else
+                    {
+                        this.CurrentWindow = null;
+                    }
                     break;
                 }
             }

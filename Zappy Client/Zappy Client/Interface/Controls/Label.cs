@@ -21,6 +21,8 @@ namespace Zappy_Client.Interface
     {
         #region FIELDS
 
+        private String Font { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -31,7 +33,10 @@ namespace Zappy_Client.Interface
         /// <param name="engine">UI engine pointer</param>
         /// <param name="name">Control name</param>
         public Label(UI engine, String name)
-            : base(engine, name) { }
+            : base(engine, name)
+        {
+            this.Font = "TrebuchetMS";
+        }
 
         /// <summary>
         /// Initialize a new empty label with his position
@@ -45,6 +50,7 @@ namespace Zappy_Client.Interface
         {
             this.X = x;
             this.Y = y;
+            this.Font = "TrebuchetMS";
         }
 
         /// <summary>
@@ -61,6 +67,25 @@ namespace Zappy_Client.Interface
             this.X = x;
             this.Y = y;
             this.Text = text;
+            this.Font = "TrebuchetMS";
+        }
+
+        /// <summary>
+        /// Initialize a label with text, position and font
+        /// </summary>
+        /// <param name="engine">UI engine pointer</param>
+        /// <param name="name">Control name</param>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        /// <param name="text">Label text</param>
+        /// <param name="font">Label font</param>
+        public Label(UI engine, String name, Int32 x, Int32 y, String text, String font)
+            : base(engine, name)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Text = text;
+            this.Font = font;
         }
 
         #endregion
@@ -86,8 +111,7 @@ namespace Zappy_Client.Interface
         /// <param name="spriteBatch">Engine spriteBatch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //TODO: load sprite font
-            //spriteBatch.DrawString(null, this.Text, this.Position, Color.White);
+            spriteBatch.DrawString(this.Engine.Fonts[this.Font], this.Text, this.Position, Color.White);
         }
 
         #endregion
