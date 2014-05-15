@@ -23,6 +23,8 @@ namespace Zappy_Client
         /// </summary>
         LoginWnd LoginWindow;
 
+        Coliseum ColiseumWindow;
+
         public Game1()
             : base()
         {
@@ -40,6 +42,9 @@ namespace Zappy_Client
             //this.Engine.AddContainer(this.win2);
 
             this.LoginWindow = new LoginWnd(this.Engine);
+            this.ColiseumWindow = new Coliseum(this.Engine);
+
+            this.Engine.AddContainer(this.ColiseumWindow);
             this.Engine.AddContainer(this.LoginWindow);
         }
 

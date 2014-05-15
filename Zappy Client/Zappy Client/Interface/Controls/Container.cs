@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,8 @@ namespace Zappy_Client.Interface
         /// Container controls list
         /// </summary>
         protected List<Control> Controls { get; set; }
+
+        private Rectangle MovableZone { get; set; }
 
         #endregion
 
@@ -85,6 +89,22 @@ namespace Zappy_Client.Interface
         /// </summary>
         public override void Update()
         {
+            if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentContainer.Rectangle) == false ||
+                this == this.Engine.CurrentContainer)
+            {
+                if (Mouse.GetState().MouseDown(MouseButton.LeftButton) == true)
+                {
+                    if (Mouse.GetState().IsInRectangle(this.Engine.CurrentContainer.Rectangle) == false)
+                    {
+                        this.Engine.CurrentContainer = this;
+                    }
+                    if (Mouse.GetState().X >= this.MovableZone.X && Mouse.GetState().X <= this.MovableZone.X + this.MovableZone.Width &&
+                            Mouse.GetState().Y >= this.MovableZone.Y && Mouse.GetState().Y <= this.MovableZone.Y + this.MovableZone.Height)
+                    {
+                        this.Engine.CurrentMovingContainer = this;
+                    }
+                }
+            }
             foreach (Control control in this.Controls)
             {
                 if (control.Visible == true && control.Enabled == true)
@@ -148,6 +168,47 @@ namespace Zappy_Client.Interface
                     this.Controls.Remove(control);
                     break;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set the movable zone of the container
+        /// </summary>
+        /// <param name="rectangle"></param>
+        public void SetMouvableZone(Rectangle rectangle)
+        {
+            this.MovableZone = rectangle;
+        }
+
+        /// <summary>
+        /// Process container moves
+        /// </summary>
+        public void ProcessMoves()
+        {
+            if (Mouse.GetState().MouseDown(MouseButton.LeftButton) && this.Enabled == true)
+            {
+                this.X -= Mouse.GetState().GetLastMouseState().X - Mouse.GetState().X;
+                this.Y -= Mouse.GetState().GetLastMouseState().Y - Mouse.GetState().Y;
+                if (this.X < 0)
+                {
+                    this.X = 0;
+                }
+                if (this.X + this.Width > this.Engine.ClientWidth)
+                {
+                    this.X = this.Engine.ClientWidth - this.Width;
+                }
+                if (this.Y < 0)
+                {
+                    this.Y = 0;
+                }
+                if (this.Y + this.Height > this.Engine.ClientHeight)
+                {
+                    this.Y = this.Engine.ClientHeight - this.Height;
+                }
+            }
+            else
+            {
+                this.Engine.CurrentMovingContainer = null;
             }
         }
 

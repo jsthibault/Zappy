@@ -24,7 +24,7 @@ namespace Zappy_Client.Interface
         #region FIELDS
 
         public GraphicsDevice GraphicsDevice { get; private set; }
-        private ContentManager Content { get; set; }
+        internal ContentManager Content { get; set; }
         private SpriteBatch SpriteBatch { get; set; }
 
         public Int32 ClientWidth { get; private set; }
@@ -36,8 +36,8 @@ namespace Zappy_Client.Interface
 
         internal List<Container> Contrainers { get; set; }
 
-        internal Window CurrentWindow { get; set; }
-        internal Window CurrentMovingWindow { get; set; }
+        internal Container CurrentContainer { get; set; }
+        internal Container CurrentMovingContainer { get; set; }
 
         #endregion
 
@@ -95,11 +95,11 @@ namespace Zappy_Client.Interface
             Mouse.GetState().Update();
             if (Mouse.GetState().IsInRectangle(new Rectangle(0, 0, this.ClientWidth, this.ClientHeight)) == false)
             {
-                this.CurrentMovingWindow = null;
+                this.CurrentMovingContainer = null;
             }
-            if (this.CurrentMovingWindow != null)
+            if (this.CurrentMovingContainer != null)
             {
-                (this.CurrentMovingWindow as Window).ProcessMoves();
+                this.CurrentMovingContainer.ProcessMoves();
             }
             for (Int32 i = 0; i < this.Contrainers.Count; ++i)
             {
@@ -117,16 +117,16 @@ namespace Zappy_Client.Interface
         {
             this.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
             this.SpriteBatch.Begin();
-            foreach (Window window in this.Contrainers)
+            foreach (Container container in this.Contrainers)
             {
-                if (window.Visible == true && window != this.CurrentWindow)
+                if (container.Visible == true && container != this.CurrentContainer)
                 {
-                    window.Draw(this.SpriteBatch);
+                    container.Draw(this.SpriteBatch);
                 }
             }
-            if (this.CurrentWindow != null)
+            if (this.CurrentContainer != null)
             {
-                this.CurrentWindow.Draw(this.SpriteBatch);
+                this.CurrentContainer.Draw(this.SpriteBatch);
             }
             this.SpriteBatch.End();
         }
@@ -144,7 +144,7 @@ namespace Zappy_Client.Interface
                     throw new Exception("Duplicate control name");
                 }
             }
-            this.CurrentWindow = container as Window;
+            this.CurrentContainer = container;
             this.Contrainers.Add(container);
         }
 
@@ -161,11 +161,11 @@ namespace Zappy_Client.Interface
                     this.Contrainers.Remove(control as Container);
                     if (this.Contrainers.Count > 0)
                     {
-                        this.CurrentWindow = this.Contrainers.Last() as Window;
+                        this.CurrentContainer = this.Contrainers.Last() as Window;
                     }
                     else
                     {
-                        this.CurrentWindow = null;
+                        this.CurrentContainer = null;
                     }
                     break;
                 }

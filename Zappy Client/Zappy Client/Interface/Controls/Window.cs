@@ -135,6 +135,7 @@ namespace Zappy_Client.Interface
             this.CloseButtonState = ControlState.Normal;
             this.CloseButtonRectangle = new Rectangle(this.Rectangle.Right - (this.Engine.Textures["WindowCloseButton"].Width / 2), this.Rectangle.Top + 9,
                             this.Engine.Textures["WindowCloseButton"].Width / 4, this.Engine.Textures["WindowCloseButton"].Height);
+            this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 25));
             base.Initialize();
         }
 
@@ -143,8 +144,8 @@ namespace Zappy_Client.Interface
         /// </summary>
         public override void Update()
         {
-            if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentWindow.Rectangle) == false ||
-                this == this.Engine.CurrentWindow)
+            if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentContainer.Rectangle) == false ||
+                this == this.Engine.CurrentContainer)
             {
                 this.CloseButtonRectangle = new Rectangle(this.Rectangle.Right - (this.Engine.Textures["WindowCloseButton"].Width / 2), this.Rectangle.Top + 9,
                             this.Engine.Textures["WindowCloseButton"].Width / 4, this.Engine.Textures["WindowCloseButton"].Height);
@@ -164,18 +165,7 @@ namespace Zappy_Client.Interface
                 {
                     this.CloseButtonState = ControlState.Normal;
                 }
-                if (Mouse.GetState().MouseDown(MouseButton.LeftButton) == true)
-                {
-                    if (Mouse.GetState().IsInRectangle(this.Engine.CurrentWindow.Rectangle) == false)
-                    {
-                        this.Engine.CurrentWindow = this;
-                    }
-                    if (Mouse.GetState().X >= this.Rectangle.X && Mouse.GetState().X <= this.Rectangle.X + this.Rectangle.Width &&
-                            Mouse.GetState().Y >= this.Rectangle.Y && Mouse.GetState().Y <= this.Rectangle.Y + 25)
-                    {
-                        this.Engine.CurrentMovingWindow = this;
-                    }
-                }
+                this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 25));
             }
             base.Update();
         }
@@ -192,7 +182,7 @@ namespace Zappy_Client.Interface
             {
                 _winColor = Color.SlateGray; // provisoire
             }
-            else if (this != this.Engine.CurrentWindow)
+            else if (this != this.Engine.CurrentContainer)
             {
                 _winColor = Color.White * 0.8f;
             }
@@ -225,38 +215,6 @@ namespace Zappy_Client.Interface
             this.DrawExitButton(spriteBatch);
 
             base.Draw(spriteBatch);
-        }
-
-        /// <summary>
-        /// Process window moves
-        /// </summary>
-        public void ProcessMoves()
-        {
-            if (Mouse.GetState().MouseDown(MouseButton.LeftButton) && this.Enabled == true)
-            {
-                this.X -= Mouse.GetState().GetLastMouseState().X - Mouse.GetState().X;
-                this.Y -= Mouse.GetState().GetLastMouseState().Y - Mouse.GetState().Y;
-                if (this.X < 0)
-                {
-                    this.X = 0;
-                }
-                if (this.X + this.Width > this.Engine.ClientWidth)
-                {
-                    this.X = this.Engine.ClientWidth - this.Width;
-                }
-                if (this.Y < 0)
-                {
-                    this.Y = 0;
-                }
-                if (this.Y + this.Height > this.Engine.ClientHeight)
-                {
-                    this.Y = this.Engine.ClientHeight - this.Height;
-                }
-            }
-            else
-            {
-                this.Engine.CurrentMovingWindow = null;
-            }
         }
 
         private void DrawExitButton(SpriteBatch spriteBatch)

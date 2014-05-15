@@ -48,7 +48,8 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Initialize()
         {
-            this.X = 200;
+            this.Text = "Connexion";
+            this.X = 500;
             this.Y = 100;
             this.Width = 250;
             this.Height = 150;
