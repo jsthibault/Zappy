@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. mai 16 17:42:12 2014 lefloc_l
+## Last update  ven. mai 16 17:47:52 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -20,20 +20,20 @@ DIR_SERVER=	src/server
 
 DIR_CLIENT=	src/client
 
-SRC_SERVER=	init_options.c \
+SRC_SERVER=	options/init_options.c \
 		main.c \
-		options_other.c \
-		options_with_int.c \
-		parse_options.c \
+		options/options_other.c \
+		options/options_with_int.c \
+		options/parse_options.c \
 		utils.c \
-		rock_on_map.c \
-		food_on_map.c \
-		get_on_map.c \
-		init_map.c \
+		map/rock_on_map.c \
+		map/food_on_map.c \
+		map/get_on_map.c \
+		map/init_map.c \
 		client_action.c \
-		logger_write.c \
-		logger_print.c \
-		logger.c \
+		logger/logger_write.c \
+		logger/logger_print.c \
+		logger/logger.c \
 		cmd/avance.c \
 		cmd/droite.c \
 		cmd/gauche.c \
