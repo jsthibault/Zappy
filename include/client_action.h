@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update ven. mai 16 17:44:45 2014 lefloc_l
+** Last update ven. mai 16 17:49:13 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -14,7 +14,7 @@
 typedef struct	e_tab_func
 {
   char		*command;
-  void		*(*p)(char **res);
+  void		(*p)(char **res);
 }		t_tab_func;
 
 void		cmd_avance(char **res);

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:16:51 2014 lefloc_l
-** Last update ven. mai 16 16:02:05 2014 lefloc_l
+** Last update ven. mai 16 17:51:36 2014 lefloc_l
 */
 
 #include "map.h"
@@ -13,10 +13,10 @@
 
 extern t_map		g_map;
 
-void		init_map(int width, int height)
+void	init_map(int width, int height)
 {
-  size_t	i;
-  size_t	j;
+  int	i;
+  int	j;
 
   g_map.width = width;
   g_map.height = height;

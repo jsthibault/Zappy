@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:33:23 2014 lefloc_l
-** Last update ven. mai 16 16:07:43 2014 lefloc_l
+** Last update ven. mai 16 17:50:38 2014 lefloc_l
 */
 
 #ifndef MAP_H_
@@ -28,8 +28,8 @@ typedef struct	s_case
 
 typedef struct	s_map
 {
-  size_t	width;
-  size_t	height;
+  int	width;
+  int	height;
   t_case	**map;
 }		t_map;
 

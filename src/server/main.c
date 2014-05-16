@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update ven. mai 16 17:34:19 2014 lefloc_l
+** Last update ven. mai 16 17:51:53 2014 lefloc_l
 */
 
 #include <signal.h>
@@ -29,8 +29,8 @@ static void	print_man()
 
 static void	signal_exit_prog(__attribute__((__unused__))int sig)
 {
-  size_t	i;
-  size_t	j;
+  int	i;
+  int	j;
 
   for (i = 0; i < g_map.height; ++i)
   {
