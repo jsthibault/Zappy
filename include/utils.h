@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update mer. mai 14 19:22:28 2014 lefloc_l
+** Last update ven. mai 16 16:44:46 2014 lefloc_l
 */
 
 #ifndef UTILS_H_
@@ -17,6 +17,7 @@
 
 # define COLOR_BLUE	"\033[4;34m"
 # define COLOR_GREEN	"\033[4;32m"
+# define COLOR_YELLOW	"\033[4;33m"
 # define COLOR_RED	"\033[4;31m"
 # define COLOR_NORMAL	"\033[0m"
 
@@ -33,5 +34,6 @@ typedef enum	e_bool
 t_bool		is_num(char *);
 t_bool		is_float(char *);
 void		*xmalloc(size_t size);
+void		print_error();
 
 #endif /* !UTILS_H_ */

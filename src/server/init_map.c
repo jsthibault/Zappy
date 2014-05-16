@@ -5,27 +5,27 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:16:51 2014 lefloc_l
-** Last update ven. mai 16 14:18:13 2014 lefloc_l
+** Last update ven. mai 16 16:02:05 2014 lefloc_l
 */
 
 #include "map.h"
 #include "utils.h"
 
-t_map		init_map(int width, int height)
+extern t_map		g_map;
+
+void		init_map(int width, int height)
 {
-  t_map		map;
   size_t	i;
   size_t	j;
 
-  map.width = width;
-  map.height = height;
-  map.map = xmalloc(sizeof(t_case) * height);
-  for (i = 0; i < map.height; ++i)
+  g_map.width = width;
+  g_map.height = height;
+  g_map.map = xmalloc(sizeof(t_case) * height);
+  for (i = 0; i < g_map.height; ++i)
   {
-    map.map[i] = xmalloc(sizeof(t_case *) * width);
-    for (j = 0; j < map.width; ++j) {
-      map.map[j][i].nb_food = 0;
-      map.map[j][i].players = NULL;
+    g_map.map[i] = xmalloc(sizeof(t_case *) * width);
+    for (j = 0; j < g_map.width; ++j) {
+      g_map.map[j][i].players = NULL;
     }
   }
 }

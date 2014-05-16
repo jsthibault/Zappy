@@ -5,11 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update mer. mai 14 19:21:51 2014 lefloc_l
+** Last update ven. mai 16 16:26:58 2014 lefloc_l
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 #include "utils.h"
 
 t_bool		is_num(char *str)
@@ -56,4 +58,9 @@ void	*xmalloc(size_t size)
     exit(EXIT_FAILURE);
   }
   return (ptr);
+}
+
+void	print_error()
+{
+  fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, strerror(errno));
 }

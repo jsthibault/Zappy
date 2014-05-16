@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  mer. mai 14 19:16:35 2014 lefloc_l
+## Last update  ven. mai 16 17:27:40 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -29,6 +29,11 @@ SRC_SERVER=	init_options.c \
 		rock_on_map.c \
 		food_on_map.c \
 		get_on_map.c \
+		init_map.c \
+		client_action.c \
+		logger_write.c \
+		logger_print.c \
+		logger.c \
 
 SRC_CLIENT=
 

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 18:53:04 2014 lefloc_l
-** Last update mer. mai 14 19:16:27 2014 lefloc_l
+** Last update ven. mai 16 16:52:14 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ t_bool		incr_rock_on_case(t_map *map, int y, int x, int type)
   _case = get_case(map, y, x);
   if (!_case)
     return (FALSE);
-  _case->nb_rock[type]++;
+  _case->inventory.items[type]++;
   return (TRUE);
 }
 
@@ -29,6 +29,6 @@ t_bool		decr_rock_on_case(t_map *map, int y, int x, int type)
   _case = get_case(map, y, x);
   if (!_case)
     return (FALSE);
-  _case->nb_rock[type]--;
+  _case->inventory.items[type]--;
   return (TRUE);
 }

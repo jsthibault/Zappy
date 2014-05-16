@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 18:52:18 2014 lefloc_l
-** Last update mer. mai 14 18:56:40 2014 lefloc_l
+** Last update ven. mai 16 17:27:18 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ t_bool		incr_food_on_case(t_map *map, int y, int x)
   _case = get_case(map, y, x);
   if (!_case)
     return (FALSE);
-  _case->nb_food++;
+  _case->inventory.items[0]++;
   return (TRUE);
 }
 
@@ -29,6 +29,6 @@ t_bool		decr_food_on_case(t_map *map, int y, int x)
   _case = get_case(map, y, x);
   if (!_case)
     return (FALSE);
-  _case->nb_food--;
+  _case->inventory.items[0]--;
   return (TRUE);
 }
