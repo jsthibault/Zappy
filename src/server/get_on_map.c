@@ -5,16 +5,22 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:40:27 2014 lefloc_l
-** Last update mar. mai 13 19:45:39 2014 lefloc_l
+** Last update mer. mai 14 19:16:45 2014 lefloc_l
 */
 
 #include "map.h"
+#include "utils.h"
 
-t_case	getCase(t_map *map, int y, int x)
+/*
+** return a map's case. The world is a sphere !
+** First: manage negative numbers
+** Second: manage to big numbers
+*/
+t_case	*get_case(t_map *map, int y, int x)
 {
-  if (x > map->width)
-    x %= map->width;
-  if (y > map->height)
-    y %= map->height;
-  return (map->map[y][x]);
+  x = (x < 0 ? map->width - (x % map->width) : x);
+  y = (y < 0 ? map->height - (y % map->width) : y);
+  x = (x > map->width ? x % map->width : x);
+  y = (y > map->height ? y % map->height : y);
+  return (&map->map[y][x]);
 }

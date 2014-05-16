@@ -5,10 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update mar. mai 13 17:17:51 2014 lefloc_l
+** Last update mer. mai 14 19:21:51 2014 lefloc_l
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 t_bool		is_num(char *str)
@@ -43,4 +44,16 @@ t_bool		is_float(char *str)
     }
   }
   return (TRUE);
+}
+
+void	*xmalloc(size_t size)
+{
+  void	*ptr;
+
+  if (!(ptr = malloc(size)))
+  {
+    fprintf(stderr, "Malloc failed.\n");
+    exit(EXIT_FAILURE);
+  }
+  return (ptr);
 }
