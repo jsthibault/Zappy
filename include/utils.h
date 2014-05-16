@@ -5,11 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update ven. mai 16 16:44:46 2014 lefloc_l
+** Last update ven. mai 16 17:43:43 2014 lefloc_l
 */
 
 #ifndef UTILS_H_
 # define UTILS_H_
+
+# include <stdio.h>
 
 /*
 ** Colors

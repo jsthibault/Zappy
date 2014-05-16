@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. mai 16 17:27:40 2014 lefloc_l
+## Last update  ven. mai 16 17:42:12 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -34,6 +34,18 @@ SRC_SERVER=	init_options.c \
 		logger_write.c \
 		logger_print.c \
 		logger.c \
+		cmd/avance.c \
+		cmd/droite.c \
+		cmd/gauche.c \
+		cmd/voir.c \
+		cmd/inventaire.c \
+		cmd/prend_objet.c \
+		cmd/pose_objet.c \
+		cmd/expulse.c \
+		cmd/broadcast_texte.c \
+		cmd/incantation.c \
+		cmd/fork.c \
+		cmd/connect_nbr.c \
 
 SRC_CLIENT=
 

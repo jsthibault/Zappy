@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update ven. mai 16 15:32:46 2014 lefloc_l
+** Last update ven. mai 16 17:44:45 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -14,20 +14,20 @@
 typedef struct	e_tab_func
 {
   char		*command;
-  char		*(*p)();
+  void		*(*p)(char **res);
 }		t_tab_func;
 
-char		*cmd_avance();
-char		*cmd_droite();
-char		*cmd_gauche();
-char		*cmd_voir();
-char		*cmd_inventaire();
-char		*cmd_prend_objet();
-char		*cmd_pose_objet();
-char		*cmd_expulse();
-char		*cmd_broadcast_texte();
-char		*cmd_incantation();
-char		*cmd_fork();
-char		*cmd_connect_nbr();
+void		cmd_avance(char **res);
+void		cmd_droite(char **res);
+void		cmd_gauche(char **res);
+void		cmd_voir(char **res);
+void		cmd_inventaire(char **res);
+void		cmd_prend_objet(char **res);
+void		cmd_pose_objet(char **res);
+void		cmd_expulse(char **res);
+void		cmd_broadcast_texte(char **res);
+void		cmd_incantation(char **res);
+void		cmd_fork(char **res);
+void		cmd_connect_nbr(char **res);
 
 #endif /* !CLIENT_ACTION_H_ */
