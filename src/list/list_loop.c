@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:21:56 2014 lefloc_l
-** Last update sam. mai 17 17:04:46 2014 lefloc_l
+** Last update sam. mai 17 18:51:15 2014 lefloc_l
 */
 
 #include "list.h"
@@ -14,10 +14,13 @@ void		list_foreach(t_list *list, ptrvv func)
 {
   t_node	*node;
 
+  if (!list)
+    return ;
   node = list->head;
   while (node)
   {
-    (*func)(node->data);
+    if (node->data)
+      (*func)(node->data);
     node = node->next;
   }
 }

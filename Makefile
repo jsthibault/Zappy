@@ -5,10 +5,12 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. mai 17 17:56:31 2014 lefloc_l
+## Last update  sam. mai 17 19:03:20 2014 lefloc_l
 ##
 
 CC=	gcc
+
+ECHO=	echo -e
 
 RM=	/bin/rm -rf
 
@@ -54,6 +56,8 @@ SRC_SERVER=	options/init_options.c \
 		game/team.c \
 		game/team_delete.c \
 		game/game.c \
+		game/player.c \
+		game/player_team.c \
 
 SRC_LIST=	list_add.c \
 		list.c \
@@ -64,7 +68,8 @@ SRC_LIST=	list_add.c \
 
 SRC_CLIENT=
 
-CFLAGS=		-Wall -Wextra -I./include/
+CFLAGS=		-W -Wall -Wextra -I./include/ -pedantic
+CDEBUG=		-O2 -g -ggdb
 
 OBJ_SERVER=	$(addprefix $(DIR_SERVER)/, $(SRC_SERVER:.c=.o))
 OBJ_LIST=	$(addprefix $(DIR_LIST)/, $(SRC_LIST:.c=.o))
@@ -73,8 +78,8 @@ OBJ_CLIENT=	$(addprefix $(DIR_CLIENT)/, $(SRC_CLIENT:.c=.o))
 all:	$(SERVER)
 
 $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST)
-	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS)
-
+	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS) $(CDEBUG)
+	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)
 	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS)
@@ -82,11 +87,13 @@ $(CLIENT):	$(OBJ_CLIENT)
 clean:
 	$(RM) $(OBJ_SERVER)
 	$(RM) $(OBJ_CLIENT)
+	@$(ECHO) '\033[0;31m> Directory cleaned\033[0m'
 
 
 fclean:	clean
 	$(RM) $(SERVER)
 	$(RM) $(CLIENT)
+	@$(ECHO) '\033[0;31m> Remove executable\033[0m'
 
 re:	fclean all
 

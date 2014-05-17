@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:21:09 2014 lefloc_l
-** Last update sam. mai 17 18:09:19 2014 lefloc_l
+** Last update sam. mai 17 18:56:13 2014 lefloc_l
 */
 
 #include <string.h>
@@ -36,7 +36,7 @@ void		init_team()
     if (!find_team(g_kernel->options.team_names[i]))
       add_team(g_kernel->options.team_names[i]);
     else
-      logger_error("{TEAM} %s already exists");
+      logger_warning("{TEAM} %s already exists");
   }
 }
 

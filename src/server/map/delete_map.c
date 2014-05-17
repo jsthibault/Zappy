@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 14:48:05 2014 lefloc_l
-** Last update sam. mai 17 15:12:03 2014 lefloc_l
+** Last update sam. mai 17 19:05:11 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -24,7 +24,7 @@ void	delete_map()
   {
     for (j = 0; i < g_map.width; ++j)
     {
-      // TODO free players list on g_map.map[i][j]
+      /* TODO free players list on g_map.map[i][j] */
     }
     free(g_map.map[i]);
   }

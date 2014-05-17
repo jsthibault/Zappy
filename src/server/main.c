@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update sam. mai 17 18:17:06 2014 lefloc_l
+** Last update sam. mai 17 19:05:48 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -24,23 +24,16 @@ static void	print_man()
       -t delai temporel d’execution des actions\n", COLOR_BLUE, COLOR_NORMAL);
 }
 
-void	dump(void *data)
-{
-  if (data)
-    printf("%s\n", data);
-  else
-    printf("Empty\n");
-}
-
 int		main(const int argc, const char *argv[])
 {
   logger_init("test.log", TRUE);
   if (FALSE == init_kernel(argc, argv))
   {
     print_man();
+    delete_kernel();
     return (EXIT_FAILURE);
   }
+/*  run_kernel(); */
   delete_kernel();
-//  run_kernel();
   return (EXIT_SUCCESS);
 }

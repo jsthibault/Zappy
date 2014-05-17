@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:35:55 2014 lefloc_l
-** Last update sam. mai 17 17:33:30 2014 lefloc_l
+** Last update sam. mai 17 18:58:39 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -23,10 +23,7 @@ t_bool		init_kernel(const int argc, const char **argv)
   logger_message("{KERNEL} Initialisation");
   init_options(&g_kernel->options);
   if (!parse_options(argc, argv, &g_kernel->options))
-  {
-    free(g_kernel);
     return (FALSE);
-  }
   dump_options(&g_kernel->options);
   g_kernel->is_running = TRUE;
   init_map(g_kernel->options.width, g_kernel->options.height);
