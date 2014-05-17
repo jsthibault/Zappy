@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update sam. mai 17 17:47:39 2014 lefloc_l
+** Last update sam. mai 17 18:17:06 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -40,7 +40,7 @@ int		main(const int argc, const char *argv[])
     print_man();
     return (EXIT_FAILURE);
   }
-
+  delete_kernel();
 //  run_kernel();
   return (EXIT_SUCCESS);
 }

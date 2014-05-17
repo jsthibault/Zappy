@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:56:38 2014 lefloc_l
-** Last update sam. mai 17 17:58:31 2014 lefloc_l
+** Last update sam. mai 17 18:17:32 2014 lefloc_l
 */
 
 #include <string.h>
@@ -19,10 +19,11 @@ static void		delete_by_name(t_list *list, t_node *node, void *arg)
   t_team	*team;
 
   team = (t_team *)node->data;
-  if (!strcmp(team->name, arg))
+  if (!team)
+    return ;
+  if (!strcmp(team->name, (char *)arg))
   {
     delete_team(node->data);
-    list_pop_node(list, node);
   }
 }
 
@@ -42,6 +43,8 @@ void		delete_team(void *data)
   team = (t_team *)data;
   if (!team)
     return ;
-  list_delete(team->players);
+  if (team->players)
+    list_delete(team->players);
   logger_message("{TEAM} Delete %s", team->name);
 }
+

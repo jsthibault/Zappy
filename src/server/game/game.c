@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update sam. mai 17 17:46:52 2014 lefloc_l
+** Last update sam. mai 17 18:18:49 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -15,10 +15,10 @@ extern t_kernel	*g_kernel;
 
 void	delete_game()
 {
-  logger_message("{GAME} Delete");
-
   list_foreach(g_kernel->game->teams, delete_team);
+  list_delete(g_kernel->game->teams);
   free(g_kernel->game);
+  logger_message("{GAME} Deleted");
 }
 
 void	init_game()
