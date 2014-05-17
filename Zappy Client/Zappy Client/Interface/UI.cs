@@ -85,6 +85,9 @@ namespace Zappy_Client.Interface
                 this.Textures["Window" + i.ToString()] = this.Content.Load<Texture2D>(@"Theme\Window\WndTile" + i.ToString("00") + ".png");
             }
             this.Textures["WindowCloseButton"] = this.Content.Load<Texture2D>("Theme//Window//ButtWndExit.png");
+
+            /* Load buttons */
+            this.Textures["Button"] = this.Content.Load<Texture2D>("Theme//Buttons//ButtNormal00.png");
         }
 
         /// <summary>

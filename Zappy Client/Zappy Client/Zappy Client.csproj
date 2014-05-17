@@ -38,6 +38,7 @@
     <Compile Include="Core\Coliseum.cs" />
     <Compile Include="Core\LoginWnd.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Interface\Controls\Button.cs" />
     <Compile Include="Interface\Controls\Control.cs" />
     <Compile Include="Interface\Controls\Container.cs" />
     <Compile Include="Interface\Controls\Label.cs" />
@@ -75,6 +76,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\APP_NEWCOLOMASSAGE.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Buttons\ButtNormal00.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Window\ButtWndExit.png">

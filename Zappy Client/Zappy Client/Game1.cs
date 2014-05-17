@@ -42,6 +42,7 @@ namespace Zappy_Client
             //this.Engine.AddContainer(this.win2);
 
             this.LoginWindow = new LoginWnd(this.Engine);
+            this.LoginWindow.AddControl(new Button(this.Engine, "button1", 25, 80, 100, 0, "Connexion"));
             this.ColiseumWindow = new Coliseum(this.Engine);
 
             this.Engine.AddContainer(this.ColiseumWindow);

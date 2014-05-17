@@ -57,7 +57,7 @@ namespace Zappy_Client.Core
             this.X = 150;
             this.Y = 50;
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
-            this.Message = new Label(this.Engine, "LabelMessage", 95, -10, "Welcome to the Zappy !");
+            this.Message = new Label(this.Engine, "LabelMessage", 100, 13, "Welcome to the Zappy !");
             this.AddControl(this.Message);
             base.Initialize();
         }

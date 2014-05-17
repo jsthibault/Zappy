@@ -78,7 +78,7 @@ namespace Zappy_Client.Interface
                 }
                 else
                 {
-                    return new Vector2(this.X + this.ParentControl.X + 10, this.Y + this.ParentControl.Y + 25);
+                    return new Vector2(this.X + this.ParentControl.X, this.Y + this.ParentControl.Y);
                 }
             }
         }
@@ -129,6 +129,10 @@ namespace Zappy_Client.Interface
                 {
                     this.MouseClick();
                 }
+            }
+            else
+            {
+                this.State = ControlState.Normal;
             }
         }
 
