@@ -16,4 +16,19 @@ using System.Text;
 namespace Zappy_Client.Interface
 {
     public delegate void MonoGameEventHandler(Object sender);
+
+    public delegate void MonoGameCheckBoxEventHandler(Object sender, MonoGameCheckBoxEventArgs e);
+
+    /// <summary>
+    /// MonoGame CheckBox Event Args
+    /// </summary>
+    public class MonoGameCheckBoxEventArgs : EventArgs
+    {
+        public Boolean State { get; set; }
+
+        public MonoGameCheckBoxEventArgs(Boolean state)
+        {
+            this.State = state;
+        }
+    }
 }

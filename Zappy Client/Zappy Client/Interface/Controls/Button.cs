@@ -131,7 +131,7 @@ namespace Zappy_Client.Interface
                 new Rectangle(_offset + _source.Width - 10, 0, 10, _source.Height),
                 Color.White);
 
-            spriteBatch.DrawCenteredText(this.Engine.Fonts["ArialBlack"], this.Rectangle, this.Text, Color.Black);
+            spriteBatch.DrawCenteredText(this.Engine.Fonts["TrebuchetMSBold"], this.Rectangle, this.Text, Color.Black);
         }
 
         #endregion

@@ -25,6 +25,8 @@ namespace Zappy_Client.Core
         private Label Host { get; set; }
         private Label Port { get; set; }
 
+        private CheckBox SaveAccount { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -55,8 +57,12 @@ namespace Zappy_Client.Core
             this.Height = 150;
             this.Host = new Label(this.Engine, "LabelHost", 10, 25, "Host : ");
             this.Port = new Label(this.Engine, "LabelPort", 10, 50, "Port : ");
+            this.SaveAccount = new CheckBox(this.Engine, "CheckBoxSaveAccount", 80, 70, "Save configuration", false);
+
+            // Add to container
             this.AddControl(this.Host);
             this.AddControl(this.Port);
+            this.AddControl(this.SaveAccount);
             base.Initialize();
         }
 

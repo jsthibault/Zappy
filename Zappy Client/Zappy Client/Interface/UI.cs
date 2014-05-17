@@ -88,6 +88,9 @@ namespace Zappy_Client.Interface
 
             /* Load buttons */
             this.Textures["Button"] = this.Content.Load<Texture2D>("Theme//Buttons//ButtNormal00.png");
+
+            /* Load checkbox */
+            this.Textures["CheckBox"] = this.Content.Load<Texture2D>("Theme//Controls//ButtCheck.png");
         }
 
         /// <summary>
