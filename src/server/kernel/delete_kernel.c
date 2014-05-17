@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:33:47 2014 lefloc_l
-** Last update sam. mai 17 14:48:29 2014 lefloc_l
+** Last update sam. mai 17 17:36:26 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -19,5 +19,8 @@ void	delete_kernel()
 {
   logger_message("{KERNEL} Delete");
   if (g_kernel)
+  {
+    delete_game();
     free(g_kernel);
+  }
 }

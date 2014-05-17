@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. mai 17 16:40:10 2014 lefloc_l
+## Last update  sam. mai 17 17:56:31 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -51,6 +51,9 @@ SRC_SERVER=	options/init_options.c \
 		kernel/run_kernel.c \
 		kernel/signal.c \
 		kernel/delete_kernel.c \
+		game/team.c \
+		game/team_delete.c \
+		game/game.c \
 
 SRC_LIST=	list_add.c \
 		list.c \

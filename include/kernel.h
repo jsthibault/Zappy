@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:34:27 2014 lefloc_l
-** Last update sam. mai 17 14:54:02 2014 lefloc_l
+** Last update sam. mai 17 17:34:57 2014 lefloc_l
 */
 
 #ifndef KERNEL_H_
@@ -13,10 +13,12 @@
 
 # include "options.h"
 # include "utils.h"
+# include "game.h"
 
 typedef struct	s_kernel
 {
   t_options	options;
+  t_game	*game;
   t_bool	is_running;
 }		t_kernel;
 

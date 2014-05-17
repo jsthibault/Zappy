@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update sam. mai 17 17:05:07 2014 lefloc_l
+** Last update sam. mai 17 17:47:39 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -32,12 +32,6 @@ void	dump(void *data)
     printf("Empty\n");
 }
 
-void	test(t_list *list, t_node *node, void *arg)
-{
-  if (!strcmp(node->data, arg))
-    list_pop_node(list, node);
-}
-
 int		main(const int argc, const char *argv[])
 {
   logger_init("test.log", TRUE);
@@ -46,19 +40,6 @@ int		main(const int argc, const char *argv[])
     print_man();
     return (EXIT_FAILURE);
   }
-
-
-
-  t_list	*list;
-
-  list = list_create();
-  list_push_front(list, "test");
-  list_push_front(list, "test");
-  list_push_front(list, "test");
-  list_push_back(list, "test2");
-  list_foreach(list, dump);
-  list_recur_action(list, test, "test");
-  list_foreach(list, dump);
 
 //  run_kernel();
   return (EXIT_SUCCESS);

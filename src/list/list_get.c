@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:31:08 2014 lefloc_l
-** Last update sam. mai 17 16:50:44 2014 lefloc_l
+** Last update sam. mai 17 18:05:53 2014 lefloc_l
 */
 
 #include "list.h"
@@ -60,9 +60,7 @@ void		*list_get_func_arg(t_list *list, ptrbvv func, void *arg)
 
   node = list->head;
   while (node && (*func)(node->data, arg) == FALSE)
-  {
     node = node->next;
-  }
   if (node)
     return (node->data);
   return (NULL);
