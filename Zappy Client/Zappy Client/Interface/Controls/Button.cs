@@ -120,9 +120,9 @@ namespace Zappy_Client.Interface
             spriteBatch.Draw(this.Engine.Textures["Button"], this.Position, new Rectangle(_source.X, _source.Y, 10, _source.Height), Color.White);
 
             // Draw mid
-            spriteBatch.Draw(this.Engine.Textures["Button"], 
-                new Rectangle((Int32)this.Position.X + 10, (Int32)this.Position.Y, this.Width - 20, _source.Height), 
-                new Rectangle(_source.X + 10, 0, 10, _source.Height), 
+            spriteBatch.Draw(this.Engine.Textures["Button"],
+                new Rectangle((Int32)this.Position.X + 10, (Int32)this.Position.Y, this.Width - 20, _source.Height),
+                new Rectangle(_source.X + 10, 0, 10, _source.Height),
                 Color.White);
 
             // Draw right
@@ -131,7 +131,10 @@ namespace Zappy_Client.Interface
                 new Rectangle(_offset + _source.Width - 10, 0, 10, _source.Height),
                 Color.White);
 
-            spriteBatch.DrawCenteredText(this.Engine.Fonts["TrebuchetMSBold"], this.Rectangle, this.Text, Color.Black);
+            if (String.IsNullOrEmpty(this.Text) == false)
+            {
+                spriteBatch.DrawCenteredText(this.Engine.Fonts["TrebuchetMSBold"], this.Rectangle, this.Text, Color.Black);
+            }
         }
 
         #endregion

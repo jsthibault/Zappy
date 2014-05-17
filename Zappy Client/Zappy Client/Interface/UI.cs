@@ -160,14 +160,14 @@ namespace Zappy_Client.Interface
         /// <param name="name">Control name</param>
         public void DeleteControl(String name)
         {
-            foreach (Control control in this.Contrainers)
+            foreach (Container container in this.Contrainers)
             {
-                if (control.Name == name)
+                if (container.Name == name)
                 {
-                    this.Contrainers.Remove(control as Container);
+                    this.Contrainers.Remove(container as Container);
                     if (this.Contrainers.Count > 0)
                     {
-                        this.CurrentContainer = this.Contrainers.Last() as Window;
+                        this.CurrentContainer = this.Contrainers.Last() as Container;
                     }
                     else
                     {
