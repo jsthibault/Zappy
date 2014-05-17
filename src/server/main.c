@@ -5,16 +5,12 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update ven. mai 16 17:51:53 2014 lefloc_l
+** Last update sam. mai 17 13:56:04 2014 lefloc_l
 */
 
-#include <signal.h>
 #include <stdlib.h>
-#include "options.h"
-#include "map.h"
+#include "kernel.h"
 #include "logger.h"
-
-t_map		g_map;
 
 static void	print_man()
 {
@@ -27,41 +23,14 @@ static void	print_man()
       -t delai temporel d’execution des actions\n", COLOR_BLUE, COLOR_NORMAL);
 }
 
-static void	signal_exit_prog(__attribute__((__unused__))int sig)
+int		main(const int argc, const char *argv[])
 {
-  int	i;
-  int	j;
-
-  for (i = 0; i < g_map.height; ++i)
-  {
-    for (j = 0; i < g_map.width; ++j)
-    {
-      // TODO free players list on g_map.map[i][j]
-      free(g_map.map[i]);
-    }
-    free(g_map.map[i]);
-  }
-
-}
-
-int		main(int argc, const char *argv[])
-{
-  t_options	options;
-
-  if (signal(SIGQUIT, &signal_exit_prog) == SIG_ERR)
-  {
-    fprintf(stderr, "Signal failed.\n");
-    return (EXIT_FAILURE);
-  }
-
-  init_options(&options);
-  if (!parse_options(argc, argv, &options))
+  logger_init("test.log", TRUE);
+  if (FALSE == init_kernel(argc, argv))
   {
     print_man();
-    return (FALSE);
+    return (EXIT_FAILURE);
   }
-  dump_options(&options);
-//  init_map(options.width, options.height);
-  logger_init("test.log", TRUE);
-  return (0);
+  run_kernel();
+  return (EXIT_SUCCESS);
 }

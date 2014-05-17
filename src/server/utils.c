@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update ven. mai 16 16:26:58 2014 lefloc_l
+** Last update sam. mai 17 14:49:23 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -13,6 +13,8 @@
 #include <string.h>
 #include <errno.h>
 #include "utils.h"
+#include "kernel.h"
+#include "map.h"
 
 t_bool		is_num(char *str)
 {
@@ -53,14 +55,19 @@ void	*xmalloc(size_t size)
   void	*ptr;
 
   if (!(ptr = malloc(size)))
-  {
-    fprintf(stderr, "Malloc failed.\n");
-    exit(EXIT_FAILURE);
-  }
+    mexit();
   return (ptr);
 }
 
 void	print_error()
 {
   fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, strerror(errno));
+}
+
+void	mexit()
+{
+  print_error();
+  delete_kernel();
+  delete_map();
+  exit(EXIT_FAILURE);
 }

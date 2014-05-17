@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. mai 16 17:47:52 2014 lefloc_l
+## Last update  sam. mai 17 14:52:43 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -30,6 +30,7 @@ SRC_SERVER=	options/init_options.c \
 		map/food_on_map.c \
 		map/get_on_map.c \
 		map/init_map.c \
+		map/delete_map.c \
 		client_action.c \
 		logger/logger_write.c \
 		logger/logger_print.c \
@@ -46,6 +47,10 @@ SRC_SERVER=	options/init_options.c \
 		cmd/incantation.c \
 		cmd/fork.c \
 		cmd/connect_nbr.c \
+		kernel/init_kernel.c \
+		kernel/run_kernel.c \
+		kernel/signal.c \
+		kernel/delete_kernel.c \
 
 SRC_CLIENT=
 

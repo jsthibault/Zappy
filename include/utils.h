@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update ven. mai 16 17:43:43 2014 lefloc_l
+** Last update sam. mai 17 13:59:34 2014 lefloc_l
 */
 
 #ifndef UTILS_H_
@@ -37,5 +37,6 @@ t_bool		is_num(char *);
 t_bool		is_float(char *);
 void		*xmalloc(size_t size);
 void		print_error();
+void		mexit();
 
 #endif /* !UTILS_H_ */
