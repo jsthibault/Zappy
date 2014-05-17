@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update sam. mai 17 18:59:21 2014 lefloc_l
+** Last update sam. mai 17 19:36:14 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -32,7 +32,9 @@ void	delete_game()
 
 void	init_game()
 {
+  logger_message("{GAME} Initialisation");
   g_kernel->game = xmalloc(sizeof(t_game));
   g_kernel->game->players = NULL;
+  init_map(g_kernel->options.width, g_kernel->options.height);
   init_team();
 }

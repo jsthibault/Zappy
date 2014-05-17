@@ -5,13 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 18:53:04 2014 lefloc_l
-** Last update sam. mai 17 14:33:04 2014 lefloc_l
+** Last update sam. mai 17 19:33:00 2014 lefloc_l
 */
 
 #include <stdio.h>
 #include "map.h"
-
-extern t_map	*g_map;
 
 t_bool		incr_rock_on_case(int y, int x, int type)
 {

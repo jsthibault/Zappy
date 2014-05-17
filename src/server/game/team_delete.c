@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:56:38 2014 lefloc_l
-** Last update sam. mai 17 18:17:32 2014 lefloc_l
+** Last update sam. mai 17 19:39:32 2014 lefloc_l
 */
 
 #include <string.h>
@@ -14,7 +14,8 @@
 
 extern t_kernel	*g_kernel;
 
-static void		delete_by_name(t_list *list, t_node *node, void *arg)
+static void		delete_by_name(__attribute__((__unused__))t_list *list,
+    t_node *node, void *arg)
 {
   t_team	*team;
 

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:19:53 2014 lefloc_l
-** Last update sam. mai 17 18:47:25 2014 lefloc_l
+** Last update sam. mai 17 19:10:16 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -37,7 +37,10 @@ void		add_player_to_team(char *teamname, t_player *player)
   else
   {
     if (FALSE == player_in_team(team, player))
+    {
       list_push_back(team->players, player);
+      player->team = team;
+    }
     else
       logger_error("{PLAYER} already joined team \"%s\"", teamname);
   }

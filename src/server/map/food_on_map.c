@@ -5,13 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 18:52:18 2014 lefloc_l
-** Last update sam. mai 17 14:33:55 2014 lefloc_l
+** Last update sam. mai 17 19:32:42 2014 lefloc_l
 */
 
 #include <stdio.h>
-#include "map.h"
-
-extern t_map		*g_map;
+#include "kernel.h"
 
 t_bool		incr_food_on_case(int y, int x)
 {

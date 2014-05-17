@@ -5,13 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:40:27 2014 lefloc_l
-** Last update sam. mai 17 15:40:58 2014 lefloc_l
+** Last update sam. mai 17 19:34:33 2014 lefloc_l
 */
 
-#include "map.h"
+#include "kernel.h"
 #include "utils.h"
 
-extern t_map	*g_map;
+extern t_kernel	*g_kernel;
 
 /*
 ** return a map's case. The world is a sphere !
@@ -20,9 +20,12 @@ extern t_map	*g_map;
 */
 t_case	*get_case(int y, int x)
 {
-  x = (x < 0 ? g_map->width - (x % g_map->width) : x);
-  y = (y < 0 ? g_map->height - (y % g_map->width) : y);
-  x = (x > g_map->width ? x % g_map->width : x);
-  y = (y > g_map->height ? y % g_map->height : y);
-  return (&g_map->map[y][x]);
+  t_map	*map;
+
+  map = g_kernel->game->map;
+  x = (x < 0 ? map->width - (x % map->width) : x);
+  y = (y < 0 ? map->height - (y % map->width) : y);
+  x = (x > map->width ? x % map->width : x);
+  y = (y > map->height ? y % map->height : y);
+  return (&map->map[y][x]);
 }

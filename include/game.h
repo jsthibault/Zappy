@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:13:20 2014 lefloc_l
-** Last update sam. mai 17 19:04:23 2014 lefloc_l
+** Last update sam. mai 17 19:38:52 2014 lefloc_l
 */
 
 #ifndef GAME_H_
@@ -20,7 +20,7 @@ typedef struct	s_game
 {
   t_list	*teams;
   t_list	*players;
-/*  t_map		*map;*/
+  t_map		*map;
 }		t_game;
 
 void	init_game();
