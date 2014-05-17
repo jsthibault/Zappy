@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. mai 17 14:52:43 2014 lefloc_l
+## Last update  sam. mai 17 16:40:10 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -17,7 +17,7 @@ SERVER=		server
 CLIENT=		client
 
 DIR_SERVER=	src/server
-
+DIR_LIST=	src/list
 DIR_CLIENT=	src/client
 
 SRC_SERVER=	options/init_options.c \
@@ -52,18 +52,25 @@ SRC_SERVER=	options/init_options.c \
 		kernel/signal.c \
 		kernel/delete_kernel.c \
 
+SRC_LIST=	list_add.c \
+		list.c \
+		list_get.c \
+		list_loop.c \
+		list_pop.c \
+		node.c \
+
 SRC_CLIENT=
 
 CFLAGS=		-Wall -Wextra -I./include/
 
 OBJ_SERVER=	$(addprefix $(DIR_SERVER)/, $(SRC_SERVER:.c=.o))
-
+OBJ_LIST=	$(addprefix $(DIR_LIST)/, $(SRC_LIST:.c=.o))
 OBJ_CLIENT=	$(addprefix $(DIR_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
 all:	$(SERVER)
 
-$(SERVER):	$(OBJ_SERVER)
-	$(CC) -o $(SERVER) $(OBJ_SERVER) $(CFLAGS)
+$(SERVER):	$(OBJ_SERVER) $(OBJ_LIST)
+	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS)
 
 
 $(CLIENT):	$(OBJ_CLIENT)
@@ -79,3 +86,4 @@ fclean:	clean
 	$(RM) $(CLIENT)
 
 re:	fclean all
+

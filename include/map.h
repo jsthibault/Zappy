@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:33:23 2014 lefloc_l
-** Last update sam. mai 17 14:49:47 2014 lefloc_l
+** Last update sam. mai 17 16:43:05 2014 lefloc_l
 */
 
 #ifndef MAP_H_
@@ -14,11 +14,7 @@
 # include <stdio.h>
 # include "utils.h"
 # include "enum.h"
-
-// Temporaire. -> delete compilo error
-typedef struct	s_list {
-
-}		t_list;
+# include "list.h"
 
 typedef struct	s_case
 {
