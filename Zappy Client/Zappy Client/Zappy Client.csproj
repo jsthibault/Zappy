@@ -43,6 +43,7 @@
     <Compile Include="Interface\Controls\Control.cs" />
     <Compile Include="Interface\Controls\Container.cs" />
     <Compile Include="Interface\Controls\Label.cs" />
+    <Compile Include="Interface\Controls\ProgressBar.cs" />
     <Compile Include="Interface\Controls\Window.cs" />
     <Compile Include="Interface\Events\EventType.cs" />
     <Compile Include="Interface\Extension\Mouse.cs" />
@@ -86,6 +87,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Controls\ButtRadio.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\TargetgaugeBg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Window\ButtWndExit.png">

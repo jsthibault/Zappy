@@ -91,6 +91,12 @@ namespace Zappy_Client.Interface
 
             /* Load checkbox */
             this.Textures["CheckBox"] = this.Content.Load<Texture2D>("Theme//Controls//ButtCheck.png");
+
+            /* Load progressbar */
+            this.Textures["ProgressBarBg"] = this.Content.Load<Texture2D>("Theme//ProgressBars//TargetgaugeBg.png");
+            this.Textures["ProgressBarRed"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge01.png");
+            this.Textures["ProgressBarGreen"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge03.png");
+            this.Textures["ProgressBarBlue"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge02.png");
         }
 
         /// <summary>

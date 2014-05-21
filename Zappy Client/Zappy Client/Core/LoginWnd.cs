@@ -27,6 +27,8 @@ namespace Zappy_Client.Core
 
         private CheckBox SaveAccount { get; set; }
 
+        private Button Connect { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -58,12 +60,20 @@ namespace Zappy_Client.Core
             this.Host = new Label(this.Engine, "LabelHost", 10, 25, "Host : ");
             this.Port = new Label(this.Engine, "LabelPort", 10, 50, "Port : ");
             this.SaveAccount = new CheckBox(this.Engine, "CheckBoxSaveAccount", 80, 70, "Save configuration", false);
-
+            this.Connect = new Button(this.Engine, "ConnectButton", 70, 100, 100, 0, "Login !");
+            this.Connect.OnClick += Connect_OnClick;
+            
             // Add to container
             this.AddControl(this.Host);
             this.AddControl(this.Port);
             this.AddControl(this.SaveAccount);
+            this.AddControl(this.Connect);
             base.Initialize();
+        }
+
+        void Connect_OnClick(object sender)
+        {
+            
         }
 
         /// <summary>

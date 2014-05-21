@@ -34,12 +34,13 @@ namespace Zappy_Client
             this.Engine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
 
             this.win1 = new Window(this.Engine, "Hey", 20, 20, 300, 250, "Login");
-            this.win1.AddControl(new Label(this.Engine, "Label1", 0, 0, "Connexion"));
+            this.win1.AddControl(new Label(this.Engine, "Label1", 50, 30, "Connexion"));
+            this.win1.AddControl(new ProgressBar(this.Engine, "ProgressBarWin1", 15, 50, 125, ProgressBarColor.Green, 50));
+            this.win1.AddControl(new ProgressBar(this.Engine, "ProgressBarWin2", 15, 70, 125, ProgressBarColor.Red, 75));
+            this.win1.AddControl(new ProgressBar(this.Engine, "ProgressBarWin3", 15, 90, 125, ProgressBarColor.Blue, 25));
 
-            this.win2 = new Window(this.Engine, "Hey2", 50, 50, 300, 250, "Other window");
 
-            //this.Engine.AddContainer(this.win1);
-            //this.Engine.AddContainer(this.win2);
+            this.Engine.AddContainer(this.win1);
 
             this.LoginWindow = new LoginWnd(this.Engine);
             this.ColiseumWindow = new Coliseum(this.Engine);

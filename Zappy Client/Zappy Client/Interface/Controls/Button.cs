@@ -99,11 +99,11 @@ namespace Zappy_Client.Interface
 
             if (this.State == ControlState.Normal)
             {
-                _offset = 0;
+                _offset = this.Engine.Textures["Button"].Width / 4;
             }
             else if (this.State == ControlState.Hover)
             {
-                _offset = this.Engine.Textures["Button"].Width / 4;
+                _offset = 0;
             }
             else if (this.State == ControlState.Press)
             {
