@@ -5,13 +5,16 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update Tue May 13 19:35:40 2014 arnaud drain
+** Last update Fri May 23 14:21:23 2014 arnaud drain
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#include <errno.h>
 #include "utils.h"
+#include "kernel.h"
+#include "map.h"
 
 t_bool		is_num(char *str)
 {
@@ -50,4 +53,26 @@ t_bool		is_float(char *str)
 int	write_socket(int fd, char *str)
 {
   return (write(fd, str, strlen(str)));
+}
+
+void	*xmalloc(size_t size)
+{
+  void	*ptr;
+
+  if (!(ptr = malloc(size)))
+    mexit();
+  return (ptr);
+}
+
+void	print_error()
+{
+  fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, strerror(errno));
+}
+
+void	mexit()
+{
+  print_error();
+  delete_kernel();
+  delete_map();
+  exit(EXIT_FAILURE);
 }

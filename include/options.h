@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update mar. mai 13 16:24:26 2014 lefloc_l
+** Last update sam. mai 17 17:17:08 2014 lefloc_l
 */
 
 #ifndef OPTIONS_H_
@@ -13,6 +13,8 @@
 
 # include <stdio.h>
 # include "utils.h"
+# include "list.h"
+# include "team.h"
 
 /*
 ** Define for default options
@@ -35,7 +37,7 @@ typedef struct	s_options
   size_t	height;
   size_t	max_clients;
   size_t	delai;
-  char		team_names[100][100];
+  char		team_names[TEAM_MAX][TEAM_NAME_SIZE];
   size_t	nb_team_names;
 
 }		t_options;

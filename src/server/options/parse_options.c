@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update mar. mai 13 16:52:13 2014 lefloc_l
+** Last update sam. mai 17 17:20:25 2014 lefloc_l
 */
 
 #include <string.h>
@@ -20,6 +20,20 @@ static const t_tabfunctions	tabfunctions[] = {
   { "-t", &option_t },
   { NULL, NULL },
 };
+
+static t_bool	check_options(t_options *options)
+{
+  if (options->nb_team_names == 0)
+  {
+    print_error("Please create teams !");
+    return (FALSE);
+  }
+  if (options->nb_team_names > TEAM_MAX)
+  {
+    print_error("Too much teams !");
+  }
+  return (TRUE);
+}
 
 t_bool		parse_options(const int ac, const char *av[], t_options *options)
 {
@@ -42,7 +56,7 @@ t_bool		parse_options(const int ac, const char *av[], t_options *options)
     if (!check)
       return (FALSE);
   }
-  return (TRUE);
+  return (check_options(options));
 }
 
 void		dump_options(t_options *options)
@@ -57,3 +71,4 @@ void		dump_options(t_options *options)
     printf("\t%s\n", options->team_names[i]);
   printf("===== END OPTIONS ======\n");
 }
+

@@ -5,11 +5,15 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Tue May 13 19:40:47 2014 arnaud drain
+** Last update Fri May 23 14:22:36 2014 arnaud drain
 */
 
+#include <stdlib.h>
 #include "options.h"
 #include "server.h"
+#include "kernel.h"
+#include "logger.h"
+#include "list.h"
 
 static void	print_man()
 {
@@ -22,17 +26,18 @@ static void	print_man()
       -t delai temporel d’execution des actions\n", COLOR_BLUE, COLOR_NORMAL);
 }
 
-int		main(int argc, const char *argv[])
+int		main(const int argc, const char *argv[])
 {
-  t_options	options;
-
-  init_options(&options);
-  if (!parse_options(argc, argv, &options))
+  logger_init("test.log", TRUE);
+  if (FALSE == init_kernel(argc, argv))
   {
     print_man();
-    return (FALSE);
+    delete_kernel();
+    return (EXIT_FAILURE);
   }
-  //dump_options(&options);
-  launch_srv(&options);
-  return (0);
+  /*dump_options(&options);*/
+  /*launch_srv(&options);*/
+/*  run_kernel(); */
+  delete_kernel();
+  return (EXIT_SUCCESS);
 }

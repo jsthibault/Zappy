@@ -24,4 +24,9 @@
 
 *~
 
+<<<<<<< HEAD
 # binaries
+=======
+tags
+*.log
+>>>>>>> f466ef2ab5ca506577347fc6a9cefafff3d4ae1b
