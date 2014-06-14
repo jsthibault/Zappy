@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Fri May 23 14:21:57 2014 arnaud drain
+## Last update Sat Jun 14 16:42:47 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -23,7 +23,13 @@ DIR_LIST=	src/list
 DIR_CLIENT=	src/client
 
 SRC_SERVER=	options/init_options.c \
+		server.c \
+		my_str_to_wordtab.c \
 		main.c \
+		client.c \
+		error.c \
+		init.c \
+		functions.c \
 		options/options_other.c \
 		options/options_with_int.c \
 		options/parse_options.c \
@@ -85,8 +91,7 @@ $(CLIENT):	$(OBJ_CLIENT)
 	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS)
 
 clean:
-	$(RM) $(OBJ_SERVER)
-	$(RM) $(OBJ_CLIENT)
+	$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_LIST)
 	@$(ECHO) '\033[0;31m> Directory cleaned\033[0m'
 
 
