@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 16:07:52 2014 lefloc_l
-** Last update mar. mai 13 16:09:35 2014 lefloc_l
+** Last update Mon Jun 16 16:10:49 2014 arnaud drain
 */
 
 #include "options.h"
@@ -17,4 +17,5 @@ void	init_options(t_options *options)
   options->height = DEFAULT_HEIGHT;
   options->max_clients = DEFAULT_MAX_CLIENTS;
   options->delai = DEFAULT_DELAI;
+  options->nb_team_names = 0;
 }

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update sam. mai 17 17:17:08 2014 lefloc_l
+** Last update Mon Jun 16 16:11:29 2014 arnaud drain
 */
 
 #ifndef OPTIONS_H_
@@ -39,7 +39,6 @@ typedef struct	s_options
   size_t	delai;
   char		team_names[TEAM_MAX][TEAM_NAME_SIZE];
   size_t	nb_team_names;
-
 }		t_options;
 
 typedef struct	s_tabfunctions

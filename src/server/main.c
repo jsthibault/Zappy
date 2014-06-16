@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Mon Jun 16 15:45:08 2014 arnaud drain
+** Last update Mon Jun 16 16:18:00 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -30,15 +30,20 @@ int		main(const int argc, const char *argv[])
 {
   t_options	options;
 
-  /*logger_init("test.log", TRUE);*/
-  if (!init_kernel(argc, argv))
+  logger_init("test.log", TRUE);
+  /*  if (!init_kernel(argc, argv))
   {
     print_man();
     delete_kernel();
-    return (EXIT_FAILURE);
-  }
-  /*dump_options(&options);*/
+    return (EXIT_FAILURE); pour l'instant on utilise pas le kernel parce que les globals c'est du caca
+  }*/
   init_options(&options);
+  if (!parse_options(argc, argv, &options))
+    {
+      print_man();
+      return (EXIT_FAILURE);
+    }
+  dump_options(&options); /* debug (penser à retirer) */
   launch_srv(&options);
   /*run_kernel();
     delete_kernel();*/

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Sat Jun 14 16:49:46 2014 arnaud drain
+** Last update Mon Jun 16 16:18:48 2014 arnaud drain
 */
 
 #include <string.h>
@@ -23,15 +23,20 @@ static const t_tabfunctions	tabfunctions[] = {
 
 static t_bool	check_options(t_options *options)
 {
+  char		*error;
+
+  error = NULL;
   if (options->nb_team_names == 0)
-  {
-    print_error("Please create teams !");
-    return (FALSE);
-  }
+    error = "Please create teams !";
   if (options->nb_team_names > TEAM_MAX)
-  {
-    print_error("Too much teams !");
-  }
+    error = "Too much teams !";
+  if (options->nb_team_names <= 0)
+    error = "Not enough teams !";
+  if (error)
+    {
+      print_error(error);
+      return (FALSE);
+    }
   return (TRUE);
 }
 
@@ -64,7 +69,7 @@ void		dump_options(t_options *options)
   size_t	i;
 
   printf("===== OPTIONS DUMP =====\n");
-  printf("Port:\t%ld\nWidth:\t%ld\nHeight:\t%ld\nMax clients:\t%ld\nDelai:\t%ld\nTeams (%ld):\n",
+  printf("Port:\t\t%ld\nWidth:\t\t%ld\nHeight:\t\t%ld\nMax clients:\t%ld\nDelai:\t\t%ld\nTeams (%ld):\n",
       options->port, options->width, options->height,
       options->max_clients, options->delai, options->nb_team_names);
   for (i = 0; i < options->nb_team_names; ++i)
