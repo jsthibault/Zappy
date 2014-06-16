@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update sam. mai 17 16:51:27 2014 lefloc_l
+** Last update Mon Jun 16 15:53:05 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ void		list_add_node(t_list *list, t_node *node, void *data)
 
   if (!node)
     list_push_front(list, data);
-  else if (node->next = NULL)
+  else if (!node->next)
     list_push_back(list, data);
   else
   {

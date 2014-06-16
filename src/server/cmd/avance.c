@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-** Last update ven. mai 16 17:44:53 2014 lefloc_l
+** Last update Mon Jun 16 15:49:04 2014 arnaud drain
 */
 
 #include "utils.h"
@@ -16,5 +16,5 @@ extern t_map	g_map;
 
 void		cmd_avance(char **res)
 {
-
+  (void)res;
 }

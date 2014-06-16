@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update Fri May 23 14:20:40 2014 arnaud drain
+** Last update Mon Jun 16 15:46:26 2014 arnaud drain
 */
 
 #ifndef UTILS_H_
@@ -36,7 +36,7 @@ typedef enum	e_bool
 t_bool		is_num(char *);
 t_bool		is_float(char *);
 void		*xmalloc(size_t size);
-void		print_error();
+void		print_error(char *str);
 void		mexit();
 
 #endif /* !UTILS_H_ */

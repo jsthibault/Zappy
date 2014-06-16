@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:21:56 2014 lefloc_l
-** Last update sam. mai 17 18:51:15 2014 lefloc_l
+** Last update Mon Jun 16 15:51:36 2014 arnaud drain
 */
 
 #include "list.h"
@@ -35,4 +35,5 @@ void		*list_recur_action(t_list *list, ptrvnv func, void *arg)
     (*func)(list, node, arg);
     node = node->next;
   }
+  return (node);
 }

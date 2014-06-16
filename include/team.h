@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:16:38 2014 lefloc_l
-** Last update sam. mai 17 18:04:21 2014 lefloc_l
+** Last update Mon Jun 16 15:51:12 2014 arnaud drain
 */
 
 #ifndef TEAM_H_
@@ -24,7 +24,7 @@ typedef struct	s_team
 
 void	init_team();
 void	add_team();
-void	delete_team();
+void	delete_team(void *data);
 
 t_team		*find_team(char *name);
 

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue May 13 19:40:59 2014 arnaud drain
+** Last update Sat Jun 14 17:22:48 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -21,7 +21,7 @@
 #include <string.h>
 #include "server.h"
 
-static t_functions g_functions[] =
+static const t_functions g_functions[] =
     {
       {"GRAPHIC", graphic},
       {NULL, NULL}

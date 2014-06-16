@@ -5,12 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update Fri May 23 14:21:23 2014 arnaud drain
+** Last update Mon Jun 16 15:47:35 2014 arnaud drain
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <errno.h>
 #include "utils.h"
 #include "kernel.h"
@@ -64,14 +65,16 @@ void	*xmalloc(size_t size)
   return (ptr);
 }
 
-void	print_error()
+void	print_error(char *str)
 {
-  fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, strerror(errno));
+  if (!str)
+    str = strerror(errno);
+  fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, str);
 }
 
 void	mexit()
 {
-  print_error();
+  print_error(NULL);
   delete_kernel();
   delete_map();
   exit(EXIT_FAILURE);

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update sam. mai 17 16:56:47 2014 lefloc_l
+** Last update Mon Jun 16 15:52:45 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -72,7 +72,7 @@ void		list_pop_func(t_list *list, ptrbv func)
     node = node->next;
   }
   if (node)
-    return (list_pop_node(list, node));
+    list_pop_node(list, node);
 }
 
 void		list_pop_func_arg(t_list *list, ptrbvv func, void *arg)
@@ -85,5 +85,5 @@ void		list_pop_func_arg(t_list *list, ptrbvv func, void *arg)
     node = node->next;
   }
   if (node)
-    return (list_pop_node(list, node));
+    list_pop_node(list, node);
 }

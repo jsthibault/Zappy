@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Sat Jun 14 16:51:52 2014 arnaud drain
+** Last update Mon Jun 16 15:45:08 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -30,16 +30,14 @@ int		main(const int argc, const char *argv[])
 {
   t_options	options;
 
-  (void)argc;
-  (void)argv;
-  /*logger_init("test.log", TRUE);
-  if (FALSE == init_kernel(argc, argv))
+  /*logger_init("test.log", TRUE);*/
+  if (!init_kernel(argc, argv))
   {
     print_man();
     delete_kernel();
     return (EXIT_FAILURE);
   }
-  dump_options(&options);*/
+  /*dump_options(&options);*/
   init_options(&options);
   launch_srv(&options);
   /*run_kernel();

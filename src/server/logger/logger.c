@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:16:56 2014 lefloc_l
-** Last update sam. mai 17 14:18:29 2014 lefloc_l
+** Last update Mon Jun 16 15:47:16 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -26,7 +26,7 @@ t_bool		logger_init(char *filename, t_bool verbose)
   strncpy(g_logger->filename, filename, LOGGER_FILENAME_SIZE);
   if (!(g_logger->file = fopen(g_logger->filename, LOGGER_FILE_RIGHTS)))
   {
-    print_error();
+    print_error(NULL);
     return (FALSE);
   }
   atexit(&logger_delete);
