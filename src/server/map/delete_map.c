@@ -5,27 +5,25 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 14:48:05 2014 lefloc_l
-** Last update sam. mai 17 19:38:53 2014 lefloc_l
+** Last update Tue Jun 17 15:49:20 2014 arnaud drain
 */
 
 #include <stdlib.h>
 #include "kernel.h"
 #include "logger.h"
 
-extern t_kernel	*g_kernel;
-
-void	delete_map()
+void	delete_map(t_kernel *kernel)
 {
   int	i;
   int	j;
 
-  for (i = 0; i < g_kernel->game->map->height; ++i)
+  for (i = 0; i < kernel->game.map->height; ++i)
   {
-    for (j = 0; j < g_kernel->game->map->width; ++j)
+    for (j = 0; j < kernel->game.map->width; ++j)
     {
-      list_delete(g_kernel->game->map->map[i][j].players);
+      list_delete(kernel->game.map->map[i][j].players);
     }
-    free(g_kernel->game->map->map[i]);
+    free(kernel->game.map->map[i]);
   }
- free(g_kernel->game->map->map);
+ free(kernel->game.map->map);
 }

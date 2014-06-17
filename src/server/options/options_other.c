@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:20:14 2014 lefloc_l
-** Last update sam. mai 17 17:19:20 2014 lefloc_l
+** Last update Mon Jun 16 16:39:02 2014 arnaud drain
 */
 
 #include <string.h>
@@ -14,18 +14,14 @@
 
 t_bool		option_n(char **av, int ac, int *i, t_options *options)
 {
-  *i += 1;
-  if (*i >= ac)
+  ++(*i);
+  if (*i >= ac || av[*i][0] == '-')
     return (FALSE);
-  if (av[*i][0] == '-')
-    return (FALSE);
-  while (1)
+  while (*i < ac && av[*i][0] != '-')
   {
-    if (*i >= ac || av[*i][0] == '-')
-      break;
     strncpy(options->team_names[options->nb_team_names], av[*i], TEAM_NAME_SIZE);
     options->nb_team_names++;
-    *i += 1;
+    ++(*i);
   }
   return (TRUE);
 }
@@ -37,7 +33,7 @@ t_bool	convert_to_int(char *av[], int ac, int *i, size_t *n)
   if (!is_num(av[*i + 1]))
     return (FALSE);
   *n = atoi(av[*i + 1]);
-  *i += 1;
+  ++(*i);
   if (*n == 0)
   {
     fprintf(stderr, "Can't be 0.\n");

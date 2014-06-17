@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:19:53 2014 lefloc_l
-** Last update sam. mai 17 19:10:16 2014 lefloc_l
+** Last update Tue Jun 17 16:23:15 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -27,11 +27,11 @@ t_bool		player_in_team(t_team *team, t_player *player)
   return (FALSE);
 }
 
-void		add_player_to_team(char *teamname, t_player *player)
+void		add_player_to_team(t_kernel *kernel, char *teamname, t_player *player)
 {
   t_team	*team;
 
-  if (!(team = find_team(teamname)))
+  if (!(team = find_team(kernel, teamname)))
     logger_error("{PLAYER} Can't join team \"%s\". Team \
         doesn't exists", teamname);
   else

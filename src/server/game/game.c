@@ -5,36 +5,37 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update sam. mai 17 19:36:14 2014 lefloc_l
+** Last update Tue Jun 17 16:31:09 2014 arnaud drain
 */
 
 #include <stdlib.h>
 #include "kernel.h"
 #include "logger.h"
 
-extern t_kernel	*g_kernel;
-
-void	delete_game()
+void	delete_game(t_kernel *kernel)
 {
-  if (g_kernel->game->teams)
+  if (kernel->game.teams)
   {
-    list_foreach(g_kernel->game->teams, delete_team);
-    list_delete(g_kernel->game->teams);
+    list_foreach(kernel->game.teams, delete_team);
+    list_delete(kernel->game.teams);
   }
-  if (g_kernel->game->players)
+  if (kernel->game.players)
   {
-    list_foreach(g_kernel->game->teams, delete_player);
-    list_delete(g_kernel->game->players);
+    list_foreach(kernel->game.teams, delete_player);
+    list_delete(kernel->game.players);
   }
-  free(g_kernel->game);
   logger_message("{GAME} Deleted");
 }
 
-void	init_game()
+void	init_game(t_kernel *kernel)
 {
   logger_message("{GAME} Initialisation");
-  g_kernel->game = xmalloc(sizeof(t_game));
-  g_kernel->game->players = NULL;
-  init_map(g_kernel->options.width, g_kernel->options.height);
-  init_team();
+  init_map(kernel, kernel->options.width, kernel->options.height);
+  init_team(kernel);
+}
+
+void	pre_fill_game(t_kernel *kernel)
+{
+  kernel->game.teams = NULL;
+  kernel->game.players = NULL;
 }

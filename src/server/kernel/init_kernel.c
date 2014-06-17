@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:35:55 2014 lefloc_l
-** Last update Mon Jun 16 15:55:30 2014 arnaud drain
+** Last update Tue Jun 17 16:28:20 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -14,18 +14,15 @@
 #include "options.h"
 #include "map.h"
 
-t_kernel	*g_kernel = NULL;
-
-t_bool		init_kernel(const int argc, const char **argv)
+t_bool		init_kernel(const int argc, const char **argv, t_kernel *kernel)
 {
-  g_kernel = xmalloc(sizeof(t_kernel));
-  kernel_init_signals();
+  /*kernel_init_signals(); à remplacer avec on_exit */
   logger_message("{KERNEL} Initialisation");
-  init_options(&g_kernel->options);
-  if (!parse_options(argc, argv, &g_kernel->options))
+  pre_fill_game(kernel);
+  init_options(&(kernel->options));
+  if (!parse_options(argc, argv, &(kernel->options)))
     return (FALSE);
-  dump_options(&g_kernel->options);
-  g_kernel->is_running = TRUE;
-  init_game();
+  dump_options(&(kernel->options));
+  init_game(kernel);
   return (TRUE);
 }

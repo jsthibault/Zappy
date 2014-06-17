@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:20:41 2014 lefloc_l
-** Last update sam. mai 17 19:12:03 2014 lefloc_l
+** Last update Tue Jun 17 16:23:22 2014 arnaud drain
 */
 
 #ifndef PLAYER_H_
@@ -21,8 +21,8 @@ typedef struct	s_player
   t_team	*team;
 }		t_player;
 
-void	add_player_to_team(char *teamname, t_player *player);
-void		delete_player(void *data);
-void		delete_player_by_id(int id);
+void	add_player_to_team(t_kernel *kernel, char *teamname, t_player *player);
+void	delete_player(void *data);
+void	delete_player_by_id(t_kernel *kernel, int id);
 
 #endif /* !PLAYER_H_ */

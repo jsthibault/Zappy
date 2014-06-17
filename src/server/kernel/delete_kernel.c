@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:33:47 2014 lefloc_l
-** Last update sam. mai 17 18:59:31 2014 lefloc_l
+** Last update Tue Jun 17 16:26:10 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -13,15 +13,8 @@
 #include "map.h"
 #include "logger.h"
 
-extern t_kernel	*g_kernel;
-
-void	delete_kernel()
+void	delete_kernel(t_kernel *kernel)
 {
-  if (g_kernel)
-  {
-    if (g_kernel->game)
-      delete_game();
-    free(g_kernel);
-    logger_message("{KERNEL} Deleted");
-  }
+  delete_game(kernel);
+  logger_message("{KERNEL} Deleted");
 }

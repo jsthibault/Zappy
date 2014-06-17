@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Sat Jun 14 17:22:48 2014 arnaud drain
+** Last update Mon Jun 16 16:57:48 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -19,6 +19,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include "kernel.h"
 #include "server.h"
 
 static const t_functions g_functions[] =
@@ -108,13 +109,13 @@ static int	server(fd_set *fd_in, int sfd, t_client **clients)
   return (0);
 }
 
-int		launch_srv(t_options *options)
+int		launch_srv(t_kernel *kernel)
 {
   int		sfd;
   t_client	*clients;
   fd_set	fd_in;
 
-  if ((sfd = init(options->port)) == -1)
+  if ((sfd = init(kernel->options.port)) == -1)
     return (-1);
   clients = NULL;
   printf("[\033[32;1mOK\033[0m] Serveur started\n");

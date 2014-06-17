@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Tue May 13 19:40:00 2014 arnaud drain
+** Last update Mon Jun 16 16:57:34 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -13,6 +13,7 @@
 
 # define BUFFER_SIZE	(4096)
 
+# include "kernel.h"
 # include "options.h"
 
 typedef struct s_client	t_client;
@@ -33,7 +34,7 @@ typedef struct	s_functions
 
 char	**my_str_to_wordtab(char *str);
 void	freetab(char **tab);
-int	launch_srv(t_options *options);
+int	launch_srv(t_kernel *kernel);
 int	return_error(char *str, int option);
 int	write_socket(int fd, char *str);
 int	init(size_t port);

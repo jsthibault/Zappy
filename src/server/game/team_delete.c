@@ -5,14 +5,12 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:56:38 2014 lefloc_l
-** Last update sam. mai 17 19:39:32 2014 lefloc_l
+** Last update Tue Jun 17 16:19:34 2014 arnaud drain
 */
 
 #include <string.h>
 #include "kernel.h"
 #include "logger.h"
-
-extern t_kernel	*g_kernel;
 
 static void		delete_by_name(__attribute__((__unused__))t_list *list,
     t_node *node, void *arg)
@@ -28,9 +26,9 @@ static void		delete_by_name(__attribute__((__unused__))t_list *list,
   }
 }
 
-void		delete_team_by_name(char *name)
+void		delete_team_by_name(t_kernel *kernel, char *name)
 {
-  list_recur_action(g_kernel->game->teams, delete_by_name, name);
+  list_recur_action(kernel->game.teams, delete_by_name, name);
 }
 
 /*

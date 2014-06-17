@@ -5,25 +5,19 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:34:27 2014 lefloc_l
-** Last update sam. mai 17 17:34:57 2014 lefloc_l
+** Last update Tue Jun 17 13:54:01 2014 arnaud drain
 */
 
 #ifndef KERNEL_H_
 # define KERNEL_H_
 
 # include "options.h"
-# include "utils.h"
 # include "game.h"
+# include "utils.h"
+# include "struct.h"
 
-typedef struct	s_kernel
-{
-  t_options	options;
-  t_game	*game;
-  t_bool	is_running;
-}		t_kernel;
-
-t_bool		init_kernel(const int, const char **);
-void		delete_kernel();
+t_bool		init_kernel(const int, const char **, t_kernel *);
+void		delete_kernel(t_kernel *);
 void		kernel_init_signals();
 void		run_kernel();
 

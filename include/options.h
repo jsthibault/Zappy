@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Mon Jun 16 16:11:29 2014 arnaud drain
+** Last update Tue Jun 17 15:56:44 2014 arnaud drain
 */
 
 #ifndef OPTIONS_H_
@@ -14,7 +14,7 @@
 # include <stdio.h>
 # include "utils.h"
 # include "list.h"
-# include "team.h"
+# include "struct.h"
 
 /*
 ** Define for default options
@@ -26,27 +26,11 @@
 # define DEFAULT_MAX_CLIENTS	10
 # define DEFAULT_DELAI		100
 
-/*
-** Structure options, contains all command line options.
-*/
-
-typedef struct	s_options
-{
-  size_t	port;
-  size_t	width;
-  size_t	height;
-  size_t	max_clients;
-  size_t	delai;
-  char		team_names[TEAM_MAX][TEAM_NAME_SIZE];
-  size_t	nb_team_names;
-}		t_options;
-
 typedef struct	s_tabfunctions
 {
   char		*option;
   t_bool	(*p)();
 }		t_tabfunctions;
-
 
 void		init_options(t_options *);
 t_bool		parse_options(const int, const char **, t_options *);

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update Mon Jun 16 15:47:35 2014 arnaud drain
+** Last update Mon Jun 16 16:59:15 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -61,7 +61,7 @@ void	*xmalloc(size_t size)
   void	*ptr;
 
   if (!(ptr = malloc(size)))
-    mexit();
+    return (NULL);
   return (ptr);
 }
 
@@ -72,10 +72,10 @@ void	print_error(char *str)
   fprintf(stderr, "%sFatal error: %s%s\n", COLOR_RED, COLOR_NORMAL, str);
 }
 
-void	mexit()
+/*void	mexit()
 {
   print_error(NULL);
   delete_kernel();
   delete_map();
   exit(EXIT_FAILURE);
-}
+  }*/

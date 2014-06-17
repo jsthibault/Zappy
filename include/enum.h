@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:13:54 2014 lefloc_l
-** Last update ven. mai 16 16:15:50 2014 lefloc_l
+** Last update Tue Jun 17 13:56:44 2014 arnaud drain
 */
 
 #ifndef ENUM_H_
@@ -45,15 +45,5 @@ typedef struct	s_pos
   int		x;
   int		y;
 }		t_pos;
-
-/*
-** inventory. contain items. Each case = 1 item. (FOOD = items[0])
-** The int on the case = number of this item
-*/
-
-typedef struct	s_inventory
-{
-  int		items[ITEM_TYPE];
-}		t_inventory;
 
 #endif /* !ENUM_H_ */

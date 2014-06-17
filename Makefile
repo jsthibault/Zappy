@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Sat Jun 14 16:42:47 2014 arnaud drain
+## Last update Tue Jun 17 17:06:49 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -57,7 +57,6 @@ SRC_SERVER=	options/init_options.c \
 		cmd/connect_nbr.c \
 		kernel/init_kernel.c \
 		kernel/run_kernel.c \
-		kernel/signal.c \
 		kernel/delete_kernel.c \
 		game/team.c \
 		game/team_delete.c \
@@ -81,14 +80,18 @@ OBJ_SERVER=	$(addprefix $(DIR_SERVER)/, $(SRC_SERVER:.c=.o))
 OBJ_LIST=	$(addprefix $(DIR_LIST)/, $(SRC_LIST:.c=.o))
 OBJ_CLIENT=	$(addprefix $(DIR_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
+LIB	+= -lefence
+
+LDFLAGS	+= $(LIBPATH) $(LIB)
+
 all:	$(SERVER)
 
 $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST)
-	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS) $(CDEBUG)
+	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
 	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)
-	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS)
+	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_LIST)
