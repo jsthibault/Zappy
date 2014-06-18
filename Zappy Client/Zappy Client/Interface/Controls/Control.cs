@@ -128,6 +128,7 @@ namespace Zappy_Client.Interface
                     Mouse.GetState().MouseClick(MouseButton.MiddleButton) == true)
                 {
                     this.MouseClick();
+                    this.Engine.CurrentControl = this;
                 }
             }
             else

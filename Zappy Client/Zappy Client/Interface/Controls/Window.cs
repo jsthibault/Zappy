@@ -159,6 +159,7 @@ namespace Zappy_Client.Interface
                     if (Mouse.GetState().MouseClick(MouseButton.LeftButton) == true)
                     {
                         this.OnCloseWindow();
+                        return;
                     }
                 }
                 else

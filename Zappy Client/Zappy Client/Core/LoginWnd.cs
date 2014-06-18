@@ -25,9 +25,13 @@ namespace Zappy_Client.Core
         private Label Host { get; set; }
         private Label Port { get; set; }
 
+        private TextBox HostInput { get; set; }
+        private TextBox PortInput { get; set; }
+
         private CheckBox SaveAccount { get; set; }
 
         private Button Connect { get; set; }
+        private Button Leave { get; set; }
 
         #endregion
 
@@ -52,28 +56,41 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Initialize()
         {
-            this.Text = "Connexion";
-            this.X = 500;
-            this.Y = 100;
-            this.Width = 250;
-            this.Height = 150;
-            this.Host = new Label(this.Engine, "LabelHost", 10, 25, "Host : ");
-            this.Port = new Label(this.Engine, "LabelPort", 10, 50, "Port : ");
-            this.SaveAccount = new CheckBox(this.Engine, "CheckBoxSaveAccount", 80, 70, "Save configuration", false);
-            this.Connect = new Button(this.Engine, "ConnectButton", 70, 100, 100, 0, "Login !");
+            this.Text = "Connexion au Zappy";
+            this.Width = 275;
+            this.Height = 170;
+            this.X = this.Engine.ClientWidth / 2 - this.Width / 2;
+            this.Y = this.Engine.ClientHeight - this.Height - 75;
+            this.Host = new Label(this.Engine, "LabelHost", 20, 35, "Host : ");
+            this.HostInput = new TextBox(this.Engine, "InputHost", 60, 35, 150);
+            this.Port = new Label(this.Engine, "LabelPort", 20, 65, "Port : ");
+            this.PortInput = new TextBox(this.Engine, "PortInput", 60, 65, 150);
+            //this.SaveAccount = new CheckBox(this.Engine, "CheckBoxSaveAccount", 85, 80, "Save configuration", false);
+            this.Connect = new Button(this.Engine, "ConnectButton", 65, 95, 150, 0, "Connexion");
             this.Connect.OnClick += Connect_OnClick;
+            this.Leave = new Button(this.Engine, "LeaveButton", 65, 125, 150, 0, "Quitter");
+            this.Leave.OnClick += Leave_OnClick;
             
             // Add to container
             this.AddControl(this.Host);
+            this.AddControl(this.HostInput);
             this.AddControl(this.Port);
-            this.AddControl(this.SaveAccount);
+            this.AddControl(this.PortInput);
+            //this.AddControl(this.SaveAccount);
             this.AddControl(this.Connect);
+            this.AddControl(this.Leave);
             base.Initialize();
+        }
+
+        void Leave_OnClick(object sender)
+        {
         }
 
         void Connect_OnClick(object sender)
         {
-            
+            System.Windows.Forms.MessageBox.Show("J'ai cliqué sur la CONNEXION");
+            Coliseum _coli = new Coliseum(this.Engine);
+            this.Engine.AddContainer(_coli);
         }
 
         /// <summary>

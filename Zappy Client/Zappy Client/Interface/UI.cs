@@ -36,6 +36,7 @@ namespace Zappy_Client.Interface
 
         internal List<Container> Contrainers { get; set; }
 
+        internal Control CurrentControl { get; set; }
         internal Container CurrentContainer { get; set; }
         internal Container CurrentMovingContainer { get; set; }
 
@@ -97,6 +98,11 @@ namespace Zappy_Client.Interface
             this.Textures["ProgressBarRed"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge01.png");
             this.Textures["ProgressBarGreen"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge03.png");
             this.Textures["ProgressBarBlue"] = this.Content.Load<Texture2D>("Theme//ProgressBars//Targetgauge02.png");
+
+            /* Load Inputbox */
+            this.Textures["TextBoxLeft"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox1.png");
+            this.Textures["TextBoxMid"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox2.png");
+            this.Textures["TextBoxRight"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox3.png");
         }
 
         /// <summary>
@@ -104,6 +110,7 @@ namespace Zappy_Client.Interface
         /// </summary>
         public void Update()
         {
+            Keyboard.GetState().Update();
             Mouse.GetState().Update();
             if (Mouse.GetState().IsInRectangle(new Rectangle(0, 0, this.ClientWidth, this.ClientHeight)) == false)
             {
@@ -127,7 +134,6 @@ namespace Zappy_Client.Interface
         /// </summary>
         public void Draw()
         {
-            this.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
             this.SpriteBatch.Begin();
             foreach (Container container in this.Contrainers)
             {
