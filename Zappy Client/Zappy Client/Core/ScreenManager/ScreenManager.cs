@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,9 +23,17 @@ namespace Zappy_Client.Core
 
         private Dictionary<String, AScreen> Screens { get; set; }
 
-        internal Zappy GameInstance { get; set; }
+        private AScreen CurrentScreen { get; set; }
 
-        public AScreen CurrentScreen { get; set; }
+        internal Game GameInstance { get; set; }
+
+        internal ContentManager Content
+        {
+            get
+            {
+                return this.GameInstance.Content;
+            }
+        }
 
         #endregion
 
@@ -32,7 +42,7 @@ namespace Zappy_Client.Core
         /// <summary>
         /// Initialize the ScreenManager
         /// </summary>
-        public ScreenManager(Zappy instance)
+        public ScreenManager(Game instance)
         {
             this.GameInstance = instance;
             this.Screens = new Dictionary<String, AScreen>();

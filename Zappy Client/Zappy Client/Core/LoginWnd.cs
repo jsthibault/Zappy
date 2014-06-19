@@ -82,15 +82,21 @@ namespace Zappy_Client.Core
             base.Initialize();
         }
 
+        /// <summary>
+        /// Leave click
+        /// </summary>
+        /// <param name="sender"></param>
         void Leave_OnClick(object sender)
         {
         }
 
+        /// <summary>
+        /// Connect click
+        /// </summary>
+        /// <param name="sender"></param>
         void Connect_OnClick(object sender)
         {
-            System.Windows.Forms.MessageBox.Show("J'ai cliqué sur la CONNEXION");
-            Coliseum _coli = new Coliseum(this.Engine);
-            this.Engine.AddContainer(_coli);
+            // HERE CHANGE SCREEN TO GAME
         }
 
         /// <summary>

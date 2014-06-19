@@ -41,8 +41,10 @@ namespace Zappy_Client
             this.ScreenManager = new ScreenManager(this);
             // Initialize the MainScreen
             this.ScreenManager["MainScreen"] = new MainScreen();
+            // Initialize the GameScreen
+            this.ScreenManager["GameScreen"] = new GameScreen();
             // Set the Current screen to "MainScreen"
-            this.ScreenManager.SetCurrentScreen("MainScreen");
+            this.ScreenManager.SetCurrentScreen("GameScreen");
 
             base.Initialize();
         }

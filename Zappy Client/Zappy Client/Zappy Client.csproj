@@ -35,11 +35,14 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\2DEngine\Layer.cs" />
+    <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\Coliseum.cs" />
     <Compile Include="Core\LoginWnd.cs" />
     <Compile Include="Core\ScreenManager\AScreen.cs" />
     <Compile Include="Core\ScreenManager\ScreenException.cs" />
     <Compile Include="Core\ScreenManager\ScreenManager.cs" />
+    <Compile Include="Core\Screens\GameScreen.cs" />
     <Compile Include="Core\Screens\MainScreen.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />
@@ -84,6 +87,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\grass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\moutain.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\APP_NEWCOLOMASSAGE.png">
@@ -162,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Theme\Cursors\" />
+    <Folder Include="Core\3DEngine\" />
     <Folder Include="Network\" />
   </ItemGroup>
   <ItemGroup>
