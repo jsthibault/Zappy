@@ -40,7 +40,7 @@ namespace Zappy_Client.Core
         /// <returns></returns>
         public override bool Initialize()
         {
-            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 40, 40);
+            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 10, 10);
             this.Map.Initialize();
             return base.Initialize();
         }

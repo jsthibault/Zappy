@@ -15,7 +15,6 @@ using System.Text;
  * Notes:
  * Map2D is my own implementation of maps and objects
  * It contains :
- * - LayerManager (Add, Get, Delete)
  * - ObjectManager (Add, Get, Delete)
  * - CharacterManager (Add, Get, Delete)
  * -------------------------------------------------------*/
@@ -29,13 +28,14 @@ namespace Zappy_Client.Core
         public Int32 Width { get; set; }
         public Int32 Height { get; set; }
 
-        private List<Layer> Layers { get; set; }
-
         private Game GameInstance { get; set; }
 
         internal Texture2D Grass { get; set; }
         internal Texture2D Water { get; set; }
         internal Texture2D Moutain { get; set; }
+        internal SpriteFont Debug { get; set; }
+
+        const Int32 Case = 32;
 
         #endregion
 
@@ -52,7 +52,6 @@ namespace Zappy_Client.Core
             this.GameInstance = instance;
             this.Width = width;
             this.Height = height;
-            this.Layers = new List<Layer>();
             // Create player list
             // Create object list
         }
@@ -68,7 +67,6 @@ namespace Zappy_Client.Core
         public Boolean Initialize()
         {
             this.InitializeTexture();
-            this.InitializeWaterLayer();
             return true;
         }
 
@@ -77,10 +75,7 @@ namespace Zappy_Client.Core
         /// </summary>
         public void Update()
         {
-            foreach (Layer layer in this.Layers)
-            {
-                layer.Update();
-            }
+            
         }
 
         /// <summary>
@@ -90,10 +85,9 @@ namespace Zappy_Client.Core
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            foreach (Layer layer in this.Layers)
-            {
-                layer.Draw(spriteBatch);
-            }
+            this.DrawWater(spriteBatch);
+            this.DrawMountain(spriteBatch);
+            this.DrawGround(spriteBatch);
             spriteBatch.End();
         }
 
@@ -105,52 +99,84 @@ namespace Zappy_Client.Core
             this.Grass = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grass.png");
             this.Water = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
             this.Moutain = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
+            this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
         /// <summary>
-        /// Initialize the first layer (water)
+        /// Draw water layer
         /// </summary>
-        private void InitializeWaterLayer()
+        /// <param name="spriteBatch"></param>
+        private void DrawWater(SpriteBatch spriteBatch)
         {
-            Layer _layer = new Layer(this);
-            _layer.Initialize();
-            for (Int32 i = 0; i < this.Width; ++i)
+            Int32 _waterWidth = Zappy.Width / 32 + 2;
+            Int32 _waterHeight = Zappy.Height / 32 + 2;
+
+            for (Int32 i = 0; i < _waterWidth; ++i)
             {
-                for (Int32 j = 0; j < this.Height; ++j)
+                for (Int32 j = 0; j < _waterHeight; ++j)
                 {
-                    _layer.TileMap[i, j] = 0;
+                    spriteBatch.Draw(this.Water, new Vector2(i * 32, j * 32), Color.White);
                 }
             }
-            this.AddLayer(_layer);
-        }
-
-        #endregion
-
-        #region LAYER MANAGER
-
-        /// <summary>
-        /// Add a new layer
-        /// </summary>
-        /// <param name="layer"></param>
-        public void AddLayer(Layer layer)
-        {
-            if (this.Layers.Contains(layer) == false)
-            {
-                this.Layers.Add(layer);
-            }
         }
 
         /// <summary>
-        /// Remove a layer
+        /// Draw moutain
         /// </summary>
-        /// <param name="layer"></param>
-        public void RemoveLayer(Layer layer)
+        /// <param name="spriteBatch"></param>
+        private void DrawMountain(SpriteBatch spriteBatch)
         {
-            if (this.Layers.Contains(layer) == true)
+            // Top part
+            Rectangle _sourceLeftTop = new Rectangle(0, 0, 16, 16);
+            Rectangle _sourceMidTop = new Rectangle(16, 0, 16, 16);
+            Rectangle _sourceRightTop = new Rectangle(32, 0, 16, 16);
+
+            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case) - 16), _sourceLeftTop, Color.White);
+            for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
             {
-                this.Layers.Remove(layer);
+                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (i * 16)) - 16, (10 * Case) - 16), _sourceMidTop, Color.White);
+            }
+            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case) - 16), _sourceRightTop, Color.White);
+
+            // mid part
+            Rectangle _sourceLeftMid = new Rectangle(0, 16, 16, 16);
+            Rectangle _sourceRightMid = new Rectangle(32, 16, 16, 16);
+            for (Int32 i = 1; i < (this.Height * 2) + 1; ++i)
+            {
+                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case + (i * 16)) - 16), _sourceLeftMid, Color.White); // Left
+                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case + (i * 16)) - 16), _sourceRightMid, Color.White); // Right
+            }
+
+            // Bottom part
+            Rectangle _sourceLeftBot = new Rectangle(0, 32, 16, 16);
+            Rectangle _sourceMidBot = new Rectangle(16, 32, 16, 16);
+            Rectangle _sourceRightBot = new Rectangle(32, 32, 16, 16);
+
+            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceLeftBot, Color.White);
+            for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
+            {
+                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (i * 16)) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceMidBot, Color.White);
+            }
+            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceRightBot, Color.White);
+
+        }
+
+        /// <summary>
+        /// Draw ground of grass
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        private void DrawGround(SpriteBatch spriteBatch)
+        {
+            for (Int32 i = 10; i < this.Width + 10; ++i)
+            {
+                for (Int32 j = 10; j < this.Height + 10; ++j)
+                {
+                    spriteBatch.Draw(this.Grass, new Vector2(i * 32, j * 32), Color.White);
+                    spriteBatch.DrawString(this.Debug, (i - 10).ToString() + "," + (j - 10).ToString(), new Vector2(i * 32, j * 32), Color.Black);
+                }
             }
         }
+
 
         #endregion
     }

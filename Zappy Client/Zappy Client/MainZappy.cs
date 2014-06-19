@@ -13,6 +13,9 @@ namespace Zappy_Client
 {
     public class Zappy : Game
     {
+        public const Int32 Width = 1024;
+        public const Int32 Height = 728;
+
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         public UI InterfaceEngine;
@@ -24,6 +27,8 @@ namespace Zappy_Client
             : base()
         {
             this.graphics = new GraphicsDeviceManager(this);
+            this.graphics.PreferredBackBufferWidth = Width;
+            this.graphics.PreferredBackBufferHeight = Height;
             this.Content.RootDirectory = "Content";
 
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
