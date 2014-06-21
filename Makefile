@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Tue Jun 17 17:06:49 2014 arnaud drain
+## Last update Sat Jun 21 23:23:32 2014 thibau_j
 ##
 
 CC=	gcc
@@ -21,6 +21,10 @@ CLIENT=		client
 DIR_SERVER=	src/server
 DIR_LIST=	src/list
 DIR_CLIENT=	src/client
+DIR_BUFFER=	src/buffer
+
+SRC_BUFFER=	buffer.c \
+		concat_node.c \
 
 SRC_SERVER=	options/init_options.c \
 		server.c \
@@ -79,6 +83,7 @@ CDEBUG=		-O2 -g -ggdb
 OBJ_SERVER=	$(addprefix $(DIR_SERVER)/, $(SRC_SERVER:.c=.o))
 OBJ_LIST=	$(addprefix $(DIR_LIST)/, $(SRC_LIST:.c=.o))
 OBJ_CLIENT=	$(addprefix $(DIR_CLIENT)/, $(SRC_CLIENT:.c=.o))
+OBJ_BUFFER=	$(addprefix $(DIR_BUFFER)/, $(SRC_BUFFER:.c=.o))
 
 LIB	+= -lefence
 
@@ -86,8 +91,8 @@ LDFLAGS	+= $(LIBPATH) $(LIB)
 
 all:	$(SERVER)
 
-$(SERVER):	$(OBJ_SERVER) $(OBJ_LIST)
-	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
+$(SERVER):	$(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER)
+	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
 	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)

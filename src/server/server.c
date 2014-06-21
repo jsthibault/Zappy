@@ -1,11 +1,11 @@
 /*
 ** main.c for serveur in /home/drain_a/rendu/PSU_2013_myirc
-** 
+**
 ** Made by arnaud drain
 ** Login   <drain_a@epitech.net>
-** 
+**
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jun 16 16:57:48 2014 arnaud drain
+** Last update Sat Jun 21 23:42:46 2014 thibau_j
 */
 
 #include <stdio.h>
@@ -21,6 +21,7 @@
 #include <string.h>
 #include "kernel.h"
 #include "server.h"
+#include "../buffer/buffer.h"
 
 static const t_functions g_functions[] =
     {
@@ -70,26 +71,21 @@ static int	launch_cmd(char *line, t_client *client)
   return (0);
 }
 
-static int	cmd_client(t_client *client, t_client **clients)
+static int	cmd_client(t_client *client, t_client **clients, t_buffer *buff)
 {
-  char		buffer[BUFFER_SIZE] = {0};
+  char		*buffer;
 
-  if (read(client->fd, &buffer, sizeof(buffer)) <= 0)
-    {
-      printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
-      if (close(client->fd))
-	return (-1);
-      pop_client(client->fd, clients);
-      return (1);
-    }
+  buffer = read_on(client->fd, buff);
+  printf("[\033[32;1mNb client : %d\033[0m] msg : [%s]\n", client->fd, buffer);
   return (launch_cmd(buffer, client));
 }
 
-static int	server(fd_set *fd_in, int sfd, t_client **clients)
+static int	server(fd_set *fd_in, int sfd, t_client **clients,
+		       t_buffer *buff)
 {
   int		max;
-  int		ret;
   t_client	*tmp;
+  int		ret;
 
   max = init_select(fd_in, sfd, *clients);
   select(max + 1, fd_in, NULL, NULL, NULL);
@@ -100,7 +96,7 @@ static int	server(fd_set *fd_in, int sfd, t_client **clients)
     {
       if (FD_ISSET(tmp->fd, fd_in))
 	{
-	  ret = cmd_client(tmp, clients);
+	  ret = cmd_client(tmp, clients, buff);
 	  if (ret)
 	    return (ret);
 	}
@@ -114,14 +110,16 @@ int		launch_srv(t_kernel *kernel)
   int		sfd;
   t_client	*clients;
   fd_set	fd_in;
+  t_buffer	tmp;
 
+  tmp.next = NULL;
   if ((sfd = init(kernel->options.port)) == -1)
     return (-1);
   clients = NULL;
   printf("[\033[32;1mOK\033[0m] Serveur started\n");
   while (42)
     {
-      if (server(&fd_in, sfd, &clients))
+      if (server(&fd_in, sfd, &clients, &tmp))
 	{
 	  close(sfd);
 	  return (1);
