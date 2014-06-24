@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zappy_Client.Core._2DEngine;
 
 /*--------------------------------------------------------
  * GameScreen.cs - file description
@@ -20,6 +22,8 @@ namespace Zappy_Client.Core
         #region FIELDS
 
         private Map2D Map { get; set; }
+
+        private Camera Camera { get; set; }
 
         #endregion
 
@@ -40,7 +44,8 @@ namespace Zappy_Client.Core
         /// <returns></returns>
         public override bool Initialize()
         {
-            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 10, 10);
+            this.Camera = new Camera(this.ScreenManagerInstance.GameInstance.GraphicsDevice, Zappy.Width, Zappy.Height);
+            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 20, 20, this.Camera);
             this.Map.Initialize();
             return base.Initialize();
         }

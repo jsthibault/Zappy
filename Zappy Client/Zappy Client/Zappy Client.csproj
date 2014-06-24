@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\Coliseum.cs" />
     <Compile Include="Core\LoginWnd.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ using System.Text;
  * - CharacterManager (Add, Get, Delete)
  * -------------------------------------------------------*/
 
-namespace Zappy_Client.Core
+namespace Zappy_Client.Core._2DEngine
 {
     public class Map2D
     {
@@ -29,6 +30,7 @@ namespace Zappy_Client.Core
         public Int32 Height { get; set; }
 
         private Game GameInstance { get; set; }
+        private Camera Camera { get; set; }
 
         internal Texture2D Grass { get; set; }
         internal Texture2D Water { get; set; }
@@ -36,6 +38,12 @@ namespace Zappy_Client.Core
         internal SpriteFont Debug { get; set; }
 
         const Int32 Case = 32;
+
+        private Int32 WaterWidth { get; set; }
+        private Int32 WaterHeight { get; set; }
+
+        private Int32 OffsetX { get; set; }
+        private Int32 OffsetY { get; set; }
 
         #endregion
 
@@ -47,11 +55,17 @@ namespace Zappy_Client.Core
         /// <param name="instance"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public Map2D(Game instance, Int32 width, Int32 height)
+        public Map2D(Game instance, Int32 width, Int32 height, Camera camera)
         {
             this.GameInstance = instance;
             this.Width = width;
             this.Height = height;
+            this.WaterWidth = (Zappy.Width / 32) * 2 + this.Width;
+            this.WaterHeight = (Zappy.Height / 32) * 2 + this.Height;
+            this.OffsetX = ((this.WaterWidth * Case) / 2) - ((this.Width * Case) / 2);
+            this.OffsetY = ((this.WaterHeight * Case) / 2) - ((this.Height * Case) / 2);
+            this.Camera = camera;
+            this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             // Create player list
             // Create object list
         }
@@ -75,7 +89,29 @@ namespace Zappy_Client.Core
         /// </summary>
         public void Update()
         {
-            
+            this.Camera.Update();
+            KeyboardState _state = Keyboard.GetState();
+
+            if (_state.IsKeyDown(Keys.Up) == true && this.Camera.Position.Y >= Zappy.Height / 2)
+            {
+                this.Camera.Move(new Vector2(0, -10));
+            }
+            else if (_state.IsKeyDown(Keys.Down) == true && this.Camera.Position.Y < Zappy.Height * 2)
+            {
+                this.Camera.Move(new Vector2(0, 10));
+            }
+            else if (_state.IsKeyDown(Keys.Left) == true && this.Camera.Position.X >= Zappy.Width / 2)
+            {
+                this.Camera.Move(new Vector2(-10, 0));
+            }
+            else if (_state.IsKeyDown(Keys.Right) == true && this.Camera.Position.X <= Zappy.Width * 2)
+            {
+                this.Camera.Move(new Vector2(10, 0));
+            }
+
+            MouseState _mouseState = Mouse.GetState();
+
+            this.Camera.Zoom = _mouseState.ScrollWheelValue / 250;
         }
 
         /// <summary>
@@ -84,9 +120,15 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawWater(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawMountain(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawGround(spriteBatch);
             spriteBatch.End();
         }
@@ -108,12 +150,9 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         private void DrawWater(SpriteBatch spriteBatch)
         {
-            Int32 _waterWidth = Zappy.Width / 32 + 2;
-            Int32 _waterHeight = Zappy.Height / 32 + 2;
-
-            for (Int32 i = 0; i < _waterWidth; ++i)
+            for (Int32 i = -1; i < this.WaterWidth + 1; ++i)
             {
-                for (Int32 j = 0; j < _waterHeight; ++j)
+                for (Int32 j = -1; j < this.WaterHeight + 1; ++j)
                 {
                     spriteBatch.Draw(this.Water, new Vector2(i * 32, j * 32), Color.White);
                 }
@@ -130,21 +169,20 @@ namespace Zappy_Client.Core
             Rectangle _sourceLeftTop = new Rectangle(0, 0, 16, 16);
             Rectangle _sourceMidTop = new Rectangle(16, 0, 16, 16);
             Rectangle _sourceRightTop = new Rectangle(32, 0, 16, 16);
-
-            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case) - 16), _sourceLeftTop, Color.White);
+            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY) - 16), _sourceLeftTop, Color.White);
             for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (i * 16)) - 16, (10 * Case) - 16), _sourceMidTop, Color.White);
+                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY) - 16), _sourceMidTop, Color.White);
             }
-            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case) - 16), _sourceRightTop, Color.White);
+            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY) - 16), _sourceRightTop, Color.White);
 
             // mid part
             Rectangle _sourceLeftMid = new Rectangle(0, 16, 16, 16);
             Rectangle _sourceRightMid = new Rectangle(32, 16, 16, 16);
             for (Int32 i = 1; i < (this.Height * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case + (i * 16)) - 16), _sourceLeftMid, Color.White); // Left
-                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case + (i * 16)) - 16), _sourceRightMid, Color.White); // Right
+                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY + (i * 16)) - 16), _sourceLeftMid, Color.White); // Left
+                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (i * 16)) - 16), _sourceRightMid, Color.White); // Right
             }
 
             // Bottom part
@@ -152,12 +190,12 @@ namespace Zappy_Client.Core
             Rectangle _sourceMidBot = new Rectangle(16, 32, 16, 16);
             Rectangle _sourceRightBot = new Rectangle(32, 32, 16, 16);
 
-            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceLeftBot, Color.White);
+            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceLeftBot, Color.White);
             for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (i * 16)) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceMidBot, Color.White);
+                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceMidBot, Color.White);
             }
-            spriteBatch.Draw(this.Moutain, new Vector2((10 * Case + (this.Width * 32 + 16)) - 16, (10 * Case + (this.Height * 32 + 16)) - 16), _sourceRightBot, Color.White);
+            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceRightBot, Color.White);
 
         }
 
@@ -167,12 +205,11 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         private void DrawGround(SpriteBatch spriteBatch)
         {
-            for (Int32 i = 10; i < this.Width + 10; ++i)
+            for (Int32 i = 0; i < this.Width; ++i)
             {
-                for (Int32 j = 10; j < this.Height + 10; ++j)
+                for (Int32 j = 0; j < this.Height; ++j)
                 {
-                    spriteBatch.Draw(this.Grass, new Vector2(i * 32, j * 32), Color.White);
-                    spriteBatch.DrawString(this.Debug, (i - 10).ToString() + "," + (j - 10).ToString(), new Vector2(i * 32, j * 32), Color.Black);
+                    spriteBatch.Draw(this.Grass, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                 }
             }
         }
