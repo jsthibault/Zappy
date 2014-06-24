@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Tue Jun 17 16:25:55 2014 arnaud drain
+** Last update mer. juin 18 12:49:30 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -30,7 +30,8 @@ int		main(const int argc, const char *argv[])
 {
   t_kernel	kernel;
 
-  logger_init("test.log", TRUE);
+  if (!logger_init("test.log", TRUE))
+    return (EXIT_FAILURE);
   if (!init_kernel(argc, argv, &kernel))
   {
     print_man();

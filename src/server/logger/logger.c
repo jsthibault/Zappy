@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:16:56 2014 lefloc_l
-** Last update Mon Jun 16 15:47:16 2014 arnaud drain
+** Last update mer. juin 18 14:56:49 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -31,7 +31,7 @@ t_bool		logger_init(char *filename, t_bool verbose)
   }
   atexit(&logger_delete);
   g_logger->verbose = verbose;
-  logger_message("{LOGGER} Starting");
+  logger_message("{LOGGER} Starting. File: %s", g_logger->filename);
   return (TRUE);
 }
 
@@ -44,6 +44,5 @@ void		logger_delete()
     free(g_logger);
     g_logger = NULL;
   }
-
 }
 
