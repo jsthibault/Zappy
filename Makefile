@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Sat Jun 21 23:23:32 2014 thibau_j
+## Last update  mar. juin 24 15:36:13 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -43,6 +43,7 @@ SRC_SERVER=	options/init_options.c \
 		map/get_on_map.c \
 		map/init_map.c \
 		map/delete_map.c \
+		map/players_on_map.c \
 		client_action.c \
 		logger/logger_write.c \
 		logger/logger_print.c \
@@ -67,6 +68,7 @@ SRC_SERVER=	options/init_options.c \
 		game/game.c \
 		game/player.c \
 		game/player_team.c \
+		player/init_player.c \
 
 SRC_LIST=	list_add.c \
 		list.c \
