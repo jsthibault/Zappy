@@ -2,10 +2,10 @@
 ** buffer.c for buffer in /home/js/bufferisationNaxNax
 **
 ** Made by thibau_j
-** Login   <thibau_j@epitech.net>
+** Login <thibau_j@epitech.net>
 **
-** Started on  Sun May 25 17:48:54 2014 thibau_j
-** Last update Tue May 27 09:48:28 2014 thibau_j
+** Started on Sun May 25 17:48:54 2014 thibau_j
+** Last update mar. juin 24 13:47:38 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ static void	init_buffer(t_buffer *ptr)
 
 static void	copy_on(char dest[SIZE + 1], char src[SIZE + 1])
 {
-  int		i;
+  int	i;
 
   i = 0;
   while (src[i] != '\0')
@@ -73,7 +73,7 @@ static int	add_node(char buff[SIZE + 1], t_buffer **ptr)
   if (tmp == NULL)
     {
       if (add_node_end(buff, ptr) == -1)
-	return (-1);
+        return (-1);
     }
   else
     {
@@ -83,11 +83,11 @@ static int	add_node(char buff[SIZE + 1], t_buffer **ptr)
   return (0);
 }
 
-char		*read_on(int fd, t_buffer *ptr)
+char	*read_on(int fd, t_buffer *ptr)
 {
-  int		nb;
-  int		limit;
-  char		buff[SIZE + 1];
+  int	nb;
+  int	limit;
+  char	buff[SIZE + 1];
 
   limit = 0;
   nb = 0;
@@ -97,29 +97,15 @@ char		*read_on(int fd, t_buffer *ptr)
     {
       buff[nb] = '\0';
       if (nb < SIZE || strchr(buff, '\n') != NULL)
-	limit = 1;
+        limit = 1;
       if (add_node(buff, &ptr) != 0)
-	return (NULL);
+        return (NULL);
     }
   if (nb == -1)
     {
       fprintf(stderr, "Failed on read.\n");
       return (NULL);
     }
-  check_node(ptr);
+  //check_node(ptr);
   return (concat_buff_node(ptr));
 }
-
-/* int		main() */
-/* { */
-/*   t_buffer	ptr; */
-/*   char		*tmp; */
-
-/*   ptr.next = NULL; */
-/*   while (1) */
-/*     { */
-/*       tmp = read_on(0, &ptr); */
-/*       printf("{%s}\n", tmp); */
-/*       free(tmp); */
-/*     } */
-/* } */
