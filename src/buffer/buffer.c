@@ -5,7 +5,7 @@
 ** Login <thibau_j@epitech.net>
 **
 ** Started on Sun May 25 17:48:54 2014 thibau_j
-** Last update mar. juin 24 13:47:38 2014 lefloc_l
+** Last update Tue Jun 24 20:43:48 2014 thibau_j
 */
 
 #include <stdlib.h>
@@ -101,9 +101,9 @@ char	*read_on(int fd, t_buffer *ptr)
       if (add_node(buff, &ptr) != 0)
         return (NULL);
     }
-  if (nb == -1)
+  if (nb == -1 || nb == 0)
     {
-      fprintf(stderr, "Failed on read.\n");
+      fprintf(stderr, "Client disconnected.\n"); //stderr pour debug
       return (NULL);
     }
   //check_node(ptr);

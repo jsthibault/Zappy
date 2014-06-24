@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update mar. juin 24 14:57:59 2014 lefloc_l
+** Last update Tue Jun 24 20:42:32 2014 thibau_j
 */
 
 #include <stdio.h>
@@ -76,8 +76,8 @@ static int	cmd_client(t_client *client, t_client **clients, t_buffer *buff)
   char		*buffer;
 
   buffer = read_on(client->fd, buff);
-  if (!buffer)
-    return (FALSE);
+  if (buffer == NULL)
+    return (-1);
   printf("[\033[32;1mNb client : %d\033[0m] msg : [%s]\n", client->fd, buffer);
   return (launch_cmd(buffer, client));
 }
