@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace Zappy_Client.Interface
 
     public delegate void MonoGameCheckBoxEventHandler(Object sender, MonoGameCheckBoxEventArgs e);
 
+    public delegate void MonoGameKeyboardEventHandler(Object sender, MonoGameKeyboardEventArgs e);
+
     /// <summary>
     /// MonoGame CheckBox Event Args
     /// </summary>
@@ -29,6 +32,19 @@ namespace Zappy_Client.Interface
         public MonoGameCheckBoxEventArgs(Boolean state)
         {
             this.State = state;
+        }
+    }
+
+    /// <summary>
+    /// MonoGame Keyboard Event arguments
+    /// </summary>
+    public class MonoGameKeyboardEventArgs : EventArgs
+    {
+        public Keys Keys { get; set; }
+
+        public MonoGameKeyboardEventArgs(Keys key)
+        {
+            this.Keys = key;
         }
     }
 }

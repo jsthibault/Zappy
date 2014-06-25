@@ -142,7 +142,7 @@ namespace Zappy_Client.Interface
         /// <summary>
         /// Update the Window
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentContainer.Rectangle) == false ||
                 this == this.Engine.CurrentContainer)
@@ -168,7 +168,7 @@ namespace Zappy_Client.Interface
                 }
                 this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 25));
             }
-            base.Update();
+            base.Update(gameTime);
         }
 
         /// <summary>

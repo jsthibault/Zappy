@@ -107,10 +107,10 @@ namespace Zappy_Client.Interface
         /// <summary>
         /// Update the CheckBox
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             this.UpdateCheckBoxSize();
-            base.Update();
+            base.Update(gameTime);
         }
 
         /// <summary>

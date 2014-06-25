@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,9 +103,9 @@ namespace Zappy_Client.Core
         /// <summary>
         /// Update the custom window
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            base.Update(gameTime);
         }
 
         /// <summary>

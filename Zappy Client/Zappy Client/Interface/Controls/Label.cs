@@ -100,9 +100,9 @@ namespace Zappy_Client.Interface
         /// <summary>
         /// Update label
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            base.Update(gameTime);
         }
 
         /// <summary>

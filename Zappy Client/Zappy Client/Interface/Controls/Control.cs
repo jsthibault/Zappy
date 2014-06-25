@@ -40,6 +40,10 @@ namespace Zappy_Client.Interface
         public event MonoGameEventHandler OnClick;
         public event MonoGameEventHandler OnPress;
 
+        public event MonoGameKeyboardEventHandler OnKeyDown;
+        public event MonoGameKeyboardEventHandler OnKeyUp;
+        public event MonoGameKeyboardEventHandler OnKeyTaped;
+
         #endregion
 
         #region PROPERTIES
@@ -115,7 +119,7 @@ namespace Zappy_Client.Interface
         /// <summary>
         /// Virtual base update method
         /// </summary>
-        public virtual void Update()
+        public virtual void Update(GameTime gameTime)
         {
             if (Mouse.GetState().IsInRectangle(this.Rectangle) == true)
             {
@@ -134,6 +138,26 @@ namespace Zappy_Client.Interface
             else
             {
                 this.State = ControlState.Normal;
+            }
+            if (this.Engine.CurrentControl == this)
+            {
+                Keys[] _keys = Keyboard.GetState().GetPressedKeys();
+                if (_keys.Length > 0)
+                {
+                    Keys _key = _keys[0];
+                    if (Keyboard.GetState().IsKeyDown(_key) == true)
+                    {
+                        this.KeyDown(new MonoGameKeyboardEventArgs(_key));
+                    }
+                    else if (Keyboard.GetState().IsKeyDown(_key) == false)
+                    {
+                        this.KeyUp(new MonoGameKeyboardEventArgs(_key));
+                    }
+                    else if (Keyboard.GetState().IsKeyTaped(_key) == true)
+                    {
+                        this.KeyTaped(new MonoGameKeyboardEventArgs(_key));
+                    }
+                }
             }
         }
 
@@ -179,6 +203,30 @@ namespace Zappy_Client.Interface
             if (this.OnClick != null)
             {
                 this.OnClick(this);
+            }
+        }
+
+        public virtual void KeyUp(MonoGameKeyboardEventArgs e)
+        {
+            if (this.OnKeyUp != null)
+            {
+                this.OnKeyUp(this, e);
+            }
+        }
+
+        public virtual void KeyDown(MonoGameKeyboardEventArgs e)
+        {
+            if (this.OnKeyDown != null)
+            {
+                this.OnKeyDown(this, e);
+            }
+        }
+
+        public virtual void KeyTaped(MonoGameKeyboardEventArgs e)
+        {
+            if (this.OnKeyTaped != null)
+            {
+                this.OnKeyTaped(this, e);
             }
         }
 

@@ -20,7 +20,6 @@ namespace Zappy_Client
         private SpriteBatch spriteBatch;
         public UI InterfaceEngine;
         private LoginWnd LoginWindow;
-        private Coliseum ColiseumWindow;
         private ScreenManager ScreenManager;
 
         public Zappy()
@@ -30,25 +29,25 @@ namespace Zappy_Client
             this.graphics.PreferredBackBufferWidth = Width;
             this.graphics.PreferredBackBufferHeight = Height;
             this.Content.RootDirectory = "Content";
-
-            this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
-            
-            this.LoginWindow = new LoginWnd(this.InterfaceEngine);
-            this.ColiseumWindow = new Coliseum(this.InterfaceEngine);
-
-            this.InterfaceEngine.AddContainer(this.LoginWindow);
-            //this.Engine.AddContainer(this.ColiseumWindow);
+            this.IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
+            // Initialize the InterfaceEngine
+            this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
+            // Create the Login Window
+            this.LoginWindow = new LoginWnd(this.InterfaceEngine);
+            // Add the Login Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.LoginWindow);
+
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
             // Initialize the MainScreen
             this.ScreenManager["MainScreen"] = new MainScreen();
             // Initialize the GameScreen
             this.ScreenManager["GameScreen"] = new GameScreen();
-            // Set the Current screen to "MainScreen"
+            // Set the Current screen to "GameScreen"
             this.ScreenManager.SetCurrentScreen("GameScreen");
 
             base.Initialize();
@@ -65,9 +64,8 @@ namespace Zappy_Client
         {
             // Update current screen
             this.ScreenManager.Update();
-
             // Update engine controls
-            this.InterfaceEngine.Update();
+            this.InterfaceEngine.Update(gameTime);
 
             base.Update(gameTime);
         }

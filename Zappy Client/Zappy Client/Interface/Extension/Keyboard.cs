@@ -35,5 +35,7 @@ namespace Zappy_Client.Interface
         {
             return LastState.IsKeyDown(key) == true && CurrentState.IsKeyUp(key) == true;
         }
+
     }
+
 }

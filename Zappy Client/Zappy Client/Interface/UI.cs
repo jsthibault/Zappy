@@ -103,12 +103,13 @@ namespace Zappy_Client.Interface
             this.Textures["TextBoxLeft"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox1.png");
             this.Textures["TextBoxMid"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox2.png");
             this.Textures["TextBoxRight"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox3.png");
+            this.Textures["TextBoxCursor"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBoxCursor");
         }
 
         /// <summary>
         /// Update the visible containers
         /// </summary>
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             Keyboard.GetState().Update();
             Mouse.GetState().Update();
@@ -124,7 +125,7 @@ namespace Zappy_Client.Interface
             {
                 if (this.Contrainers[i].Visible == true && this.Contrainers[i].Enabled == true)
                 {
-                    this.Contrainers[i].Update();
+                    this.Contrainers[i].Update(gameTime);
                 }
             }
         }

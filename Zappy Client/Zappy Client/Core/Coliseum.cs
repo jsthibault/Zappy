@@ -65,10 +65,10 @@ namespace Zappy_Client.Core
         /// <summary>
         /// Update the Coliseum window
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
-            base.Update();
+            base.Update(gameTime);
         }
 
         /// <summary>

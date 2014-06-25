@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\2DEngine\Camera.cs" />
+    <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\Coliseum.cs" />
     <Compile Include="Core\LoginWnd.cs" />
@@ -44,6 +45,8 @@
     <Compile Include="Core\ScreenManager\ScreenManager.cs" />
     <Compile Include="Core\Screens\GameScreen.cs" />
     <Compile Include="Core\Screens\MainScreen.cs" />
+    <Compile Include="Interface\Controls\ImageBox.cs" />
+    <Compile Include="Interface\Controls\ListBox.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />
     <Compile Include="Interface\Controls\CheckBox.cs" />
@@ -187,6 +190,9 @@
     <None Include="Content\Theme\Font\TrebuchetMS10Bold.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\Theme\TextBox\TextBoxCursor.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

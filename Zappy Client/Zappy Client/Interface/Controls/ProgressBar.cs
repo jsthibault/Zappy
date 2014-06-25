@@ -103,9 +103,9 @@ namespace Zappy_Client.Interface
 
         public override void Initialize() { }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

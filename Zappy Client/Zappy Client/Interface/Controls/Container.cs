@@ -87,8 +87,9 @@ namespace Zappy_Client.Interface
         /// <summary>
         /// Update the controls of the container
         /// </summary>
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             if (Mouse.GetState().IsInRectangle(this.Rectangle) == true && Mouse.GetState().IsInRectangle(this.Engine.CurrentContainer.Rectangle) == false ||
                 this == this.Engine.CurrentContainer)
             {
@@ -109,10 +110,9 @@ namespace Zappy_Client.Interface
             {
                 if (control.Visible == true && control.Enabled == true)
                 {
-                    control.Update();
+                    control.Update(gameTime);
                 }
             }
-            base.Update();
         }
 
         /// <summary>
