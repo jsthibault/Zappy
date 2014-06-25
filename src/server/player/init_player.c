@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mar. juin 24 16:13:43 2014 lefloc_l
+** Last update Wed Jun 25 10:45:13 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -15,6 +15,8 @@ t_player	*init_player(int id, int y, int x)
 {
   t_player	*player;
 
+  if (!(player = malloc(sizeof(*player))))
+    return (NULL);
   player->id = id;
   player->pv = DEFAULT_PV;
   player->pos.x = x;

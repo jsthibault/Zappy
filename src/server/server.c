@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue Jun 24 20:42:32 2014 thibau_j
+** Last update Wed Jun 25 10:43:49 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -73,12 +73,26 @@ static int	launch_cmd(char *line, t_client *client)
 
 static int	cmd_client(t_client *client, t_client **clients, t_buffer *buff)
 {
-  char		*buffer;
+   /* Js code, temporaly removed */
+  /*char		*buffer;
 
   buffer = read_on(client->fd, buff);
-  if (buffer == NULL)
-    return (-1);
-  printf("[\033[32;1mNb client : %d\033[0m] msg : [%s]\n", client->fd, buffer);
+  if (!buffer)
+    {
+      printf("ici\n");
+      return (-1);
+      }*/
+  char		buffer[BUFFER_SIZE] = {0};
+
+  (void)buff;
+  if (read(client->fd, &buffer, sizeof(buffer)) <= 0)
+    {
+      printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
+      close(client->fd);
+      pop_client(client->fd, clients);
+      return (1);
+    }
+  printf("[\033[32;1mClient : %s\033[0m] msg : [%s]\n", client->ip, buffer);
   return (launch_cmd(buffer, client));
 }
 
@@ -121,7 +135,7 @@ int		launch_srv(t_kernel *kernel)
   printf("[\033[32;1mOK\033[0m] Serveur started\n");
   while (42)
     {
-      if (server(&fd_in, sfd, &clients, &tmp))
+      if (server(&fd_in, sfd, &clients, &tmp) < 0)
 	{
 	  close(sfd);
 	  return (1);
