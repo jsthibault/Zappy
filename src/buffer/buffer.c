@@ -5,7 +5,7 @@
 ** Login <thibau_j@epitech.net>
 **
 ** Started on Sun May 25 17:48:54 2014 thibau_j
-** Last update Tue Jun 24 20:43:48 2014 thibau_j
+** Last update Thu Jun 26 11:45:00 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -103,9 +103,9 @@ char	*read_on(int fd, t_buffer *ptr)
     }
   if (nb == -1 || nb == 0)
     {
-      fprintf(stderr, "Client disconnected.\n"); //stderr pour debug
+      fprintf(stderr, "Client disconnected.\n"); /*stderr pour debug*/
       return (NULL);
     }
-  //check_node(ptr);
+  /*check_node(ptr);*/
   return (concat_buff_node(ptr));
 }
