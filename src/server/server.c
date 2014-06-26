@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jun 26 16:17:18 2014 arnaud drain
+** Last update Thu Jun 26 16:31:03 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -28,6 +28,7 @@
 static const t_functions g_functions[] =
     {
       {"GRAPHIC", graphic},
+      {"avance", cmd_avance},
       {NULL, NULL}
     };
 

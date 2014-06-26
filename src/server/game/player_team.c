@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:19:53 2014 lefloc_l
-** Last update Thu Jun 26 00:20:57 2014 arnaud drain
+** Last update Thu Jun 26 17:15:35 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -38,7 +38,7 @@ void		add_player_to_team(t_kernel *kernel, char *teamname, t_player *player)
   {
     if (FALSE == player_in_team(team, player))
     {
-      list_push_back(team->players, player);
+      list_push_back(&(team->players), player);
       player->team = team;
     }
     else

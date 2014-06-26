@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update Mon Jun 16 15:52:45 2014 arnaud drain
+** Last update Thu Jun 26 17:14:02 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@ void		list_pop(t_list *list, void *data)
 {
   t_node	*node;
 
-  if (!data)
+  if (!list || !data)
     return ;
   node = list->head;
   while (node)
@@ -34,7 +34,7 @@ void		list_pop_front(t_list *list)
 {
   t_node	*node;
 
-  if (!list->head)
+  if (!list || !list->head)
     return ;
   node = list->head;
   list->head = node->next;
@@ -50,7 +50,7 @@ void		list_pop_back(t_list *list)
 {
   t_node	*node;
 
-  if (!list->tail)
+  if (!list || !list->tail)
     return;
   node = list->tail;
   list->tail = node->prev;
@@ -66,6 +66,8 @@ void		list_pop_func(t_list *list, ptrbv func)
 {
   t_node	*node;
 
+  if (!list)
+    return;
   node = list->head;
   while (node && (*func)(node->data) == FALSE)
   {
@@ -79,6 +81,8 @@ void		list_pop_func_arg(t_list *list, ptrbvv func, void *arg)
 {
   t_node	*node;
 
+  if (!list)
+    return;
   node = list->head;
   while (node && (*func)(node->data, arg) == FALSE)
   {

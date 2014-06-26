@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Thu Jun 26 01:54:07 2014 arnaud drain
+** Last update Thu Jun 26 17:15:52 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -60,7 +60,7 @@ t_player	*init_player2(t_kernel *kernel, char *teamname)
   pos.y = rand() % kernel->options.height;
   player->pos.x = pos.x;
   player->pos.y = pos.y;
-  list_push_back(team->players, player);
+  list_push_back(&(team->players), player);
   player->team = team;
   printf("%d %d\n", pos.x, pos.y);
   add_player_on_map(kernel, player, pos.x, pos.y);

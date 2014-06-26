@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:55:19 2014 lefloc_l
-** Last update sam. mai 17 18:49:07 2014 lefloc_l
+** Last update Thu Jun 26 16:51:24 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -25,11 +25,15 @@ t_list		*list_create()
 
 size_t		list_size(t_list *list)
 {
+  if (!list)
+    return (0);
   return list->size;
 }
 
 t_bool		list_is_empty(t_list *list)
 {
+  if (!list)
+    return (TRUE);
   if (!list->size)
     return (TRUE);
   return (FALSE);
@@ -37,12 +41,14 @@ t_bool		list_is_empty(t_list *list)
 
 void		list_delete(t_list *list)
 {
+  if (!list)
+    return;
   list_foreach(list, &free);
   list_clear(list);
 }
 
 void		list_clear(t_list *list)
 {
-  while (list->size)
+  while (list && list->size)
     list_pop_back(list);
 }

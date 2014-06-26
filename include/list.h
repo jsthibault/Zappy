@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:47:09 2014 lefloc_l
-** Last update Mon Jun 16 15:48:41 2014 arnaud drain
+** Last update Thu Jun 26 17:16:44 2014 arnaud drain
 */
 
 #ifndef LIST_H_
@@ -38,7 +38,7 @@ typedef t_bool	(*ptrbv)(void *);
 typedef t_bool	(*ptrbvv)(void *, void *);
 typedef void	(*ptrvnv)(t_list *, t_node *, void *);
 
-void		list_add_node(t_list *list, t_node *node, void *data);
+void		list_add_node(t_list **list, t_node *node, void *data);
 void		list_pop_node(t_list *list, t_node *node);
 
 t_node		*list_create_node(void *data);
@@ -47,8 +47,8 @@ t_list		*list_create();
 void		list_delete(t_list *list);
 void		list_clear(t_list *list);
 
-void		list_push_front(t_list *list, void *data);
-void		list_push_back(t_list *list, void *data);
+void		list_push_front(t_list **list, void *data);
+void		list_push_back(t_list **list, void *data);
 
 void		list_pop(t_list *list, void *data);
 void		list_pop_front(t_list *list);

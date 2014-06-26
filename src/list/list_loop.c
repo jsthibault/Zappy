@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:21:56 2014 lefloc_l
-** Last update Mon Jun 16 15:51:36 2014 arnaud drain
+** Last update Thu Jun 26 17:12:34 2014 arnaud drain
 */
 
 #include "list.h"
@@ -15,7 +15,7 @@ void		list_foreach(t_list *list, ptrvv func)
   t_node	*node;
 
   if (!list)
-    return ;
+    return;
   node = list->head;
   while (node)
   {
@@ -29,6 +29,8 @@ void		*list_recur_action(t_list *list, ptrvnv func, void *arg)
 {
   t_node	*node;
 
+  if (!list)
+    return (NULL);
   node = list->head;
   while (node)
   {

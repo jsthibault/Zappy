@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-** Last update Thu Jun 26 16:24:52 2014 arnaud drain
+** Last update Thu Jun 26 16:44:14 2014 arnaud drain
 */
 
 #include "client_action.h"
@@ -14,10 +14,13 @@
 #include "enum.h"
 #include "map.h"
 
-int		cmd_avance(char **av, t_client *cl, t_kernel *kernel)
+int		cmd_avance(char **av, t_client *client, t_kernel *kernel)
 {
+  printf("WOWOWO un client avance\n");
+  if (client->graphic || !client->player)
+    return (0);
+  printf("HEY !\n");
   (void)av;
-  (void)cl;
   (void)kernel;
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update mar. juin 24 15:23:10 2014 lefloc_l
+** Last update Thu Jun 26 17:15:02 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -36,7 +36,7 @@ void		add_player_on_map(t_kernel *kernel, t_player *player, int x, int y)
   t_case	*c;
 
   c = get_case(kernel, x, y);
-  list_push_front(c->players, player);
+  list_push_front(&(c->players), player);
   player->pos.y = y;
   player->pos.x = x;
 }

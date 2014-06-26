@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update Mon Jun 16 15:53:05 2014 arnaud drain
+** Last update Thu Jun 26 17:16:36 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ t_node		*list_create_node(void *data)
   return (node);
 }
 
-void		list_add_node(t_list *list, t_node *node, void *data)
+void		list_add_node(t_list **list, t_node *node, void *data)
 {
   t_node	*tmp;
 
@@ -38,7 +38,7 @@ void		list_add_node(t_list *list, t_node *node, void *data)
     tmp->next = node->next;
     tmp->next->prev = tmp;
     node->next = tmp;
-    list->size++;
+    ((*list)->size++);
   }
 }
 
