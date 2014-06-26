@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jun 26 02:18:00 2014 arnaud drain
+** Last update Thu Jun 26 02:58:14 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -64,7 +64,7 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
     {
       if (!strcmp(av[0], g_functions[i].name))
 	{
-	  ret = g_functions[i].function(av, client);
+	  ret = g_functions[i].function(av, client, kernel);
 	  freetab(av);
 	  return (ret);
 	}
@@ -80,7 +80,7 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
       team = find_team(kernel, av[0]);
       sprintf(buf, "%d\n%d %d\n", (int)(kernel->options.max_clients - list_size(team->players)),
 	      (int)kernel->options.width, (int)kernel->options.height);
-      write(client->fd, buf, strlen(buf));
+      write_socket(client->fd, buf);
     }
   freetab(av);
   return (0);
@@ -121,7 +121,7 @@ static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval 
   select(max + 1, &fd_in, NULL, NULL, tv);
   if (!tv->tv_sec && !tv->tv_usec)
     {
-      dump_map(kernel);
+      /*dump_map(kernel);*/
     }
   if (FD_ISSET(sfd, &fd_in) && add_client(sfd, clients))
     return (1);
