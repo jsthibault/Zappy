@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jun 26 02:58:14 2014 arnaud drain
+** Last update Thu Jun 26 16:17:18 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -23,6 +23,7 @@
 #include "server.h"
 #include "buffer.h"
 #include "map.h"
+#include "client_action.h"
 
 static const t_functions g_functions[] =
     {
@@ -70,7 +71,7 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 	}
       ++i;
     }
-  if (!client->graphic && !client->player)
+  if (av[0] && !client->graphic && !client->player)
     {
       if (!(client->player = init_player2(kernel, av[0])))
 	{

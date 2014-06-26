@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:26:46 2014 lefloc_l
-** Last update ven. mai 16 17:43:15 2014 lefloc_l
+** Last update Thu Jun 26 16:19:59 2014 arnaud drain
 */
 
 #include <string.h>
@@ -33,7 +33,8 @@ static const t_tab_func	tab_func[] = {
 */
 char		*check_client_command(char *str)
 {
-  size_t	i;
+  (void)str;
+  /*size_t	i;
   char		*res;
 
   for (i = 0; tab_func[i].p; i++)
@@ -44,7 +45,7 @@ char		*check_client_command(char *str)
       return (res);
     }
   }
-  fprintf(stderr, "Invalid command\n");
+  fprintf(stderr, "Invalid command\n");*/
   return (NULL);
 }
 
