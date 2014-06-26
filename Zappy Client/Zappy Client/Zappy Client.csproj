@@ -38,15 +38,17 @@
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
-    <Compile Include="Core\Coliseum.cs" />
-    <Compile Include="Core\LoginWnd.cs" />
+    <Compile Include="Core\Windows\Coliseum.cs" />
+    <Compile Include="Core\Windows\LoginWnd.cs" />
     <Compile Include="Core\ScreenManager\AScreen.cs" />
     <Compile Include="Core\ScreenManager\ScreenException.cs" />
     <Compile Include="Core\ScreenManager\ScreenManager.cs" />
     <Compile Include="Core\Screens\GameScreen.cs" />
     <Compile Include="Core\Screens\MainScreen.cs" />
+    <Compile Include="Core\Windows\PlayerList.cs" />
     <Compile Include="Interface\Controls\ImageBox.cs" />
     <Compile Include="Interface\Controls\ListBox.cs" />
+    <Compile Include="Interface\Extension\Texture.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />
     <Compile Include="Interface\Controls\CheckBox.cs" />
@@ -111,6 +113,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Controls\ButtRadio.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxDown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxSelector.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\ProgressBars\Targetgauge01.png">

@@ -21,7 +21,7 @@ namespace Zappy_Client.Interface
     {
         #region FIELDS
 
-        private Texture2D Texture { get; set; }
+        public Texture2D Texture { get; set; }
 
         #endregion
 

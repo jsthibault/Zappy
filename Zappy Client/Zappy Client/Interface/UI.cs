@@ -104,6 +104,12 @@ namespace Zappy_Client.Interface
             this.Textures["TextBoxMid"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox2.png");
             this.Textures["TextBoxRight"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBox3.png");
             this.Textures["TextBoxCursor"] = this.Content.Load<Texture2D>("Theme//TextBox//TextBoxCursor");
+
+            /* Load ListBox */
+            this.Textures["ListBoxUp"] = this.Content.Load<Texture2D>("Theme//ListBox//ListBoxUp.png");
+            this.Textures["ListBoxDown"] = this.Content.Load<Texture2D>("Theme//ListBox//ListBoxDown.png");
+            this.Textures["ListBoxBackground"] = this.Content.Load<Texture2D>("Theme//ListBox//ListBoxBack.png");
+            this.Textures["ListBoxSelector"] = this.Content.Load<Texture2D>("Theme//ListBox//ListBoxSelector.png");
         }
 
         /// <summary>
