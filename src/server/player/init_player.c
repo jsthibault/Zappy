@@ -1,11 +1,11 @@
 /*
-** init_player->c for player in /home/loic/dev/epitech/c/Zappy/src/server/player
+** init_player.c for player in /home/loic/dev/epitech/c/Zappy/src/server/player
 **
 ** Made by lefloc_l
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mar. juin 24 16:13:43 2014 lefloc_l
+** Last update mar. juin 24 16:18:53 2014 lefloc_l
 */
 
 #include <stdlib.h>
