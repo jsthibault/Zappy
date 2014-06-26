@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:16:51 2014 lefloc_l
-** Last update Thu Jun 26 16:56:44 2014 arnaud drain
+** Last update Thu Jun 26 17:19:13 2014 arnaud drain
 */
 
 #include <string.h>
@@ -23,7 +23,6 @@ void	init_map(t_kernel *kernel, int width, int height)
   kernel->game.map->width = width;
   kernel->game.map->height = height;
   kernel->game.map->map = (t_case **)xmalloc(sizeof(t_case *) * (height) + 1);
-  printf("lol\n");
   for (i = 0; i < height; i++)
   {
     kernel->game.map->map[i] = (t_case *)xmalloc(sizeof(t_case) * (width + 1));
@@ -34,6 +33,5 @@ void	init_map(t_kernel *kernel, int width, int height)
 	kernel->game.map->map[i][j].players = NULL;
       }
   }
-  printf("lol2\n");
   logger_message("{MAP} Initialisation");
 }

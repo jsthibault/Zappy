@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:55:19 2014 lefloc_l
-** Last update Thu Jun 26 16:51:24 2014 arnaud drain
+** Last update Thu Jun 26 17:18:29 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -51,4 +51,5 @@ void		list_clear(t_list *list)
 {
   while (list && list->size)
     list_pop_back(list);
+  free(list);
 }
