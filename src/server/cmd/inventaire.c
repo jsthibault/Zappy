@@ -5,14 +5,19 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:53 2014 lefloc_l
-** Last update Tue Jun 17 16:31:44 2014 arnaud drain
+** Last update Thu Jun 26 16:26:37 2014 arnaud drain
 */
 
+#include "client_action.h"
+#include "server.h"
 #include "utils.h"
 #include "enum.h"
 #include "map.h"
 
-void		cmd_inventaire(char **res)
+int		cmd_inventaire(char **av, t_client *cl, t_kernel *kernel)
 {
-  (void)res;
+  (void)av;
+  (void)cl;
+  (void)kernel;
+  return (0);
 }
