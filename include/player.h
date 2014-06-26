@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:20:41 2014 lefloc_l
-** Last update mar. juin 24 16:11:41 2014 lefloc_l
+** Last update Thu Jun 26 00:35:44 2014 arnaud drain
 */
 
 #ifndef PLAYER_H_
@@ -29,5 +29,7 @@ void			delete_player(void *);
 void			delete_player_by_id(t_kernel *, int);
 t_player		*init_player(int, int, int);
 void			remove_player(t_player *);
+t_player		*init_player2(t_kernel *, char *);
+int			get_max_id(t_kernel *);
 
 #endif /* !PLAYER_H_ */

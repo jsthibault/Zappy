@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Tue Jun 17 15:57:23 2014 arnaud drain
+** Last update Thu Jun 26 01:27:45 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -62,11 +62,11 @@ typedef struct	s_inventory
   int		items[ITEM_TYPE];
 }		t_inventory;
 
-typedef struct	s_case
+typedef struct		s_case
 {
   struct s_inventory	inventory;
-  t_list	*players;
-}		t_case;
+  t_list		*players;
+}			t_case;
 
 typedef struct	s_map
 {

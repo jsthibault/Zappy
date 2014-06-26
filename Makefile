@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  mar. juin 24 15:36:13 2014 lefloc_l
+## Last update Wed Jun 25 23:34:43 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -38,6 +38,7 @@ SRC_SERVER=	options/init_options.c \
 		options/options_with_int.c \
 		options/parse_options.c \
 		utils.c \
+		map/dump_map.c \
 		map/rock_on_map.c \
 		map/food_on_map.c \
 		map/get_on_map.c \

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:20:14 2014 lefloc_l
-** Last update Mon Jun 16 16:39:02 2014 arnaud drain
+** Last update Wed Jun 25 23:26:11 2014 arnaud drain
 */
 
 #include <string.h>
@@ -23,6 +23,7 @@ t_bool		option_n(char **av, int ac, int *i, t_options *options)
     options->nb_team_names++;
     ++(*i);
   }
+  --(*i);
   return (TRUE);
 }
 

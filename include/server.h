@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Mon Jun 16 16:57:34 2014 arnaud drain
+** Last update Thu Jun 26 01:28:49 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -15,14 +15,17 @@
 
 # include "kernel.h"
 # include "options.h"
+# include "player.h"
+# include "utils.h"
 
 typedef struct s_client	t_client;
 
 struct		s_client
 {
   int		fd;
-  char		*name;
   char		*ip;
+  t_bool	graphic;
+  t_player	*player;
   t_client	*next;
 };
 
