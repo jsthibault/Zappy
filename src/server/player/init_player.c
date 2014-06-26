@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mar. juin 24 16:18:53 2014 lefloc_l
+** Last update jeu. juin 26 16:09:00 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -15,10 +15,55 @@ t_player	*init_player(int id, int y, int x)
 {
   t_player	*player;
 
+  if (!(player = malloc(sizeof(*player))))
+    return (NULL);
   player->id = id;
   player->pv = DEFAULT_PV;
   player->pos.x = x;
   player->pos.y = y;
+  return (player);
+}
+
+int		get_max_id(t_kernel *kernel)
+{
+  int		max;
+  int		pos;
+  int		max_id;
+  t_player	*player;
+
+  max = list_size(kernel->game.players);
+  pos = 0;
+  max_id = 0;
+  while (pos < max)
+    {
+      player = (t_player *)list_get_at(kernel->game.players, pos);
+      if (player->id > max_id)
+	max_id = player->id;
+      ++pos;
+    }
+  return (max_id);
+}
+
+t_player	*init_player2(t_kernel *kernel, char *teamname)
+{
+  t_team	*team;
+  t_player	*player;
+  t_pos		pos;
+
+  if (!(team = find_team(kernel, teamname)))
+    return (NULL);
+  if (!(player = malloc(sizeof(*player))))
+    return (NULL);
+  player->id = get_max_id(kernel) + 1;
+  player->pv = DEFAULT_PV;
+  pos.x = rand() % kernel->options.width;
+  pos.y = rand() % kernel->options.height;
+  player->pos.x = pos.x;
+  player->pos.y = pos.y;
+  list_push_back(team->players, player);
+  player->team = team;
+  printf("%d %d\n", pos.x, pos.y);
+  add_player_on_map(kernel, player, pos.x, pos.y);
   return (player);
 }
 

@@ -5,10 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update mer. juin 18 12:49:30 2014 lefloc_l
+** Last update Thu Jun 26 02:00:07 2014 arnaud drain
 */
 
 #include <stdlib.h>
+#include <time.h>
 #include "options.h"
 #include "server.h"
 #include "kernel.h"
@@ -38,6 +39,7 @@ int		main(const int argc, const char *argv[])
     delete_kernel(&kernel);
     return (EXIT_FAILURE);
   }
+  srand(time(NULL));
   launch_srv(&kernel);
   delete_kernel(&kernel);
   return (EXIT_SUCCESS);

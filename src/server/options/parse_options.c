@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Mon Jun 16 16:18:48 2014 arnaud drain
+** Last update Wed Jun 25 23:23:52 2014 arnaud drain
 */
 
 #include <string.h>
@@ -51,6 +51,7 @@ t_bool		parse_options(const int ac, const char *av[], t_options *options)
     check = FALSE;
     for (j = 0; tabfunctions[j].option && !check; ++j)
     {
+      printf("%s %s\n", tabfunctions[j].option, av[i]);
       if (!strcmp(tabfunctions[j].option, av[i]))
       {
         if (!tabfunctions[j].p(av, ac, &i, options))

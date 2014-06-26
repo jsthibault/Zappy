@@ -1,0 +1,17 @@
+quand on kill un client, penser à le virer des teams etc... (graphiques par exemple)
+
+separer le code de la gui et des clients
+
+la liste des actions
+
+faire la pile d'actions, et la lire lors des timeout du select (et donc executer les actions qui vont avec)
+
+faire un truc pour les listes avec les NULL
+
+faire les free / close de la fin
+
+vérifier tout les free / close
+
+vérifier tout les appels system (ainsi que les fonctions en héritant)
+
+vérifier la norme

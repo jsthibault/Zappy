@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue Jun 24 20:42:32 2014 thibau_j
+** Last update Thu Jun 26 02:58:14 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -22,6 +22,7 @@
 #include "kernel.h"
 #include "server.h"
 #include "buffer.h"
+#include "map.h"
 
 static const t_functions g_functions[] =
     {
@@ -48,57 +49,88 @@ static int	init_select(fd_set *fd_in, int sfd, t_client *clients)
   return (max);
 }
 
-static int	launch_cmd(char *line, t_client *client)
+static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 {
+  t_team	*team;
   char		**av;
   int		i;
   int		ret;
+  char		buf[15];
 
   i = 0;
-  if (!(av = my_str_to_wordtab(line + 1)))
+  if (!(av = my_str_to_wordtab(line)))
     return (-1);
   while (av[0] && g_functions[i].name)
     {
       if (!strcmp(av[0], g_functions[i].name))
 	{
-	  ret = g_functions[i].function(av, client);
+	  ret = g_functions[i].function(av, client, kernel);
 	  freetab(av);
 	  return (ret);
 	}
       ++i;
     }
+  if (!client->graphic && !client->player)
+    {
+      if (!(client->player = init_player2(kernel, av[0])))
+	{
+	  freetab(av);
+	  return (0);
+	}
+      team = find_team(kernel, av[0]);
+      sprintf(buf, "%d\n%d %d\n", (int)(kernel->options.max_clients - list_size(team->players)),
+	      (int)kernel->options.width, (int)kernel->options.height);
+      write_socket(client->fd, buf);
+    }
   freetab(av);
   return (0);
 }
 
-static int	cmd_client(t_client *client, t_client **clients, t_buffer *buff)
+static int	cmd_client(t_client *client, t_client **clients, t_kernel *kernel)
 {
-  char		*buffer;
+   /* Js code, temporaly removed */
+  /*char		*buffer;
 
-  buffer = read_on(client->fd, buff);
-  if (buffer == NULL)
-    return (-1);
-  printf("[\033[32;1mNb client : %d\033[0m] msg : [%s]\n", client->fd, buffer);
-  return (launch_cmd(buffer, client));
+  buffer = read_on(client->fd);
+  if (!buffer)
+    {
+      printf("ici\n");
+      return (-1);
+      }*/
+  char		buffer[BUFFER_SIZE] = {0};
+
+  if (read(client->fd, &buffer, sizeof(buffer)) <= 0)
+    {
+      printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
+      close(client->fd);
+      pop_client(client->fd, clients);
+      return (1);
+    }
+  printf("[\033[32;1mClient %s\033[0m] msg : [%s]\n", client->ip, buffer);
+  return (launch_cmd(buffer, client, kernel));
 }
 
-static int	server(fd_set *fd_in, int sfd, t_client **clients,
-		       t_buffer *buff)
+static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval *tv)
 {
+  fd_set	fd_in;
   int		max;
   t_client	*tmp;
   int		ret;
 
-  max = init_select(fd_in, sfd, *clients);
-  select(max + 1, fd_in, NULL, NULL, NULL);
-  if (FD_ISSET(sfd, fd_in) && add_client(sfd, clients))
+  max = init_select(&fd_in, sfd, *clients);
+  select(max + 1, &fd_in, NULL, NULL, tv);
+  if (!tv->tv_sec && !tv->tv_usec)
+    {
+      /*dump_map(kernel);*/
+    }
+  if (FD_ISSET(sfd, &fd_in) && add_client(sfd, clients))
     return (1);
   tmp = *clients;
   while (tmp)
     {
-      if (FD_ISSET(tmp->fd, fd_in))
+      if (FD_ISSET(tmp->fd, &fd_in))
       {
-        ret = cmd_client(tmp, clients, buff);
+        ret = cmd_client(tmp, clients, kernel);
         if (ret)
           return (ret);
       }
@@ -107,21 +139,28 @@ static int	server(fd_set *fd_in, int sfd, t_client **clients,
   return (0);
 }
 
-int		launch_srv(t_kernel *kernel)
+int			launch_srv(t_kernel *kernel)
 {
-  int		sfd;
-  t_client	*clients;
-  fd_set	fd_in;
-  t_buffer	tmp;
+  struct timeval	tv;
+  int			sfd;
+  t_client		*clients;
 
-  tmp.next = NULL;
   if ((sfd = init(kernel->options.port)) == -1)
     return (-1);
   clients = NULL;
   printf("[\033[32;1mOK\033[0m] Serveur started\n");
+  tv.tv_sec = 0;
+  tv.tv_usec = 0;
   while (42)
     {
-      if (server(&fd_in, sfd, &clients, &tmp))
+      if (!tv.tv_sec && !tv.tv_usec)
+	{
+	  tv.tv_sec = 1 / kernel->options.delai;
+	  tv.tv_usec = 1.0 / kernel->options.delai * 1000000;
+	  if (tv.tv_sec)
+	    tv.tv_usec -= 1000000 * tv.tv_sec;
+	}
+      if (server(sfd, &clients, kernel, &tv) < 0)
 	{
 	  close(sfd);
 	  return (1);

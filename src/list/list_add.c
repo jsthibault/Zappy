@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:57:09 2014 lefloc_l
-** Last update sam. mai 17 16:01:30 2014 lefloc_l
+** Last update Thu Jun 26 01:42:49 2014 arnaud drain
 */
 
 #include "list.h"

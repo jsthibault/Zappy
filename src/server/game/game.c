@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update Tue Jun 17 16:31:09 2014 arnaud drain
+** Last update Thu Jun 26 01:38:55 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -37,5 +37,6 @@ void	init_game(t_kernel *kernel)
 void	pre_fill_game(t_kernel *kernel)
 {
   kernel->game.teams = NULL;
-  kernel->game.players = NULL;
+  kernel->game.players = list_create();
+  kernel->game.map = NULL;
 }

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue May 13 19:41:17 2014 arnaud drain
+** Last update Wed Jun 25 23:54:39 2014 arnaud drain
 */
 
 #include <sys/socket.h>
@@ -20,10 +20,11 @@
 static int	fill_client(t_client *client, int cfd, char *address)
 {
   client->fd = cfd;
-  client->name = NULL;
   if (!(client->ip = strdup(address)))
     return (return_error("strdup", 1));
   client->next = NULL;
+  client->graphic = FALSE;
+  client->player = NULL;
   return (0);
 }
 
@@ -51,7 +52,6 @@ int			add_client(int sfd, t_client **clients)
   int			client_len;
   char			*address;
   int			cfd;
-  char			msg[BUFFER_SIZE] = {0};
 
   client_len = sizeof(sin_client);
   if ((cfd = accept(sfd, (struct sockaddr *)&sin_client,
@@ -63,8 +63,7 @@ int			add_client(int sfd, t_client **clients)
   if (!(address = strdup(inet_ntoa(sin_client.sin_addr))))
     return (return_error("strdup", 1));
   printf("[\033[32;1mOK\033[0m] Connection from %s\n", address);
-  snprintf(msg, sizeof(msg), "Hello, your ip is %s\n", address);
-  write(cfd, msg, strlen(msg));
+  write(cfd, "BIENVENUE\n", strlen("BIENVENUE\n"));
   if (push_client(cfd, clients, address))
     {
       close(cfd);
@@ -91,8 +90,7 @@ void		pop_client(int fd, t_client **clients)
       tmp_free = tmp->next;
       tmp->next = tmp->next->next;
     }
-  if (tmp_free->name)
-    free(tmp_free->name);
+  /* TODO free le player */
   free(tmp_free->ip);
   free(tmp_free);
 }

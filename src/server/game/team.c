@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:21:09 2014 lefloc_l
-** Last update Tue Jun 17 16:19:09 2014 arnaud drain
+** Last update Thu Jun 26 01:43:09 2014 arnaud drain
 */
 
 #include <string.h>
@@ -19,7 +19,7 @@ void		add_team(t_kernel *kernel, char *teamname)
 
   team = xmalloc(sizeof(t_team));
   strcpy(team->name, teamname);
-  team->players = NULL;
+  team->players = list_create();
   list_push_back(kernel->game.teams, team);
   logger_message("{TEAM} Create %s", teamname);
 }
