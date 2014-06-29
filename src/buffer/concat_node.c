@@ -5,7 +5,7 @@
 ** Login <thibau_j@epitech.net>
 **
 ** Started on Sun May 25 20:13:49 2014 thibau_j
-** Last update mar. juin 24 14:33:51 2014 lefloc_l
+** Last update Sun Jun 29 17:26:56 2014 thibau_j
 */
 
 #include <string.h>
@@ -39,7 +39,12 @@ char		*concat_buff_node(t_buffer *ptr)
   nb = size_full_node(ptr);
   if (!nb)
     return (NULL);
-  str = xmalloc(sizeof(char) * (nb * (SIZE + 1)));
+  str = malloc(sizeof(char) * (nb * (SIZE + 1)));
+  if (str == NULL)
+    {
+      fprintf(stderr, "Malloc : failed system call malloc.\n");
+      return (NULL);
+    }
   memset(str, 0, nb * (SIZE + 1));
   tmp = ptr;
   while (tmp != NULL)

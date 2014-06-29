@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jun 26 16:31:03 2014 arnaud drain
+** Last update Sun Jun 29 17:31:34 2014 thibau_j
 */
 
 #include <stdio.h>
@@ -88,20 +88,17 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
   return (0);
 }
 
-static int	cmd_client(t_client *client, t_client **clients, t_kernel *kernel)
+static int	cmd_client(t_client *client, t_client **clients,
+			   t_kernel *kernel, t_buffer *buff_node)
 {
-   /* Js code, temporaly removed */
-  /*char		*buffer;
+  char		*buffer;
 
-  buffer = read_on(client->fd);
-  if (!buffer)
+  buffer = read_on(client->fd, buff_node);
+  if (buffer == NULL)
     {
-      printf("ici\n");
       return (-1);
-      }*/
-  char		buffer[BUFFER_SIZE] = {0};
-
-  if (read(client->fd, &buffer, sizeof(buffer)) <= 0)
+    }
+  else if (buffer == (void *)2)
     {
       printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
       close(client->fd);
@@ -132,7 +129,7 @@ static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval 
     {
       if (FD_ISSET(tmp->fd, &fd_in))
       {
-        ret = cmd_client(tmp, clients, kernel);
+        ret = cmd_client(tmp, clients, kernel, kernel->buff_node);
         if (ret)
           return (ret);
       }
@@ -146,7 +143,10 @@ int			launch_srv(t_kernel *kernel)
   struct timeval	tv;
   int			sfd;
   t_client		*clients;
+  t_buffer		buff;
 
+  buff.next = NULL;
+  kernel->buff_node = &buff;
   if ((sfd = init(kernel->options.port)) == -1)
     return (-1);
   clients = NULL;
