@@ -1,11 +1,11 @@
 /*
 ** struct.h for struct in /home/drain_a/rendu/Zappy
-** 
+**
 ** Made by arnaud drain
 ** Login   <drain_a@epitech.net>
-** 
+**
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Thu Jun 26 01:27:45 2014 arnaud drain
+** Last update Sun Jun 29 17:31:17 2014 thibau_j
 */
 
 #ifndef STRUCT_H_
@@ -13,6 +13,7 @@
 
 # include "enum.h"
 # include "list.h"
+# include "buffer.h"
 
 # define TEAM_NAME_SIZE		50
 # define TEAM_MAX		100
@@ -49,6 +50,7 @@ typedef struct		s_kernel
 {
   struct s_options	options;
   struct s_game		game;
+  t_buffer		*buff_node;
   /*penser a rajouter le logger*/
 }			t_kernel;
 
