@@ -5,9 +5,10 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Thu Jun 26 02:00:07 2014 arnaud drain
+** Last update Fri Jun 27 21:01:04 2014 arnaud drain
 */
 
+#include <signal.h>
 #include <stdlib.h>
 #include <time.h>
 #include "options.h"
@@ -27,10 +28,18 @@ static void	print_man()
       -t delai temporel d’execution des actions\n", COLOR_BLUE, COLOR_NORMAL);
 }
 
+static void	sigtruc(int sig)
+{
+  (void)sig;
+  printf("SIGPIPE\n");
+  exit(EXIT_FAILURE);
+}
+
 int		main(const int argc, const char *argv[])
 {
   t_kernel	kernel;
 
+  signal(SIGPIPE, sigtruc);
   if (!logger_init("test.log", TRUE))
     return (EXIT_FAILURE);
   if (!init_kernel(argc, argv, &kernel))
