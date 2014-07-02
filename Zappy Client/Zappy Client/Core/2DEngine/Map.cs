@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
  * Map.cs - file description
@@ -32,10 +33,11 @@ namespace Zappy_Client.Core._2DEngine
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }
 
-        internal Texture2D Grass { get; set; }
-        internal Texture2D Water { get; set; }
-        internal Texture2D Moutain { get; set; }
-        internal SpriteFont Debug { get; set; }
+        private Texture2D Grass { get; set; }
+        private Texture2D Water { get; set; }
+        private Texture2D Moutain { get; set; }
+        private Texture2D Cursor { get; set; }
+        private SpriteFont Debug { get; set; }
 
         const Int32 Case = 32;
 
@@ -44,6 +46,7 @@ namespace Zappy_Client.Core._2DEngine
 
         private Int32 OffsetX { get; set; }
         private Int32 OffsetY { get; set; }
+
 
         #endregion
 
@@ -111,7 +114,7 @@ namespace Zappy_Client.Core._2DEngine
 
             MouseState _mouseState = Mouse.GetState();
 
-            this.Camera.Zoom = _mouseState.ScrollWheelValue / 250;
+            this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
         }
 
         /// <summary>
@@ -141,6 +144,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Grass = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grass.png");
             this.Water = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
             this.Moutain = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
+            this.Cursor = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
@@ -213,7 +217,6 @@ namespace Zappy_Client.Core._2DEngine
                 }
             }
         }
-
 
         #endregion
     }

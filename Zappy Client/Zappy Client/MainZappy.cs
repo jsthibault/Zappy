@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.GamerServices;
 using Zappy_Client.Interface;
 using Zappy_Client.Core;
 
@@ -53,7 +48,7 @@ namespace Zappy_Client
             // Initialize the GameScreen
             this.ScreenManager["GameScreen"] = new GameScreen();
             // Set the Current screen to "GameScreen"
-            this.ScreenManager.SetCurrentScreen("GameScreen");
+            this.ScreenManager.SetCurrentScreen("MainScreen");
 
             base.Initialize();
         }

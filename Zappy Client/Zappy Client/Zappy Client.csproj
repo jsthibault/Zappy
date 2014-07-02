@@ -94,6 +94,9 @@
     <Content Include="Content\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\TexturesMap\cursor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\TexturesMap\grass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -115,6 +118,9 @@
     <Content Include="Content\Theme\Controls\ButtRadio.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Theme\Inventory\slot01.png" />
+    <Content Include="Content\Theme\Inventory\slot04.png" />
+    <Content Include="Content\Theme\Inventory\WndNewTASKBAR.png" />
     <Content Include="Content\Theme\ListBox\ListBoxDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
