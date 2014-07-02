@@ -197,6 +197,22 @@ namespace Zappy_Client.Interface
             }
         }
 
+
+        /// <summary>
+        /// Get a container from the UI with its name
+        /// </summary>
+        /// <param name="name">Container's name</param>
+        /// <returns>Selected container</returns>
+        public Container GetContainer(string name)
+        {
+            foreach (Container item in this.Contrainers)
+            {
+                if (item.Name == name)
+                    return item;
+            }
+            throw new Exception("Unknown container name \"" + name + "\".");
+        }
+
         #endregion
     }
 }
