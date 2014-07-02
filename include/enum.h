@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:13:54 2014 lefloc_l
-** Last update Tue Jun 17 13:56:44 2014 arnaud drain
+** Last update mer. juil. 02 22:26:03 2014 lefloc_l
 */
 
 #ifndef ENUM_H_
@@ -19,10 +19,10 @@
 
 typedef enum	e_orientation
 {
-  NORTH = 0,
-  EAST = 1,
-  SOUTH = 2,
-  WEST = 3
+  NORTH = 1,
+  EAST = 2,
+  SOUTH = 3,
+  WEST = 4
 }		t_orientation;
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update mer. juil. 02 22:18:31 2014 lefloc_l
+** Last update mer. juil. 02 22:30:52 2014 lefloc_l
 */
 
 #include <string.h>
@@ -20,6 +20,17 @@ t_bool	send_message(int fd, char *msg)
   return (TRUE);
 }
 
+t_bool	pnw(int fd, t_player *player)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pnw #%d %d %d %d %d %s", player->id,
+      player->pos.x, player->pos.y,
+      player->orientation, player->level, player->team->name);
+  return (send_message(fd, res));
+
+}
+
 t_bool	pie(int fd, t_pos pos, int result)
 {
   char	res[BUFFER_SIZE];
@@ -32,7 +43,7 @@ t_bool	pex(int fd, int player_id)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pex %d\n", player_id);
+  sprintf(res, "pex #%d\n", player_id);
   return (send_message(fd, res));
 }
 
@@ -40,7 +51,7 @@ t_bool	enw(int fd, int egg, int player_id, t_pos pos)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "enw %d %d %d %d\n", egg, player_id, pos.x, pos.y);
+  sprintf(res, "enw #%d #%d %d %d\n", egg, player_id, pos.x, pos.y);
   return (send_message(fd, res));
 }
 
@@ -48,7 +59,7 @@ t_bool	ebo(int fd, int egg)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "ebo %d\n", egg);
+  sprintf(res, "ebo #%d\n", egg);
   return (send_message(fd, res));
 }
 
@@ -56,7 +67,7 @@ t_bool	eht(int fd, int egg)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "eht %d\n", egg);
+  sprintf(res, "eht #%d\n", egg);
   return (send_message(fd, res));
 }
 
@@ -64,7 +75,7 @@ t_bool	edi(int fd, int egg)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "edi %d\n", egg);
+  sprintf(res, "edi #%d\n", egg);
   return (send_message(fd, res));
 }
 
@@ -72,7 +83,7 @@ t_bool	pgt(int fd, int player_id, int ressource_id)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pgt %d %d\n", player_id, ressource_id);
+  sprintf(res, "pgt #%d %d\n", player_id, ressource_id);
   return (send_message(fd, res));
 }
 
@@ -80,7 +91,7 @@ t_bool	pdr(int fd, int player_id, int ressource_id)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pdr %d %d\n", player_id, ressource_id);
+  sprintf(res, "pdr #%d %d\n", player_id, ressource_id);
   return (send_message(fd, res));
 }
 
@@ -88,7 +99,7 @@ t_bool	pdi(int fd, int player_id)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pdi %d\n", player_id);
+  sprintf(res, "pdi #%d\n", player_id);
   return (send_message(fd, res));
 }
 
@@ -96,7 +107,7 @@ t_bool	pfk(int fd, int player_id)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pfk %d\n", player_id);
+  sprintf(res, "pfk #%d\n", player_id);
   return (send_message(fd, res));
 }
 
