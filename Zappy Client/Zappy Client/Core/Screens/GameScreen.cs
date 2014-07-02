@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Zappy_Client.Core._2DEngine;
 
 /*--------------------------------------------------------
@@ -47,6 +48,7 @@ namespace Zappy_Client.Core
             this.Camera = new Camera(this.ScreenManagerInstance.GameInstance.GraphicsDevice, Zappy.Width, Zappy.Height);
             this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 20, 20, this.Camera);
             this.Map.Initialize();
+            this.Map.OnCursorClick += Map_OnCursorClick;
             return base.Initialize();
         }
 
@@ -71,6 +73,17 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void OnChangeScreen()
         {
+        }
+
+        /// <summary>
+        /// Fired when we click on the map
+        /// </summary>
+        /// <param name="sender"></param>
+        void Map_OnCursorClick(Object sender)
+        {
+            Map2D _map = sender as Map2D;
+
+            MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
         }
 
         #endregion

@@ -30,6 +30,11 @@ namespace Zappy_Client.Core._2DEngine
         public Int32 Width { get; set; }
         public Int32 Height { get; set; }
 
+        public Single CursorX { get; set; }
+        public Single CursorY { get; set; }
+
+        public event Interface.MonoGameEventHandler OnCursorClick;
+
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }
 
@@ -47,6 +52,8 @@ namespace Zappy_Client.Core._2DEngine
         private Int32 OffsetX { get; set; }
         private Int32 OffsetY { get; set; }
 
+        private Int32 CurrentCursorX { get; set; }
+        private Int32 CurrentCursorY { get; set; }
 
         #endregion
 
@@ -67,6 +74,10 @@ namespace Zappy_Client.Core._2DEngine
             this.WaterHeight = (Zappy.Height / 32) * 2 + this.Height;
             this.OffsetX = ((this.WaterWidth * Case) / 2) - ((this.Width * Case) / 2);
             this.OffsetY = ((this.WaterHeight * Case) / 2) - ((this.Height * Case) / 2);
+            this.CursorX = -1;
+            this.CursorY = -1;
+            this.CurrentCursorX = 0;
+            this.CurrentCursorY = 0;
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             // Create player list
@@ -99,7 +110,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(0, -10));
             }
-            else if (_state.IsKeyDown(Keys.Down) == true && this.Camera.Position.Y < Zappy.Height * 2)
+            else if (_state.IsKeyDown(Keys.Down) == true && this.Camera.Position.Y < (this.WaterHeight * 32) - (Zappy.Height / 2))
             {
                 this.Camera.Move(new Vector2(0, 10));
             }
@@ -107,7 +118,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(-10, 0));
             }
-            else if (_state.IsKeyDown(Keys.Right) == true && this.Camera.Position.X <= Zappy.Width * 2)
+            else if (_state.IsKeyDown(Keys.Right) == true && this.Camera.Position.X <= (this.WaterWidth * 32) - (Zappy.Width / 2))
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
@@ -115,6 +126,19 @@ namespace Zappy_Client.Core._2DEngine
             MouseState _mouseState = Mouse.GetState();
 
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
+
+            Vector2 vec = Vector2.Transform(new Vector2(_mouseState.Position.X, _mouseState.Position.Y), Matrix.Invert(this.Camera.GetTransformation()));
+
+            this.CursorX = (Convert.ToInt32(vec.X) - this.OffsetX) / Case;
+            this.CursorY = (Convert.ToInt32(vec.Y) - this.OffsetY) / Case;
+
+            if (_mouseState.MouseClick(MouseButton.LeftButton) == true)
+            {
+                if (this.CursorX >= 0 && this.CursorY >= 0 && this.CursorX < this.Width && this.CursorY < this.Height)
+                {
+                    this.ClickMap();
+                }
+            }
         }
 
         /// <summary>
@@ -135,10 +159,12 @@ namespace Zappy_Client.Core._2DEngine
             this.DrawGround(spriteBatch);
             spriteBatch.End();
 
-            Point _position = Mouse.GetState().Position;
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            this.DrawCursor(spriteBatch);
+            spriteBatch.End();
+            
             spriteBatch.Begin();
-            spriteBatch.DrawString(this.Debug, "Mouse Position : " + _position.X.ToString() + "/" + _position.Y.ToString(), Vector2.Zero, Color.Black);
-            spriteBatch.DrawString(this.Debug, "Camera position : " + this.Camera.Position.X + "/" + this.Camera.Position.Y, new Vector2(0, 10), Color.Black);
+            spriteBatch.DrawString(this.Debug, "Cursor : " + this.CursorX + "/" + this.CursorY, new Vector2(0, 0), Color.Black);
             spriteBatch.End();
         }
 
@@ -221,6 +247,29 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     spriteBatch.Draw(this.Grass, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Draw the map cursor
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void DrawCursor(SpriteBatch spriteBatch)
+        {
+            if (this.CursorX >= 0 && this.CursorY >= 0 && this.CursorX < this.Width && this.CursorY < this.Height)
+            {
+                spriteBatch.Draw(this.Cursor, new Vector2(this.OffsetX + this.CursorX * 32, this.OffsetY + this.CursorY * 32), Color.White);
+            }
+        }
+
+        /// <summary>
+        /// Fire the delegate if not null
+        /// </summary>
+        private void ClickMap()
+        {
+            if (this.OnCursorClick != null)
+            {
+                this.OnCursorClick(this);
             }
         }
 
