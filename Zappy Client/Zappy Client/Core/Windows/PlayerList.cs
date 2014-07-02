@@ -31,7 +31,7 @@ namespace Zappy_Client.Core
         #region CONSTRUCTORS
 
         public WndPlayerList(UI engine)
-            : base(engine, "PlayerListWnd", 50, 100, 250, 330, "Player List")
+            : base(engine, "PlayerList", 50, 100, 250, 330, "Player List")
         {
             this.Initialize();
         }

@@ -12,13 +12,15 @@ namespace Zappy_Client
         public const Int32 Width = 1024;
         public const Int32 Height = 728;
 
+        public UI InterfaceEngine;
+        public ScreenManager ScreenManager;
+
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        public UI InterfaceEngine;
+
         private LoginWnd LoginWindow;
         private Inventory InventoryWindow;
         private WndPlayerList PlayerList;
-        private ScreenManager ScreenManager;
 
         public Zappy()
             : base()
@@ -35,26 +37,28 @@ namespace Zappy_Client
             // Initialize the InterfaceEngine
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
             // Create the Login Window
-            this.LoginWindow = new LoginWnd(this.InterfaceEngine);
+            this.LoginWindow = new LoginWnd(this.InterfaceEngine, this);
             // Create the player list window
             this.PlayerList = new WndPlayerList(this.InterfaceEngine);
+            this.PlayerList.Visible = false;
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
+            this.InventoryWindow.Visible = false;
             // Add the Login Window to the InterfaceEngine
-            //this.InterfaceEngine.AddContainer(this.LoginWindow);
+            this.InterfaceEngine.AddContainer(this.LoginWindow);
             // Add the Player List Window to the InterfaceEngine
-            //this.InterfaceEngine.AddContainer(this.PlayerList);
+            this.InterfaceEngine.AddContainer(this.PlayerList);
             // Add the Player inventory to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.InventoryWindow);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
             // Initialize the MainScreen
-            this.ScreenManager["MainScreen"] = new MainScreen();
+            this.ScreenManager["MainScreen"] = new MainScreen(this.InterfaceEngine);
             // Initialize the GameScreen
-            this.ScreenManager["GameScreen"] = new GameScreen();
+            this.ScreenManager["GameScreen"] = new GameScreen(this.InterfaceEngine);
             // Set the Current screen to "GameScreen"
-            this.ScreenManager.SetCurrentScreen("GameScreen");
+            this.ScreenManager.SetCurrentScreen("MainScreen");
 
             base.Initialize();
         }

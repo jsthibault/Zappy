@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
  * MainScreen.cs - file description
@@ -23,6 +25,8 @@ namespace Zappy_Client.Core
 
         private Texture2D Background { get; set; }
 
+        private Interface.UI InterfaceEngine { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -30,7 +34,11 @@ namespace Zappy_Client.Core
         /// <summary>
         /// Initialize the main screen
         /// </summary>
-        public MainScreen() : base() { }
+        public MainScreen(Interface.UI interfaceEngine)
+            : base()
+        {
+            this.InterfaceEngine = interfaceEngine;
+        }
 
         #endregion
 
@@ -68,6 +76,10 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void OnChangeScreen()
         {
+            this.InterfaceEngine.GetContainer("LoginWindow").Visible = false;
+            this.InterfaceEngine.GetContainer("PlayerList").Visible = true;
+            this.InterfaceEngine.GetContainer("Inventory").Visible = true;
+            Mouse.GetState().Update(); // UPDATE MOUSE STATES
         }
 
         #endregion

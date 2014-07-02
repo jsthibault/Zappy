@@ -26,6 +26,8 @@ namespace Zappy_Client.Core
 
         private Camera Camera { get; set; }
 
+        private Interface.UI InterfaceEngine { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -33,7 +35,11 @@ namespace Zappy_Client.Core
         /// <summary>
         /// GameScreen initialization
         /// </summary>
-        public GameScreen() : base() { }
+        public GameScreen(Interface.UI interfaceEngine)
+            : base()
+        {
+            this.InterfaceEngine = interfaceEngine;
+        }
 
         #endregion
 
