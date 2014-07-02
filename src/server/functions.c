@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update mer. juil. 02 15:55:35 2014 lefloc_l
+** Last update mer. juil. 02 21:54:04 2014 lefloc_l
 */
 
 #include <string.h>
@@ -14,54 +14,65 @@
 #include <stdlib.h>
 #include "server.h"
 
-int	pgt(int fd, int player_id, int ressource_id)
+t_bool	send_message(int fd, char *msg)
+{
+  int	res;
+
+  res = write_socket(fd, msg);
+  free(msg);
+  if (res <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool	pgt(int fd, int player_id, int ressource_id)
 {
   char	*res;
 
   res = xmalloc(7);
   sprintf(res, "pgt %d %d\n", player_id, ressource_id);
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
-int	pdr(int fd, int player_id, int ressource_id)
+t_bool	pdr(int fd, int player_id, int ressource_id)
 {
   char	*res;
 
   res = xmalloc(7);
   sprintf(res, "pdr %d %d\n", player_id, ressource_id);
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
-int	pdi(int fd, int player_id)
+t_bool	pdi(int fd, int player_id)
 {
   char	*res;
 
   res = xmalloc(7);
   sprintf(res, "pdi %d\n", player_id);
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
-int	pfk(int fd, int player_id)
+t_bool	pfk(int fd, int player_id)
 {
   char	*res;
 
   res = xmalloc(7);
   sprintf(res, "pfk %d\n", player_id);
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
 int	seg(int fd, char *winner)
 {
   char	*res;
 
-  res = xmalloc(strlen(msg) + 10);
+  res = xmalloc(strlen(winner) + 10);
   sprintf(res, "seg %s", winner);
-  if (msg[strlen(msg)] != '\n')
+  if (winner[strlen(winner)] != '\n')
     strcat(res, "\n");
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
-int	smg(int fd, char *msg)
+t_bool	smg(int fd, char *msg)
 {
   char	*res;
 
@@ -69,17 +80,21 @@ int	smg(int fd, char *msg)
   sprintf(res, "smg %s", msg);
   if (msg[strlen(msg)] != '\n')
     strcat(res, "\n");
-  return (write_socket(fd, res));
+  return (send_message(fd, res));
 }
 
-int	suc(int fd)
+t_bool	suc(int fd)
 {
-  return (write_socket(fd, "suc\n"));
+  if (write_socket(fd, "suc") <= 0)
+    return (FALSE);
+  return (TRUE);
 }
 
-int	sbp(int fd)
+t_bool	sbp(int fd)
 {
-  return (write_socket(fd, "sbp\n"));
+  if (write_socket(fd, "sbp") <= 0)
+    return (FALSE);
+  return (TRUE);
 }
 
 static int	print_bct(int fd, t_case *map_case, int x, int y)
