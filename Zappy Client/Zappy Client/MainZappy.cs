@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zappy_Client.Interface;
 using Zappy_Client.Core;
+using Microsoft.Xna.Framework.Input;
 
 namespace Zappy_Client
 {
@@ -40,9 +41,9 @@ namespace Zappy_Client
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
             // Add the Login Window to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.LoginWindow);
+            //this.InterfaceEngine.AddContainer(this.LoginWindow);
             // Add the Player List Window to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.PlayerList);
+            //this.InterfaceEngine.AddContainer(this.PlayerList);
             // Add the Player inventory to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.InventoryWindow);
 
