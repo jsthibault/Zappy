@@ -34,6 +34,8 @@ namespace Zappy_Client.Core
         private Button Connect { get; set; }
         private Button Leave { get; set; }
 
+        private Zappy Game { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -42,9 +44,10 @@ namespace Zappy_Client.Core
         /// Initialize my own window
         /// </summary>
         /// <param name="engine"></param>
-        public LoginWnd(UI engine)
-            : base(engine, "LoginWnd1")
+        public LoginWnd(UI engine, Zappy game)
+            : base(engine, "LoginWindow")
         {
+            this.Game = game;
             this.Initialize();
         }
 
@@ -97,7 +100,7 @@ namespace Zappy_Client.Core
         /// <param name="sender"></param>
         void Connect_OnClick(object sender)
         {
-            // HERE CHANGE SCREEN TO GAME
+            this.Game.ScreenManager.SetCurrentScreen("GameScreen");
         }
 
         /// <summary>

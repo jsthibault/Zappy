@@ -149,7 +149,7 @@ namespace Zappy_Client.Interface
                     container.Draw(this.SpriteBatch);
                 }
             }
-            if (this.CurrentContainer != null)
+            if (this.CurrentContainer != null && this.CurrentContainer.Visible == true)
             {
                 this.CurrentContainer.Draw(this.SpriteBatch);
             }
