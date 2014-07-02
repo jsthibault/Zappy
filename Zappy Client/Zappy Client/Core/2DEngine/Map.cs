@@ -99,7 +99,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(0, -10));
             }
-            else if (_state.IsKeyDown(Keys.Down) == true && this.Camera.Position.Y < Zappy.Height * 2)
+            else if (_state.IsKeyDown(Keys.Down) == true && this.Camera.Position.Y < (this.WaterHeight * 32) - (Zappy.Height / 2))
             {
                 this.Camera.Move(new Vector2(0, 10));
             }
@@ -107,7 +107,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(-10, 0));
             }
-            else if (_state.IsKeyDown(Keys.Right) == true && this.Camera.Position.X <= Zappy.Width * 2)
+            else if (_state.IsKeyDown(Keys.Right) == true && this.Camera.Position.X <= (this.WaterWidth * 32) - (Zappy.Width / 2))
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
@@ -138,7 +138,7 @@ namespace Zappy_Client.Core._2DEngine
             Point _position = Mouse.GetState().Position;
             spriteBatch.Begin();
             spriteBatch.DrawString(this.Debug, "Mouse Position : " + _position.X.ToString() + "/" + _position.Y.ToString(), Vector2.Zero, Color.Black);
-            spriteBatch.DrawString(this.Debug, "Camera position : " + this.Camera.Position.X + "/" + this.Camera.Position.Y, new Vector2(0, 10), Color.Black);
+            spriteBatch.DrawString(this.Debug, "Camera position : " + this.Camera.Position.X + "/" + this.Camera.Position.Y, new Vector2(0, 12), Color.Black);
             spriteBatch.End();
         }
 
