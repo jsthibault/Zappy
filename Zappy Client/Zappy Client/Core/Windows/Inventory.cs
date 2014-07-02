@@ -86,6 +86,12 @@ namespace Zappy_Client.Core
         private Bloc ItemsBg { get; set; }
         private Bloc ItemsSlots { get; set; }
         private Bloc LevelsBar { get; set; }
+        private Bloc Deraumere { get; set; }
+        private Bloc Linemate { get; set; }
+        private Bloc Mendiane { get; set; }
+        private Bloc Phiras { get; set; }
+        private Bloc Sibur { get; set; }
+        private Bloc Thystame { get; set; }
         private Bloc []Levels { get; set; }
 
         // Dynamic items
@@ -116,18 +122,34 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Initialize()
         {
-            // Loading and initializing static images
+            // Loading Inventory images
             this.ItemsSlots = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsSlots.png"));
             this.LevelsBar = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//levelsBar.png"));
             this.ItemsBg = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsBg.png"));
+            this.Deraumere = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//deraumere.png"));
+            this.Linemate = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//linemate.png"));
+            this.Mendiane = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//mendiane.png"));
+            this.Phiras = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//phiras.png"));
+            this.Sibur = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//sibur.png"));
+            this.Thystame = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//thystame.png"));
             this.Levels = new Bloc[8];
+
+            // Setting container's positions
             this.Width = this.ItemsBg.Tex.Width + this.LevelsBar.Tex.Width;
             this.Height = this.ItemsBg.Tex.Height;
             this.X = 0;
             this.Y = 0;
+
+            // Setting Inventory items position
             this.LevelsBar.Rec = new Vector2(Zappy.Width / 2 - this.Width / 2, Zappy.Height - this.LevelsBar.Tex.Height);
             this.ItemsBg.Rec = new Vector2(this.LevelsBar.Rec.X + this.LevelsBar.Tex.Width, this.LevelsBar.Rec.Y - this.LevelsBar.Tex.Height + 14);
             this.ItemsSlots.Rec = new Vector2(this.LevelsBar.Rec.X + this.LevelsBar.Tex.Width, this.LevelsBar.Rec.Y - this.LevelsBar.Tex.Height + 14);
+            this.Deraumere.Rec = new Vector2(this.ItemsSlots.Rec.X + 61, this.ItemsSlots.Rec.Y + 12);
+            this.Linemate.Rec = new Vector2(this.ItemsSlots.Rec.X + 80, this.ItemsSlots.Rec.Y + 32);
+            this.Mendiane.Rec = new Vector2(this.ItemsSlots.Rec.X + 61, this.ItemsSlots.Rec.Y + 12);
+            this.Phiras.Rec = new Vector2(this.ItemsSlots.Rec.X + 61, this.ItemsSlots.Rec.Y + 12);
+            this.Sibur.Rec = new Vector2(this.ItemsSlots.Rec.X + 61, this.ItemsSlots.Rec.Y + 12);
+            this.Thystame.Rec = new Vector2(this.ItemsSlots.Rec.X + 61, this.ItemsSlots.Rec.Y + 12);
             for (Int32 i = 0; i < 8; i++)
             {
                 this.Levels[i] = new Bloc(this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"));
@@ -170,6 +192,12 @@ namespace Zappy_Client.Core
             spriteBatch.Draw(this.ItemsBg.Tex, this.ItemsBg.Rec, Color.White);
             spriteBatch.Draw(this.LevelsBar.Tex, this.LevelsBar.Rec, Color.White);
             spriteBatch.Draw(this.ItemsSlots.Tex, this.ItemsSlots.Rec, Color.White);
+            spriteBatch.Draw(this.Deraumere.Tex, this.Deraumere.Rec, Color.White);
+            spriteBatch.Draw(this.Linemate.Tex, this.Linemate.Rec, Color.White);
+            //spriteBatch.Draw(this.Mendiane.Tex, this.Mendiane.Rec, Color.White);
+            //spriteBatch.Draw(this.Phiras.Tex, this.Phiras.Rec, Color.White);
+            //spriteBatch.Draw(this.Sibur.Tex, this.Sibur.Rec, Color.White);
+            //spriteBatch.Draw(this.Thystame.Tex, this.Thystame.Rec, Color.White);
             for (Int32 i = 0; i < 8; i++)
             {
                 spriteBatch.Draw(this.Levels[i].Tex, this.Levels[i].Rec, this.Levels[i].getOffset(), Color.White);

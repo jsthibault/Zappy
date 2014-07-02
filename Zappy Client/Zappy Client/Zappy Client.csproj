@@ -143,6 +143,9 @@
     <Content Include="Content\Theme\Inventory\ButtNum8.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Theme\Inventory\deraumere.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Theme\Inventory\itemsBg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -150,6 +153,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Inventory\levelsBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\linemate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\mendiane.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\phiras.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\sibur.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\thystame.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\ListBox\ListBoxDown.png">
