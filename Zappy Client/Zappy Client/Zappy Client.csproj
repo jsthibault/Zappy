@@ -39,6 +39,7 @@
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\Windows\Coliseum.cs" />
+    <Compile Include="Core\Windows\Inventory.cs" />
     <Compile Include="Core\Windows\LoginWnd.cs" />
     <Compile Include="Core\ScreenManager\AScreen.cs" />
     <Compile Include="Core\ScreenManager\ScreenException.cs" />
@@ -118,9 +119,15 @@
     <Content Include="Content\Theme\Controls\ButtRadio.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Theme\Inventory\slot01.png" />
-    <Content Include="Content\Theme\Inventory\slot04.png" />
-    <Content Include="Content\Theme\Inventory\WndNewTASKBAR.png" />
+    <Content Include="Content\Theme\Inventory\itemsBg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\itemsSlots.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\levelsBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Theme\ListBox\ListBoxDown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

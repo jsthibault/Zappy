@@ -15,6 +15,7 @@ namespace Zappy_Client
         private SpriteBatch spriteBatch;
         public UI InterfaceEngine;
         private LoginWnd LoginWindow;
+        private Inventory InventoryWindow;
         private WndPlayerList PlayerList;
         private ScreenManager ScreenManager;
 
@@ -36,10 +37,14 @@ namespace Zappy_Client
             this.LoginWindow = new LoginWnd(this.InterfaceEngine);
             // Create the player list window
             this.PlayerList = new WndPlayerList(this.InterfaceEngine);
+            // Create the player list window
+            this.InventoryWindow = new Inventory(this.InterfaceEngine);
             // Add the Login Window to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.LoginWindow);
             // Add the Player List Window to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.PlayerList);
+            // Add the Player inventory to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.InventoryWindow);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
@@ -48,7 +53,7 @@ namespace Zappy_Client
             // Initialize the GameScreen
             this.ScreenManager["GameScreen"] = new GameScreen();
             // Set the Current screen to "GameScreen"
-            this.ScreenManager.SetCurrentScreen("MainScreen");
+            this.ScreenManager.SetCurrentScreen("GameScreen");
 
             base.Initialize();
         }
