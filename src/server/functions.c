@@ -1,11 +1,11 @@
 /*
 ** functions.c for functions in /home/drain_a/rendu/PSU_2013_myirc
-** 
+**
 ** Made by arnaud drain
 ** Login   <drain_a@epitech.net>
-** 
+**
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Fri Jun 27 20:57:53 2014 arnaud drain
+** Last update mer. juil. 02 15:55:35 2014 lefloc_l
 */
 
 #include <string.h>
@@ -13,6 +13,74 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "server.h"
+
+int	pgt(int fd, int player_id, int ressource_id)
+{
+  char	*res;
+
+  res = xmalloc(7);
+  sprintf(res, "pgt %d %d\n", player_id, ressource_id);
+  return (write_socket(fd, res));
+}
+
+int	pdr(int fd, int player_id, int ressource_id)
+{
+  char	*res;
+
+  res = xmalloc(7);
+  sprintf(res, "pdr %d %d\n", player_id, ressource_id);
+  return (write_socket(fd, res));
+}
+
+int	pdi(int fd, int player_id)
+{
+  char	*res;
+
+  res = xmalloc(7);
+  sprintf(res, "pdi %d\n", player_id);
+  return (write_socket(fd, res));
+}
+
+int	pfk(int fd, int player_id)
+{
+  char	*res;
+
+  res = xmalloc(7);
+  sprintf(res, "pfk %d\n", player_id);
+  return (write_socket(fd, res));
+}
+
+int	seg(int fd, char *winner)
+{
+  char	*res;
+
+  res = xmalloc(strlen(msg) + 10);
+  sprintf(res, "seg %s", winner);
+  if (msg[strlen(msg)] != '\n')
+    strcat(res, "\n");
+  return (write_socket(fd, res));
+}
+
+int	smg(int fd, char *msg)
+{
+  char	*res;
+
+  res = xmalloc(strlen(msg) + 10);
+  sprintf(res, "smg %s", msg);
+  if (msg[strlen(msg)] != '\n')
+    strcat(res, "\n");
+  return (write_socket(fd, res));
+}
+
+int	suc(int fd)
+{
+  return (write_socket(fd, "suc\n"));
+}
+
+int	sbp(int fd)
+{
+  return (write_socket(fd, "sbp\n"));
+}
 
 static int	print_bct(int fd, t_case *map_case, int x, int y)
 {
