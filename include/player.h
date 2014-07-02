@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:20:41 2014 lefloc_l
-** Last update Thu Jun 26 00:35:44 2014 arnaud drain
+** Last update mer. juil. 02 22:17:30 2014 lefloc_l
 */
 
 #ifndef PLAYER_H_
@@ -22,6 +22,7 @@ typedef struct		s_player
   t_pos			pos;
   t_team		*team;
   int			pv;
+  t_orientation		orientation;
 }			t_player;
 
 void			add_player_to_team(t_kernel *, char *, t_player *);

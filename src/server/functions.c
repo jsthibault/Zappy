@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update mer. juil. 02 21:54:04 2014 lefloc_l
+** Last update mer. juil. 02 22:18:31 2014 lefloc_l
 */
 
 #include <string.h>
@@ -16,56 +16,94 @@
 
 t_bool	send_message(int fd, char *msg)
 {
-  int	res;
-
-  res = write_socket(fd, msg);
-  free(msg);
-  if (res <= 0)
-    return (FALSE);
+  write_socket(fd, msg);
   return (TRUE);
+}
+
+t_bool	pie(int fd, t_pos pos, int result)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pie %d %d %d\n", pos.x, pos.y, result);
+  return (send_message(fd, res));
+}
+
+t_bool	pex(int fd, int player_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pex %d\n", player_id);
+  return (send_message(fd, res));
+}
+
+t_bool	enw(int fd, int egg, int player_id, t_pos pos)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "enw %d %d %d %d\n", egg, player_id, pos.x, pos.y);
+  return (send_message(fd, res));
+}
+
+t_bool	ebo(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "ebo %d\n", egg);
+  return (send_message(fd, res));
+}
+
+t_bool	eht(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "eht %d\n", egg);
+  return (send_message(fd, res));
+}
+
+t_bool	edi(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "edi %d\n", egg);
+  return (send_message(fd, res));
 }
 
 t_bool	pgt(int fd, int player_id, int ressource_id)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(7);
   sprintf(res, "pgt %d %d\n", player_id, ressource_id);
   return (send_message(fd, res));
 }
 
 t_bool	pdr(int fd, int player_id, int ressource_id)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(7);
   sprintf(res, "pdr %d %d\n", player_id, ressource_id);
   return (send_message(fd, res));
 }
 
 t_bool	pdi(int fd, int player_id)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(7);
   sprintf(res, "pdi %d\n", player_id);
   return (send_message(fd, res));
 }
 
 t_bool	pfk(int fd, int player_id)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(7);
   sprintf(res, "pfk %d\n", player_id);
   return (send_message(fd, res));
 }
 
-int	seg(int fd, char *winner)
+t_bool	seg(int fd, char *winner)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(strlen(winner) + 10);
   sprintf(res, "seg %s", winner);
   if (winner[strlen(winner)] != '\n')
     strcat(res, "\n");
@@ -74,9 +112,8 @@ int	seg(int fd, char *winner)
 
 t_bool	smg(int fd, char *msg)
 {
-  char	*res;
+  char	res[BUFFER_SIZE];
 
-  res = xmalloc(strlen(msg) + 10);
   sprintf(res, "smg %s", msg);
   if (msg[strlen(msg)] != '\n')
     strcat(res, "\n");
@@ -85,15 +122,13 @@ t_bool	smg(int fd, char *msg)
 
 t_bool	suc(int fd)
 {
-  if (write_socket(fd, "suc") <= 0)
-    return (FALSE);
+  write_socket(fd, "suc");
   return (TRUE);
 }
 
 t_bool	sbp(int fd)
 {
-  if (write_socket(fd, "sbp") <= 0)
-    return (FALSE);
+  write_socket(fd, "sbp");
   return (TRUE);
 }
 

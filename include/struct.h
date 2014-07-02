@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Sun Jun 29 17:31:17 2014 thibau_j
+** Last update mer. juil. 02 22:17:10 2014 lefloc_l
 */
 
 #ifndef STRUCT_H_
@@ -53,6 +53,14 @@ typedef struct		s_kernel
   t_buffer		*buff_node;
   /*penser a rajouter le logger*/
 }			t_kernel;
+
+typedef enum		e_orientation
+{
+  N = 1,
+  E = 2,
+  S = 3,
+  O = 4,
+}			t_orientation;
 
 /*
 ** inventory. contain items. Each case = 1 item. (FOOD = items[0])
