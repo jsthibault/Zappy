@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update Thu Jun 26 17:16:36 2014 arnaud drain
+** Last update mer. juil. 02 22:55:55 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -45,9 +45,9 @@ void		list_add_node(t_list **list, t_node *node, void *data)
 void		list_pop_node(t_list *list, t_node *node)
 {
   if (list->head == node)
-    list_pop_front(list);
+    list_pop_front(&list);
   else if (list->tail == node)
-    list_pop_back(list);
+    list_pop_back(&list);
   else
   {
     node->prev->next = node->next;

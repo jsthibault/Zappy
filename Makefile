@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Wed Jun 25 23:34:43 2014 arnaud drain
+## Last update  mer. juil. 02 22:54:53 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -76,6 +76,7 @@ SRC_LIST=	list_add.c \
 		list_get.c \
 		list_loop.c \
 		list_pop.c \
+		list_perf.c \
 		node.c \
 
 SRC_CLIENT=

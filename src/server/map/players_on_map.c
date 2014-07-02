@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update Thu Jun 26 17:15:02 2014 arnaud drain
+** Last update mer. juil. 02 22:55:22 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -28,7 +28,7 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
   t_case	*c;
 
   c = get_case(kernel, player->pos.y, player->pos.x);
-  list_pop_func_arg(c->players, &find_player_to_remove, player);
+  list_pop_func_arg(&c->players, &find_player_to_remove, player);
 }
 
 void		add_player_on_map(t_kernel *kernel, t_player *player, int x, int y)

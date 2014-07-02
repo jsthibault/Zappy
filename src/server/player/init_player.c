@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Thu Jun 26 17:18:17 2014 arnaud drain
+** Last update mer. juil. 02 22:56:44 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -81,6 +81,6 @@ static t_bool	remove_player_on_team(void *c, void *p)
 
 void	remove_player(t_player *player)
 {
-  list_pop_func_arg(player->team->players, &remove_player_on_team, player);
+  list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
   free(player);
 }
