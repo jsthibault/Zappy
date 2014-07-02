@@ -95,6 +95,9 @@
     <Content Include="Content\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\chocobo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\TexturesMap\cursor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

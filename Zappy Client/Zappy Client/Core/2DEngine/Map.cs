@@ -35,6 +35,8 @@ namespace Zappy_Client.Core._2DEngine
 
         public event Interface.MonoGameEventHandler OnCursorClick;
 
+        private List<Character> Characters { get; set; }
+
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }
 
@@ -80,7 +82,7 @@ namespace Zappy_Client.Core._2DEngine
             this.CurrentCursorY = 0;
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
-            // Create player list
+            this.Characters = new List<Character>();
             // Create object list
         }
 
@@ -161,6 +163,13 @@ namespace Zappy_Client.Core._2DEngine
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawCursor(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            foreach (Character character in this.Characters)
+            {
+                character.Draw(spriteBatch);
+            }
             spriteBatch.End();
             
             spriteBatch.Begin();
@@ -270,6 +279,34 @@ namespace Zappy_Client.Core._2DEngine
             if (this.OnCursorClick != null)
             {
                 this.OnCursorClick(this);
+            }
+        }
+
+        /// <summary>
+        /// Add a new player on the map
+        /// </summary>
+        /// <param name="character">Character to add</param>
+        public void AddCharacter(Character character)
+        {
+            if (this.Characters.Contains(character) == false)
+            {
+                this.Characters.Add(character);
+            }
+        }
+
+        /// <summary>
+        /// Remove a character of the map
+        /// </summary>
+        /// <param name="name">Character name</param>
+        public void RemoveCharacter(String name)
+        {
+            foreach (Character character in this.Characters)
+            {
+                if (character.Name == name)
+                {
+                    this.Characters.Remove(character);
+                    break;
+                }
             }
         }
 
