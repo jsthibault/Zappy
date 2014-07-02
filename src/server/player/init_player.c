@@ -5,13 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mer. juil. 02 22:56:44 2014 lefloc_l
+** Last update mer. juil. 02 23:20:30 2014 lefloc_l
 */
 
 #include <stdlib.h>
 #include "kernel.h"
 
-t_player	*init_player(int id, int y, int x)
+t_player	*init_player_with_position(int id, int y, int x)
 {
   t_player	*player;
 
@@ -44,7 +44,7 @@ int		get_max_id(t_kernel *kernel)
   return (max_id);
 }
 
-t_player	*init_player2(t_kernel *kernel, char *teamname)
+t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
 {
   t_team	*team;
   t_player	*player;

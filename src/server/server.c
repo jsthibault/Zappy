@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue Jul  1 01:15:13 2014 arnaud drain
+** Last update mer. juil. 02 23:21:11 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -74,7 +74,7 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
     }
   if (av[0] && !client->graphic && !client->player)
     {
-      if (!(client->player = init_player2(kernel, av[0])))
+      if (!(client->player = init_player_with_teamname(kernel, av[0])))
 	{
 	  freetab(av);
 	  return (0);
