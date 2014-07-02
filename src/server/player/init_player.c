@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mer. juil. 02 23:20:30 2014 lefloc_l
+** Last update mer. juil. 02 23:24:59 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -21,6 +21,8 @@ t_player	*init_player_with_position(int id, int y, int x)
   player->pv = DEFAULT_PV;
   player->pos.x = x;
   player->pos.y = y;
+  player->level = 0;
+  player->orientation = SOUTH;
   return (player);
 }
 
@@ -64,6 +66,8 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
   player->team = team;
   printf("%d %d\n", pos.x, pos.y);
   add_player_on_map(kernel, player, pos.x, pos.y);
+  player->level = 0;
+  player->orientation = SOUTH;
   return (player);
 }
 
