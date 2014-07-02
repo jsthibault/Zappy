@@ -134,6 +134,12 @@ namespace Zappy_Client.Core._2DEngine
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawGround(spriteBatch);
             spriteBatch.End();
+
+            Point _position = Mouse.GetState().Position;
+            spriteBatch.Begin();
+            spriteBatch.DrawString(this.Debug, "Mouse Position : " + _position.X.ToString() + "/" + _position.Y.ToString(), Vector2.Zero, Color.Black);
+            spriteBatch.DrawString(this.Debug, "Camera position : " + this.Camera.Position.X + "/" + this.Camera.Position.Y, new Vector2(0, 10), Color.Black);
+            spriteBatch.End();
         }
 
         /// <summary>
