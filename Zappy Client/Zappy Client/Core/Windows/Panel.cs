@@ -99,6 +99,7 @@ namespace Zappy_Client.Core.Windows
 
         private void onClickOptions(object sender)
         {
+            this.Engine.GetContainer("Options").Visible = true;
         }
         #endregion
 

@@ -20,10 +20,13 @@ using Zappy_Client.Core.Windows;
 
 namespace Zappy_Client.Core
 {
-    public class LoginWnd : Window
+    public class LoginWnd : Container
     {
         #region FIELDS
 
+        private Texture2D Background { get; set; }
+
+        private Label Message { get; set; }
         private Label Host { get; set; }
         private Label Port { get; set; }
 
@@ -61,19 +64,21 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Initialize()
         {
-            this.Text = "Connexion au Zappy";
-            this.Width = 275;
-            this.Height = 170;
-            this.X = this.Engine.ClientWidth / 2 - this.Width / 2;
-            this.Y = this.Engine.ClientHeight - this.Height - 75;
-            this.Host = new Label(this.Engine, "LabelHost", 20, 35, "Host : ");
-            this.HostInput = new TextBox(this.Engine, "InputHost", 60, 35, 150);
-            this.Port = new Label(this.Engine, "LabelPort", 20, 65, "Port : ");
-            this.PortInput = new TextBox(this.Engine, "PortInput", 60, 65, 150);
+            this.Message = new Label(this.Engine, "LabelMessage", 100, 13, "Welcome to Final Zappy !");
+            this.AddControl(this.Message);
+            this.Background = this.Engine.Content.Load<Texture2D>("Theme//window.png");
+            this.Width = this.Background.Width;
+            this.Height = this.Background.Height;
+            this.X = 150;
+            this.Y = 250;
+            this.Host = new Label(this.Engine, "LabelHost", 55, 90, "Host : ");
+            this.HostInput = new TextBox(this.Engine, "InputHost", 95, 90, 150);
+            this.Port = new Label(this.Engine, "LabelPort", 55, 120, "Port : ");
+            this.PortInput = new TextBox(this.Engine, "PortInput", 95, 120, 150);
             //this.SaveAccount = new CheckBox(this.Engine, "CheckBoxSaveAccount", 85, 80, "Save configuration", false);
-            this.Connect = new Button(this.Engine, "ConnectButton", 65, 95, 150, 0, "Connexion");
+            this.Connect = new Button(this.Engine, "ConnectButton", 52, 160, 110, 0, "Connexion");
             this.Connect.OnClick += Connect_OnClick;
-            this.Leave = new Button(this.Engine, "LeaveButton", 65, 125, 150, 0, "Quitter");
+            this.Leave = new Button(this.Engine, "LeaveButton", 185, 160, 110, 0, "Quitter");
             this.Leave.OnClick += Leave_OnClick;
             
             // Add to container
@@ -119,6 +124,7 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(this.Background, this.Rectangle, Color.White);
             base.Draw(spriteBatch);
         }
 

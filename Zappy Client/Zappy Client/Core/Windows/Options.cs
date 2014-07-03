@@ -44,7 +44,7 @@ namespace Zappy_Client.Core.Windows
         /// </summary>
         public override void Initialize()
         {
-            this.Background = this.Engine.Content.Load<Texture2D>("Theme//APP_NEWCOLOMASSAGE.png");
+            this.Background = this.Engine.Content.Load<Texture2D>("Theme//window");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
             this.X = 150;

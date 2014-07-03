@@ -131,7 +131,7 @@
     <Content Include="Content\Theme\viewer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Theme\APP_NEWCOLOMASSAGE.png">
+    <Content Include="Content\Theme\window.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Buttons\ButtNormal00.png">
