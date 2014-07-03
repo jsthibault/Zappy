@@ -75,12 +75,12 @@ namespace Zappy_Client.Core
             this.AddControl(this.Legend);
 
             // Ressources label
-            this.Phiras = new Label(this.Engine, "Phiras", 90, 254, "0");
-            this.Sibur = new Label(this.Engine, "Sibur", 90, 254, "0");
-            this.Mendiane = new Label(this.Engine, "Mendiane", 90, 254, "0");
-            this.Thystame = new Label(this.Engine, "Thystame", 90, 254, "0");
-            this.Deraumere = new Label(this.Engine, "Deraumere", 90, 254, "0");
-            this.Linemate = new Label(this.Engine, "Linemate", 90, 254, "0");
+            this.Phiras = new Label(this.Engine, "Phiras", 88, 254, "0");
+            this.Deraumere = new Label(this.Engine, "Deraumere", 115, 296, "1");
+            this.Mendiane = new Label(this.Engine, "Mendiane", 110, 275, "2");
+            this.Sibur = new Label(this.Engine, "Sibur", 180, 254, "3");
+            this.Thystame = new Label(this.Engine, "Thystame", 203, 275, "4");
+            this.Linemate = new Label(this.Engine, "Linemate", 201, 296, "5");
             this.AddControl(this.Phiras);
             this.AddControl(this.Sibur);
             this.AddControl(this.Mendiane);
