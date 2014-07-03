@@ -28,6 +28,8 @@ namespace Zappy_Client.Core
 
         private Interface.UI InterfaceEngine { get; set; }
 
+        private Viewer RessourcesViewer { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -39,6 +41,7 @@ namespace Zappy_Client.Core
             : base()
         {
             this.InterfaceEngine = interfaceEngine;
+            this.RessourcesViewer = this.InterfaceEngine.GetContainer("Viewer") as Viewer;
         }
 
         #endregion
@@ -89,7 +92,9 @@ namespace Zappy_Client.Core
         {
             Map2D _map = sender as Map2D;
 
-            MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
+            this.RessourcesViewer.Message.Text = "Viewer on [" + _map.CursorX + ", " + _map.CursorY  + "]";
+            this.RessourcesViewer.Visible = true;
+            //MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
         }
 
         #endregion

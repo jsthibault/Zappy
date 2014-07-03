@@ -38,7 +38,7 @@
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
-    <Compile Include="Core\Windows\Coliseum.cs" />
+    <Compile Include="Core\Windows\Viewer.cs" />
     <Compile Include="Core\Windows\Inventory.cs" />
     <Compile Include="Core\Windows\LoginWnd.cs" />
     <Compile Include="Core\ScreenManager\AScreen.cs" />
@@ -49,6 +49,7 @@
     <Compile Include="Core\Windows\PlayerList.cs" />
     <Compile Include="Interface\Controls\ImageBox.cs" />
     <Compile Include="Interface\Controls\ListBox.cs" />
+    <Compile Include="Interface\Extension\Image.cs" />
     <Compile Include="Interface\Extension\Texture.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />
@@ -110,6 +111,9 @@
     <Content Include="Content\TexturesMap\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Theme\viewer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Theme\APP_NEWCOLOMASSAGE.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -146,31 +150,10 @@
     <Content Include="Content\Theme\Inventory\ButtNum8.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Theme\Inventory\deraumere.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Theme\Inventory\itemsBg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Theme\Inventory\itemsSlots.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Theme\Inventory\levelsBar.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Theme\Inventory\linemate.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Theme\Inventory\mendiane.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Theme\Inventory\phiras.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Theme\Inventory\sibur.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Theme\Inventory\thystame.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\ListBox\ListBoxDown.png">
@@ -204,6 +187,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\TextBox\Textbox3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Viewer\circle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Viewer\legend.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\Window\ButtWndExit.png">

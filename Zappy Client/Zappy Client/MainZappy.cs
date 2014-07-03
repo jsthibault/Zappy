@@ -20,6 +20,7 @@ namespace Zappy_Client
 
         private LoginWnd LoginWindow;
         private Inventory InventoryWindow;
+        private Viewer RessourcesViewer;
         private WndPlayerList PlayerList;
 
         public Zappy()
@@ -41,6 +42,9 @@ namespace Zappy_Client
             // Create the player list window
             this.PlayerList = new WndPlayerList(this.InterfaceEngine);
             this.PlayerList.Visible = false;
+            // Create the ressources viewer
+            this.RessourcesViewer = new Viewer(this.InterfaceEngine);
+            this.RessourcesViewer.Visible = false;
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
             this.InventoryWindow.Visible = false;
@@ -50,6 +54,8 @@ namespace Zappy_Client
             this.InterfaceEngine.AddContainer(this.PlayerList);
             // Add the Player inventory to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.InventoryWindow);
+            // Add the ressources viewer to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.RessourcesViewer);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
