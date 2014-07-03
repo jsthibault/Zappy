@@ -38,6 +38,7 @@
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
+    <Compile Include="Core\AudioManager.cs" />
     <Compile Include="Core\Windows\Panel.cs" />
     <Compile Include="Core\Windows\Options.cs" />
     <Compile Include="Core\Windows\Viewer.cs" />
