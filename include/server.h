@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update mer. juil. 02 22:28:24 2014 lefloc_l
+** Last update Thu Jul  3 15:55:00 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -20,17 +20,6 @@
 ** size of the static buffers. never change !
 */
 # define BUFFER_SIZE	(4096)
-
-typedef struct s_client	t_client;
-
-struct		s_client
-{
-  int		fd;
-  char		*ip;
-  t_bool	graphic;
-  t_player	*player;
-  t_client	*next;
-};
 
 typedef struct	s_functions
 {

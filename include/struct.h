@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update mer. juil. 02 22:26:58 2014 lefloc_l
+** Last update Thu Jul  3 15:55:46 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -39,21 +39,6 @@ typedef struct	s_team
   char		name[TEAM_NAME_SIZE];
 }		t_team;
 
-typedef struct	s_game
-{
-  struct s_list	*teams;
-  struct s_list	*players;
-  struct s_map	*map;
-}		t_game;
-
-typedef struct		s_kernel
-{
-  struct s_options	options;
-  struct s_game		game;
-  t_buffer		*buff_node;
-  /*penser a rajouter le logger*/
-}			t_kernel;
-
 /*
 ** inventory. contain items. Each case = 1 item. (FOOD = items[0])
 ** The int on the case = number of this item
@@ -63,6 +48,54 @@ typedef struct	s_inventory
 {
   int		items[ITEM_TYPE];
 }		t_inventory;
+
+typedef struct		s_player
+{
+  int			id;
+  t_pos			pos;
+  t_team		*team;
+  int			pv;
+  int			level;
+  t_orientation		orientation;
+  t_inventory		inventory;
+}			t_player;
+
+typedef struct	s_game
+{
+  struct s_list	*teams;
+  struct s_list	*players;
+  struct s_map	*map;
+}		t_game;
+
+typedef struct s_client	t_client;
+
+struct		s_client
+{
+  int		fd;
+  char		*ip;
+  t_bool	graphic;
+  t_player	*player;
+  t_client	*next;
+};
+
+typedef struct s_actions t_actions;
+
+struct	s_actions
+{
+  int		time_left;
+  char		*test;
+  t_client	*client;
+  t_actions	*next;
+};
+
+typedef struct		s_kernel
+{
+  struct s_options	options;
+  struct s_game		game;
+  struct s_actions	*actions;
+  t_buffer		*buff_node;
+  /*penser a rajouter le logger*/
+}			t_kernel;
 
 typedef struct		s_case
 {

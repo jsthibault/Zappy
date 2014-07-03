@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:20:41 2014 lefloc_l
-** Last update mer. juil. 02 23:25:16 2014 lefloc_l
+** Last update Thu Jul  3 15:55:26 2014 arnaud drain
 */
 
 #ifndef PLAYER_H_
@@ -15,17 +15,6 @@
 # include "team.h"
 
 # define DEFAULT_PV	10
-
-typedef struct		s_player
-{
-  int			id;
-  t_pos			pos;
-  t_team		*team;
-  int			pv;
-  int			level;
-  t_orientation		orientation;
-  t_inventory		inventory;
-}			t_player;
 
 void			add_player_to_team(t_kernel *, char *, t_player *);
 void			delete_player(void *);
