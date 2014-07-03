@@ -44,6 +44,7 @@ namespace Zappy_Client.Core._2DEngine
         private Texture2D Water { get; set; }
         private Texture2D Moutain { get; set; }
         private Texture2D Cursor { get; set; }
+        private Texture2D Character { get; set; }
         private SpriteFont Debug { get; set; }
 
         const Int32 Case = 32;
@@ -51,8 +52,8 @@ namespace Zappy_Client.Core._2DEngine
         private Int32 WaterWidth { get; set; }
         private Int32 WaterHeight { get; set; }
 
-        private Int32 OffsetX { get; set; }
-        private Int32 OffsetY { get; set; }
+        public Int32 OffsetX { get; set; }
+        public Int32 OffsetY { get; set; }
 
         private Int32 CurrentCursorX { get; set; }
         private Int32 CurrentCursorY { get; set; }
@@ -124,7 +125,10 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
-
+            else if (_state.IsKeyDown(Keys.D) == true)
+            {
+                this.Characters[0].Move(Direction.Right);
+            }
             MouseState _mouseState = Mouse.GetState();
 
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
@@ -140,6 +144,10 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.ClickMap();
                 }
+            }
+            foreach (Character character in this.Characters)
+            {
+                character.Update();
             }
         }
 
@@ -186,6 +194,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Water = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
             this.Moutain = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
             this.Cursor = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
+            this.Character = this.GameInstance.Content.Load<Texture2D>("Characters//chocobo.png");
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
@@ -290,6 +299,8 @@ namespace Zappy_Client.Core._2DEngine
         {
             if (this.Characters.Contains(character) == false)
             {
+                character.Initialize();
+                character.Texture = this.Character;
                 this.Characters.Add(character);
             }
         }

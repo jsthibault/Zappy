@@ -58,6 +58,7 @@ namespace Zappy_Client.Core
             this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 20, 20, this.Camera);
             this.Map.Initialize();
             this.Map.OnCursorClick += Map_OnCursorClick;
+            this.Map.AddCharacter(new Character(this.Map, 0, 0, "Shyro"));
             return base.Initialize();
         }
 
