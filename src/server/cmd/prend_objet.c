@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:04 2014 lefloc_l
-** Last update jeu. juil. 03 16:51:47 2014 lefloc_l
+** Last update jeu. juil. 03 16:55:27 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -21,15 +21,16 @@ int		cmd_prend_objet(char **av, t_client *cl, t_kernel *kernel)
   t_case	*c;
   int		obj;
 
-  if (av_length(av) != 2)
-    return (-1);
   (void)av;
   (void)kernel;
+  if (av_length(av) != 2)
+    return (-1);
   c = get_case(kernel, cl->player->pos.y, cl->player->pos.x);
   obj = atoi(av[1]);
   if (c->inventory.items[obj] > 0)
   {
     c->inventory.items[obj]--;
+    cl->player->inventory.items[obj]++;
     write_socket(cl->fd, "ok");
   }
   else
