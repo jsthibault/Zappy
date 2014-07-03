@@ -85,7 +85,12 @@ namespace Zappy_Client.Core
         {
             AudioManager.Instance.Stop();
             AudioManager.Instance["main"].Play();
-            this.InterfaceEngine.GetContainer("").GetControl("").Enabled = false;
+            this.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton").Enabled = false;
+            this.InterfaceEngine.GetContainer("Inventory").Visible = false;
+            this.InterfaceEngine.GetContainer("Viewer").Visible = false;
+            this.InterfaceEngine.GetContainer("LoginWindow").Visible = true;
+            this.InterfaceEngine.GetContainer("PlayerList").Visible = false;
+            this.InterfaceEngine.GetContainer("Options").Visible = false;
         }
 
         /// <summary>
