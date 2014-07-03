@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update jeu. juil. 03 17:39:35 2014 lefloc_l
+** Last update jeu. juil. 03 17:41:14 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -51,4 +51,5 @@ void		move_player_on_map(t_kernel *kernel, t_player *player,
 {
   remove_player_on_map(kernel, player);
   add_player_on_map(kernel, player, y, x);
+  logger_message("move player %d: %d/%d", player->id, x, y);
 }
