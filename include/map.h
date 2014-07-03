@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:33:23 2014 lefloc_l
-** Last update Wed Jun 25 23:32:55 2014 arnaud drain
+** Last update jeu. juil. 03 16:10:05 2014 lefloc_l
 */
 
 #ifndef MAP_H_
@@ -30,5 +30,6 @@ void	delete_map(struct s_kernel *);
 void	move_player_on_map(t_kernel *, t_player *, int, int);
 void	remove_player_on_map(t_kernel *, t_player *);
 void	add_player_on_map(t_kernel *, t_player *, int, int);
+void	get_right_position(t_kernel *, int *, int *);
 
 #endif /* !MAP_H_ */
