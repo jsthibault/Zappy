@@ -49,7 +49,6 @@
     <Compile Include="Core\Windows\PlayerList.cs" />
     <Compile Include="Interface\Controls\ImageBox.cs" />
     <Compile Include="Interface\Controls\ListBox.cs" />
-    <Compile Include="Interface\Extension\Image.cs" />
     <Compile Include="Interface\Extension\Texture.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
-using Zappy_Client.Interface.Extension;
 
 /*--------------------------------------------------------
  * Inventory.cs - file description
@@ -26,10 +25,10 @@ namespace Zappy_Client.Core
         #region FIELDS
 
         // Textures
-        private Image ItemsBg { get; set; }
-        private Image ItemsSlots { get; set; }
-        private Image LevelsBar { get; set; }
-        private Image[] Levels { get; set; }
+        private ImageBox ItemsBg { get; set; }
+        private ImageBox ItemsSlots { get; set; }
+        private ImageBox LevelsBar { get; set; }
+        private ImageBox[] Levels { get; set; }
 
         // Dynamic items
         private ProgressBar Food { get; set; }
@@ -60,37 +59,37 @@ namespace Zappy_Client.Core
         public override void Initialize()
         {
             // Loading Inventory images
-            this.LevelsBar = new Image(this.Engine.Content.Load<Texture2D>("Theme//Inventory//levelsBar.png"));
-            this.ItemsBg = new Image(this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsBg.png"));
-            this.Levels = new Image[8];
+            Texture2D Bar = this.Engine.Content.Load<Texture2D>("Theme//Inventory//levelsBar.png");
+            this.LevelsBar = new ImageBox(this.Engine, "LevelBar", Bar, Zappy.Width / 2 - this.Width / 2, Zappy.Height - Bar.Height);
+            this.ItemsBg = new ImageBox(this.Engine, "ItemBg", this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsBg.png"), this.LevelsBar.Rectangle.X + this.LevelsBar.Texture.Width, this.LevelsBar.Rectangle.Y - this.LevelsBar.Texture.Height + 14);
+            this.Levels = new ImageBox[8];
+            this.AddControl(this.LevelsBar);
+            this.AddControl(this.ItemsBg);
 
             // Setting container's positions
-            this.Width = this.ItemsBg.Tex.Width + this.LevelsBar.Tex.Width;
-            this.Height = this.ItemsBg.Tex.Height;
+            this.Width = this.ItemsBg.Texture.Width + this.LevelsBar.Texture.Width;
+            this.Height = this.ItemsBg.Texture.Height;
             this.X = 0;
             this.Y = 0;
 
             // Setting Inventory items position
-            this.LevelsBar.Rec = new Vector2(Zappy.Width / 2 - this.Width / 2, Zappy.Height - this.LevelsBar.Tex.Height);
-            this.ItemsBg.Rec = new Vector2(this.LevelsBar.Rec.X + this.LevelsBar.Tex.Width, this.LevelsBar.Rec.Y - this.LevelsBar.Tex.Height + 14);
             for (Int32 i = 0; i < 8; i++)
             {
-                this.Levels[i] = new Image(this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"));
-                this.Levels[i].Rec = new Vector2(this.LevelsBar.Rec.X + 36 + (i * 36), this.LevelsBar.Rec.Y + 35);
+                this.Levels[i] = new ImageBox(this.Engine, "ButtNum" + i.ToString(), this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"), this.LevelsBar.Rectangle.X + 36 + (i * 36), this.LevelsBar.Rectangle.Y + 35);
             }
 
             // Loading and initializing dynamic items
             this.Food = new ProgressBar(this.Engine, "Food",
-                Int32.Parse(this.LevelsBar.Rec.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rec.Y.ToString()) + 31,
+                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
+                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 31,
                 131, ProgressBarColor.Green, 100);
             this.Xp = new ProgressBar(this.Engine, "Xp",
-                Int32.Parse(this.LevelsBar.Rec.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rec.Y.ToString()) + 45,
+                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
+                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 45,
                 131, ProgressBarColor.Blue, 50);
             this.Cast = new ProgressBar(this.Engine, "Cast",
-                Int32.Parse(this.LevelsBar.Rec.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rec.Y.ToString()) + 59,
+                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
+                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 59,
                 131, ProgressBarColor.Red, 60);
             this.AddControl(this.Food);
             this.AddControl(this.Xp);
@@ -112,11 +111,11 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.ItemsBg.Tex, this.ItemsBg.Rec, Color.White);
-            spriteBatch.Draw(this.LevelsBar.Tex, this.LevelsBar.Rec, Color.White);
+            spriteBatch.Draw(this.ItemsBg.Texture, this.ItemsBg.Rectangle, Color.White);
+            spriteBatch.Draw(this.LevelsBar.Texture, this.LevelsBar.Rectangle, Color.White);
             for (Int32 i = 0; i < 8; i++)
             {
-                spriteBatch.Draw(this.Levels[i].Tex, this.Levels[i].Rec, this.Levels[i].getOffset(), Color.White);
+                //spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Rectangle, getOffset(this.Levels[i]), Color.White);
             }
             base.Draw(spriteBatch);
         }
@@ -146,6 +145,17 @@ namespace Zappy_Client.Core
             }
             throw new Exception("Unknown control name \"" + control + "\" in container \"" + this.Name + "\".");
         }
+
+        /// <summary>
+        /// Get Level image offset
+        /// </summary>
+        /// <returns></returns>
+        //public Rectangle GetOffset(Control image)
+        //{
+        //    if (image == ControlState.Normal)
+        //        return new Rectangle(32, 0, 32, 32);
+        //    return new Rectangle(0, 0, 32, 32);
+        //}
 
         #endregion
     }

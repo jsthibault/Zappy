@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
-using Zappy_Client.Interface.Extension;
 
 /*--------------------------------------------------------
  * Viewer.cs - file description
@@ -27,9 +26,15 @@ namespace Zappy_Client.Core
 
         private Texture2D Background { get; set; }
         public Label Message { get; set; }
+        public Label Phiras { get; set; }
+        public Label Sibur { get; set; }
+        public Label Mendiane { get; set; }
+        public Label Thystame { get; set; }
+        public Label Deraumere { get; set; }
+        public Label Linemate { get; set; }
         public Button close { get; set; }
-        private Image Circle { get; set; }
-        private Image Legend { get; set; }
+        private ImageBox Circle { get; set; }
+        private ImageBox Legend { get; set; }
 
         #endregion
 
@@ -61,12 +66,26 @@ namespace Zappy_Client.Core
             this.Height = this.Background.Height;
             this.X = 150;
             this.Y = 50;
-            this.Circle = new Image(this.Engine.Content.Load<Texture2D>("Theme//Viewer//circle.png"));
-            this.Circle.Rec = new Vector2(this.X + 35, this.Y + 70);
-            this.Legend = new Image(this.Engine.Content.Load<Texture2D>("Theme//Viewer//legend.png"));
-            this.Legend.Rec = new Vector2(this.X + 40, this.Y + 250);
+            this.Circle = new ImageBox(this.Engine, "Circle", this.Engine.Content.Load<Texture2D>("Theme//Viewer//circle.png"), 35, 70);
+            this.Legend = new ImageBox(this.Engine, "Legend", this.Engine.Content.Load<Texture2D>("Theme//Viewer//legend.png"), 40, 250);
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             this.Message = new Label(this.Engine, "LabelMessage", 185, 13, "Viewer");
+            this.AddControl(this.Circle);
+            this.AddControl(this.Legend);
+
+            // Ressources label
+            this.Phiras = new Label(this.Engine, "Phiras", 90, 254, "0");
+            this.Sibur = new Label(this.Engine, "Sibur", 90, 254, "0");
+            this.Mendiane = new Label(this.Engine, "Mendiane", 90, 254, "0");
+            this.Thystame = new Label(this.Engine, "Thystame", 90, 254, "0");
+            this.Deraumere = new Label(this.Engine, "Deraumere", 90, 254, "0");
+            this.Linemate = new Label(this.Engine, "Linemate", 90, 254, "0");
+            this.AddControl(this.Phiras);
+            this.AddControl(this.Sibur);
+            this.AddControl(this.Mendiane);
+            this.AddControl(this.Thystame);
+            this.AddControl(this.Deraumere);
+            this.AddControl(this.Linemate);
             this.AddControl(this.Message);
             this.AddControl(this.close);
             base.Initialize();
@@ -78,8 +97,8 @@ namespace Zappy_Client.Core
         public override void Update(GameTime gameTime)
         {
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
-            //this.Circle.Rec = new Vector2(this.X + 33, this.Y + 70);
-            //this.Legend.Rec = new Vector2(this.X + 33, this.Y + 70);
+            //this.Circle.Rec = new Vector2(this.X + 35, this.Y + 70);
+            //this.Legend.Rec = new Vector2(this.X + 40, this.Y + 250);
             base.Update(gameTime);
         }
 
@@ -90,8 +109,8 @@ namespace Zappy_Client.Core
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Background, this.Rectangle, Color.White);
-            spriteBatch.Draw(this.Circle.Tex, this.Circle.Rec, Color.White);
-            spriteBatch.Draw(this.Legend.Tex, this.Legend.Rec, Color.White);
+            spriteBatch.Draw(this.Circle.Texture, this.Circle.Rectangle, Color.White);
+            spriteBatch.Draw(this.Legend.Texture, this.Legend.Rectangle, Color.White);
             base.Draw(spriteBatch);
         }
 
