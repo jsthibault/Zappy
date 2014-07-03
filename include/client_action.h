@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update jeu. juil. 03 16:02:11 2014 lefloc_l
+** Last update jeu. juil. 03 16:27:59 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -19,6 +19,8 @@ typedef struct	e_tab_func
   char		*command;
   int		(*p)(char **av, t_client *, t_kernel *kernel);
 }		t_tab_func;
+
+int		add_action(t_kernel *, int, t_client *, char *);
 
 int		cmd_avance(char **av, t_client *, t_kernel *kernel);
 int		cmd_droite(char **av, t_client *, t_kernel *kernel);

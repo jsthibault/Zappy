@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  mer. juil. 02 22:54:53 2014 lefloc_l
+## Last update  jeu. juil. 03 16:27:17 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -34,6 +34,7 @@ SRC_SERVER=	options/init_options.c \
 		error.c \
 		init.c \
 		functions.c \
+		action.c \
 		options/options_other.c \
 		options/options_with_int.c \
 		options/parse_options.c \
