@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Sun Jun 29 17:31:17 2014 thibau_j
+** Last update Wed Jul  2 16:22:48 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -39,6 +39,14 @@ typedef struct	s_team
   char		name[TEAM_NAME_SIZE];
 }		t_team;
 
+typedef struct		s_player
+{
+  int			id;
+  t_pos			pos;
+  t_team		*team;
+  int			pv;
+}			t_player;
+
 typedef struct	s_game
 {
   struct s_list	*teams;
@@ -46,10 +54,32 @@ typedef struct	s_game
   struct s_map	*map;
 }		t_game;
 
+typedef struct s_client	t_client;
+
+struct		s_client
+{
+  int		fd;
+  char		*ip;
+  t_bool	graphic;
+  t_player	*player;
+  t_client	*next;
+};
+
+typedef struct s_actions t_actions;
+
+struct	s_actions
+{
+  int		time_left;
+  char		*test;
+  t_client	*client;
+  t_actions	*next;
+};
+
 typedef struct		s_kernel
 {
   struct s_options	options;
   struct s_game		game;
+  struct s_actions	*actions;
   t_buffer		*buff_node;
   /*penser a rajouter le logger*/
 }			t_kernel;

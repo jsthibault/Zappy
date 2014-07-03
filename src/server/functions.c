@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Fri Jun 27 20:57:53 2014 arnaud drain
+** Last update Wed Jul  2 18:01:48 2014 arnaud drain
 */
 
 #include <string.h>
@@ -22,6 +22,7 @@ static int	print_bct(int fd, t_case *map_case, int x, int y)
   items = map_case->inventory.items;
   sprintf(buf, "bct %d %d %d %d %d %d %d %d %d\n", x, y, items[0],
 	  items[1], items[2], items[3], items[4], items[5], items[6]);
+  printf("write !\n");
   return (write_socket(fd, buf));
 }
 

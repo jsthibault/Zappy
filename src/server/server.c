@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Tue Jul  1 01:15:13 2014 arnaud drain
+** Last update Wed Jul  2 16:35:35 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -109,6 +109,28 @@ static int	cmd_client(t_client *client, t_client **clients,
   return (launch_cmd(buffer, client, kernel));
 }
 
+static int	manage_actions(t_kernel *kernel)
+{
+  t_actions	*actions;
+
+  actions = kernel->actions;
+  while (actions)
+    {
+      if (!(actions->time_left))
+	{
+	  printf("Player %d do %s\n", actions->client->fd, actions->test);
+	}
+      else
+	{
+	  printf("Player %d will do %s in %d time\n", actions->client->fd, actions->test, actions->time_left);
+	  --(actions->time_left);
+	}
+      actions = actions->next;
+    }
+  (void)kernel;
+  return (0);
+}
+
 static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval *tv)
 {
   fd_set	fd_in;
@@ -121,6 +143,8 @@ static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval 
   if (!tv->tv_sec && !tv->tv_usec)
     {
       /*dump_map(kernel);*/
+      if ((ret = manage_actions(kernel)))
+	return (ret);
     }
   if (FD_ISSET(sfd, &fd_in) && add_client(sfd, clients))
     return (1);
@@ -129,8 +153,7 @@ static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval 
     {
       if (FD_ISSET(tmp->fd, &fd_in))
       {
-        ret = cmd_client(tmp, clients, kernel, kernel->buff_node);
-        if (ret)
+        if ((ret = cmd_client(tmp, clients, kernel, kernel->buff_node)))
           return (ret);
       }
       tmp = tmp->next;
