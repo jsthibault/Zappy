@@ -109,7 +109,7 @@ namespace Zappy_Client.Interface
             {
                 _offset = (this.Engine.Textures["Button"].Width / 4) * 2;
             }
-            else
+            if (this.Enabled == false)
             {
                 _offset = (this.Engine.Textures["Button"].Width / 4) * 3;
             }

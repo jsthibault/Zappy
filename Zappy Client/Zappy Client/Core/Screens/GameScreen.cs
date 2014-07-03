@@ -85,6 +85,7 @@ namespace Zappy_Client.Core
         {
             AudioManager.Instance.Stop();
             AudioManager.Instance["main"].Play();
+            this.InterfaceEngine.GetContainer("").GetControl("").Enabled = false;
         }
 
         /// <summary>
