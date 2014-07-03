@@ -92,9 +92,12 @@ namespace Zappy_Client.Core
         {
             Map2D _map = sender as Map2D;
 
-            this.RessourcesViewer.Message.Text = "Viewer on [" + _map.CursorX + ", " + _map.CursorY  + "]";
-            this.RessourcesViewer.Visible = true;
-            //MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
+            if (this.RessourcesViewer.State != Interface.ControlState.Hover)
+            {
+                this.RessourcesViewer.Message.Text = "Viewer on [" + _map.CursorX + ", " + _map.CursorY + "]";
+                this.RessourcesViewer.Visible = true;
+                //MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
+            }
         }
 
         #endregion
