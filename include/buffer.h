@@ -5,13 +5,13 @@
 ** Login   <thibau_j@epitech.net>
 **
 ** Started on  Sun May 25 17:49:03 2014 thibau_j
-** Last update Tue May 27 09:45:47 2014 thibau_j
+** Last update mer. juil. 02 22:24:44 2014 lefloc_l
 */
 
 #ifndef BUFFER_H_
 # define BUFFER_H_
 
-# define SIZE 5
+# define SIZE 1024
 
 typedef struct		s_buffer
 {

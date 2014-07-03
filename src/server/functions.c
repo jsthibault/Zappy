@@ -1,11 +1,11 @@
 /*
 ** functions.c for functions in /home/drain_a/rendu/PSU_2013_myirc
-** 
+**
 ** Made by arnaud drain
 ** Login   <drain_a@epitech.net>
-** 
+**
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Wed Jul  2 18:01:48 2014 arnaud drain
+** Last update Thu Jul  3 15:53:51 2014 arnaud drain
 */
 
 #include <string.h>
@@ -13,6 +13,135 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "server.h"
+
+t_bool	send_message(int fd, char *msg)
+{
+  write_socket(fd, msg);
+  return (TRUE);
+}
+
+t_bool	pnw(int fd, t_player *player)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pnw #%d %d %d %d %d %s", player->id,
+      player->pos.x, player->pos.y,
+      player->orientation, player->level, player->team->name);
+  return (send_message(fd, res));
+
+}
+
+t_bool	pie(int fd, t_pos pos, int result)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pie %d %d %d\n", pos.x, pos.y, result);
+  return (send_message(fd, res));
+}
+
+t_bool	pex(int fd, int player_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pex #%d\n", player_id);
+  return (send_message(fd, res));
+}
+
+t_bool	enw(int fd, int egg, int player_id, t_pos pos)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "enw #%d #%d %d %d\n", egg, player_id, pos.x, pos.y);
+  return (send_message(fd, res));
+}
+
+t_bool	ebo(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "ebo #%d\n", egg);
+  return (send_message(fd, res));
+}
+
+t_bool	eht(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "eht #%d\n", egg);
+  return (send_message(fd, res));
+}
+
+t_bool	edi(int fd, int egg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "edi #%d\n", egg);
+  return (send_message(fd, res));
+}
+
+t_bool	pgt(int fd, int player_id, int ressource_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pgt #%d %d\n", player_id, ressource_id);
+  return (send_message(fd, res));
+}
+
+t_bool	pdr(int fd, int player_id, int ressource_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pdr #%d %d\n", player_id, ressource_id);
+  return (send_message(fd, res));
+}
+
+t_bool	pdi(int fd, int player_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pdi #%d\n", player_id);
+  return (send_message(fd, res));
+}
+
+t_bool	pfk(int fd, int player_id)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "pfk #%d\n", player_id);
+  return (send_message(fd, res));
+}
+
+t_bool	seg(int fd, char *winner)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "seg %s", winner);
+  if (winner[strlen(winner)] != '\n')
+    strcat(res, "\n");
+  return (send_message(fd, res));
+}
+
+t_bool	smg(int fd, char *msg)
+{
+  char	res[BUFFER_SIZE];
+
+  sprintf(res, "smg %s", msg);
+  if (msg[strlen(msg)] != '\n')
+    strcat(res, "\n");
+  return (send_message(fd, res));
+}
+
+t_bool	suc(int fd)
+{
+  write_socket(fd, "suc");
+  return (TRUE);
+}
+
+t_bool	sbp(int fd)
+{
+  write_socket(fd, "sbp");
+  return (TRUE);
+}
 
 static int	print_bct(int fd, t_case *map_case, int x, int y)
 {

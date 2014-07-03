@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Wed Jul  2 16:22:48 2014 arnaud drain
+** Last update Thu Jul  3 15:55:46 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -39,12 +39,25 @@ typedef struct	s_team
   char		name[TEAM_NAME_SIZE];
 }		t_team;
 
+/*
+** inventory. contain items. Each case = 1 item. (FOOD = items[0])
+** The int on the case = number of this item
+*/
+
+typedef struct	s_inventory
+{
+  int		items[ITEM_TYPE];
+}		t_inventory;
+
 typedef struct		s_player
 {
   int			id;
   t_pos			pos;
   t_team		*team;
   int			pv;
+  int			level;
+  t_orientation		orientation;
+  t_inventory		inventory;
 }			t_player;
 
 typedef struct	s_game
@@ -83,16 +96,6 @@ typedef struct		s_kernel
   t_buffer		*buff_node;
   /*penser a rajouter le logger*/
 }			t_kernel;
-
-/*
-** inventory. contain items. Each case = 1 item. (FOOD = items[0])
-** The int on the case = number of this item
-*/
-
-typedef struct	s_inventory
-{
-  int		items[ITEM_TYPE];
-}		t_inventory;
 
 typedef struct		s_case
 {

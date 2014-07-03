@@ -5,89 +5,94 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update Thu Jun 26 17:14:02 2014 arnaud drain
+** Last update mer. juil. 02 22:53:58 2014 lefloc_l
 */
 
 #include <stdlib.h>
 #include "list.h"
 #include "utils.h"
 
-void		list_pop(t_list *list, void *data)
+void		list_pop(t_list **list, void *data)
 {
   t_node	*node;
 
-  if (!list || !data)
+  if (!(*list) || !data)
     return ;
-  node = list->head;
+  node = (*list)->head;
   while (node)
   {
     if (node->data == data)
     {
-      list_pop_node(list, node);
+      list_pop_node((*list), node);
       break ;
     }
     node = node->next;
   }
+  list_pop_verification(list);
 }
 
-void		list_pop_front(t_list *list)
+void		list_pop_front(t_list **list)
 {
   t_node	*node;
 
-  if (!list || !list->head)
+  if (!(*list) || !(*list)->head)
     return ;
-  node = list->head;
-  list->head = node->next;
-  list->size--;
-  if (list->head)
-    list->head->prev = NULL;
+  node = (*list)->head;
+  (*list)->head = node->next;
+  (*list)->size--;
+  if ((*list)->head)
+    (*list)->head->prev = NULL;
   else
-    list->tail = NULL;
+    (*list)->tail = NULL;
   free(node);
+  list_pop_verification(list);
 }
 
-void		list_pop_back(t_list *list)
+void		list_pop_back(t_list **list)
 {
   t_node	*node;
 
-  if (!list || !list->tail)
+  if (!(*list) || !(*list)->tail)
     return;
-  node = list->tail;
-  list->tail = node->prev;
-  list->size--;
-  if (list->tail)
-    list->tail->next = NULL;
+  node = (*list)->tail;
+  (*list)->tail = node->prev;
+  (*list)->size--;
+  if ((*list)->tail)
+    (*list)->tail->next = NULL;
   else
-    list->head = NULL;
+    (*list)->head = NULL;
   free(node);
+  list_pop_verification(list);
 }
 
-void		list_pop_func(t_list *list, ptrbv func)
+void		list_pop_func(t_list **list, ptrbv func)
 {
   t_node	*node;
 
-  if (!list)
+  if (!(*list))
     return;
-  node = list->head;
+  node = (*list)->head;
   while (node && (*func)(node->data) == FALSE)
   {
     node = node->next;
   }
   if (node)
-    list_pop_node(list, node);
+    list_pop_node((*list), node);
+  list_pop_verification(list);
 }
 
-void		list_pop_func_arg(t_list *list, ptrbvv func, void *arg)
+void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
 {
   t_node	*node;
 
-  if (!list)
+  if (!(*list))
     return;
-  node = list->head;
+  node = (*list)->head;
   while (node && (*func)(node->data, arg) == FALSE)
   {
     node = node->next;
   }
   if (node)
-    list_pop_node(list, node);
+    list_pop_node((*list), node);
+  list_pop_verification(list);
 }

@@ -5,13 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Thu Jun 26 17:18:17 2014 arnaud drain
+** Last update mer. juil. 02 23:24:59 2014 lefloc_l
 */
 
 #include <stdlib.h>
 #include "kernel.h"
 
-t_player	*init_player(int id, int y, int x)
+t_player	*init_player_with_position(int id, int y, int x)
 {
   t_player	*player;
 
@@ -21,6 +21,8 @@ t_player	*init_player(int id, int y, int x)
   player->pv = DEFAULT_PV;
   player->pos.x = x;
   player->pos.y = y;
+  player->level = 0;
+  player->orientation = SOUTH;
   return (player);
 }
 
@@ -44,7 +46,7 @@ int		get_max_id(t_kernel *kernel)
   return (max_id);
 }
 
-t_player	*init_player2(t_kernel *kernel, char *teamname)
+t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
 {
   t_team	*team;
   t_player	*player;
@@ -64,6 +66,8 @@ t_player	*init_player2(t_kernel *kernel, char *teamname)
   player->team = team;
   printf("%d %d\n", pos.x, pos.y);
   add_player_on_map(kernel, player, pos.x, pos.y);
+  player->level = 0;
+  player->orientation = SOUTH;
   return (player);
 }
 
@@ -81,6 +85,6 @@ static t_bool	remove_player_on_team(void *c, void *p)
 
 void	remove_player(t_player *player)
 {
-  list_pop_func_arg(player->team->players, &remove_player_on_team, player);
+  list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
   free(player);
 }

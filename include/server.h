@@ -1,22 +1,25 @@
 /*
 ** serveur.h for serveur in /home/drain_a/rendu/PSU_2013_myirc
-** 
+**
 ** Made by arnaud drain
 ** Login   <drain_a@epitech.net>
-** 
+**
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Wed Jul  2 16:14:46 2014 arnaud drain
+** Last update Thu Jul  3 15:55:00 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
 # define SERVEUR_H_
 
-# define BUFFER_SIZE	(4096)
-
 # include "kernel.h"
 # include "options.h"
 # include "player.h"
 # include "utils.h"
+
+/*
+** size of the static buffers. never change !
+*/
+# define BUFFER_SIZE	(4096)
 
 typedef struct	s_functions
 {
