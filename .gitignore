@@ -27,3 +27,4 @@
 # binaries
 tags
 *.log
+./server
