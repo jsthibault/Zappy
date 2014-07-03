@@ -172,9 +172,9 @@ namespace Zappy_Client.Core._2DEngine
             }
             spriteBatch.End();
             
-            spriteBatch.Begin();
-            spriteBatch.DrawString(this.Debug, "Cursor : " + this.CursorX + "/" + this.CursorY, new Vector2(0, 0), Color.Black);
-            spriteBatch.End();
+            //spriteBatch.Begin();
+            //spriteBatch.DrawString(this.Debug, "Cursor : " + this.CursorX + "/" + this.CursorY, new Vector2(0, 0), Color.Black);
+            //spriteBatch.End();
         }
 
         /// <summary>

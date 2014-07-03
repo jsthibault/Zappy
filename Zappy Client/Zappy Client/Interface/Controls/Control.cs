@@ -23,7 +23,6 @@ namespace Zappy_Client.Interface
         #region FIELDS
 
         public Boolean Enabled { get; set; }
-        public Boolean Visible { get; set; }
         public Boolean Focus { get; set; }
         public Int32 X { get; protected set; }
         public Int32 Y { get; protected set; }
@@ -34,7 +33,7 @@ namespace Zappy_Client.Interface
 
         public Control ParentControl { get; set; }
         protected UI Engine { get; set; }
-        protected ControlState State { get; set; }
+        public ControlState State { get; protected set; }
 
         public event MonoGameEventHandler OnHover;
         public event MonoGameEventHandler OnClick;
@@ -47,6 +46,20 @@ namespace Zappy_Client.Interface
         #endregion
 
         #region PROPERTIES
+
+        private Boolean visible;
+        public Boolean Visible
+        {
+            get
+            {
+                return this.visible;
+            }
+            set
+            {
+                this.visible = value;
+                this.State = ControlState.Normal;
+            }
+        }
 
         /// <summary>
         /// Gets the current control rectangle
@@ -203,6 +216,7 @@ namespace Zappy_Client.Interface
             if (this.OnClick != null)
             {
                 this.OnClick(this);
+                Mouse.GetState().Update();
             }
         }
 

@@ -79,7 +79,7 @@ namespace Zappy_Client.Core
             this.InterfaceEngine.GetContainer("LoginWindow").Visible = false;
             this.InterfaceEngine.GetContainer("PlayerList").Visible = true;
             this.InterfaceEngine.GetContainer("Inventory").Visible = true;
-            Mouse.GetState().Update(); // UPDATE MOUSE STATES
+            //Mouse.GetState().Update(); // UPDATE MOUSE STATES
         }
 
         #endregion
