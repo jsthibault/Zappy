@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Thu Jul  3 15:58:09 2014 arnaud drain
+** Last update Thu Jul  3 23:33:39 2014 thibau_j
 */
 
 #include <string.h>
@@ -193,4 +193,137 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
   if (print_mct(cl->fd, kernel) < 0)
     return (1);
   return (0);
+}
+
+t_bool  msz(char **av, t_client *cl, t_kernel *kernel)
+{
+  char  buff[1024];
+  int   x;
+  int   y;
+
+  (void)av;
+  x = kernel->options.width;
+  y = kernel->options.height;
+  sprintf(buff, "msz %d %d\n", x, y);
+  if (write_socket(cl->fd, buff) <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool          tna(char **av, t_client *cl, t_kernel *kernel)
+{
+  char          *buff;
+  t_node        *tempory_team;
+
+  (void)av;
+  if (kernel->game.teams != NULL)
+    tempory_team = kernel->game.teams->head;
+  while (tempory_team != NULL)
+    {
+      buff = ((t_team *)tempory_team->data)->name;
+      sprintf("tna %s\n", buff);
+      if (write_socket(cl->fd, buff) <= 0)
+        return (FALSE);
+      tempory_team = tempory_team->next;
+    }
+  return (TRUE);
+}
+
+t_bool          ppo(char **av, t_client *cl, t_kernel *kernel)
+{
+  int           nb_player;
+  t_player      *tempory_player;
+  char          buff[1024];
+
+  if (av[0] == NULL || av[1] == NULL)
+    {
+      //error message ?
+      return (FALSE);
+    }
+  nb_player = atoi(av[1]);
+  tempory_player = get_player_by_id(nb_player,
+				    kernel->game.players);
+  if (tempory_player == NULL)
+    {
+      //cmd d'inconnue
+    }
+  sprintf(buff, "ppo %d %d %d %d\n", nb_player, tempory_player->pos.x,
+	  tempory_player->pos.y, tempory_player->orientation);
+  if (write_socket(cl->fd, buff) <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool          plv(char **av, t_client *cl, t_kernel *kernel)
+{
+  int           nb_player;
+  t_player      *tempory_player;
+  char          buff[1024];
+
+  if (av[0] == NULL || av[1] == NULL)
+    {
+      //error message ?
+      return (FALSE);
+    }
+  nb_player = atoi(av[1]);
+  tempory_player = get_player_by_id(nb_player, kernel->game.players);
+  if (tempory_player == NULL)
+    {
+      //cmd d'inconnue
+    }
+  sprintf(buff, "ppo %d %d\n", nb_player, tempory_player->level);
+  if (write_socket(cl->fd, buff) <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool          pin(char **av, t_client *cl, t_kernel *kernel)
+{
+  int           nb_player;
+  t_player      *tempory_player;
+  char          buff[1024];
+
+  if (av[0] == NULL || av[1] == NULL)
+    {
+      //error message ?
+      return (FALSE);
+    }
+  nb_player = atoi(av[1]);
+  tempory_player = get_player_by_id(nb_player, kernel->game.players);
+  if (tempory_player == NULL)
+    {
+      //cmd d'inconnue
+    }
+  //waitting inventory
+  if (write_socket(cl->fd, buff) <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool          sgt(char **av, t_client *cl, t_kernel *kernel)
+{
+  char          buff[1024];
+
+  (void)av;
+  sprintf(buff, "sgt %u\n", (unsigned int)kernel->options.delai);
+  if (write_socket(cl->fd, buff) <= 0)
+    return (FALSE);
+  return (TRUE);
+}
+
+t_bool          sst(char **av, t_client *cl, t_kernel *kernel)
+{
+  int           new_delai;
+
+  if (av[0] == NULL || av[1] == NULL)
+    {
+      //error
+    }
+  new_delai = atoi(av[1]);
+  if (new_delai == 0)
+    {
+      //non
+    }
+  kernel->options.delai = new_delai;
+  return (sgt(av, cl, kernel));
 }
