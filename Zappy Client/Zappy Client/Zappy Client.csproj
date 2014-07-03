@@ -101,7 +101,18 @@
     <Content Include="Content\Characters\chocobo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\FFXIV ARR OST Chocobo Porter Theme %28 Bo-Down %29.mp3" />
+    <Content Include="Content\Music\game.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\game.wma">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\login.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\login.wma">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\TexturesMap\cursor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

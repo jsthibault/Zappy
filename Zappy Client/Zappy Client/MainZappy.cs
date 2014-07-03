@@ -5,6 +5,7 @@ using Zappy_Client.Interface;
 using Zappy_Client.Core;
 using Microsoft.Xna.Framework.Input;
 using Zappy_Client.Core.Windows;
+using Microsoft.Xna.Framework.Media;
 
 namespace Zappy_Client
 {
@@ -110,6 +111,9 @@ namespace Zappy_Client
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            AudioManager.Instance["main"] = this.Content.Load<Song>("Music//login.wav");
+            AudioManager.Instance["game"] = this.Content.Load<Song>("Music//game.wav");
+            AudioManager.Instance["main"].Play();
         }
 
         protected override void UnloadContent() { }

@@ -83,6 +83,8 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void OnChangeScreen()
         {
+            AudioManager.Instance.Stop();
+            AudioManager.Instance["main"].Play();
         }
 
         /// <summary>

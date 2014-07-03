@@ -79,6 +79,8 @@ namespace Zappy_Client.Core
             this.InterfaceEngine.GetContainer("LoginWindow").Visible = false;
             this.InterfaceEngine.GetContainer("PlayerList").Visible = true;
             this.InterfaceEngine.GetContainer("Inventory").Visible = true;
+            AudioManager.Instance.Stop();
+            AudioManager.Instance["game"].Play();
             //Mouse.GetState().Update(); // UPDATE MOUSE STATES
         }
 
