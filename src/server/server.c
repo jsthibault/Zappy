@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul  3 16:56:50 2014 arnaud drain
+** Last update Thu Jul  3 17:35:56 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -125,10 +125,29 @@ static int	cmd_client(t_client *client, t_client **clients,
   return (launch_cmd(buffer, client, kernel));
 }
 
+static void	pop_action(t_kernel *kernel, t_actions *action)
+{
+  t_actions	*actions_tmp;
+
+  actions_tmp = kernel->actions;
+  if (actions_tmp == action)
+    kernel->actions = NULL;
+  else
+    {
+      while (actions_tmp->next != action)
+	actions_tmp = actions_tmp->next;
+      actions_tmp->next = actions_tmp->next->next;
+      actions_tmp = actions_tmp->next;
+    }
+  freetab(actions_tmp->av);
+  free(actions_tmp);
+}
+
 static int	manage_actions(t_kernel *kernel)
 {
   int		i;
   t_actions	*actions;
+  t_actions	*actions_tmp;
 
   actions = kernel->actions;
   while (actions)
@@ -136,21 +155,19 @@ static int	manage_actions(t_kernel *kernel)
       if (!(actions->time_left))
 	{
 	  i = 0;
-	  while (actions->av[0] && g_functions[i].name)
-	    {
-	      if (!strcmp(actions->av[0], g_functions[i].name))
-		{
-		  g_functions[i].function(actions->av, actions->client, kernel);
-		  //pop_actions
-		}
-	      ++i;
-	    }
+	  while (actions->av[0] && g_functions[i].name && strcmp(actions->av[0], g_functions[i].name))
+	    ++i;
+	  if (actions->av[0] && g_functions[i].name)
+	    g_functions[i].function(actions->av, actions->client, kernel);
+	  actions_tmp = actions;
+	  actions = actions->next;
+	  pop_action(kernel, actions_tmp);
 	}
       else
 	{
 	  --(actions->time_left);
+	  actions = actions->next;
 	}
-      actions = actions->next;
     }
   (void)kernel;
   return (0);
