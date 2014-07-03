@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Thu Jul  3 15:55:46 2014 arnaud drain
+** Last update Thu Jul  3 16:44:15 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -83,7 +83,7 @@ typedef struct s_actions t_actions;
 struct	s_actions
 {
   int		time_left;
-  char		*test;
+  char		**av;
   t_client	*client;
   t_actions	*next;
 };

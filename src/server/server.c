@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul  3 15:54:08 2014 arnaud drain
+** Last update Thu Jul  3 16:56:50 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -27,9 +27,9 @@
 
 static const t_functions g_functions[] =
     {
-      {"GRAPHIC", graphic},
-      {"avance", cmd_avance},
-      {NULL, NULL}
+      {"GRAPHIC", graphic, AUTH, 0},
+      {"avance", cmd_avance, CLIENT, 7},
+      {NULL, NULL, AUTH, 0}
     };
 
 static int	init_select(fd_set *fd_in, int sfd, t_client *clients)
@@ -51,27 +51,11 @@ static int	init_select(fd_set *fd_in, int sfd, t_client *clients)
   return (max);
 }
 
-static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
+static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 {
   t_team	*team;
-  char		**av;
-  int		i;
-  int		ret;
   char		buf[15];
 
-  i = 0;
-  if (!(av = my_str_to_wordtab(line)))
-    return (-1);
-  while (av[0] && g_functions[i].name)
-    {
-      if (!strcmp(av[0], g_functions[i].name))
-	{
-	  ret = g_functions[i].function(av, client, kernel);
-	  freetab(av);
-	  return (ret);
-	}
-      ++i;
-    }
   if (av[0] && !client->graphic && !client->player)
     {
       if (!(client->player = init_player_with_teamname(kernel, av[0])))
@@ -86,6 +70,38 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
     }
   freetab(av);
   return (0);
+}
+
+static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
+{
+  char		**av;
+  int		i;
+  int		ret;
+
+  i = 0;
+  if (!(av = my_str_to_wordtab(line)))
+    return (-1);
+  while (av[0] && g_functions[i].name)
+    {
+      if (!strcmp(av[0], g_functions[i].name))
+	{
+	  ret = 0;
+	  if (g_functions[i].type == CLIENT && client->player)
+	    {
+	      if (add_action(kernel, g_functions[i].timeout, client, av))
+		ret = -1;
+	    }
+	  else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
+		   (g_functions[i].type == AUTH && !(client->graphic) && !(client->player)))
+	    {
+	      ret = g_functions[i].function(av, client, kernel);
+	      freetab(av);
+	    }
+	  return (ret);
+	}
+      ++i;
+    }
+  return (game_auth(av, client, kernel));
 }
 
 static int	cmd_client(t_client *client, t_client **clients,
@@ -111,6 +127,7 @@ static int	cmd_client(t_client *client, t_client **clients,
 
 static int	manage_actions(t_kernel *kernel)
 {
+  int		i;
   t_actions	*actions;
 
   actions = kernel->actions;
@@ -118,11 +135,19 @@ static int	manage_actions(t_kernel *kernel)
     {
       if (!(actions->time_left))
 	{
-	  printf("Player %d do %s\n", actions->client->fd, actions->test);
+	  i = 0;
+	  while (actions->av[0] && g_functions[i].name)
+	    {
+	      if (!strcmp(actions->av[0], g_functions[i].name))
+		{
+		  g_functions[i].function(actions->av, actions->client, kernel);
+		  //pop_actions
+		}
+	      ++i;
+	    }
 	}
       else
 	{
-	  printf("Player %d will do %s in %d time\n", actions->client->fd, actions->test, actions->time_left);
 	  --(actions->time_left);
 	}
       actions = actions->next;

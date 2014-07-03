@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Thu Jul  3 15:55:00 2014 arnaud drain
+** Last update Thu Jul  3 16:32:17 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -21,10 +21,19 @@
 */
 # define BUFFER_SIZE	(4096)
 
+typedef enum
+  {
+    GRAPHIC = 0,
+    CLIENT,
+    AUTH
+  } t_type;
+
 typedef struct	s_functions
 {
   char		*name;
   int		(*function)(char **, t_client *, t_kernel *);
+  t_type	type;
+  int		timeout;
 }		t_functions;
 
 char	**my_str_to_wordtab(char *str);

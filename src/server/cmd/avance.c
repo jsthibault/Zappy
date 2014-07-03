@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-** Last update jeu. juil. 03 16:30:12 2014 lefloc_l
+** Last update Thu Jul  3 16:47:16 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -17,17 +17,6 @@
 #include "logger.h"
 
 int	cmd_avance(char **av, t_client *client, t_kernel *kernel)
-{
-  if (client->graphic || !client->player)
-    return (0);
-  (void)av;
-  (void)kernel;
-  if (add_action(kernel, 7, client, "avance"))
-    return (-1);
-  return (0);
-}
-
-t_bool	do_avance(t_client *client, t_kernel *kernel, char **av)
 {
   t_pos	pos;
 
@@ -47,5 +36,5 @@ t_bool	do_avance(t_client *client, t_kernel *kernel, char **av)
       client->player,
       pos.y,
       pos.x);
-  return (TRUE);
+  return (0);
 }
