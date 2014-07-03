@@ -203,6 +203,9 @@
     <Content Include="Content\Theme\Viewer\legend.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Theme\window.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Theme\Window\ButtWndExit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
