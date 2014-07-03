@@ -60,7 +60,7 @@ namespace Zappy_Client.Core
         {
             // Loading Inventory images
             Texture2D Bar = this.Engine.Content.Load<Texture2D>("Theme//Inventory//levelsBar.png");
-            this.LevelsBar = new ImageBox(this.Engine, "LevelBar", Bar, Zappy.Width / 2 - this.Width / 2, Zappy.Height - Bar.Height);
+            this.LevelsBar = new ImageBox(this.Engine, "LevelBar", Bar, Zappy.Width / 2 - Bar.Width / 2 - 83, Zappy.Height - Bar.Height);
             this.ItemsBg = new ImageBox(this.Engine, "ItemBg", this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsBg.png"), this.LevelsBar.Rectangle.X + this.LevelsBar.Texture.Width, this.LevelsBar.Rectangle.Y - this.LevelsBar.Texture.Height + 14);
             this.Levels = new ImageBox[8];
             this.AddControl(this.LevelsBar);
@@ -75,7 +75,8 @@ namespace Zappy_Client.Core
             // Setting Inventory items position
             for (Int32 i = 0; i < 8; i++)
             {
-                this.Levels[i] = new ImageBox(this.Engine, "ButtNum" + i.ToString(), this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"), this.LevelsBar.Rectangle.X + 36 + (i * 36), this.LevelsBar.Rectangle.Y + 35);
+                this.Levels[i] = new ImageBox(this.Engine, "ButtNum" + (i + 1).ToString(), this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"), this.LevelsBar.Rectangle.X + 36 + (i * 36), this.LevelsBar.Rectangle.Y + 35);
+                this.AddControl(this.Levels[i]);
             }
 
             // Loading and initializing dynamic items
@@ -111,11 +112,11 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.ItemsBg.Texture, this.ItemsBg.Rectangle, Color.White);
-            spriteBatch.Draw(this.LevelsBar.Texture, this.LevelsBar.Rectangle, Color.White);
+            spriteBatch.Draw(this.ItemsBg.Texture, this.ItemsBg.Position, Color.White);
+            spriteBatch.Draw(this.LevelsBar.Texture, this.LevelsBar.Position, Color.White);
             for (Int32 i = 0; i < 8; i++)
             {
-                //spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Rectangle, getOffset(this.Levels[i]), Color.White);
+                spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Position, GetOffset(this.Levels[i]), Color.White);
             }
             base.Draw(spriteBatch);
         }
@@ -150,12 +151,12 @@ namespace Zappy_Client.Core
         /// Get Level image offset
         /// </summary>
         /// <returns></returns>
-        //public Rectangle GetOffset(Control image)
-        //{
-        //    if (image == ControlState.Normal)
-        //        return new Rectangle(32, 0, 32, 32);
-        //    return new Rectangle(0, 0, 32, 32);
-        //}
+        public Rectangle GetOffset(ImageBox image)
+        {
+            if (image.State == ControlState.Normal)
+                return new Rectangle(32, 0, 32, 32);
+            return new Rectangle(0, 0, 32, 32);
+        }
 
         #endregion
     }

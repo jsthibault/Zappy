@@ -37,6 +37,7 @@ namespace Zappy_Client.Interface
             : base(engine, name)
         {
             this.Texture = texture;
+            this.State = ControlState.Normal;
         }
 
         /// <summary>
@@ -51,6 +52,7 @@ namespace Zappy_Client.Interface
             : base(engine, name)
         {
             this.Texture = texture;
+            this.State = ControlState.Normal;
             this.X = x;
             this.Y = y;
         }
