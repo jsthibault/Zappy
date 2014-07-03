@@ -5,19 +5,36 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:04 2014 lefloc_l
-** Last update Thu Jun 26 16:26:43 2014 arnaud drain
+** Last update jeu. juil. 03 16:51:47 2014 lefloc_l
 */
 
+#include <stdlib.h>
 #include "client_action.h"
 #include "server.h"
+#include "kernel.h"
 #include "utils.h"
 #include "enum.h"
 #include "map.h"
 
 int		cmd_prend_objet(char **av, t_client *cl, t_kernel *kernel)
 {
+  t_case	*c;
+  int		obj;
+
+  if (av_length(av) != 2)
+    return (-1);
   (void)av;
-  (void)cl;
   (void)kernel;
+  c = get_case(kernel, cl->player->pos.y, cl->player->pos.x);
+  obj = atoi(av[1]);
+  if (c->inventory.items[obj] > 0)
+  {
+    c->inventory.items[obj]--;
+    write_socket(cl->fd, "ok");
+  }
+  else
+  {
+    write_socket(cl->fd, "ko");
+  }
   return (0);
 }
