@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update jeu. juil. 03 16:59:39 2014 lefloc_l
+** Last update jeu. juil. 03 17:26:18 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -28,7 +28,9 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
   t_case	*c;
 
   c = get_case(kernel, player->pos.y, player->pos.x);
-  list_pop_func_arg(&c->players, &find_player_to_remove, player);
+  if (c && c->players)
+    list_pop_func_arg(&c->players, &find_player_to_remove, player);
+  logger_debug("remove done");
 }
 
 void		add_player_on_map(t_kernel *kernel, t_player *player,
@@ -36,8 +38,11 @@ void		add_player_on_map(t_kernel *kernel, t_player *player,
 {
   t_case	*c;
 
-  c = get_case(kernel, x, y);
+  c = get_case(kernel, y, x);
+  if (!c)
+    return;
   list_push_front(&(c->players), player);
+  get_right_position(kernel, &y, &x);
   player->pos.y = y;
   player->pos.x = x;
 }
@@ -45,8 +50,9 @@ void		add_player_on_map(t_kernel *kernel, t_player *player,
 void		move_player_on_map(t_kernel *kernel, t_player *player,
     int y, int x)
 {
+  logger_debug("remove");
   remove_player_on_map(kernel, player);
-  get_right_position(kernel, &y, &x);
-  add_player_on_map(kernel, player, x, y);
+  logger_debug("add");
+  add_player_on_map(kernel, player, y, x);
   logger_message("move player %d: %d/%d", player->id, x, y);
 }

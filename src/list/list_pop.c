@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update mer. juil. 02 22:53:58 2014 lefloc_l
+** Last update jeu. juil. 03 17:30:33 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -28,7 +28,6 @@ void		list_pop(t_list **list, void *data)
     }
     node = node->next;
   }
-  list_pop_verification(list);
 }
 
 void		list_pop_front(t_list **list)
@@ -78,7 +77,6 @@ void		list_pop_func(t_list **list, ptrbv func)
   }
   if (node)
     list_pop_node((*list), node);
-  list_pop_verification(list);
 }
 
 void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
@@ -94,5 +92,4 @@ void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
   }
   if (node)
     list_pop_node((*list), node);
-  list_pop_verification(list);
 }
