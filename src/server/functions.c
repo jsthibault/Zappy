@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Thu Jul  3 15:53:51 2014 arnaud drain
+** Last update Thu Jul  3 15:58:09 2014 arnaud drain
 */
 
 #include <string.h>
@@ -151,7 +151,6 @@ static int	print_bct(int fd, t_case *map_case, int x, int y)
   items = map_case->inventory.items;
   sprintf(buf, "bct %d %d %d %d %d %d %d %d %d\n", x, y, items[0],
 	  items[1], items[2], items[3], items[4], items[5], items[6]);
-  printf("write !\n");
   return (write_socket(fd, buf));
 }
 
@@ -165,7 +164,6 @@ static int	print_mct(int fd, t_kernel *kernel)
 	{
 	  int test;
 	  test = print_bct(fd, get_case(kernel, pos.y, pos.x), pos.x, pos.y);
-	  printf("x : %d y : %d %d\n", pos.x, pos.y, test);
 	  if (test <= 0)
 	    return (-1);
 	}
@@ -194,6 +192,5 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
     return (1);
   if (print_mct(cl->fd, kernel) < 0)
     return (1);
-  printf("the end\n");
   return (0);
 }
