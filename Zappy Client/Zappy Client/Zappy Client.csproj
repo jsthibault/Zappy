@@ -101,6 +101,7 @@
     <Content Include="Content\Characters\chocobo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Music\FFXIV ARR OST Chocobo Porter Theme %28 Bo-Down %29.mp3" />
     <Content Include="Content\TexturesMap\cursor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

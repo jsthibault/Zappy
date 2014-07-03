@@ -172,6 +172,18 @@ namespace Zappy_Client.Interface
             }
         }
 
+        public Control GetControl(String controlName)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name == controlName)
+                {
+                    return (control);
+                }
+            }
+            throw new Exception("Unknown control \"" + controlName + "\" in container \"" + this.Name + "\"");
+        }
+
         /// <summary>
         /// Set the movable zone of the container
         /// </summary>
