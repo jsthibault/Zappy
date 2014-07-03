@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update Mon Jun 16 16:59:15 2014 arnaud drain
+** Last update Thu Jul  3 16:50:57 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -16,6 +16,16 @@
 #include "utils.h"
 #include "kernel.h"
 #include "map.h"
+
+int		av_length(char **av)
+{
+  int		i;
+
+  i = 0;
+  while (av[i])
+    ++i;
+  return (i);
+}
 
 t_bool		is_num(char *str)
 {
