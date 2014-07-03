@@ -76,6 +76,7 @@ namespace Zappy_Client.Core
             for (Int32 i = 0; i < 8; i++)
             {
                 this.Levels[i] = new ImageBox(this.Engine, "ButtNum" + (i + 1).ToString(), this.Engine.Content.Load<Texture2D>("Theme//Inventory//ButtNum" + (i + 1) + ".png"), this.LevelsBar.Rectangle.X + 36 + (i * 36), this.LevelsBar.Rectangle.Y + 35);
+                this.Levels[i].Visible = false;
                 this.AddControl(this.Levels[i]);
             }
 
@@ -112,13 +113,11 @@ namespace Zappy_Client.Core
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.ItemsBg.Texture, this.ItemsBg.Position, Color.White);
-            spriteBatch.Draw(this.LevelsBar.Texture, this.LevelsBar.Position, Color.White);
+            base.Draw(spriteBatch);
             for (Int32 i = 0; i < 8; i++)
             {
                 spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Position, GetOffset(this.Levels[i]), Color.White);
             }
-            base.Draw(spriteBatch);
         }
 
         /// <summary>
