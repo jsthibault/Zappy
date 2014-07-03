@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:04 2014 lefloc_l
-** Last update jeu. juil. 03 16:55:27 2014 lefloc_l
+** Last update jeu. juil. 03 17:32:53 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -31,11 +31,11 @@ int		cmd_prend_objet(char **av, t_client *cl, t_kernel *kernel)
   {
     c->inventory.items[obj]--;
     cl->player->inventory.items[obj]++;
-    write_socket(cl->fd, "ok");
+    write_socket(cl->fd, "ok\n");
   }
   else
   {
-    write_socket(cl->fd, "ko");
+    write_socket(cl->fd, "ko\n");
   }
   return (0);
 }

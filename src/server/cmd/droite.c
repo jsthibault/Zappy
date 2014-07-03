@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:06 2014 lefloc_l
-** Last update jeu. juil. 03 16:58:21 2014 lefloc_l
+** Last update jeu. juil. 03 17:36:27 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -18,9 +18,11 @@ int		cmd_droite(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
   (void)kernel;
-  cl->player->orientation++;
-  cl->player->orientation = cl->player->orientation > 4
-    ? 0 : cl->player->orientation;
-  write_socket(cl->fd, "ok");
+
+  if (cl->player->orientation == 4)
+    cl->player->orientation = 0;
+  else
+    cl->player->orientation++;
+  write_socket(cl->fd, "ok\n");
   return (0);
 }
