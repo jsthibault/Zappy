@@ -58,6 +58,7 @@ namespace Zappy_Client.Core.Windows
             this.Options.OnClick += onClickOptions;
             this.Quit.OnClick += onClickQuit;
             this.Disconnect.OnClick += onClickDisconnect;
+            this.Disconnect.Enabled = false;
             this.AddControl(this.Disconnect);
             this.AddControl(this.Options);
             this.AddControl(this.Quit);
@@ -89,6 +90,11 @@ namespace Zappy_Client.Core.Windows
 
         private void onClickDisconnect(object sender)
         {
+            this.Engine.GetContainer("Inventory").Visible = false;
+            this.Engine.GetContainer("Viewer").Visible = false;
+            this.Engine.GetContainer("LoginWindow").Visible = true;
+            this.Engine.GetContainer("PlayerList").Visible = false;
+            Zappy.instance.ScreenManager.SetCurrentScreen("MainScreen");
         }
 
         private void onClickOptions(object sender)

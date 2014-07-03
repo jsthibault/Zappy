@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
+using Zappy_Client.Core.Windows;
 
 /*--------------------------------------------------------
  * LoginWnd.cs - file description
@@ -100,6 +101,7 @@ namespace Zappy_Client.Core
         /// <param name="sender"></param>
         void Connect_OnClick(object sender)
         {
+            (this.Game.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
             this.Game.ScreenManager.SetCurrentScreen("GameScreen");
         }
 

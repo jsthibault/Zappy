@@ -40,6 +40,7 @@ namespace Zappy_Client
 
         protected override void Initialize()
         {
+            // Set event Exit delegate
             this.Exiting += Zappy_Exiting;
             // Initialize the InterfaceEngine
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
@@ -57,6 +58,9 @@ namespace Zappy_Client
             // Create the options window
             this.OptionsWindow = new Options(this.InterfaceEngine);
             this.OptionsWindow.Visible = false;
+            // Create the options window
+            this.OptionsWindow = new Options(this.InterfaceEngine);
+            this.OptionsWindow.Visible = false;
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
             this.InventoryWindow.Visible = false;
@@ -70,6 +74,8 @@ namespace Zappy_Client
             this.InterfaceEngine.AddContainer(this.RessourcesViewer);
             // Add the panel to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.PanelWindow);
+            // Add the Options to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.OptionsWindow);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
