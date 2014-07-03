@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:53 2014 lefloc_l
-** Last update Thu Jun 26 16:26:37 2014 arnaud drain
+** Last update jeu. juil. 03 17:56:15 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -16,8 +16,16 @@
 
 int		cmd_inventaire(char **av, t_client *cl, t_kernel *kernel)
 {
+  int		*items;
+  char		buffer[BUFFER_SIZE];
+
   (void)av;
-  (void)cl;
   (void)kernel;
+  items = cl->player->inventory.items;
+  sprintf(buffer, "nourriture %d, sibur %d, phiras %d, linemate %d,",
+      items[FOOD], items[SIBUR], items[PHIRAS], items[LINEMATE]);
+  sprintf(buffer, "%s deraumere %d, mendiane %d, thystame %d\n", buffer,
+      items[DERAUMERE], items[MENDIANE], items[THYSTAME]);
+  write_socket(cl->fd, buffer);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul  3 17:39:21 2014 arnaud drain
+** Last update jeu. juil. 03 18:21:21 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -33,6 +33,8 @@ static const t_functions g_functions[] =
       {"droite", cmd_droite, CLIENT, 7},
       {"pose_objet", cmd_pose_objet, CLIENT, 7},
       {"prend_objet", cmd_prend_objet, CLIENT, 7},
+      {"inventaire", cmd_inventaire, CLIENT, 1},
+      {"voir", cmd_voir, CLIENT, 7},
       {NULL, NULL, AUTH, 0}
     };
 
