@@ -118,7 +118,7 @@ namespace Zappy_Client.Interface
                 new Rectangle((Int32)this.Position.X + this.Engine.Textures["TextBoxLeft"].Width, (Int32)this.Position.Y, this.Width, this.Height),
                 Color.White);
             spriteBatch.Draw(this.Engine.Textures["TextBoxRight"],
-                new Vector2(this.Position.X + this.Engine.Textures["TextBoxLeft"].Width + this.Width, this.Position.Y), 
+                new Vector2(this.Position.X + this.Engine.Textures["TextBoxLeft"].Width + this.Width, this.Position.Y),
                 Color.White);
             if (String.IsNullOrEmpty(this.Text) == false)
             {
@@ -157,19 +157,22 @@ namespace Zappy_Client.Interface
                     Keys _key = _keys[0];
                     if (Keyboard.GetState().IsKeyDown(_key) == true)
                     {
-                        if (_key >= Keys.A && _key <= Keys.Z)
+                        if (this.Text.Length < this.Rectangle.Width / 8)
                         {
-                            this.Text += _key.ToString();
-                            ++this.CursorPositionX;
-                            this.UpdateTextTick = 0;
+                            if (_key >= Keys.A && _key <= Keys.Z)
+                            {
+                                this.Text += _key.ToString();
+                                ++this.CursorPositionX;
+                                this.UpdateTextTick = 0;
+                            }
+                            else if ((_key >= Keys.NumPad0 && _key <= Keys.NumPad9) || _key == Keys.Decimal)
+                            {
+                                this.Text += this.GetNumbers(_key);
+                                ++this.CursorPositionX;
+                                this.UpdateTextTick = 0;
+                            }
                         }
-                        else if ((_key >= Keys.NumPad0 && _key <= Keys.NumPad9) || _key == Keys.Decimal)
-                        {
-                            this.Text += this.GetNumbers(_key);
-                            ++this.CursorPositionX;
-                            this.UpdateTextTick = 0;
-                        }
-                        else if (_key == Keys.Back)
+                        if (_key == Keys.Back)
                         {
                             if (this.Text != "")
                             {
