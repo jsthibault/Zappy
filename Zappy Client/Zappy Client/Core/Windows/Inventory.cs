@@ -60,7 +60,7 @@ namespace Zappy_Client.Core
         {
             // Loading Inventory images
             Texture2D Bar = this.Engine.Content.Load<Texture2D>("Theme//Inventory//levelsBar.png");
-            this.LevelsBar = new ImageBox(this.Engine, "LevelBar", Bar, Zappy.Width / 2 - Bar.Width / 2 - 83, Zappy.Height - Bar.Height);
+            this.LevelsBar = new ImageBox(this.Engine, "LevelBar", Bar, Zappy.Width / 2 - Bar.Width / 2 - 130, Zappy.Height - Bar.Height);
             this.ItemsBg = new ImageBox(this.Engine, "ItemBg", this.Engine.Content.Load<Texture2D>("Theme//Inventory//itemsBg.png"), this.LevelsBar.Rectangle.X + this.LevelsBar.Texture.Width, this.LevelsBar.Rectangle.Y - this.LevelsBar.Texture.Height + 14);
             this.Levels = new ImageBox[8];
             this.AddControl(this.LevelsBar);

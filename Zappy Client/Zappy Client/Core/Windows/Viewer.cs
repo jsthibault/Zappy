@@ -98,8 +98,6 @@ namespace Zappy_Client.Core
         public override void Update(GameTime gameTime)
         {
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
-            //this.Circle.Rec = new Vector2(this.X + 35, this.Y + 70);
-            //this.Legend.Rec = new Vector2(this.X + 40, this.Y + 250);
             base.Update(gameTime);
         }
 
@@ -110,8 +108,6 @@ namespace Zappy_Client.Core
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Background, this.Rectangle, Color.White);
-            spriteBatch.Draw(this.Circle.Texture, this.Circle.Rectangle, Color.White);
-            spriteBatch.Draw(this.Legend.Texture, this.Legend.Rectangle, Color.White);
             base.Draw(spriteBatch);
         }
 

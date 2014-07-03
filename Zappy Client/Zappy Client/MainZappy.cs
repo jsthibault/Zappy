@@ -4,11 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Zappy_Client.Interface;
 using Zappy_Client.Core;
 using Microsoft.Xna.Framework.Input;
+using Zappy_Client.Core.Windows;
 
 namespace Zappy_Client
 {
     public class Zappy : Game
     {
+        public static Zappy instance;
         public const Int32 Width = 1024;
         public const Int32 Height = 728;
 
@@ -22,10 +24,13 @@ namespace Zappy_Client
         private Inventory InventoryWindow;
         private Viewer RessourcesViewer;
         private WndPlayerList PlayerList;
+        private Options OptionsWindow;
+        private Panel PanelWindow;
 
         public Zappy()
             : base()
         {
+            instance = this;
             this.graphics = new GraphicsDeviceManager(this);
             this.graphics.PreferredBackBufferWidth = Width;
             this.graphics.PreferredBackBufferHeight = Height;
@@ -35,6 +40,7 @@ namespace Zappy_Client
 
         protected override void Initialize()
         {
+            this.Exiting += Zappy_Exiting;
             // Initialize the InterfaceEngine
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
             // Create the Login Window
@@ -45,6 +51,12 @@ namespace Zappy_Client
             // Create the ressources viewer
             this.RessourcesViewer = new Viewer(this.InterfaceEngine);
             this.RessourcesViewer.Visible = false;
+            // Create the ressources viewer
+            this.PanelWindow = new Panel(this.InterfaceEngine);
+            this.PanelWindow.Visible = true;
+            // Create the options window
+            this.OptionsWindow = new Options(this.InterfaceEngine);
+            this.OptionsWindow.Visible = false;
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
             this.InventoryWindow.Visible = false;
@@ -56,6 +68,8 @@ namespace Zappy_Client
             this.InterfaceEngine.AddContainer(this.InventoryWindow);
             // Add the ressources viewer to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.RessourcesViewer);
+            // Add the panel to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.PanelWindow);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
@@ -67,6 +81,24 @@ namespace Zappy_Client
             this.ScreenManager.SetCurrentScreen("MainScreen");
 
             base.Initialize();
+        }
+
+        /// <summary>
+        /// Delegate called on Exit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Zappy_Exiting(object sender, EventArgs e)
+        {
+            this.ExitGame();
+        }
+
+        /// <summary>
+        /// Function called manualy or automaticaly when game exited
+        /// </summary>
+        public void ExitGame()
+        {
+            Zappy.instance.Exit();
         }
 
         protected override void LoadContent()
