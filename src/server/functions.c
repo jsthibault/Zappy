@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Thu Jul  3 23:33:39 2014 thibau_j
+** Last update Fri Jul  4 16:14:56 2014 arnaud drain
 */
 
 #include <string.h>
@@ -131,18 +131,6 @@ t_bool	smg(int fd, char *msg)
   return (send_message(fd, res));
 }
 
-t_bool	suc(int fd)
-{
-  write_socket(fd, "suc");
-  return (TRUE);
-}
-
-t_bool	sbp(int fd)
-{
-  write_socket(fd, "sbp");
-  return (TRUE);
-}
-
 static int	print_bct(int fd, t_case *map_case, int x, int y)
 {
   char		buf[1024];
@@ -154,6 +142,26 @@ static int	print_bct(int fd, t_case *map_case, int x, int y)
   return (write_socket(fd, buf));
 }
 
+static int	sbp(int fd)
+{
+  if (write_socket(fd, "sbp\n") <= 0)
+    return (1);
+  return (0);
+}
+
+int	bct(char **av, t_client *cl, t_kernel *kernel)
+{
+  t_pos	pos;
+
+  if (av_length(av) != 3)
+    return (sbp(cl->fd));
+  pos.x = atoi(av[1]);
+  pos.y = atoi(av[2]);
+  if (print_bct(cl->fd, get_case(kernel, pos.y, pos.x), pos.x, pos.y) <= 0)
+    return (1);
+  return (0);
+}
+
 static int	print_mct(int fd, t_kernel *kernel)
 {
   t_pos		pos;
@@ -162,12 +170,18 @@ static int	print_mct(int fd, t_kernel *kernel)
     {
       for (pos.x = 0; pos.x < kernel->game.map->width; ++pos.x)
 	{
-	  int test;
-	  test = print_bct(fd, get_case(kernel, pos.y, pos.x), pos.x, pos.y);
-	  if (test <= 0)
+	  if (print_bct(fd, get_case(kernel, pos.y, pos.x), pos.x, pos.y) <= 0)
 	    return (-1);
 	}
     }
+  return (0);
+}
+
+int	mct(char **av, t_client *cl, t_kernel *kernel)
+{
+  (void)av;
+  if (print_mct(cl->fd, kernel) < 0)
+    return (1);
   return (0);
 }
 
@@ -195,9 +209,9 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
-t_bool  msz(char **av, t_client *cl, t_kernel *kernel)
+int	msz(char **av, t_client *cl, t_kernel *kernel)
 {
-  char  buff[1024];
+  char  buff[BUFFER_SIZE];
   int   x;
   int   y;
 
@@ -206,27 +220,28 @@ t_bool  msz(char **av, t_client *cl, t_kernel *kernel)
   y = kernel->options.height;
   sprintf(buff, "msz %d %d\n", x, y);
   if (write_socket(cl->fd, buff) <= 0)
-    return (FALSE);
-  return (TRUE);
+    return (1);
+  return (0);
 }
 
-t_bool          tna(char **av, t_client *cl, t_kernel *kernel)
+int		tna(char **av, t_client *cl, t_kernel *kernel)
 {
-  char          *buff;
+  char          buff[BUFFER_SIZE];
   t_node        *tempory_team;
 
   (void)av;
-  if (kernel->game.teams != NULL)
-    tempory_team = kernel->game.teams->head;
-  while (tempory_team != NULL)
+  if (!(kernel->game.teams))
+    return (0);
+  tempory_team = kernel->game.teams->head;
+  while (tempory_team)
     {
-      buff = ((t_team *)tempory_team->data)->name;
-      sprintf("tna %s\n", buff);
+      memset(buff, 0, BUFFER_SIZE);
+      sprintf(buff, "tna %s\n", ((t_team *)tempory_team->data)->name);
       if (write_socket(cl->fd, buff) <= 0)
-        return (FALSE);
+        return (1);
       tempory_team = tempory_team->next;
     }
-  return (TRUE);
+  return (0);
 }
 
 t_bool          ppo(char **av, t_client *cl, t_kernel *kernel)

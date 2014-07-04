@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Fri Jul  4 12:15:47 2014 arnaud drain
+** Last update Fri Jul  4 16:17:34 2014 arnaud drain
 */
 
 #include <signal.h>
@@ -43,11 +43,11 @@ int		main(const int argc, const char *argv[])
   if (!logger_init("test.log", TRUE))
     return (EXIT_FAILURE);
   if (!init_kernel(argc, argv, &kernel))
-  {
-    print_man();
-    delete_kernel(&kernel);
-    return (EXIT_FAILURE);
-  }
+    {
+      print_man();
+      delete_kernel(&kernel);
+      return (EXIT_FAILURE);
+    }
   srand(time(NULL));
   launch_srv(&kernel);
   delete_kernel(&kernel);

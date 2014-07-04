@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update ven. juil. 04 16:11:34 2014 lefloc_l
+** Last update Fri Jul  4 16:49:02 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -29,6 +29,9 @@ static const t_functions g_functions[] =
     {
       {"GRAPHIC", graphic, AUTH, 0},
       {"msz", msz, GRAPHIC, 0},
+      {"bct", bct, GRAPHIC, 0},
+      {"mct", mct, GRAPHIC, 0},
+      {"tna", tna, GRAPHIC, 0},
       {"avance", cmd_avance, CLIENT, 7},
       {"gauche", cmd_gauche, CLIENT, 7},
       {"droite", cmd_droite, CLIENT, 7},
@@ -89,6 +92,8 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 	      (int)kernel->options.width, (int)kernel->options.height);
       write_socket(client->fd, buf);
     }
+  else if (client->graphic)
+    write_socket(client->fd, "suc\n");
   freetab(av);
   return (0);
 }
