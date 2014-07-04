@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:13:54 2014 lefloc_l
-** Last update jeu. juil. 03 16:40:05 2014 lefloc_l
+** Last update jeu. juil. 03 17:49:16 2014 lefloc_l
 */
 
 #ifndef ENUM_H_
@@ -33,7 +33,7 @@ typedef enum	e_item
 {
   FOOD = 0,
   LINEMATE = 1,
-  DERAUMETRE = 2,
+  DERAUMERE = 2,
   SIBUR = 3,
   MENDIANE = 4,
   PHIRAS = 5,

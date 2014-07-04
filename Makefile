@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  jeu. juil. 03 16:27:17 2014 lefloc_l
+## Last update Thu Jul  3 23:24:50 2014 thibau_j
 ##
 
 CC=	gcc
@@ -71,6 +71,7 @@ SRC_SERVER=	options/init_options.c \
 		game/player.c \
 		game/player_team.c \
 		player/init_player.c \
+		player/get_player.c \
 
 SRC_LIST=	list_add.c \
 		list.c \
