@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update ven. juil. 04 15:43:49 2014 lefloc_l
+** Last update ven. juil. 04 15:55:42 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -26,6 +26,7 @@ int		add_action(t_kernel *, int, t_client *, char **);
 ** Functions to call when event is catch.
 */
 void		send_ppo_to_graphic(t_kernel *, t_client *);
+void		send_prend_to_graphic(t_kernel *, t_client *, int);
 
 
 int		graphic(char **, t_client *, t_kernel *);
