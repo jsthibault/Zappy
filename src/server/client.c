@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Wed Jun 25 23:54:39 2014 arnaud drain
+** Last update Fri Jul  4 11:58:24 2014 arnaud drain
 */
 
 #include <sys/socket.h>
@@ -28,25 +28,25 @@ static int	fill_client(t_client *client, int cfd, char *address)
   return (0);
 }
 
-static int	push_client(int cfd, t_client **clients, char *address)
+static int	push_client(int cfd, t_kernel *kernel, char *address)
 {
   t_client	*tmp;
 
-  if (!(*clients))
+  if (!(kernel->clients))
     {
-      if (!(*clients = malloc(sizeof(**clients))))
+      if (!(kernel->clients = malloc(sizeof(*(kernel->clients)))))
 	return (return_error("malloc", 1));
-      return (fill_client(*clients, cfd, address));
+      return (fill_client(kernel->clients, cfd, address));
     }
-  tmp = *clients;
+  tmp = kernel->clients;
   while (tmp->next)
     tmp = tmp->next;
-  if (!(tmp->next = malloc(sizeof(**clients))))
+  if (!(tmp->next = malloc(sizeof(*(kernel->clients)))))
     return (return_error("malloc", 1));
   return (fill_client(tmp->next, cfd, address));
 }
 
-int			add_client(int sfd, t_client **clients)
+int			add_client(int sfd, t_kernel *kernel)
 {
   struct sockaddr_in	sin_client;
   int			client_len;
@@ -64,7 +64,7 @@ int			add_client(int sfd, t_client **clients)
     return (return_error("strdup", 1));
   printf("[\033[32;1mOK\033[0m] Connection from %s\n", address);
   write(cfd, "BIENVENUE\n", strlen("BIENVENUE\n"));
-  if (push_client(cfd, clients, address))
+  if (push_client(cfd, kernel, address))
     {
       close(cfd);
       return (-1);
@@ -72,18 +72,18 @@ int			add_client(int sfd, t_client **clients)
   return (0);
 }
 
-void		pop_client(int fd, t_client **clients)
+void		pop_client(int fd, t_kernel *kernel)
 {
   t_client	*tmp;
   t_client	*tmp_free;
 
-  tmp = *clients;
+  tmp = kernel->clients;
   while (tmp->fd != fd && tmp->next->fd != fd)
     tmp = tmp->next;
   if (tmp->fd == fd)
     {
       tmp_free = tmp;
-      *clients = tmp->next;
+      kernel->clients = tmp->next;
     }
   else
     {

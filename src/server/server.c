@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul  3 17:39:21 2014 arnaud drain
+** Last update Fri Jul  4 12:10:55 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -108,21 +108,18 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
   return (game_auth(av, client, kernel));
 }
 
-static int	cmd_client(t_client *client, t_client **clients,
-			   t_kernel *kernel, t_buffer *buff_node)
+static int	cmd_client(t_client *client, t_kernel *kernel, t_buffer *buff_node)
 {
   char		*buffer;
 
   buffer = read_on(client->fd, buff_node);
   if (buffer == NULL)
-    {
-      return (-1);
-    }
+    return (-1);
   else if (buffer == (void *)2)
     {
       printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
       close(client->fd);
-      pop_client(client->fd, clients);
+      pop_client(client->fd, kernel);
       return (1);
     }
   printf("[\033[32;1mClient %s\033[0m] msg : [%s]\n", client->ip, buffer);
@@ -177,14 +174,14 @@ static int	manage_actions(t_kernel *kernel)
   return (0);
 }
 
-static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval *tv)
+static int	server(int sfd, t_kernel *kernel, struct timeval *tv)
 {
   fd_set	fd_in;
   int		max;
   t_client	*tmp;
   int		ret;
 
-  max = init_select(&fd_in, sfd, *clients);
+  max = init_select(&fd_in, sfd, kernel->clients);
   select(max + 1, &fd_in, NULL, NULL, tv);
   if (!tv->tv_sec && !tv->tv_usec)
     {
@@ -192,14 +189,14 @@ static int	server(int sfd, t_client **clients, t_kernel *kernel, struct timeval 
       if ((ret = manage_actions(kernel)))
 	return (ret);
     }
-  if (FD_ISSET(sfd, &fd_in) && add_client(sfd, clients))
+  if (FD_ISSET(sfd, &fd_in) && add_client(sfd, kernel))
     return (1);
-  tmp = *clients;
+  tmp = kernel->clients;
   while (tmp)
     {
       if (FD_ISSET(tmp->fd, &fd_in))
       {
-        if ((ret = cmd_client(tmp, clients, kernel, kernel->buff_node)))
+        if ((ret = cmd_client(tmp, kernel, kernel->buff_node)))
           return (ret);
       }
       tmp = tmp->next;
@@ -211,14 +208,12 @@ int			launch_srv(t_kernel *kernel)
 {
   struct timeval	tv;
   int			sfd;
-  t_client		*clients;
   t_buffer		buff;
 
   buff.next = NULL;
   kernel->buff_node = &buff;
   if ((sfd = init(kernel->options.port)) == -1)
     return (-1);
-  clients = NULL;
   printf("[\033[32;1mOK\033[0m] Serveur started\n");
   tv.tv_sec = 0;
   tv.tv_usec = 0;
@@ -231,7 +226,7 @@ int			launch_srv(t_kernel *kernel)
 	  if (tv.tv_sec)
 	    tv.tv_usec -= 1000000 * tv.tv_sec;
 	}
-      if (server(sfd, &clients, kernel, &tv) < 0)
+      if (server(sfd, kernel, &tv) < 0)
 	{
 	  close(sfd);
 	  return (1);

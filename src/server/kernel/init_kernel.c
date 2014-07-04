@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:35:55 2014 lefloc_l
-** Last update Wed Jul  2 16:14:15 2014 arnaud drain
+** Last update Fri Jul  4 11:54:40 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -19,6 +19,7 @@ t_bool		init_kernel(const int argc, const char **argv, t_kernel *kernel)
   /*kernel_init_signals(); à remplacer avec on_exit */
   logger_message("{KERNEL} Initialisation");
   kernel->actions = NULL;
+  kernel->clients = NULL;
   pre_fill_game(kernel);
   init_options(&(kernel->options));
   if (!parse_options(argc, argv, &(kernel->options)))
