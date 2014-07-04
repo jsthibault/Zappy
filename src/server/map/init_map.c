@@ -5,13 +5,26 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:16:51 2014 lefloc_l
-** Last update Thu Jun 26 17:19:13 2014 arnaud drain
+** Last update Fri Jul  4 16:41:37 2014 arnaud drain
 */
 
 #include <string.h>
+#include <stdlib.h>
 #include "logger.h"
 #include "kernel.h"
 #include "utils.h"
+
+int	random_res()
+{
+  int	test;
+
+  test = rand() % 10;
+  if (test < 1)
+    return (2);
+  if (test < 3)
+    return (1);
+  return (0);
+}
 
 void	init_map(t_kernel *kernel, int width, int height)
 {
@@ -29,7 +42,7 @@ void	init_map(t_kernel *kernel, int width, int height)
     for (j = 0; j < width; j++)
       {
 	for (it = 0; it < ITEM_TYPE; ++it)
-	  kernel->game.map->map[i][j].inventory.items[it] = 0;
+	  kernel->game.map->map[i][j].inventory.items[it] = random_res();
 	kernel->game.map->map[i][j].players = NULL;
       }
   }
