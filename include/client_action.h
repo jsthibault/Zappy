@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Thu Jul  3 16:42:24 2014 arnaud drain
+** Last update Fri Jul  4 15:33:00 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -22,6 +22,7 @@ typedef struct	e_tab_func
 
 int		add_action(t_kernel *, int, t_client *, char **);
 
+int		graphic(char **, t_client *, t_kernel *);
 int		cmd_avance(char **av, t_client *, t_kernel *kernel);
 int		cmd_droite(char **av, t_client *, t_kernel *kernel);
 int		cmd_gauche(char **av, t_client *, t_kernel *kernel);
@@ -35,6 +36,7 @@ int		cmd_incantation(char **av, t_client *, t_kernel *kernel);
 int		cmd_fork(char **av, t_client *, t_kernel *kernel);
 int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 
+int		msz(char **, t_client *, t_kernel *);
 t_bool		pnw(int, t_player *);
 t_bool		pie(int, t_pos, int);
 t_bool		pex(int, int);
