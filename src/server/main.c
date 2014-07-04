@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Fri Jul  4 16:17:34 2014 arnaud drain
+** Last update Fri Jul  4 17:10:01 2014 arnaud drain
 */
 
 #include <signal.h>
@@ -25,7 +25,8 @@ static void	print_man()
       -y hauteur du Monde\n \
       -n nom_de_equipe_1 nom_de_equipe_2 ...\n \
       -c nombre de clients par équipe autorisés au commencement du jeu \n \
-      -t delai temporel d’execution des actions\n", COLOR_BLUE, COLOR_NORMAL);
+      -t delai temporel d’execution des actions\n",
+	  COLOR_BLUE, COLOR_NORMAL);
 }
 
 static void	sigtruc(int sig)

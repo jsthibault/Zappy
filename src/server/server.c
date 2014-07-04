@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Fri Jul  4 16:49:02 2014 arnaud drain
+** Last update Fri Jul  4 17:11:11 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -88,7 +88,8 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 	  return (0);
 	}
       team = find_team(kernel, av[0]);
-      sprintf(buf, "%d\n%d %d\n", (int)(kernel->options.max_clients - list_size(team->players)),
+      sprintf(buf, "%d\n%d %d\n",
+	      (int)(kernel->options.max_clients - list_size(team->players)),
 	      (int)kernel->options.width, (int)kernel->options.height);
       write_socket(client->fd, buf);
     }
@@ -118,7 +119,8 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 		ret = -1;
 	    }
 	  else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
-		   (g_functions[i].type == AUTH && !(client->graphic) && !(client->player)))
+		   (g_functions[i].type == AUTH && !(client->graphic) &&
+		    !(client->player)))
 	    {
 	      ret = g_functions[i].function(av, client, kernel);
 	      freetab(av);
@@ -130,7 +132,8 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
   return (game_auth(av, client, kernel));
 }
 
-static int	cmd_client(t_client *client, t_kernel *kernel, t_buffer *buff_node)
+static int	cmd_client(t_client *client, t_kernel *kernel,
+			   t_buffer *buff_node)
 {
   char		*buffer;
 
@@ -178,7 +181,8 @@ static int	manage_actions(t_kernel *kernel)
       if (!(actions->time_left))
 	{
 	  i = 0;
-	  while (actions->av[0] && g_functions[i].name && strcmp(actions->av[0], g_functions[i].name))
+	  while (actions->av[0] && g_functions[i].name &&
+		 strcmp(actions->av[0], g_functions[i].name))
 	    ++i;
 	  if (actions->av[0] && g_functions[i].name)
 	    g_functions[i].function(actions->av, actions->client, kernel);
@@ -207,7 +211,6 @@ static int	server(int sfd, t_kernel *kernel, struct timeval *tv)
   select(max + 1, &fd_in, NULL, NULL, tv);
   if (!tv->tv_sec && !tv->tv_usec)
     {
-      /*dump_map(kernel);*/
       if ((ret = manage_actions(kernel)))
 	return (ret);
     }

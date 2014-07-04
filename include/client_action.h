@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Fri Jul  4 16:48:52 2014 arnaud drain
+** Last update Fri Jul  4 16:59:12 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -27,7 +27,6 @@ int		add_action(t_kernel *, int, t_client *, char **);
 */
 void		send_ppo_to_graphic(t_kernel *, t_client *);
 void		send_prend_to_graphic(t_kernel *, t_client *, int);
-
 
 int		graphic(char **, t_client *, t_kernel *);
 

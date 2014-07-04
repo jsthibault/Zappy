@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:19:53 2014 lefloc_l
-** Last update Thu Jun 26 17:15:35 2014 arnaud drain
+** Last update Fri Jul  4 17:05:42 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -27,7 +27,8 @@ t_bool		player_in_team(t_team *team, t_player *player)
   return (FALSE);
 }
 
-void		add_player_to_team(t_kernel *kernel, char *teamname, t_player *player)
+void		add_player_to_team(t_kernel *kernel, char *teamname,
+				   t_player *player)
 {
   t_team	*team;
 

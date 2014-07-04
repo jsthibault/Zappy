@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:48:18 2014 lefloc_l
-** Last update Wed Jun 25 10:44:21 2014 arnaud drain
+** Last update Fri Jul  4 17:03:53 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -37,12 +37,7 @@ void	logger_write_on_file(t_log_level lvl, char *msg, va_list av)
   snprintf(tmp, LOGGER_BUFFER_SIZE, "%s%s:%s %s", logger_get_colorlvl(lvl),
          logger_get_namelvl(lvl), COLOR_NORMAL, msg);
   vsnprintf(buffer, LOGGER_BUFFER_SIZE, tmp, av);
-  /*snprintf(tmp, LOGGER_BUFFER_SIZE, "%s: %s", logger_get_namelvl(lvl), msg);
-    vsnprintf(buffer, LOGGER_BUFFER_SIZE, tmp, av);*/
   fprintf(g_logger->file, "%s\n", buffer);
-  if (g_logger->verbose == TRUE) {
-   printf("%s\n", buffer);
-  }
+  if (g_logger->verbose == TRUE)
+    printf("%s\n", buffer);
 }
-
-
