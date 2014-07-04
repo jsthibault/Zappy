@@ -71,6 +71,8 @@
     <Compile Include="Interface\Managers\FontManager.cs" />
     <Compile Include="Interface\Managers\TextureManager.cs" />
     <Compile Include="Interface\UI.cs" />
+    <Compile Include="Network\NetFunctions.cs" />
+    <Compile Include="Network\Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -254,7 +256,6 @@
   <ItemGroup>
     <Folder Include="Content\Theme\Cursors\" />
     <Folder Include="Core\3DEngine\" />
-    <Folder Include="Network\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Theme\Font\Arial Black9.xnb">

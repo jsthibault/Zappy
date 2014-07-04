@@ -44,6 +44,10 @@ namespace Zappy_Client
         {
             // Set event Exit delegate
             this.Exiting += Zappy_Exiting;
+
+            // Creates the network instance
+            Network.Instance.Create();
+
             // Initialize the InterfaceEngine
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
             // Create the Login Window
@@ -126,6 +130,8 @@ namespace Zappy_Client
 
         protected override void Update(GameTime gameTime)
         {
+            // Update network
+            Network.Instance.Update();
             // Update current screen
             this.ScreenManager.Update();
             // Update engine controls

@@ -107,6 +107,10 @@ namespace Zappy_Client.Core
         /// <param name="sender"></param>
         void Connect_OnClick(object sender)
         {
+            /* NEW */
+            //Network.Instance.Connect(this.Host.Text, this.Port.Text);
+
+            /* OLD */
             (this.Game.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
             this.Game.ScreenManager.SetCurrentScreen("GameScreen");
         }
