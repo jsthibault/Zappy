@@ -39,6 +39,7 @@
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\AudioManager.cs" />
+    <Compile Include="Core\Windows\Popup.cs" />
     <Compile Include="Core\Windows\Panel.cs" />
     <Compile Include="Core\Windows\Options.cs" />
     <Compile Include="Core\Windows\Viewer.cs" />
@@ -120,6 +121,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\panel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\popup.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Theme\viewer.png">

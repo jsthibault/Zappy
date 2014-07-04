@@ -22,7 +22,7 @@ namespace Zappy_Client.Core
     {
         #region FIELDS
 
-        private Map2D Map { get; set; }
+        public Map2D Map { get; private set; }
 
         private Camera Camera { get; set; }
 
@@ -104,8 +104,10 @@ namespace Zappy_Client.Core
             if (this.RessourcesViewer.State != Interface.ControlState.Hover)
             {
                 this.RessourcesViewer.Message.Text = "Viewer on [" + _map.CursorX + ", " + _map.CursorY + "]";
+                this.RessourcesViewer.MapX = Convert.ToInt32(_map.CursorX);
+                this.RessourcesViewer.MapY = Convert.ToInt32(_map.CursorY);
+                this.RessourcesViewer.UpdatePlayersLabel();
                 this.RessourcesViewer.Visible = true;
-                //MessageBox.Show("X: " + _map.CursorX + "\nY: " + _map.CursorY, "Cursor position");
             }
         }
 

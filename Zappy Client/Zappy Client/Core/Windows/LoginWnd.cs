@@ -98,6 +98,7 @@ namespace Zappy_Client.Core
         /// <param name="sender"></param>
         void Leave_OnClick(object sender)
         {
+            (this.Engine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
         }
 
         /// <summary>

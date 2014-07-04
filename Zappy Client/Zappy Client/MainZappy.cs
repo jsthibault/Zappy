@@ -27,6 +27,7 @@ namespace Zappy_Client
         private WndPlayerList PlayerList;
         private Options OptionsWindow;
         private Panel PanelWindow;
+        private Popup PopupWindow;
 
         public Zappy()
             : base()
@@ -50,6 +51,9 @@ namespace Zappy_Client
             // Create the player list window
             this.PlayerList = new WndPlayerList(this.InterfaceEngine);
             this.PlayerList.Visible = false;
+            // Create the popup window
+            this.PopupWindow = new Popup(this.InterfaceEngine);
+            this.PopupWindow.Visible = false;
             // Create the ressources viewer
             this.RessourcesViewer = new Viewer(this.InterfaceEngine);
             this.RessourcesViewer.Visible = false;
@@ -77,6 +81,8 @@ namespace Zappy_Client
             this.InterfaceEngine.AddContainer(this.PanelWindow);
             // Add the Options to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.OptionsWindow);
+            // Add the Popup Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.PopupWindow);
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);

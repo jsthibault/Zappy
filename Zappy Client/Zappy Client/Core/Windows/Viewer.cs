@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
+using Zappy_Client.Core._2DEngine;
 
 /*--------------------------------------------------------
  * Viewer.cs - file description
@@ -33,9 +34,12 @@ namespace Zappy_Client.Core
         public Label Thystame { get; set; }
         public Label Deraumere { get; set; }
         public Label Linemate { get; set; }
+        private Label Players { get; set; }
         public Button close { get; set; }
         private ImageBox Circle { get; set; }
         private ImageBox Legend { get; set; }
+        public Int32 MapX { get; set; }
+        public Int32 MapY { get; set; }
 
         #endregion
 
@@ -71,8 +75,10 @@ namespace Zappy_Client.Core
             this.Legend = new ImageBox(this.Engine, "Legend", this.Engine.Content.Load<Texture2D>("Theme//Viewer//legend.png"), 40, 250);
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             this.Message = new Label(this.Engine, "LabelMessage", 185, 13, "Viewer");
+            this.Players = new Label(this.Engine, "LabelPlayers", 255, 65, "");
             this.AddControl(this.Circle);
             this.AddControl(this.Legend);
+            this.AddControl(this.Players);
 
             // Ressources label
             this.Phiras = new Label(this.Engine, "Phiras", 88, 254, "0");
@@ -97,8 +103,26 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Update(GameTime gameTime)
         {
+            this.UpdatePlayersLabel();
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// Update players's Label of players on the selected position
+        /// </summary>
+        public void UpdatePlayersLabel()
+        {
+            GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
+
+            this.Players.Text = "";
+           foreach (Character character in Screen.Map.Characters)
+           {
+               if (character.X == this.MapX && character.Y == this.MapY)
+               {
+                   this.Players.Text += character.Name;
+               }
+           }
         }
 
         /// <summary>

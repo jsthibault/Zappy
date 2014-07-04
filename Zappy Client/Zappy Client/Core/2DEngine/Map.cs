@@ -35,7 +35,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public event Interface.MonoGameEventHandler OnCursorClick;
 
-        private List<Character> Characters { get; set; }
+        public List<Character> Characters { get; private set; }
 
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }

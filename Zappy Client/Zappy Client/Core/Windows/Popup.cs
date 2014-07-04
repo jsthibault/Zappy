@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
- * Options.cs - Options window
+ * Popup.cs - Popup window
  * 
  * Version: 1.0
  * Author: ouache_s
@@ -18,24 +18,23 @@ using Zappy_Client.Interface;
 
 namespace Zappy_Client.Core.Windows
 {
-    public class Options : Container
+    public class Popup : Container
     {
 
         #region FIELDS
 
         private Texture2D Background { get; set; }
 
-        private Label Message { get; set; }
+        private Label Content { get; set; }
 
-        private Button Save { get; set; }
-        private Button Quit { get; set; }
+        private Button Close { get; set; }
 
         #endregion
 
         #region CONSTRUCTORS
 
-        public Options(UI engine)
-            : base(engine, "Options")
+        public Popup(UI engine)
+            : base(engine, "Popup")
         {
             this.Initialize();
         }
@@ -49,31 +48,22 @@ namespace Zappy_Client.Core.Windows
         /// </summary>
         public override void Initialize()
         {
-            this.Background = this.Engine.Content.Load<Texture2D>("Theme//window");
-            this.Message = new Label(this.Engine, "LabelMessage", 140, 13, "Options");
+            this.Background = this.Engine.Content.Load<Texture2D>("Theme//popup");
+            this.Content = new Label(this.Engine, "LabelText", 55, 65, "Default");
+            this.Close = new Button(this.Engine, "CloseButton", 185, 130, 110, 0, "Fermer");
+            this.Close.OnClick += Close_OnClick;
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
             this.X = Zappy.Width / 2 - this.Background.Width / 2;
             this.Y = Zappy.Height / 2 - this.Background.Height / 2;
-            this.Save = new Button(this.Engine, "SaveButton", 52, 160, 110, 0, "Sauvegarder");
-            this.Save.OnClick += Save_OnClick;
-            this.Quit = new Button(this.Engine, "QuitButton", 185, 160, 110, 0, "Annuler");
-            this.Quit.OnClick += Quit_OnClick;
-            this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
-            this.AddControl(this.Save);
-            this.AddControl(this.Quit);
-            this.AddControl(this.Message);
+            this.AddControl(this.Content);
+            this.AddControl(this.Close);
             base.Initialize();
         }
 
-        void Quit_OnClick(object sender)
+        void Close_OnClick(object sender)
         {
-            this.Visible = false;
-        }
-
-        void Save_OnClick(object sender)
-        {
-            
+            this.Hide();
         }
 
         /// <summary>
@@ -81,7 +71,6 @@ namespace Zappy_Client.Core.Windows
         /// </summary>
         public override void Update(GameTime gameTime)
         {
-            this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             base.Update(gameTime);
         }
 
@@ -93,6 +82,21 @@ namespace Zappy_Client.Core.Windows
         {
             spriteBatch.Draw(this.Background, this.Rectangle, Color.White);
             base.Draw(spriteBatch);
+        }
+
+        /// <summary>
+        /// Show popup window and set its content
+        /// </summary>
+        /// <param name="content"></param>
+        public void Show(String content)
+        {
+            this.Content.Text = content;
+            this.Visible = true;
+        }
+
+        public void Hide()
+        {
+            this.Visible = false;
         }
 
         #endregion
