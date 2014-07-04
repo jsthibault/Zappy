@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. juil. 04 15:41:11 2014 lefloc_l
+## Last update Fri Jul  4 17:04:39 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -63,7 +63,6 @@ SRC_SERVER=	options/init_options.c \
 		cmd/fork.c \
 		cmd/connect_nbr.c \
 		kernel/init_kernel.c \
-		kernel/run_kernel.c \
 		kernel/delete_kernel.c \
 		game/team.c \
 		game/team_delete.c \

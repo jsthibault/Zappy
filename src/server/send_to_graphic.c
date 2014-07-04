@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. juil. 04 15:38:31 2014 lefloc_l
-** Last update ven. juil. 04 16:17:47 2014 lefloc_l
+** Last update Fri Jul  4 17:10:25 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -18,8 +18,9 @@ void	send_ppo_to_graphic(t_kernel *kernel, t_client *client)
 {
   char	buffer[BUFFER_SIZE];
 
-  sprintf(buffer, "ppo #%d %d %d %d\n", client->player->id, client->player->pos.x,
-      client->player->pos.y, client->player->orientation);
+  sprintf(buffer, "ppo #%d %d %d %d\n", client->player->id,
+	  client->player->pos.x, client->player->pos.y,
+	  client->player->orientation);
   write_all_graphic(kernel, buffer);
 }
 

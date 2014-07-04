@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update ven. juil. 04 16:56:34 2014 lefloc_l
+** Last update Fri Jul  4 17:11:51 2014 arnaud drain
 */
 
 #include <string.h>
@@ -87,7 +87,8 @@ static t_pos	get_dir(t_client *cl)
   return (dir);
 }
 
-static void	check_line(t_kernel *kernel, t_pos init, t_client *cl, int range)
+static void	check_line(t_kernel *kernel, t_pos init,
+			   t_client *cl, int range)
 {
   t_pos		pos;
   t_pos		dir;

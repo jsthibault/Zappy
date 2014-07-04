@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 11 23:30:56 2014 arnaud drain
-** Last update Thu Jun 26 01:31:38 2014 arnaud drain
+** Last update Fri Jul  4 17:08:19 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -17,7 +17,8 @@ static int	nb_word(char *str)
   nb = 0;
   while (*str && *str != '\r' && *str != '\n')
     {
-      while (*str && *str != '\r' && *str != '\n' && *str != ' ' && *str != '\t')
+      while (*str && *str != '\r' && *str != '\n' &&
+	     *str != ' ' && *str != '\t')
 	++str;
       while (*str == ' ' || *str == '\t')
 	++str;
@@ -31,7 +32,8 @@ static int	nb_char(char *str)
   int		nb;
 
   nb = 0;
-  while (str[nb] && *str != '\r' && str[nb] != '\n' && str[nb] != ' ' && str[nb] != '\t')
+  while (str[nb] && *str != '\r' && str[nb] != '\n' &&
+	 str[nb] != ' ' && str[nb] != '\t')
     ++nb;
   return (nb);
 }

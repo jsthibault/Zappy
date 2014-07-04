@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:20:14 2014 lefloc_l
-** Last update Wed Jun 25 23:26:11 2014 arnaud drain
+** Last update Fri Jul  4 17:01:15 2014 arnaud drain
 */
 
 #include <string.h>
@@ -19,7 +19,8 @@ t_bool		option_n(char **av, int ac, int *i, t_options *options)
     return (FALSE);
   while (*i < ac && av[*i][0] != '-')
   {
-    strncpy(options->team_names[options->nb_team_names], av[*i], TEAM_NAME_SIZE);
+    strncpy(options->team_names[options->nb_team_names],
+	    av[*i], TEAM_NAME_SIZE);
     options->nb_team_names++;
     ++(*i);
   }

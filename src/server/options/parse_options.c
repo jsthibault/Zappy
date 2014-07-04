@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Thu Jun 26 17:18:53 2014 arnaud drain
+** Last update Fri Jul  4 17:01:58 2014 arnaud drain
 */
 
 #include <string.h>
@@ -69,9 +69,10 @@ void		dump_options(t_options *options)
   size_t	i;
 
   printf("===== OPTIONS DUMP =====\n");
-  printf("Port:\t\t%ld\nWidth:\t\t%ld\nHeight:\t\t%ld\nMax clients:\t%ld\nDelai:\t\t%ld\nTeams (%ld):\n",
-      options->port, options->width, options->height,
-      options->max_clients, options->delai, options->nb_team_names);
+  printf("Port:\t\t%ld\nWidth:\t\t%ld\nHeight:\t\t%ld\n",
+	 options->port, options->width, options->height);
+  printf("Max clients:\t%ld\nDelai:\t\t%ld\nTeams (%ld):\n",
+	 options->max_clients, options->delai, options->nb_team_names);
   for (i = 0; i < options->nb_team_names; ++i)
     printf("\t%s\n", options->team_names[i]);
   printf("===== END OPTIONS ======\n");

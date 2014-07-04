@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Tue Jun 17 15:56:44 2014 arnaud drain
+** Last update Fri Jul  4 16:59:24 2014 arnaud drain
 */
 
 #ifndef OPTIONS_H_
@@ -36,7 +36,6 @@ void		init_options(t_options *);
 t_bool		parse_options(const int, const char **, t_options *);
 void		dump_options(t_options *options);
 t_bool	convert_to_int(char *av[], int ac, int *i, size_t *n);
-
 
 /*
 ** functions for each option.
