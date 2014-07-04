@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Fri Jul  4 12:17:07 2014 arnaud drain
+** Last update Fri Jul  4 15:32:40 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -28,6 +28,7 @@
 static const t_functions g_functions[] =
     {
       {"GRAPHIC", graphic, AUTH, 0},
+      {"msz", msz, GRAPHIC, 0},
       {"avance", cmd_avance, CLIENT, 7},
       {"gauche", cmd_gauche, CLIENT, 7},
       {"droite", cmd_droite, CLIENT, 7},
@@ -37,6 +38,19 @@ static const t_functions g_functions[] =
       {"voir", cmd_voir, CLIENT, 7},
       {NULL, NULL, AUTH, 0}
     };
+
+void		write_all_graphic(t_kernel *kernel, char *str)
+{
+  t_client	*client;
+
+  client = kernel->clients;
+  while (client)
+    {
+      if (client->graphic)
+	write_socket(client->fd, str);
+      client = client->next;
+    }
+}
 
 static int	init_select(fd_set *fd_in, int sfd, t_client *clients)
 {

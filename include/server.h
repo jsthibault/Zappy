@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Fri Jul  4 11:58:52 2014 arnaud drain
+** Last update Fri Jul  4 15:31:13 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -44,6 +44,6 @@ int	write_socket(int fd, char *str);
 int	init(size_t port);
 int	add_client(int sfd, t_kernel *kernel);
 void	pop_client(int fd, t_kernel *kernel);
-int	graphic(char **, t_client *, t_kernel *);
+void	write_all_graphic(t_kernel *, char *);
 
 #endif /* !SERVEUR_H_ */
