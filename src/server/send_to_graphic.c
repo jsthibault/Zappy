@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. juil. 04 15:38:31 2014 lefloc_l
-** Last update ven. juil. 04 16:06:26 2014 lefloc_l
+** Last update ven. juil. 04 16:17:47 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void	send_ppo_to_graphic(t_kernel *kernel, t_client *client)
   write_all_graphic(kernel, buffer);
 }
 
-void		send_prend_to_graphic(t_kernel *kernel, t_client *cl, int item)
+static void	prend_pose(t_kernel *kernel, t_client *cl, int item, char *cmd)
 {
   char		buffer[BUFFER_SIZE];
   int		*items;
@@ -31,7 +31,7 @@ void		send_prend_to_graphic(t_kernel *kernel, t_client *cl, int item)
 
   map_case = get_case(kernel, cl->player->pos.y, cl->player->pos.x);
   items = cl->player->inventory.items;
-  sprintf(buffer, "pgt #%d %d\n", cl->player->id, item);
+  sprintf(buffer, "%s #%d %d\n", cmd, cl->player->id, item);
   sprintf(buffer, "%spin #%d %d %d %d %d %d %d %d %d %d\n",
       buffer, cl->player->id, cl->player->pos.x, cl->player->pos.y, items[0],
       items[1], items[2], items[3], items[4], items[5], items[6]);
@@ -40,4 +40,14 @@ void		send_prend_to_graphic(t_kernel *kernel, t_client *cl, int item)
       cl->player->pos.x, cl->player->pos.y, items[0], items[1], items[2],
       items[3], items[4], items[5], items[6]);
   write_all_graphic(kernel, buffer);
+}
+
+void		send_prend_to_graphic(t_kernel *kernel, t_client *cl, int item)
+{
+  prend_pose(kernel, cl, item, "pgt");
+}
+
+void		send_pose_to_graphic(t_kernel *kernel, t_client *cl, int item)
+{
+  prend_pose(kernel, cl, item, "pdr");
 }
