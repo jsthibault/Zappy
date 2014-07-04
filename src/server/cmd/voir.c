@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update jeu. juil. 03 18:29:26 2014 lefloc_l
+** Last update ven. juil. 04 16:56:34 2014 lefloc_l
 */
 
 #include <string.h>
@@ -26,6 +26,21 @@ char	g_item_names[ITEM_TYPE][20] = {
   "thystame"
 };
 
+static void	dump_player_case(t_pos pos, t_client *cl, t_case *c,
+    char buffer[BUFFER_SIZE])
+{
+  size_t	nb;
+
+  nb = list_size(c->players);
+  if (cl->player->pos.x == pos.x && cl->player->pos.y == pos.y)
+    --nb;
+  while (nb)
+  {
+    sprintf(buffer, "%s %s", buffer, "player");
+    --nb;
+  }
+}
+
 static	void	dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
 {
   t_case	*c;
@@ -34,10 +49,13 @@ static	void	dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
   char		buffer[BUFFER_SIZE];
 
   i = 0;
+  logger_debug("%d %d\n", pos.x, pos.y);
   memset(buffer, 0, BUFFER_SIZE);
   c = get_case(kernel, pos.y, pos.x);
   if (!c)
     return ;
+  dump_player_case(pos, cl, c, buffer);
+  sprintf(buffer, "%s", buffer);
   while (i < ITEM_TYPE)
   {
     nb = 0;
@@ -75,15 +93,17 @@ static void	check_line(t_kernel *kernel, t_pos init, t_client *cl, int range)
   t_pos		dir;
 
   dir = get_dir(cl);
-  if (range == 5)
+  if (range == cl->player->level + 1)
     return ;
   logger_debug("check_line range:%d", range);
   if (dir.y != 0)
   {
     pos.y = init.y + (dir.y * range);
     pos.x = init.x - range;
+    dump_case(kernel, cl, pos);
     while (pos.x != init.x + range)
     {
+      logger_debug("%d: ", range);
       dump_case(kernel, cl, pos);
       ++pos.x;
     }
