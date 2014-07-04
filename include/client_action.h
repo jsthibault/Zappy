@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Fri Jul  4 16:15:10 2014 arnaud drain
+** Last update Fri Jul  4 16:48:52 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -22,7 +22,15 @@ typedef struct	e_tab_func
 
 int		add_action(t_kernel *, int, t_client *, char **);
 
+/*
+** Functions to call when event is catch.
+*/
+void		send_ppo_to_graphic(t_kernel *, t_client *);
+void		send_prend_to_graphic(t_kernel *, t_client *, int);
+
+
 int		graphic(char **, t_client *, t_kernel *);
+
 int		cmd_avance(char **av, t_client *, t_kernel *kernel);
 int		cmd_droite(char **av, t_client *, t_kernel *kernel);
 int		cmd_gauche(char **av, t_client *, t_kernel *kernel);

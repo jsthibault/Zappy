@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:04 2014 lefloc_l
-** Last update jeu. juil. 03 17:32:53 2014 lefloc_l
+** Last update ven. juil. 04 16:14:44 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -32,6 +32,7 @@ int		cmd_prend_objet(char **av, t_client *cl, t_kernel *kernel)
     c->inventory.items[obj]--;
     cl->player->inventory.items[obj]++;
     write_socket(cl->fd, "ok\n");
+    send_prend_to_graphic(kernel, cl, cl->player->inventory.items[obj]);
   }
   else
   {
