@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update sam. juil. 05 15:49:56 2014 lefloc_l
+** Last update Sun Jul  6 01:11:00 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -33,6 +33,11 @@ void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
 
 /*
+** grahic print functions.
+*/
+int		print_tna(int fd, t_kernel *kernel);
+
+/*
 ** graphic command.
 */
 int		msz(char **, t_client *, t_kernel *);
@@ -41,6 +46,9 @@ int		mct(char **, t_client *, t_kernel *);
 int		tna(char **, t_client *, t_kernel *);
 int		ppo(char **, t_client *, t_kernel *);
 int		plv(char **, t_client *, t_kernel *);
+int		pin(char **, t_client *, t_kernel *);
+int		sgt(char **, t_client *, t_kernel *);
+int		sst(char **, t_client *, t_kernel *);
 t_bool		pnw(int, t_player *);
 t_bool		pie(int, t_pos, int);
 t_bool		pex(int, int);

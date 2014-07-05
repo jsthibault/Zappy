@@ -5,13 +5,14 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Sat Jul  5 16:02:17 2014 arnaud drain
+** Last update Sun Jul  6 01:13:45 2014 arnaud drain
 */
 
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "client_action.h"
 #include "server.h"
 
 t_bool	send_message(int fd, char *msg)
@@ -24,11 +25,10 @@ t_bool	pnw(int fd, t_player *player)
 {
   char	res[BUFFER_SIZE];
 
-  sprintf(res, "pnw %d %d %d %d %d %s", player->id,
+  sprintf(res, "pnw %d %d %d %d %d %s\n", player->id,
       player->pos.x, player->pos.y,
       player->orientation, player->level, player->team->name);
   return (send_message(fd, res));
-
 }
 
 t_bool	pie(int fd, t_pos pos, int result)
@@ -133,7 +133,7 @@ t_bool	smg(int fd, char *msg)
 
 static int	print_bct(int fd, t_case *map_case, int x, int y)
 {
-  char		buf[1024];
+  char		buf[BUFFER_SIZE];
   int		*items;
 
   items = map_case->inventory.items;
@@ -185,11 +185,29 @@ int	mct(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
+int		print_players(int fd, t_kernel *kernel)
+{
+  t_node	*node;
+
+  printf("wé\n");
+  if (!(kernel->game.players))
+    return (0);
+  node = kernel->game.players->head;
+  while (node)
+    {
+      if (pnw(fd, ((t_player *)(node->data))) <= 0)
+	return (-1);
+      node = node->next;
+    }
+  return (0);
+}
+
 int	graphic(char **av, t_client *cl, t_kernel *kernel)
 {
-  char	buf[1024];
+  char	buf[BUFFER_SIZE];
 
   (void)av;
+  printf("wesh\n");
   if (cl->player)
     return (0);
   cl->graphic = TRUE;
@@ -201,11 +219,14 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
   sprintf(buf, "sgt %d\n", (int)kernel->options.delai);
   if (write_socket(cl->fd, buf) <= 0)
     return (1);
-  sprintf(buf, "sgt %d\n", (int)kernel->options.delai);
-  if (write_socket(cl->fd, buf) <= 0)
-    return (1);
   if (print_mct(cl->fd, kernel) < 0)
     return (1);
+  if (print_tna(cl->fd, kernel) < 0)
+    return (1);
+  if (print_players(cl->fd, kernel) < 0)
+    return (1);
+  // liste des joueurs
+  // liste des oeufs
   return (0);
 }
 
@@ -221,6 +242,25 @@ int	msz(char **av, t_client *cl, t_kernel *kernel)
   sprintf(buff, "msz %d %d\n", x, y);
   if (write_socket(cl->fd, buff) <= 0)
     return (1);
+  return (0);
+}
+
+int		print_tna(int fd, t_kernel *kernel)
+{
+  char          buff[BUFFER_SIZE];
+  t_node        *tempory_team;
+
+  if (!(kernel->game.teams))
+    return (0);
+  tempory_team = kernel->game.teams->head;
+  while (tempory_team)
+    {
+      memset(buff, 0, BUFFER_SIZE);
+      sprintf(buff, "tna %s\n", ((t_team *)tempory_team->data)->name);
+      if (write_socket(fd, buff) <= 0)
+        return (-1);
+      tempory_team = tempory_team->next;
+    }
   return (0);
 }
 
@@ -262,7 +302,7 @@ int		ppo(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
-t_bool          plv(char **av, t_client *cl, t_kernel *kernel)
+int		plv(char **av, t_client *cl, t_kernel *kernel)
 {
   int           nb_player;
   t_player      *tempory_player;
@@ -279,53 +319,51 @@ t_bool          plv(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
-t_bool          pin(char **av, t_client *cl, t_kernel *kernel)
+int		pin(char **av, t_client *cl, t_kernel *kernel)
 {
   int           nb_player;
-  t_player      *tempory_player;
-  char          buff[1024];
+  t_player      *tmp_player;
+  char          buff[BUFFER_SIZE];
+  int		*items;
 
-  if (av[0] == NULL || av[1] == NULL)
-    {
-      //error message ?
-      return (FALSE);
-    }
+  if (av_length(av) != 2)
+    return (sbp(cl->fd));
   nb_player = atoi(av[1]);
-  tempory_player = get_player_by_id(nb_player, kernel->game.players);
-  if (tempory_player == NULL)
-    {
-      //cmd d'inconnue
-    }
-  //waitting inventory
+  if (!(tmp_player = get_player_by_id(nb_player, kernel->game.players)))
+    return (sbp(cl->fd));
+  items = tmp_player->inventory.items;
+  sprintf(buff, "pin %d %d %d %d %d %d %d %d %d %d\n", nb_player,
+	  tmp_player->pos.x, tmp_player->pos.y, items[0], items[1],
+	  items[2], items[3], items[4], items[5], items[6]);
   if (write_socket(cl->fd, buff) <= 0)
-    return (FALSE);
-  return (TRUE);
+    return (1);
+  return (0);
 }
 
-t_bool          sgt(char **av, t_client *cl, t_kernel *kernel)
+int		sgt(char **av, t_client *cl, t_kernel *kernel)
 {
-  char          buff[1024];
+  char          buff[BUFFER_SIZE];
 
   (void)av;
-  sprintf(buff, "sgt %u\n", (unsigned int)kernel->options.delai);
+  sprintf(buff, "sgt %d\n", (int)kernel->options.delai);
   if (write_socket(cl->fd, buff) <= 0)
-    return (FALSE);
-  return (TRUE);
+    return (1);
+  return (0);
 }
 
-t_bool          sst(char **av, t_client *cl, t_kernel *kernel)
+int		sst(char **av, t_client *cl, t_kernel *kernel)
 {
+  char          buff[BUFFER_SIZE];
   int           new_delai;
 
-  if (av[0] == NULL || av[1] == NULL)
-    {
-      //error
-    }
+  if (av_length(av) != 2)
+    return (sbp(cl->fd));
   new_delai = atoi(av[1]);
-  if (new_delai == 0)
-    {
-      //non
-    }
+  if (new_delai <= 0)
+    return (sbp(cl->fd));
   kernel->options.delai = new_delai;
-  return (sgt(av, cl, kernel));
+  sprintf(buff, "sgt %d\n", (int)kernel->options.delai);
+  if (write_socket(cl->fd, buff) <= 0)
+    return (1);
+  return (0);
 }
