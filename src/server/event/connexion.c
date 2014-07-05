@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. juil. 05 15:19:47 2014 lefloc_l
-** Last update Sat Jul  5 15:46:43 2014 arnaud drain
+** Last update Sat Jul  5 15:47:40 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -31,5 +31,5 @@ void		send_egg_connexion_to_graphic(t_kernel *kernel, t_player *player,
 
   sprintf(buffer, "ebo #%d\n", egg_id);
   write_all_graphic(kernel, buffer);
-  send_connexion_to_graphic(kernel, cl);
+  send_connexion_to_graphic(kernel, player);
 }
