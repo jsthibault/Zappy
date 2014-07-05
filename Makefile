@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. juil. 05 15:25:15 2014 lefloc_l
+## Last update  sam. juil. 05 15:55:24 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -81,19 +81,24 @@ SRC_LIST=	list_add.c \
 		list_perf.c \
 		node.c \
 
+DIR_OBJ_SERVER=	obj/server/
+DIR_OBJ_LIST=	obj/list/
+DIR_OBJ_BUFFER=	obj/buffer/
+DIR_OBJ_CLIENT=	obj/client/
+
 SRC_CLIENT=
 
 CFLAGS=		-W -Wall -Wextra -I./include/ -pedantic
 CDEBUG=		-O2 -g -ggdb
 
-OBJ_SERVER=	$(addprefix $(DIR_SERVER)/, $(SRC_SERVER:.c=.o))
-OBJ_LIST=	$(addprefix $(DIR_LIST)/, $(SRC_LIST:.c=.o))
-OBJ_CLIENT=	$(addprefix $(DIR_CLIENT)/, $(SRC_CLIENT:.c=.o))
-OBJ_BUFFER=	$(addprefix $(DIR_BUFFER)/, $(SRC_BUFFER:.c=.o))
+OBJ_SERVER=	$(addprefix $(DIR_OBJ_SERVER)/, $(SRC_SERVER:.c=.o))
+OBJ_LIST=	$(addprefix $(DIR_OBJ_LIST)/, $(SRC_LIST:.c=.o))
+OBJ_CLIENT=	$(addprefix $(DIR__OBJ_CLIENT)/, $(SRC_CLIENT:.c=.o))
+OBJ_BUFFER=	$(addprefix $(DIR_OBJ_BUFFER)/, $(SRC_BUFFER:.c=.o))
 
-LIB	+= -lefence
+LIB+=		-lefence
 
-LDFLAGS	+= $(LIBPATH) $(LIB)
+LDFLAGS+=	$(LIBPATH) $(LIB)
 
 all:	$(SERVER)
 
@@ -104,10 +109,26 @@ $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER)
 $(CLIENT):	$(OBJ_CLIENT)
 	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS)
 
+$(DIR_OBJ_SERVER)/%.o: $(DIR_SERVER)/%.c
+	@mkdir -p $(@D)
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+$(DIR_OBJ_LIST)/%.o: $(DIR_LIST)/%.c
+	@mkdir -p $(@D)
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+$(DIR_OBJ_CLIENT)/%.o: $(DIR_CLIENT)/%.c
+	@mkdir -p $(@D)
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+$(DIR_OBJ_BUFFER)/%.o: $(DIR_BUFFER)/%.c
+	@mkdir -p $(@D)
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+
 clean:
 	$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_LIST)
 	@$(ECHO) '\033[0;31m> Directory cleaned\033[0m'
-
 
 fclean:	clean
 	$(RM) $(SERVER)
