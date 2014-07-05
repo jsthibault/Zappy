@@ -18,8 +18,6 @@ cette famille.
 Délai de ponte : 42 / t
 Délai entre la ponte et l’éclosion : 600 / t
 
-
-
 Broadcast
 -
 
