@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Fri Jul  4 17:11:11 2014 arnaud drain
+** Last update Sat Jul  5 15:37:40 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -32,6 +32,8 @@ static const t_functions g_functions[] =
       {"bct", bct, GRAPHIC, 0},
       {"mct", mct, GRAPHIC, 0},
       {"tna", tna, GRAPHIC, 0},
+      {"ppo", ppo, GRAPHIC, 0},
+      {"plv", plv, GRAPHIC, 0},
       {"avance", cmd_avance, CLIENT, 7},
       {"gauche", cmd_gauche, CLIENT, 7},
       {"droite", cmd_droite, CLIENT, 7},

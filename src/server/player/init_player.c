@@ -5,26 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update ven. juil. 04 16:58:09 2014 lefloc_l
+** Last update Sat Jul  5 15:41:27 2014 arnaud drain
 */
 
 #include <stdlib.h>
 #include "kernel.h"
-
-t_player	*init_player_with_position(int id, int y, int x)
-{
-  t_player	*player;
-
-  if (!(player = malloc(sizeof(*player))))
-    return (NULL);
-  player->id = id;
-  player->pv = DEFAULT_PV;
-  player->pos.x = x;
-  player->pos.y = y;
-  player->level = 1;
-  player->orientation = SOUTH;
-  return (player);
-}
 
 int		get_max_id(t_kernel *kernel)
 {
@@ -63,11 +48,12 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
   player->pos.x = pos.x;
   player->pos.y = pos.y;
   list_push_back(&(team->players), player);
+  list_push_back(&(kernel->game.players), player);
   player->team = team;
-  printf("%d %d\n", pos.x, pos.y);
   add_player_on_map(kernel, player, pos.x, pos.y);
   player->level = 1;
-  player->orientation = SOUTH;
+  player->orientation = rand() % 4 + 1;
+  send_connexion_to_graphic();
   return (player);
 }
 

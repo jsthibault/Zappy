@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Fri Jul  4 16:14:56 2014 arnaud drain
+** Last update Sat Jul  5 15:38:38 2014 arnaud drain
 */
 
 #include <string.h>
@@ -244,52 +244,39 @@ int		tna(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
-t_bool          ppo(char **av, t_client *cl, t_kernel *kernel)
+int		ppo(char **av, t_client *cl, t_kernel *kernel)
 {
   int           nb_player;
   t_player      *tempory_player;
-  char          buff[1024];
+  char          buff[BUFFER_SIZE];
 
-  if (av[0] == NULL || av[1] == NULL)
-    {
-      //error message ?
-      return (FALSE);
-    }
+  if (av_length(av) != 2)
+    return (sbp(cl->fd));
   nb_player = atoi(av[1]);
-  tempory_player = get_player_by_id(nb_player,
-				    kernel->game.players);
-  if (tempory_player == NULL)
-    {
-      //cmd d'inconnue
-    }
+  if (!(tempory_player = get_player_by_id(nb_player, kernel->game.players)))
+    return (sbp(cl->fd));
   sprintf(buff, "ppo %d %d %d %d\n", nb_player, tempory_player->pos.x,
 	  tempory_player->pos.y, tempory_player->orientation);
   if (write_socket(cl->fd, buff) <= 0)
-    return (FALSE);
-  return (TRUE);
+    return (1);
+  return (0);
 }
 
 t_bool          plv(char **av, t_client *cl, t_kernel *kernel)
 {
   int           nb_player;
   t_player      *tempory_player;
-  char          buff[1024];
+  char          buff[BUFFER_SIZE];
 
-  if (av[0] == NULL || av[1] == NULL)
-    {
-      //error message ?
-      return (FALSE);
-    }
+  if (av_length(av) != 2)
+    return (sbp(cl->fd));
   nb_player = atoi(av[1]);
-  tempory_player = get_player_by_id(nb_player, kernel->game.players);
-  if (tempory_player == NULL)
-    {
-      //cmd d'inconnue
-    }
-  sprintf(buff, "ppo %d %d\n", nb_player, tempory_player->level);
+  if (!(tempory_player = get_player_by_id(nb_player, kernel->game.players)))
+    return (sbp(cl->fd));
+  sprintf(buff, "plv %d %d\n", nb_player, tempory_player->level);
   if (write_socket(cl->fd, buff) <= 0)
-    return (FALSE);
-  return (TRUE);
+    return (1);
+  return (0);
 }
 
 t_bool          pin(char **av, t_client *cl, t_kernel *kernel)

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Fri Jul  4 16:59:12 2014 arnaud drain
+** Last update Sat Jul  5 15:37:33 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -47,6 +47,8 @@ int		msz(char **, t_client *, t_kernel *);
 int		bct(char **, t_client *, t_kernel *);
 int		mct(char **, t_client *, t_kernel *);
 int		tna(char **, t_client *, t_kernel *);
+int		ppo(char **, t_client *, t_kernel *);
+int		plv(char **, t_client *, t_kernel *);
 t_bool		pnw(int, t_player *);
 t_bool		pie(int, t_pos, int);
 t_bool		pex(int, int);
