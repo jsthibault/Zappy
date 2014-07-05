@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. juil. 04 15:38:31 2014 lefloc_l
-** Last update sam. juil. 05 15:09:28 2014 lefloc_l
+** Last update sam. juil. 05 15:22:11 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "enum.h"
 
-void	send_ppo_to_graphic(t_kernel *kernel, t_client *client)
+void	send_position_to_graphic(t_kernel *kernel, t_client *client)
 {
   char	buffer[BUFFER_SIZE];
 
@@ -51,24 +51,4 @@ void		send_prend_to_graphic(t_kernel *kernel, t_client *cl, int item)
 void		send_pose_to_graphic(t_kernel *kernel, t_client *cl, int item)
 {
   prend_pose(kernel, cl, item, "pdr");
-}
-
-void		send_connexion_to_graphic(t_kernel *kernel, t_client *cl)
-{
-  char		buffer[BUFFER_SIZE];
-
-  sprintf(buffer, "pnw #%d %d %d %d %d %s", cl->player->id, cl->player->pos.x,
-      cl->player->pos.y, cl->player->orientation, cl->player->level,
-      cl->player->team->name);
-  write_all_graphic(kernel, buffer);
-}
-
-void		send_egg_connexion_to_graphic(t_kernel *kernel, t_client *cl,
-    int egg_id)
-{
-  char		buffer[BUFFER_SIZE];
-
-  sprintf(buffer, "ebo #%d\n", egg_id);
-  write_all_graphic(kernel, buffer);
-  send_connexion_to_graphic(kernel, cl);
 }
