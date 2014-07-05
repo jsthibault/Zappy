@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:06 2014 lefloc_l
-** Last update ven. juil. 04 15:47:29 2014 lefloc_l
+** Last update sam. juil. 05 15:27:13 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -24,6 +24,6 @@ int		cmd_droite(char **av, t_client *cl, t_kernel *kernel)
   else
     cl->player->orientation++;
   write_socket(cl->fd, "ok\n");
-  send_ppo_to_graphic(kernel, cl);
+  send_position_to_graphic(kernel, cl);
   return (0);
 }

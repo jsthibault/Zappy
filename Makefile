@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Fri Jul  4 17:04:39 2014 arnaud drain
+## Last update  sam. juil. 05 15:25:15 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -35,7 +35,6 @@ SRC_SERVER=	options/init_options.c \
 		init.c \
 		functions.c \
 		action.c \
-		send_to_graphic.c \
 		options/options_other.c \
 		options/options_with_int.c \
 		options/parse_options.c \
@@ -71,6 +70,8 @@ SRC_SERVER=	options/init_options.c \
 		game/player_team.c \
 		player/init_player.c \
 		player/get_player.c \
+		event/action.c \
+		event/connexion.c \
 
 SRC_LIST=	list_add.c \
 		list.c \
