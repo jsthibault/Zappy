@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. juil. 04 15:38:31 2014 lefloc_l
-** Last update Sat Jul  5 16:24:40 2014 arnaud drain
+** Last update sam. juil. 05 16:58:01 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -24,7 +24,8 @@ void	send_position_to_graphic(t_kernel *kernel, t_player *player)
   write_all_graphic(kernel, buffer);
 }
 
-static void	prend_pose(t_kernel *kernel, t_player *player, int item, char *cmd)
+static void	prend_pose(t_kernel *kernel, t_player *player, int item,
+    char *cmd)
 {
   char		buffer[BUFFER_SIZE];
   int		*items;
@@ -43,12 +44,14 @@ static void	prend_pose(t_kernel *kernel, t_player *player, int item, char *cmd)
   write_all_graphic(kernel, buffer);
 }
 
-void		send_prend_to_graphic(t_kernel *kernel, t_player *player, int item)
+void		send_prend_to_graphic(t_kernel *kernel, t_player *player,
+    int item)
 {
   prend_pose(kernel, player, item, "pgt");
 }
 
-void		send_pose_to_graphic(t_kernel *kernel, t_player *player, int item)
+void		send_pose_to_graphic(t_kernel *kernel, t_player *player,
+    int item)
 {
   prend_pose(kernel, player, item, "pdr");
 }
