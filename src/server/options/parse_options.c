@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Fri Jul  4 17:01:58 2014 arnaud drain
+** Last update Sat Jul  5 16:04:09 2014 arnaud drain
 */
 
 #include <string.h>
@@ -30,7 +30,7 @@ static t_bool	check_options(t_options *options)
     error = "Please create teams !";
   if (options->nb_team_names > TEAM_MAX)
     error = "Too much teams !";
-  if (options->nb_team_names <= 0)
+  if (options->nb_team_names < 2)
     error = "Not enough teams !";
   if (error)
     {
