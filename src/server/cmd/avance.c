@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-** Last update sam. juil. 05 15:26:53 2014 lefloc_l
+** Last update sam. juil. 05 15:45:20 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -37,6 +37,6 @@ int	cmd_avance(char **av, t_client *client, t_kernel *kernel)
       pos.y,
       pos.x);
   write_socket(client->fd, "ok\n");
-  send_position_to_graphic(kernel, client);
+  send_position_to_graphic(kernel, client->player);
   return (0);
 }

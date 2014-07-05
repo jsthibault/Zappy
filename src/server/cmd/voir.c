@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update Fri Jul  4 17:11:51 2014 arnaud drain
+** Last update sam. juil. 05 15:43:40 2014 lefloc_l
 */
 
 #include <string.h>
@@ -45,7 +45,7 @@ static	void	dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
 {
   t_case	*c;
   size_t	i;
-  size_t	nb;
+  int		nb;
   char		buffer[BUFFER_SIZE];
 
   i = 0;

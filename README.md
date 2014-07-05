@@ -29,6 +29,10 @@ Gestion de la vie
 -
 
 
+Gestion de fin de jeu
+-
+
+
 separer le code de la gui et des clients
 
 faire un truc pour les listes avec les NULL A VERIFIER
