@@ -5,11 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:48:18 2014 lefloc_l
-** Last update Fri Jul  4 17:03:53 2014 arnaud drain
+** Last update ven. juil. 04 17:24:13 2014 lefloc_l
 */
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <errno.h>
+#include <string.h>
 #include "logger.h"
 
 extern t_logger	*g_logger;
@@ -37,7 +39,13 @@ void	logger_write_on_file(t_log_level lvl, char *msg, va_list av)
   snprintf(tmp, LOGGER_BUFFER_SIZE, "%s%s:%s %s", logger_get_colorlvl(lvl),
          logger_get_namelvl(lvl), COLOR_NORMAL, msg);
   vsnprintf(buffer, LOGGER_BUFFER_SIZE, tmp, av);
-  fprintf(g_logger->file, "%s\n", buffer);
-  if (g_logger->verbose == TRUE)
-    printf("%s\n", buffer);
+  if (g_logger->file)
+  {
+    if (fprintf(g_logger->file, "%s\n", buffer) < 0)
+      printf("Error: %s\n", strerror(errno));
+    fflush(g_logger->file);
+  }
+  if (g_logger->verbose == TRUE) {
+   printf("%s\n", buffer);
+  }
 }
