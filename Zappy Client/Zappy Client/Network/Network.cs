@@ -100,7 +100,7 @@ namespace Zappy_Client
                     _size = this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
                     _message = Encoding.Default.GetString(_buffer);
                     Console.WriteLine(_message);
-                    this.HandleMessages(_message);
+                    this.ExecAnswer(_message);
                 }
             }
         }
@@ -124,11 +124,35 @@ namespace Zappy_Client
         }
 
         /// <summary>
-        /// Handle messages
+        /// Ask server to do a cmd
         /// </summary>
-        /// <param name="messages"></param>
-        private void HandleMessages(String messages)
+        /// <param name="cmd">Cmd to ask to the server</param>
+        /// <returns>true if success, false in the other case</returns>
+        public Boolean ExecAsk(String cmd)
         {
+            List<String> _items = new List<String>();
+
+            if (this.Connected == false)
+                return false;
+            if ((_items = Parser.GetCmdItems(cmd)) == null)
+                return false;
+            return this.AskFunctions[_items.First()](_items);
+        }
+
+        /// <summary>
+        /// Exec server's answer
+        /// </summary>
+        /// <param name="cmd">Cmd received from server</param>
+        /// <returns>true if success, false in the other case</returns>
+        public Boolean ExecAnswer(String cmd)
+        {
+            List<String> _items = new List<String>();
+
+            if (this.Connected == false)
+                return false;
+            if ((_items = Parser.GetCmdItems(cmd)) == null)
+                return false;
+            return this.AnswerFunctions[_items.First()](_items);
         }
 
         #endregion
