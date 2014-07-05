@@ -73,7 +73,6 @@
     <Compile Include="Interface\UI.cs" />
     <Compile Include="Network\ClientFunctions.cs" />
     <Compile Include="Network\Messages.cs" />
-    <Compile Include="Network\NetFunctions.cs" />
     <Compile Include="Network\Network.cs" />
     <Compile Include="Network\Parser.cs" />
     <Compile Include="Network\ServerFunctions.cs" />

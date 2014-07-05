@@ -64,7 +64,10 @@ namespace Zappy_Client
         /// <summary>
         /// Creates the real instance
         /// </summary>
-        public void Create() { }
+        public void Create()
+        {
+            this.InitializeMessages();
+        }
         
         /// <summary>
         /// Connect to a specific host and port
@@ -136,7 +139,7 @@ namespace Zappy_Client
                 return false;
             if ((_items = Parser.GetCmdItems(cmd)) == null)
                 return false;
-            return this.AskFunctions[_items.First()](_items);
+            return AskFunctions[_items.First()](_items);
         }
 
         /// <summary>
@@ -152,7 +155,7 @@ namespace Zappy_Client
                 return false;
             if ((_items = Parser.GetCmdItems(cmd)) == null)
                 return false;
-            return this.AnswerFunctions[_items.First()](_items);
+            return AnswerFunctions[_items.First()](_items);
         }
 
         #endregion
