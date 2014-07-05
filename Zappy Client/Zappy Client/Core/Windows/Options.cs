@@ -26,10 +26,20 @@ namespace Zappy_Client.Core.Windows
         private Texture2D Background { get; set; }
 
         private Label Message { get; set; }
+        private Label MusicLabel { get; set; }
+        private Label EffectsLabel { get; set; }
 
         private Button Save { get; set; }
         private Button Quit { get; set; }
+        private Button MusicPlus { get; set; }
+        private Button MusicMin { get; set; }
+        private Button EffectsPlus { get; set; }
+        private Button EffectsMin { get; set; }
 
+        private ProgressBar MusicBar { get; set; }
+        private ProgressBar EffectsBar { get; set; }
+
+        private CheckBox GridBox {get; set; }
         #endregion
 
         #region CONSTRUCTORS
@@ -49,8 +59,33 @@ namespace Zappy_Client.Core.Windows
         /// </summary>
         public override void Initialize()
         {
+            // Grid
+            this.GridBox = new CheckBox(this.Engine, "GridBox",55, 80, "Afficher la grille");
+            this.AddControl(this.GridBox);
+
+            // Volume Music
+            this.MusicLabel = new Label(this.Engine, "MusicLabel", 55, 105, "Vol. Musique:");
+            this.MusicMin = new Button(this.Engine, "MusicMin", 145, 100, 20, 0, "-");
+            this.MusicBar = new ProgressBar(this.Engine, "MusicBar", 168, 107, 100, ProgressBarColor.Blue, 100);
+            this.MusicPlus = new Button(this.Engine, "MusicPlus", 271, 100, 20, 0, "+");
+            this.AddControl(this.MusicPlus);
+            this.AddControl(this.MusicBar);
+            this.AddControl(this.MusicMin);
+            this.AddControl(this.MusicLabel);
+
+            // Volume Effects
+            this.EffectsLabel = new Label(this.Engine, "EffectsLabel", 55, 135, "Vol. Effets:");
+            this.EffectsMin = new Button(this.Engine, "EffectsMin", 145, 130, 20, 0, "-");
+            this.EffectsBar = new ProgressBar(this.Engine, "EffectscBar", 168, 137, 100, ProgressBarColor.Blue, 100);
+            this.EffectsPlus = new Button(this.Engine, "EffectsPlus", 271, 130, 20, 0, "+");
+            this.AddControl(this.EffectsPlus);
+            this.AddControl(this.EffectsBar);
+            this.AddControl(this.EffectsMin);
+            this.AddControl(this.EffectsLabel);
+
+            // Background
             this.Background = this.Engine.Content.Load<Texture2D>("Theme//window");
-            this.Message = new Label(this.Engine, "LabelMessage", 140, 13, "Options");
+            this.Message = new Label(this.Engine, "Message", 140, 13, "Options");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
             this.X = Zappy.Width / 2 - this.Background.Width / 2;
