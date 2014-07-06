@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. juil. 05 15:55:24 2014 lefloc_l
+## Last update Sun Jul  6 14:21:56 2014 Rodrigue Canquery
 ##
 
 CC=	gcc
@@ -20,7 +20,7 @@ CLIENT=		client
 
 DIR_SERVER=	src/server
 DIR_LIST=	src/list
-DIR_CLIENT=	src/client
+DIR_CLIENT=	src/client_ia
 DIR_BUFFER=	src/buffer
 
 SRC_BUFFER=	buffer.c \
@@ -79,35 +79,39 @@ SRC_LIST=	list_add.c \
 		list_loop.c \
 		list_pop.c \
 		list_perf.c \
-		node.c \
+		node.c
 
 DIR_OBJ_SERVER=	obj/server/
 DIR_OBJ_LIST=	obj/list/
 DIR_OBJ_BUFFER=	obj/buffer/
-DIR_OBJ_CLIENT=	obj/client/
+DIR_OBJ_CLIENT=	obj/client_ia/
 
-SRC_CLIENT=
+SRC_CLIENT=	main.c \
+		option.c \
+		func_option.c \
+		init_reseau.c \
+		handleIA.c
 
-CFLAGS=		-W -Wall -Wextra -I./include/ -pedantic
+CFLAGS=		-W -Wall -Wextra -I./include/ -L./lib/ -pedantic
 CDEBUG=		-O2 -g -ggdb
 
 OBJ_SERVER=	$(addprefix $(DIR_OBJ_SERVER)/, $(SRC_SERVER:.c=.o))
 OBJ_LIST=	$(addprefix $(DIR_OBJ_LIST)/, $(SRC_LIST:.c=.o))
-OBJ_CLIENT=	$(addprefix $(DIR__OBJ_CLIENT)/, $(SRC_CLIENT:.c=.o))
+OBJ_CLIENT=	$(addprefix $(DIR_OBJ_CLIENT)/, $(SRC_CLIENT:.c=.o))
 OBJ_BUFFER=	$(addprefix $(DIR_OBJ_BUFFER)/, $(SRC_BUFFER:.c=.o))
 
 LIB+=		-lefence
 
 LDFLAGS+=	$(LIBPATH) $(LIB)
 
-all:	$(SERVER)
+all:	$(SERVER) $(CLIENT)
 
 $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER)
 	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
 	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)
-	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS)
+	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS) -llua -lm -ldl
 
 $(DIR_OBJ_SERVER)/%.o: $(DIR_SERVER)/%.c
 	@mkdir -p $(@D)
