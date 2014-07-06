@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. juil. 05 15:19:47 2014 lefloc_l
-** Last update sam. juil. 05 16:50:59 2014 lefloc_l
+** Last update Mon Jul  7 00:58:11 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -21,6 +21,14 @@ void	send_connexion_to_graphic(t_kernel *kernel, t_player *player)
   sprintf(buffer, "pnw %d %d %d %d %d %s\n", player->id, player->pos.x,
       player->pos.y, player->orientation, player->level,
       player->team->name);
+  write_all_graphic(kernel, buffer);
+}
+
+void	send_deconnexion_to_graphic(t_kernel *kernel, t_player *player)
+{
+  char	buffer[BUFFER_SIZE];
+
+  sprintf(buffer, "pdi %d\n", player->id);
   write_all_graphic(kernel, buffer);
 }
 

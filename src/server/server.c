@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jul  7 00:53:31 2014 arnaud drain
+** Last update Mon Jul  7 00:59:57 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -192,10 +192,10 @@ static int	manage_food(t_kernel *kernel)
 	  --(client->player->food_time);
 	  if (client->player->food_time == 0)
 	    {
-	      printf("remove from %d\n", client->player->inventory.items[FOOD]);
 	      if (client->player->inventory.items[FOOD] == 0)
 		{
 		  write_socket(client->fd, "mort\n");
+		  send_deconnexion_to_graphic(kernel, client->player);
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}

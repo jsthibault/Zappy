@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Sun Jul  6 01:11:00 2014 arnaud drain
+** Last update Mon Jul  7 01:07:41 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -29,6 +29,7 @@ int		graphic(char **, t_client *, t_kernel *);
 void		send_position_to_graphic(t_kernel *, t_player *);
 void		send_prend_to_graphic(t_kernel *, t_player *, int);
 void		send_pose_to_graphic(t_kernel *, t_player *, int);
+void		send_deconnexion_to_graphic(t_kernel *, t_player *);
 void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
 
@@ -71,6 +72,7 @@ int		cmd_droite(char **av, t_client *, t_kernel *kernel);
 int		cmd_gauche(char **av, t_client *, t_kernel *kernel);
 int		cmd_voir(char **av, t_client *, t_kernel *kernel);
 int		cmd_inventaire(char **av, t_client *, t_kernel *kernel);
+int		atoi_objet(char *objet);
 int		cmd_prend_objet(char **av, t_client *, t_kernel *kernel);
 int		cmd_pose_objet(char **av, t_client *, t_kernel *kernel);
 int		cmd_expulse(char **av, t_client *, t_kernel *kernel);

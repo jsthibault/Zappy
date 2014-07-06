@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:19 2014 lefloc_l
-** Last update sam. juil. 05 15:46:25 2014 lefloc_l
+** Last update Mon Jul  7 01:07:12 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -21,12 +21,14 @@ int		cmd_pose_objet(char **av, t_client *cl, t_kernel *kernel)
   t_case	*c;
   int		obj;
 
-  (void)av;
-  (void)kernel;
   if (av_length(av) != 2)
     return (-1);
   c = get_case(kernel, cl->player->pos.y, cl->player->pos.x);
-  obj = atoi(av[1]);
+  if ((obj = atoi_objet(av[1])) < 0)
+    {
+      write_socket(cl->fd, "ko\n");
+      return (0);
+    }
   if (cl->player->inventory.items[obj] > 0)
   {
     c->inventory.items[obj]++;
@@ -35,8 +37,6 @@ int		cmd_pose_objet(char **av, t_client *cl, t_kernel *kernel)
     send_pose_to_graphic(kernel, cl->player, cl->player->inventory.items[obj]);
   }
   else
-  {
     write_socket(cl->fd, "ko\n");
-  }
   return (0);
 }
