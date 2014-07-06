@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Fri Jul  4 12:18:54 2014 arnaud drain
+** Last update Mon Jul  7 00:23:28 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -56,6 +56,7 @@ typedef struct		s_player
   t_team		*team;
   int			pv;
   int			level;
+  int			food_time;
   t_orientation		orientation;
   t_inventory		inventory;
 }			t_player;

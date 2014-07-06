@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Sun Jul  6 01:10:38 2014 arnaud drain
+** Last update Mon Jul  7 00:53:31 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -180,12 +180,42 @@ static void	pop_action(t_kernel *kernel, t_actions *action)
   free(actions_tmp);
 }
 
+static int	manage_food(t_kernel *kernel)
+{
+  t_client	*client;
+
+  client = kernel->clients;
+  while (client)
+    {
+      if (client->player)
+	{
+	  --(client->player->food_time);
+	  if (client->player->food_time == 0)
+	    {
+	      printf("remove from %d\n", client->player->inventory.items[FOOD]);
+	      if (client->player->inventory.items[FOOD] == 0)
+		{
+		  write_socket(client->fd, "mort\n");
+		  pop_client(client->fd, kernel);
+		  return (1);
+		}
+	      --(client->player->inventory.items[FOOD]);
+	      client->player->food_time = 126;
+	    }
+	}
+      client = client->next;
+    }
+  return (0);
+}
+
 static int	manage_actions(t_kernel *kernel)
 {
   int		i;
   t_actions	*actions;
   t_actions	*actions_tmp;
 
+  if (manage_food(kernel))
+    return (1);
   actions = kernel->actions;
   while (actions)
     {

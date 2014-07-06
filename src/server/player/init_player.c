@@ -5,10 +5,11 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Sat Jul  5 15:43:35 2014 arnaud drain
+** Last update Mon Jul  7 00:54:50 2014 arnaud drain
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include "kernel.h"
 #include "client_action.h"
 
@@ -30,6 +31,21 @@ int		get_max_id(t_kernel *kernel)
       ++pos;
     }
   return (max_id);
+}
+
+void	init_inventory(t_inventory *inventory)
+{
+  int	i;
+  int	*items;
+
+  items = inventory->items;
+  i = 0;
+  while (i < ITEM_TYPE)
+    {
+      items[i] = 0;
+      ++i;
+    }
+  items[FOOD] = 10;
 }
 
 t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
@@ -54,6 +70,8 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
   add_player_on_map(kernel, player, pos.x, pos.y);
   player->level = 1;
   player->orientation = rand() % 4 + 1;
+  player->food_time = 126;
+  init_inventory(&(player->inventory));
   send_connexion_to_graphic(kernel, player);
   return (player);
 }
