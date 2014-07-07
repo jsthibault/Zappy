@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update sam. juil. 05 15:49:56 2014 lefloc_l
+** Last update lun. juil. 07 15:09:38 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -31,6 +31,7 @@ void		send_prend_to_graphic(t_kernel *, t_player *, int);
 void		send_pose_to_graphic(t_kernel *, t_player *, int);
 void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
+void		send_expulse_to_graphic(t_kernel *, int);
 
 /*
 ** graphic command.

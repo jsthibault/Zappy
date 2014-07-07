@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Sat Jul  5 15:43:35 2014 arnaud drain
+** Last update lun. juil. 07 14:58:54 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -32,7 +32,8 @@ int		get_max_id(t_kernel *kernel)
   return (max_id);
 }
 
-t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
+t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
+    t_client *cl)
 {
   t_team	*team;
   t_player	*player;
@@ -53,6 +54,7 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
   player->team = team;
   add_player_on_map(kernel, player, pos.x, pos.y);
   player->level = 1;
+  player->fd = &cl->fd;
   player->orientation = rand() % 4 + 1;
   send_connexion_to_graphic(kernel, player);
   return (player);

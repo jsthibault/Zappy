@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update sam. juil. 05 15:43:40 2014 lefloc_l
+** Last update lun. juil. 07 14:46:25 2014 lefloc_l
 */
 
 #include <string.h>
@@ -70,30 +70,13 @@ static	void	dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
   write_socket(cl->fd, buffer);
 }
 
-static t_pos	get_dir(t_client *cl)
-{
-  t_pos		dir;
-
-  dir.x = 0;
-  dir.y = 0;
-  if (cl->player->orientation == NORTH)
-    dir.y--;
-  else if (cl->player->orientation == SOUTH)
-    dir.y++;
-  else if (cl->player->orientation == EAST)
-    dir.x++;
-  else
-    dir.x--;
-  return (dir);
-}
-
 static void	check_line(t_kernel *kernel, t_pos init,
 			   t_client *cl, int range)
 {
   t_pos		pos;
   t_pos		dir;
 
-  dir = get_dir(cl);
+  dir = get_dir(cl->player->orientation);
   if (range == cl->player->level + 1)
     return ;
   logger_debug("check_line range:%d", range);

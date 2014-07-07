@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  sam. juil. 05 15:55:24 2014 lefloc_l
+## Last update  lun. juil. 07 15:05:31 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -35,6 +35,7 @@ SRC_SERVER=	options/init_options.c \
 		init.c \
 		functions.c \
 		action.c \
+		player/get_orientation.c \
 		options/options_other.c \
 		options/options_with_int.c \
 		options/parse_options.c \
@@ -72,6 +73,7 @@ SRC_SERVER=	options/init_options.c \
 		player/get_player.c \
 		event/action.c \
 		event/connexion.c \
+		event/expulse.c \
 
 SRC_LIST=	list_add.c \
 		list.c \

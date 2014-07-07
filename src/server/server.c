@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update sam. juil. 05 16:55:17 2014 lefloc_l
+** Last update lun. juil. 07 14:58:37 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -90,7 +90,7 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 
   if (av[0] && !client->graphic && !client->player)
     {
-      if (!(client->player = init_player_with_teamname(kernel, av[0])))
+      if (!(client->player = init_player_with_teamname(kernel, av[0], client)))
 	{
 	  freetab(av);
 	  return (0);
