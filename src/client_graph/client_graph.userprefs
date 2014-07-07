@@ -1,0 +1,30 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="client_graph/Network/Network.cs">
+    <Files>
+      <File FileName="client_graph/Interface/UI.cs" Line="80" Column="15" />
+      <File FileName="client_graph/Interface/Controls/ListBox.cs" Line="106" Column="1" />
+      <File FileName="client_graph/Interface/Extension/SpriteBatch.cs" Line="32" Column="1" />
+      <File FileName="client_graph/Interface/Controls/Button.cs" Line="1" Column="1" />
+      <File FileName="client_graph/Network/Network.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="client_graph" expanded="True" selected="True">
+            <Node name="Content" expanded="True" />
+            <Node name="Interface" expanded="True">
+              <Node name="Controls" expanded="True" />
+              <Node name="Extension" expanded="True" />
+            </Node>
+            <Node name="Network" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

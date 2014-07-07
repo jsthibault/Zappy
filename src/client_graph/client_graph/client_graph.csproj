@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDF0D616-33B3-43DE-8C3F-AB6BD049CE50}</ProjectGuid>
+    <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>client_graph</RootNamespace>
+    <AssemblyName>client_graph</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="OpenTK">
+      <Package>opentk</Package>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Linux">
+      <Package>monogame</Package>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <Package>monogame</Package>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <Package>tao-sdl</Package>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="OpenTK.GLControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Private>False</Private>
+      <Package>opentk</Package>
+    </Reference>
+    <Reference Include="OpenTK.Compatibility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Private>False</Private>
+      <Package>opentk</Package>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MainZappy.cs" />
+    <Compile Include="Interface\UI.cs" />
+    <Compile Include="Interface\Controls\Button.cs" />
+    <Compile Include="Interface\Controls\CheckBox.cs" />
+    <Compile Include="Interface\Controls\Container.cs" />
+    <Compile Include="Interface\Controls\Control.cs" />
+    <Compile Include="Interface\Controls\ImageBox.cs" />
+    <Compile Include="Interface\Controls\Label.cs" />
+    <Compile Include="Interface\Controls\ListBox.cs" />
+    <Compile Include="Interface\Controls\ProgressBar.cs" />
+    <Compile Include="Interface\Controls\TextBox.cs" />
+    <Compile Include="Interface\Controls\Window.cs" />
+    <Compile Include="Interface\Events\EventType.cs" />
+    <Compile Include="Interface\Extension\Keyboard.cs" />
+    <Compile Include="Interface\Extension\Mouse.cs" />
+    <Compile Include="Interface\Extension\SpriteBatch.cs" />
+    <Compile Include="Interface\Extension\Texture.cs" />
+    <Compile Include="Interface\Managers\CursorManager.cs" />
+    <Compile Include="Interface\Managers\FontManager.cs" />
+    <Compile Include="Interface\Managers\TextureManager.cs" />
+    <Compile Include="Core\AudioManager.cs" />
+    <Compile Include="Core\2DEngine\Camera.cs" />
+    <Compile Include="Core\2DEngine\Character.cs" />
+    <Compile Include="Core\2DEngine\Map.cs" />
+    <Compile Include="Core\ScreenManager\AScreen.cs" />
+    <Compile Include="Core\ScreenManager\ScreenException.cs" />
+    <Compile Include="Core\ScreenManager\ScreenManager.cs" />
+    <Compile Include="Core\Screens\GameScreen.cs" />
+    <Compile Include="Core\Screens\MainScreen.cs" />
+    <Compile Include="Core\Windows\Inventory.cs" />
+    <Compile Include="Core\Windows\LoginWnd.cs" />
+    <Compile Include="Core\Windows\Options.cs" />
+    <Compile Include="Core\Windows\Panel.cs" />
+    <Compile Include="Core\Windows\PlayerList.cs" />
+    <Compile Include="Core\Windows\Popup.cs" />
+    <Compile Include="Core\Windows\Viewer.cs" />
+    <Compile Include="Network\ClientFunctions.cs" />
+    <Compile Include="Network\Messages.cs" />
+    <Compile Include="Network\Network.cs" />
+    <Compile Include="Network\Parser.cs" />
+    <Compile Include="Network\ServerFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon.png" />
+    <None Include="Content\Music\login.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Interface\" />
+    <Folder Include="Core\" />
+    <Folder Include="Network\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Content\Background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\chocobo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\game.wav" />
+    <Content Include="Content\TexturesMap\cursor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\grass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\moutain.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\water.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Buttons\ButtNormal00.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Controls\ButtCheck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Controls\ButtRadio.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Font\Arial Black9.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Font\TrebuchetMS10Bold.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ActionSlotEff4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\ButtNum8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\itemsBg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\itemsBgHover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Inventory\levelsBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxDown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxSelector.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\TargetgaugeBg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\TextBox\TextBoxCursor.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Viewer\circle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Viewer\legend.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\ButtWndExit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile00.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile06.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile07.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile09.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\panel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\viewer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\window.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\popup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Window\WndTile04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ProgressBars\Targetgauge03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\TextBox\TextBox1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\TextBox\TextBox2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\TextBox\TextBox3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\ListBox\ListBoxUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Theme\Font\TrebuchetMS10.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile" SyncReferences="true">
+          <BuildFilesVar Sync="true" Name="FILES" />
+          <DeployFilesVar />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar Sync="true" Name="REFERENCES" />
+          <AsmRefVar Sync="true" Name="REFERENCES" />
+          <ProjectRefVar Sync="true" Name="REFERENCES" />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
