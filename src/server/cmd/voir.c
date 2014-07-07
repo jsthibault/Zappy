@@ -6,7 +6,7 @@
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
 <<<<<<< HEAD
-** Last update lun. juil. 07 15:17:58 2014 lefloc_l
+** Last update Mon Jul  7 18:20:09 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update lun. juil. 07 15:17:58 2014 lefloc_l
 =======
@@ -74,6 +74,20 @@ static void	dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
   write_socket(cl->fd, buffer);
 }
 
+static void	get_vec(t_orientation orientation, t_pos *dir)
+{
+  dir->x = 0;
+  dir->y = 0;
+  if (orientation == NORTH)
+    dir->x = 1;
+  else if (orientation == SOUTH)
+    dir->x = -1;
+  else if (orientation == EAST)
+    dir->y = 1;
+  else
+    dir->y = -1;
+}
+
 static int	check_line(t_kernel *kernel, t_pos init,
 			   t_client *cl, int range)
 {
@@ -83,7 +97,7 @@ static int	check_line(t_kernel *kernel, t_pos init,
 
   if (range == cl->player->level + 1)
     return (0);
-  dir = get_dir(cl->player->orientation);
+  get_vec(cl->player->orientation, &dir);
   logger_debug("check_line range:%d", range);
   pos.y = init.y - (dir.y * range);
   pos.x = init.x - (dir.x * range);
@@ -105,9 +119,11 @@ static int	check_line(t_kernel *kernel, t_pos init,
 int		cmd_voir(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
+  if (write_socket(cl->fd, "{") <= 0)
+    return (1);
   if (check_line(kernel, cl->player->pos, cl, 0))
     return (1);
-  if (write_socket(cl->fd, "\n") <= 0)
+  if (write_socket(cl->fd, "}\n") <= 0)
     return (1);
   return (0);
 }

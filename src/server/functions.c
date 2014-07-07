@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Sun Jul  6 01:13:45 2014 arnaud drain
+** Last update Mon Jul  7 17:48:36 2014 arnaud drain
 */
 
 #include <string.h>
@@ -145,6 +145,13 @@ static int	print_bct(int fd, t_case *map_case, int x, int y)
 static int	sbp(int fd)
 {
   if (write_socket(fd, "sbp\n") <= 0)
+    return (1);
+  return (0);
+}
+
+int	ko(int fd)
+{
+  if (write_socket(fd, "ko\n") <= 0)
     return (1);
   return (0);
 }
