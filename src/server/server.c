@@ -5,7 +5,13 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
+<<<<<<< HEAD
 ** Last update lun. juil. 07 14:58:37 2014 lefloc_l
+||||||| merged common ancestors
+** Last update sam. juil. 05 16:55:17 2014 lefloc_l
+=======
+** Last update Mon Jul  7 00:59:57 2014 arnaud drain
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #include <stdio.h>
@@ -34,6 +40,9 @@ static const t_functions g_functions[] =
       {"tna", tna, GRAPHIC, 0},
       {"ppo", ppo, GRAPHIC, 0},
       {"plv", plv, GRAPHIC, 0},
+      {"pin", pin, GRAPHIC, 0},
+      {"sgt", sgt, GRAPHIC, 0},
+      {"sst", sst, GRAPHIC, 0},
       {"avance", cmd_avance, CLIENT, 7},
       {"gauche", cmd_gauche, CLIENT, 7},
       {"droite", cmd_droite, CLIENT, 7},
@@ -177,12 +186,42 @@ static void	pop_action(t_kernel *kernel, t_actions *action)
   free(actions_tmp);
 }
 
+static int	manage_food(t_kernel *kernel)
+{
+  t_client	*client;
+
+  client = kernel->clients;
+  while (client)
+    {
+      if (client->player)
+	{
+	  --(client->player->food_time);
+	  if (client->player->food_time == 0)
+	    {
+	      if (client->player->inventory.items[FOOD] == 0)
+		{
+		  write_socket(client->fd, "mort\n");
+		  send_deconnexion_to_graphic(kernel, client->player);
+		  pop_client(client->fd, kernel);
+		  return (1);
+		}
+	      --(client->player->inventory.items[FOOD]);
+	      client->player->food_time = 126;
+	    }
+	}
+      client = client->next;
+    }
+  return (0);
+}
+
 static int	manage_actions(t_kernel *kernel)
 {
   int		i;
   t_actions	*actions;
   t_actions	*actions_tmp;
 
+  if (manage_food(kernel))
+    return (1);
   actions = kernel->actions;
   while (actions)
     {

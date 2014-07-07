@@ -5,10 +5,17 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update lun. juil. 07 14:58:54 2014 lefloc_l
+<<<<<<< HEAD
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+||||||| merged common ancestors
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+=======
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include "kernel.h"
 #include "client_action.h"
 
@@ -30,6 +37,21 @@ int		get_max_id(t_kernel *kernel)
       ++pos;
     }
   return (max_id);
+}
+
+void	init_inventory(t_inventory *inventory)
+{
+  int	i;
+  int	*items;
+
+  items = inventory->items;
+  i = 0;
+  while (i < ITEM_TYPE)
+    {
+      items[i] = 0;
+      ++i;
+    }
+  items[FOOD] = 10;
 }
 
 t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
@@ -56,6 +78,8 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   player->level = 1;
   player->fd = &cl->fd;
   player->orientation = rand() % 4 + 1;
+  player->food_time = 126;
+  init_inventory(&(player->inventory));
   send_connexion_to_graphic(kernel, player);
   return (player);
 }

@@ -5,7 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
+<<<<<<< HEAD
 ** Last update lun. juil. 07 15:09:38 2014 lefloc_l
+||||||| merged common ancestors
+** Last update sam. juil. 05 15:49:56 2014 lefloc_l
+=======
+** Last update Mon Jul  7 01:07:41 2014 arnaud drain
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -29,9 +35,15 @@ int		graphic(char **, t_client *, t_kernel *);
 void		send_position_to_graphic(t_kernel *, t_player *);
 void		send_prend_to_graphic(t_kernel *, t_player *, int);
 void		send_pose_to_graphic(t_kernel *, t_player *, int);
+void		send_deconnexion_to_graphic(t_kernel *, t_player *);
 void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
 void		send_expulse_to_graphic(t_kernel *, int);
+
+/*
+** grahic print functions.
+*/
+int		print_tna(int fd, t_kernel *kernel);
 
 /*
 ** graphic command.
@@ -42,6 +54,9 @@ int		mct(char **, t_client *, t_kernel *);
 int		tna(char **, t_client *, t_kernel *);
 int		ppo(char **, t_client *, t_kernel *);
 int		plv(char **, t_client *, t_kernel *);
+int		pin(char **, t_client *, t_kernel *);
+int		sgt(char **, t_client *, t_kernel *);
+int		sst(char **, t_client *, t_kernel *);
 t_bool		pnw(int, t_player *);
 t_bool		pie(int, t_pos, int);
 t_bool		pex(int, int);
@@ -64,6 +79,7 @@ int		cmd_droite(char **av, t_client *, t_kernel *kernel);
 int		cmd_gauche(char **av, t_client *, t_kernel *kernel);
 int		cmd_voir(char **av, t_client *, t_kernel *kernel);
 int		cmd_inventaire(char **av, t_client *, t_kernel *kernel);
+int		atoi_objet(char *objet);
 int		cmd_prend_objet(char **av, t_client *, t_kernel *kernel);
 int		cmd_pose_objet(char **av, t_client *, t_kernel *kernel);
 int		cmd_expulse(char **av, t_client *, t_kernel *kernel);
