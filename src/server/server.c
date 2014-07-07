@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jul  7 00:59:57 2014 arnaud drain
+** Last update Mon Jul  7 16:06:08 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -48,7 +48,7 @@ static const t_functions g_functions[] =
       {"pose", cmd_pose_objet, CLIENT, 7},
       {"expulse", cmd_expulse, CLIENT, 7},
       {"broadcast", cmd_broadcast_texte, CLIENT, 7},
-      {"incantation", cmd_incantation, CLIENT, 300},
+      {"incantation", cmd_incantation, CLIENT, 0},
       {"fork", cmd_fork, CLIENT, 42},
       {"connect_nbr", cmd_connect_nbr, CLIENT, 0},
       {NULL, NULL, AUTH, 0}

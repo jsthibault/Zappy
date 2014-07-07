@@ -43,3 +43,5 @@ virer les todo et fence
 
 y x ou x y partout :)
 il faut faire un choix corneliens. choisi le bon cote de la force.
+
+faire en sorte que les actions attendent bien gentiment à la queue leu leu
