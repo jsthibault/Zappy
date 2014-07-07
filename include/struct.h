@@ -5,7 +5,13 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Mon Jul  7 00:23:28 2014 arnaud drain
+<<<<<<< HEAD
+** Last update lun. juil. 07 15:15:30 2014 lefloc_l
+||||||| merged common ancestors
+** Last update lun. juil. 07 15:15:30 2014 lefloc_l
+=======
+** Last update lun. juil. 07 15:15:30 2014 lefloc_l
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #ifndef STRUCT_H_
@@ -56,6 +62,7 @@ typedef struct		s_player
   t_team		*team;
   int			pv;
   int			level;
+  int			*fd;
   int			food_time;
   t_orientation		orientation;
   t_inventory		inventory;

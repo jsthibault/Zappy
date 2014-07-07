@@ -5,7 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Mon Jul  7 00:57:24 2014 arnaud drain
+<<<<<<< HEAD
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+||||||| merged common ancestors
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+=======
+** Last update lun. juil. 07 15:16:24 2014 lefloc_l
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #include <stdlib.h>
@@ -48,7 +54,8 @@ void	init_inventory(t_inventory *inventory)
   items[FOOD] = 10;
 }
 
-t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
+t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
+    t_client *cl)
 {
   t_team	*team;
   t_player	*player;
@@ -69,6 +76,7 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname)
   player->team = team;
   add_player_on_map(kernel, player, pos.x, pos.y);
   player->level = 1;
+  player->fd = &cl->fd;
   player->orientation = rand() % 4 + 1;
   player->food_time = 126;
   init_inventory(&(player->inventory));

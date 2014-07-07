@@ -5,7 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Mon Jul  7 01:07:41 2014 arnaud drain
+<<<<<<< HEAD
+** Last update lun. juil. 07 15:48:33 2014 lefloc_l
+||||||| merged common ancestors
+** Last update lun. juil. 07 15:48:33 2014 lefloc_l
+=======
+** Last update lun. juil. 07 15:48:33 2014 lefloc_l
+>>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -32,6 +38,7 @@ void		send_pose_to_graphic(t_kernel *, t_player *, int);
 void		send_deconnexion_to_graphic(t_kernel *, t_player *);
 void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
+void		send_expulse_to_graphic(t_kernel *, int);
 
 /*
 ** grahic print functions.
@@ -80,5 +87,10 @@ int		cmd_broadcast_texte(char **av, t_client *, t_kernel *kernel);
 int		cmd_incantation(char **av, t_client *, t_kernel *kernel);
 int		cmd_fork(char **av, t_client *, t_kernel *kernel);
 int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
+
+/*
+** client utils functions.
+*/
+int		get_k_value(t_player *, t_player *);
 
 #endif /* !CLIENT_ACTION_H_ */
