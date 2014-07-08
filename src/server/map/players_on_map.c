@@ -6,7 +6,7 @@
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
 <<<<<<< HEAD
-** Last update mar. juil. 08 14:51:11 2014 lefloc_l
+** Last update Tue Jul  8 16:21:44 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update Mon Jul  7 17:58:39 2014 arnaud drain
 =======
@@ -27,11 +27,7 @@ static t_bool	find_player_to_remove(void *c, void *p)
   current = (t_player *)c;
   player = (t_player *)p;
   if (current->id == player->id)
-    {
-      printf("true\n");
-      return (TRUE);
-    }
-  printf("false\n");
+    return (TRUE);
   return (FALSE);
 }
 
@@ -44,8 +40,6 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
     logger_error("Invalid case on remove_player_on_map");
   if (c && list_is_empty(c->players) == FALSE)
     list_pop_func_arg(&c->players, &find_player_to_remove, player);
-  if (c->players == NULL)
-    printf("plus de players\n");
 }
 
 void		add_player_on_map(t_kernel *kernel, t_player *player,

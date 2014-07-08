@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jul  7 00:52:16 2014 arnaud drain
+** Last update Tue Jul  8 16:15:38 2014 arnaud drain
 */
 
 #include <sys/socket.h>
@@ -90,7 +90,8 @@ void		pop_client(int fd, t_kernel *kernel)
       tmp_free = tmp->next;
       tmp->next = tmp->next->next;
     }
-  /* TODO free le player */
+  if (tmp_free->player)
+    remove_player(kernel, tmp_free->player);
   close(tmp_free->fd);
   free(tmp_free->ip);
   free(tmp_free);

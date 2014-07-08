@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update mar. juil. 08 14:56:27 2014 lefloc_l
+** Last update Tue Jul  8 16:17:11 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -90,8 +90,11 @@ static t_bool	remove_player_on_team(void *c, void *p)
   return (FALSE);
 }
 
-void	remove_player(t_player *player)
+void	remove_player(t_kernel *kernel, t_player *player)
 {
+  send_deconnexion_to_graphic(kernel, player);
   list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
+  //passer les actions en liste générique et les poper
+  remove_player_on_map(kernel, player);
   free(player);
 }

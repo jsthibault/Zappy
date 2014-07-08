@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update mar. juil. 08 14:56:40 2014 lefloc_l
+** Last update Tue Jul  8 16:34:11 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -118,37 +118,55 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
   return (0);
 }
 
+static char	*find_end(char *line)
+{
+  while (line && *line && *line != '\n')
+    ++line;
+  while (line && *line == '\n')
+    ++line;
+  return (line);
+}
+
 static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 {
   char		**av;
   int		i;
   int		ret;
 
-  i = 0;
-  if (!(av = my_str_to_wordtab(line)))
-    return (-1);
-  while (av[0] && g_functions[i].name)
+  while (line && *line)
     {
-      if (!strcmp(av[0], g_functions[i].name))
+      if (!(av = my_str_to_wordtab(line)))
+	return (-1);
+      i = 0;
+      ret = 0;
+      while (!ret && av[0] && g_functions[i].name)
 	{
-	  ret = 0;
-	  if (g_functions[i].type == CLIENT && client->player)
+	  if (!strcmp(av[0], g_functions[i].name))
 	    {
-	      if (add_action(kernel, g_functions[i].timeout, client, av))
-		ret = -1;
+	      if (g_functions[i].type == CLIENT && client->player)
+		{
+		  if (add_action(kernel, g_functions[i].timeout, client, av))
+		    ret = -1;
+		}
+	      else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
+		       (g_functions[i].type == AUTH && !(client->graphic) &&
+			!(client->player)))
+		{
+		  ret = g_functions[i].function(av, client, kernel);
+		  freetab(av);
+		}
+	      if (ret)
+		return (ret);
+	      ret = 1;
 	    }
-	  else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
-		   (g_functions[i].type == AUTH && !(client->graphic) &&
-		    !(client->player)))
-	    {
-	      ret = g_functions[i].function(av, client, kernel);
-	      freetab(av);
-	    }
-	  return (ret);
+	  ++i;
 	}
-      ++i;
+      if (!g_functions[i].name)
+	if ((ret = game_auth(av, client, kernel)))
+	  return (ret);
+      line = find_end(line);
     }
-  return (game_auth(av, client, kernel));
+  return (0);
 }
 
 static int	cmd_client(t_client *client, t_kernel *kernel,
@@ -204,7 +222,6 @@ static int	manage_food(t_kernel *kernel)
 	      if (client->player->inventory.items[FOOD] == 0)
 		{
 		  write_socket(client->fd, "mort\n");
-		  send_deconnexion_to_graphic(kernel, client->player);
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}

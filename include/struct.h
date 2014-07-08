@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Tue Jul  8 00:46:42 2014 arnaud drain
+** Last update Tue Jul  8 16:14:45 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_

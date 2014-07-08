@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Mon Jul  7 17:48:36 2014 arnaud drain
+** Last update Tue Jul  8 16:20:35 2014 arnaud drain
 */
 
 #include <string.h>
@@ -196,7 +196,6 @@ int		print_players(int fd, t_kernel *kernel)
 {
   t_node	*node;
 
-  printf("wé\n");
   if (!(kernel->game.players))
     return (0);
   node = kernel->game.players->head;
@@ -214,7 +213,6 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
   char	buf[BUFFER_SIZE];
 
   (void)av;
-  printf("wesh\n");
   if (cl->player)
     return (0);
   cl->graphic = TRUE;
@@ -232,7 +230,6 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
     return (1);
   if (print_players(cl->fd, kernel) < 0)
     return (1);
-  // liste des joueurs
   // liste des oeufs
   return (0);
 }
