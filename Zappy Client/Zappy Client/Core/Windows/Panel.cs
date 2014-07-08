@@ -95,6 +95,8 @@ namespace Zappy_Client.Core.Windows
 
         private void onClickOptions(object sender)
         {
+            this.Engine.SetCurrentContainer("Options");
+            this.Engine.GetContainer("LoginWindow").Visible = false;
             this.Engine.GetContainer("Options").Visible = true;
         }
         #endregion

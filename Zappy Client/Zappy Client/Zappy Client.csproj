@@ -53,7 +53,6 @@
     <Compile Include="Core\Windows\PlayerList.cs" />
     <Compile Include="Interface\Controls\ImageBox.cs" />
     <Compile Include="Interface\Controls\ListBox.cs" />
-    <Compile Include="Interface\Extension\Texture.cs" />
     <Compile Include="MainZappy.cs" />
     <Compile Include="Interface\Controls\Button.cs" />
     <Compile Include="Interface\Controls\CheckBox.cs" />
@@ -117,6 +116,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\TexturesMap\grass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\grid.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\TexturesMap\moutain.png">
@@ -258,7 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Theme\Cursors\" />
-    <Folder Include="Core\3DEngine\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Theme\Font\Arial Black9.xnb">

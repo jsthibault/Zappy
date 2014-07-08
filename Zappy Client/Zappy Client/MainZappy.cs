@@ -12,8 +12,8 @@ namespace Zappy_Client
     public class Zappy : Game
     {
         public static Zappy instance;
-        public const Int32 Width = 1024;
-        public const Int32 Height = 728;
+        public const Int32 Width = 1310;
+        public const Int32 Height = 930;
 
         public UI InterfaceEngine;
         public ScreenManager ScreenManager;
@@ -34,59 +34,20 @@ namespace Zappy_Client
         {
             instance = this;
             this.graphics = new GraphicsDeviceManager(this);
-            this.graphics.PreferredBackBufferWidth = Width;
-            this.graphics.PreferredBackBufferHeight = Height;
             this.Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-            // Set event Exit delegate
-            this.Exiting += Zappy_Exiting;
+            // Initialize window parameters
+            this.InitializeWindow();
 
             // Creates the network instance
             Network.Instance.Create();
 
-            // Initialize the InterfaceEngine
-            this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
-            // Create the Login Window
-            this.LoginWindow = new LoginWnd(this.InterfaceEngine, this);
-            // Create the player list window
-            this.PlayerList = new WndPlayerList(this.InterfaceEngine);
-            this.PlayerList.Visible = false;
-            // Create the popup window
-            this.PopupWindow = new Popup(this.InterfaceEngine);
-            this.PopupWindow.Visible = false;
-            // Create the ressources viewer
-            this.RessourcesViewer = new Viewer(this.InterfaceEngine);
-            this.RessourcesViewer.Visible = false;
-            // Create the ressources viewer
-            this.PanelWindow = new Panel(this.InterfaceEngine);
-            this.PanelWindow.Visible = true;
-            // Create the options window
-            this.OptionsWindow = new Options(this.InterfaceEngine);
-            this.OptionsWindow.Visible = false;
-            // Create the options window
-            this.OptionsWindow = new Options(this.InterfaceEngine);
-            this.OptionsWindow.Visible = false;
-            // Create the player list window
-            this.InventoryWindow = new Inventory(this.InterfaceEngine);
-            this.InventoryWindow.Visible = false;
-            // Add the Login Window to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.LoginWindow);
-            // Add the Player List Window to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.PlayerList);
-            // Add the Player inventory to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.InventoryWindow);
-            // Add the ressources viewer to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.RessourcesViewer);
-            // Add the panel to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.PanelWindow);
-            // Add the Options to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.OptionsWindow);
-            // Add the Popup Window to the InterfaceEngine
-            this.InterfaceEngine.AddContainer(this.PopupWindow);
+            // Initialize the interface
+            this.InitializeInterface();
 
             // Initialize the ScreenManager
             this.ScreenManager = new ScreenManager(this);
@@ -151,6 +112,64 @@ namespace Zappy_Client
             this.InterfaceEngine.Draw();
 
             base.Draw(gameTime);
+        }
+
+        private void InitializeWindow()
+        {
+            // Set correct window size
+            this.graphics.PreferredBackBufferWidth = Width;
+            this.graphics.PreferredBackBufferHeight = Height;
+            this.graphics.ApplyChanges();
+            this.Window.Title = "Final Zappy";
+
+            // Set event Exit delegate
+            this.Exiting += Zappy_Exiting;
+        }
+
+        /// <summary>
+        /// Initialize the interface engine
+        /// </summary>
+        private void InitializeInterface()
+        {
+            // Initialize the InterfaceEngine
+            this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
+            // Create the Login Window
+            this.LoginWindow = new LoginWnd(this.InterfaceEngine, this);
+            // Create the player list window
+            this.PlayerList = new WndPlayerList(this.InterfaceEngine);
+            this.PlayerList.Visible = false;
+            // Create the popup window
+            this.PopupWindow = new Popup(this.InterfaceEngine);
+            this.PopupWindow.Visible = false;
+            // Create the ressources viewer
+            this.RessourcesViewer = new Viewer(this.InterfaceEngine);
+            this.RessourcesViewer.Visible = false;
+            // Create the ressources viewer
+            this.PanelWindow = new Panel(this.InterfaceEngine);
+            this.PanelWindow.Visible = true;
+            // Create the options window
+            this.OptionsWindow = new Options(this.InterfaceEngine);
+            this.OptionsWindow.Visible = false;
+            // Create the options window
+            this.OptionsWindow = new Options(this.InterfaceEngine);
+            this.OptionsWindow.Visible = false;
+            // Create the player list window
+            this.InventoryWindow = new Inventory(this.InterfaceEngine);
+            this.InventoryWindow.Visible = false;
+            // Add the Login Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.LoginWindow);
+            // Add the Player List Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.PlayerList);
+            // Add the Player inventory to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.InventoryWindow);
+            // Add the ressources viewer to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.RessourcesViewer);
+            // Add the panel to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.PanelWindow);
+            // Add the Options to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.OptionsWindow);
+            // Add the Popup Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.PopupWindow);
         }
     }
 }

@@ -28,14 +28,6 @@ namespace Zappy_Client.Interface
 
         private Int32 MaxItems { get; set; }
 
-        private ImageBox ButtonUp { get; set; }
-
-        private ImageBox ButtonDown { get; set; }
-
-        private Texture2D[] TextureUp { get; set;}
-
-        private Texture2D[] TextureDown { get; set; }
-
         #endregion
 
         #region CONSTRUCTORS
@@ -107,28 +99,6 @@ namespace Zappy_Client.Interface
 
             Int32 _textureWidth = this.Engine.Textures["ListBoxDown"].Width / 4;
             Int32 _textureHeight = this.Engine.Textures["ListBoxDown"].Height;
-            this.TextureDown = new Texture2D[4]; 
-            this.TextureUp = new Texture2D[4];
-            for (Int32 i = 0; i < 4; ++i)
-            {
-                this.TextureDown[i] = new Texture2D(this.Engine.GraphicsDevice, _textureWidth, _textureHeight);
-                this.TextureUp[i] = new Texture2D(this.Engine.GraphicsDevice, _textureWidth, _textureHeight);
-            }
-            // Down button
-            this.TextureDown[0].SetNewTexture(this.Engine.Textures["ListBoxDown"], new Rectangle(0, 0, _textureWidth, _textureHeight)); // hover
-            this.TextureDown[1].SetNewTexture(this.Engine.Textures["ListBoxDown"], new Rectangle(_textureWidth, 0, _textureWidth, _textureHeight)); // normal
-            this.TextureDown[2].SetNewTexture(this.Engine.Textures["ListBoxDown"], new Rectangle(_textureWidth * 2, 0, _textureWidth, _textureHeight)); // pressed
-            this.TextureDown[3].SetNewTexture(this.Engine.Textures["ListBoxDown"], new Rectangle(_textureWidth * 3, 0, _textureWidth, _textureHeight)); // disable
-            // Up button
-            this.TextureUp[0].SetNewTexture(this.Engine.Textures["ListBoxUp"], new Rectangle(0, 0, _textureWidth, _textureHeight)); // hover
-            this.TextureUp[1].SetNewTexture(this.Engine.Textures["ListBoxUp"], new Rectangle(_textureWidth, 0, _textureWidth, _textureHeight)); // normal
-            this.TextureUp[2].SetNewTexture(this.Engine.Textures["ListBoxUp"], new Rectangle(_textureWidth * 2, 0, _textureWidth, _textureHeight)); // pressed
-            this.TextureUp[3].SetNewTexture(this.Engine.Textures["ListBoxUp"], new Rectangle(_textureWidth * 3, 0, _textureWidth, _textureHeight)); // disable
-            // Set the images base
-            this.ButtonDown = new ImageBox(this.Engine, "ListBoxButtonDown", this.TextureDown[1], this.X + this.Width, this.Y);
-            this.ButtonUp = new ImageBox(this.Engine, "ListBoxButtonUp", this.TextureUp[1], this.X + this.Width, this.Y + this.Height);
-            //this.AddControl(this.ButtonDown);
-            //this.AddControl(this.ButtonUp);
         }
 
         /// <summary>
@@ -246,7 +216,7 @@ namespace Zappy_Client.Interface
         /// </summary>
         public override void MouseClick()
         {
-            Point _mousePosition = Mouse.GetState().Position;
+            Point _mousePosition = Mouse.GetState().GetPosition();
             Int32 _offsetX = 5;
 
             foreach (ListBoxItem item in this.Items)

@@ -34,7 +34,7 @@ namespace Zappy_Client.Interface
         internal FontManager Fonts { get; set; }
         internal TextureManager Textures { get; set; }
 
-        internal List<Container> Contrainers { get; set; }
+        internal List<Container> Containers { get; set; }
 
         internal Control CurrentControl { get; set; }
         internal Container CurrentContainer { get; set; }
@@ -58,7 +58,7 @@ namespace Zappy_Client.Interface
             this.ClientWidth = gameWidth;
             this.ClientHeight = gameHeight;
             this.Textures = new TextureManager();
-            this.Contrainers = new List<Container>();
+            this.Containers = new List<Container>();
             this.Initialize();
         }
 
@@ -127,11 +127,11 @@ namespace Zappy_Client.Interface
             {
                 this.CurrentMovingContainer.ProcessMoves();
             }
-            for (Int32 i = 0; i < this.Contrainers.Count; ++i)
+            for (Int32 i = 0; i < this.Containers.Count; ++i)
             {
-                if (this.Contrainers[i].Visible == true && this.Contrainers[i].Enabled == true)
+                if (this.Containers[i].Visible == true && this.Containers[i].Enabled == true)
                 {
-                    this.Contrainers[i].Update(gameTime);
+                    this.Containers[i].Update(gameTime);
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace Zappy_Client.Interface
         public void Draw()
         {
             this.SpriteBatch.Begin();
-            foreach (Container container in this.Contrainers)
+            foreach (Container container in this.Containers)
             {
                 if (container.Visible == true && container != this.CurrentContainer)
                 {
@@ -162,7 +162,7 @@ namespace Zappy_Client.Interface
         /// <param name="container">Container</param>
         public void AddContainer(Container container)
         {
-            foreach (Container c in this.Contrainers)
+            foreach (Container c in this.Containers)
             {
                 if (c.Name == container.Name)
                 {
@@ -170,7 +170,7 @@ namespace Zappy_Client.Interface
                 }
             }
             this.CurrentContainer = container;
-            this.Contrainers.Add(container);
+            this.Containers.Add(container);
         }
 
         /// <summary>
@@ -179,14 +179,14 @@ namespace Zappy_Client.Interface
         /// <param name="name">Control name</param>
         public void DeleteControl(String name)
         {
-            foreach (Container container in this.Contrainers)
+            foreach (Container container in this.Containers)
             {
                 if (container.Name == name)
                 {
-                    this.Contrainers.Remove(container as Container);
-                    if (this.Contrainers.Count > 0)
+                    this.Containers.Remove(container as Container);
+                    if (this.Containers.Count > 0)
                     {
-                        this.CurrentContainer = this.Contrainers.Last() as Container;
+                        this.CurrentContainer = this.Containers.Last() as Container;
                     }
                     else
                     {
@@ -203,14 +203,30 @@ namespace Zappy_Client.Interface
         /// </summary>
         /// <param name="name">Container's name</param>
         /// <returns>Selected container</returns>
-        public Container GetContainer(string name)
+        public Container GetContainer(String name)
         {
-            foreach (Container item in this.Contrainers)
+            foreach (Container item in this.Containers)
             {
                 if (item.Name == name)
                     return item;
             }
             throw new Exception("Unknown container name \"" + name + "\".");
+        }
+
+        /// <summary>
+        /// Sets the current container by name
+        /// </summary>
+        /// <param name="name"></param>
+        public void SetCurrentContainer(String name)
+        {
+            foreach (Container item in this.Containers)
+            {
+                if (item.Name == name)
+                {
+                    this.CurrentContainer = item;
+                    break;
+                }
+            }
         }
 
         #endregion

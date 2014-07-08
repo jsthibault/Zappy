@@ -123,7 +123,7 @@ namespace Zappy_Client.Core._2DEngine
                         this.FrameLine = 4;
                         this.HitBox.Y -= this.MovingValue;
                         this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32)
+                        if (this.MoveVal > 32 - 1)
                         {
                             --this.Y;
                             this.Moving = false;
@@ -133,7 +133,7 @@ namespace Zappy_Client.Core._2DEngine
                         this.FrameLine = 1;
                         this.HitBox.Y += this.MovingValue;
                         this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32)
+                        if (this.MoveVal > 32 - 1)
                         {
                             ++this.Y;
                             this.Moving = false;
@@ -143,7 +143,7 @@ namespace Zappy_Client.Core._2DEngine
                         this.FrameLine = 2;
                         this.HitBox.X -= this.MovingValue;
                         this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32)
+                        if (this.MoveVal > 32 - 1)
                         {
                             --this.X;
                             this.Moving = false;
@@ -153,7 +153,7 @@ namespace Zappy_Client.Core._2DEngine
                         this.FrameLine = 3;
                         this.HitBox.X += this.MovingValue;
                         this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32)
+                        if (this.MoveVal > 32 - 1)
                         {
                             ++this.X;
                             this.Moving = false;
@@ -189,7 +189,7 @@ namespace Zappy_Client.Core._2DEngine
         {
             this.Direction = direction;
             this.Moving = true;
-            this.MoveVal = 0;
+            //this.MoveVal = 0;
         }
 
         /// <summary>

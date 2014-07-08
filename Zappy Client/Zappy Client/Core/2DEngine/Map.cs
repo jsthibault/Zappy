@@ -45,6 +45,7 @@ namespace Zappy_Client.Core._2DEngine
         private Texture2D Moutain { get; set; }
         private Texture2D Cursor { get; set; }
         private Texture2D Character { get; set; }
+        private Texture2D Grid { get; set; }
         private SpriteFont Debug { get; set; }
 
         const Int32 Case = 32;
@@ -133,7 +134,7 @@ namespace Zappy_Client.Core._2DEngine
 
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
 
-            Vector2 vec = Vector2.Transform(new Vector2(_mouseState.Position.X, _mouseState.Position.Y), Matrix.Invert(this.Camera.GetTransformation()));
+            Vector2 vec = Vector2.Transform(new Vector2(_mouseState.GetPosition().X, _mouseState.GetPosition().Y), Matrix.Invert(this.Camera.GetTransformation()));
 
             this.CursorX = (Convert.ToInt32(vec.X) - this.OffsetX) / Case;
             this.CursorY = (Convert.ToInt32(vec.Y) - this.OffsetY) / Case;
@@ -170,6 +171,10 @@ namespace Zappy_Client.Core._2DEngine
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            this.DrawGrid(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawCursor(spriteBatch);
             spriteBatch.End();
 
@@ -195,6 +200,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Moutain = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
             this.Cursor = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
             this.Character = this.GameInstance.Content.Load<Texture2D>("Characters//chocobo.png");
+            this.Grid = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
@@ -277,6 +283,21 @@ namespace Zappy_Client.Core._2DEngine
             if (this.CursorX >= 0 && this.CursorY >= 0 && this.CursorX < this.Width && this.CursorY < this.Height)
             {
                 spriteBatch.Draw(this.Cursor, new Vector2(this.OffsetX + this.CursorX * 32, this.OffsetY + this.CursorY * 32), Color.White);
+            }
+        }
+
+        /// <summary>
+        /// Draw the grid
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void DrawGrid(SpriteBatch spriteBatch)
+        {
+            for (Int32 i = 0; i < this.Width; ++i)
+            {
+                for (Int32 j = 0; j < this.Height; ++j)
+                {
+                    spriteBatch.Draw(this.Grid, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                }
             }
         }
 

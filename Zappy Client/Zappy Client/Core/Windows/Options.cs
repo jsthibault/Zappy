@@ -88,13 +88,13 @@ namespace Zappy_Client.Core.Windows
             this.Message = new Label(this.Engine, "Message", 140, 13, "Options");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
-            this.X = Zappy.Width / 2 - this.Background.Width / 2;
-            this.Y = Zappy.Height / 2 - this.Background.Height / 2;
+            this.X = 150; //Zappy.Width / 2 - this.Background.Width / 2;
+            this.Y = 250; //Zappy.Height / 2 - this.Background.Height / 2;
             this.Save = new Button(this.Engine, "SaveButton", 52, 160, 110, 0, "Sauvegarder");
             this.Save.OnClick += Save_OnClick;
             this.Quit = new Button(this.Engine, "QuitButton", 185, 160, 110, 0, "Annuler");
             this.Quit.OnClick += Quit_OnClick;
-            this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
+            //this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             this.AddControl(this.Save);
             this.AddControl(this.Quit);
             this.AddControl(this.Message);
@@ -103,12 +103,16 @@ namespace Zappy_Client.Core.Windows
 
         void Quit_OnClick(object sender)
         {
+            this.Engine.SetCurrentContainer("LoginWindow");
+            this.Engine.GetContainer("LoginWindow").Visible = true;
             this.Visible = false;
         }
 
         void Save_OnClick(object sender)
         {
-            
+            this.Engine.SetCurrentContainer("LoginWindow");
+            this.Engine.GetContainer("LoginWindow").Visible = true;
+            this.Visible = false;
         }
 
         /// <summary>

@@ -183,5 +183,15 @@ namespace Zappy_Client.Interface
             return LastMouseState;
         }
 
+        /// <summary>
+        /// Gets the mouse positon
+        /// </summary>
+        /// <param name="mouse"></param>
+        /// <returns></returns>
+        public static Point GetPosition(this MouseState mouse)
+        {
+            return new Point(mouse.X, mouse.Y);
+        }
+
     }
 }
