@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 03 16:26:34 2014 lefloc_l
-** Last update Thu Jul  3 16:44:06 2014 arnaud drain
+** Last update Tue Jul  8 17:05:58 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -16,25 +16,13 @@
 int		add_action(t_kernel *kernel, int time, t_client *client, char **av)
 {
   t_actions	*actions;
-  if (!(kernel->actions))
-    {
-      if (!(kernel->actions = malloc(sizeof(*(kernel->actions)))))
-	return (-1);
-      actions = kernel->actions;
-    }
-  else
-    {
-      actions = kernel->actions;
-      while (actions->next)
-	actions = actions->next;
-      if (!(actions->next = malloc(sizeof(*(kernel->actions)))))
-	return (-1);
-      actions = actions->next;
-    }
+
+  if (!(actions = malloc(sizeof(*(kernel->actions)))))
+    return (-1);
   actions->time_left = time;
   actions->client = client;
   actions->av = av;
-  actions->next = NULL;
+  list_push_front(&(kernel->actions), actions);
   return (0);
 }
 

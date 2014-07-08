@@ -5,30 +5,31 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Tue Jul  8 16:17:11 2014 arnaud drain
+** Last update Tue Jul  8 17:22:08 2014 arnaud drain
 */
 
 #include <stdlib.h>
 #include <string.h>
 #include "kernel.h"
 #include "client_action.h"
+#include "logger.h"
 
 int		get_max_id(t_kernel *kernel)
 {
-  int		max;
-  int		pos;
   int		max_id;
   t_player	*player;
+  t_node	*node;
 
-  max = list_size(kernel->game.players);
-  pos = 0;
   max_id = 0;
-  while (pos < max)
+  node = NULL;
+  if (kernel->game.players)
+    node = kernel->game.players->head;
+  while (node)
     {
-      player = (t_player *)list_get_at(kernel->game.players, pos);
+      player = (t_player *)node->data;
       if (player->id > max_id)
 	max_id = player->id;
-      ++pos;
+      node = node->next;
     }
   return (max_id);
 }
@@ -57,6 +58,7 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
 
   if (!(team = find_team(kernel, teamname)))
     return (NULL);
+  logger_debug("Adding a player to the team %s", teamname);
   if (!(player = malloc(sizeof(*player))))
     return (NULL);
   player->id = get_max_id(kernel) + 1;
@@ -96,5 +98,6 @@ void	remove_player(t_kernel *kernel, t_player *player)
   list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
   //passer les actions en liste générique et les poper
   remove_player_on_map(kernel, player);
+  list_pop_func_arg(&kernel->game.players, &remove_player_on_team, player);
   free(player);
 }

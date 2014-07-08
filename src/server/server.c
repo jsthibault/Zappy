@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update Tue Jul  8 16:34:11 2014 arnaud drain
+** Last update Tue Jul  8 17:29:26 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -188,23 +188,11 @@ static int	cmd_client(t_client *client, t_kernel *kernel,
   return (launch_cmd(buffer, client, kernel));
 }
 
-static void	pop_action(t_kernel *kernel, t_actions *action)
+static void	pop_action(t_kernel *kernel, t_node *node)
 {
-  t_actions	*actions_tmp;
-
-  actions_tmp = kernel->actions;
-  if (actions_tmp == action)
-    kernel->actions = actions_tmp->next;
-  else
-    {
-      while (actions_tmp->next != action)
-	actions_tmp = actions_tmp->next;
-      action = actions_tmp->next;
-      actions_tmp->next = actions_tmp->next->next;
-      actions_tmp = action;
-    }
-  freetab(actions_tmp->av);
-  free(actions_tmp);
+  freetab(((t_actions *)node->data)->av);
+  free(node->data);
+  list_pop_node(&(kernel->actions), node);
 }
 
 static int	manage_food(t_kernel *kernel)
@@ -225,7 +213,7 @@ static int	manage_food(t_kernel *kernel)
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}
-	      //--(client->player->inventory.items[FOOD]);
+	      --(client->player->inventory.items[FOOD]);
 	      client->player->food_time = 126;
 	    }
 	}
@@ -237,30 +225,34 @@ static int	manage_food(t_kernel *kernel)
 static int	manage_actions(t_kernel *kernel)
 {
   int		i;
-  t_actions	*actions;
-  t_actions	*actions_tmp;
+  t_node	*node;
+  t_node	*node_tmp;
+  t_actions	*action;
 
   if (manage_food(kernel))
     return (1);
-  actions = kernel->actions;
-  while (actions)
+  node = NULL;
+  if (kernel->actions)
+    node = kernel->actions->head;
+  while (node)
     {
-      if (!(actions->time_left))
+      action = (t_actions *)node->data;
+      if (!(action->time_left))
 	{
 	  i = 0;
-	  while (actions->av[0] && g_functions[i].name &&
-		 strcmp(actions->av[0], g_functions[i].name))
+	  while (action->av[0] && g_functions[i].name &&
+		 strcmp(action->av[0], g_functions[i].name))
 	    ++i;
-	  if (actions->av[0] && g_functions[i].name)
-	    g_functions[i].function(actions->av, actions->client, kernel);
-	  actions_tmp = actions;
-	  actions = actions->next;
-	  pop_action(kernel, actions_tmp);
+	  if (action->av[0] && g_functions[i].name)
+	    g_functions[i].function(action->av, action->client, kernel);
+	  node_tmp = node;
+	  node = node->next;
+	  pop_action(kernel, node_tmp);
 	}
       else
 	{
-	  --(actions->time_left);
-	  actions = actions->next;
+	  --(action->time_left);
+	  node = node->next;
 	}
     }
   return (0);

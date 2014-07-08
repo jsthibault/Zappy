@@ -1,11 +1,6 @@
 Zappy
 =====
 
-quand on kill un client :
---
-- le virer des teams
-- envoyer event de mort au graphique.
-
 Oeuf - reproduction
 -
 

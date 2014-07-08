@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Tue Jul  8 16:14:45 2014 arnaud drain
+** Last update Tue Jul  8 16:47:51 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -80,21 +80,18 @@ struct		s_client
   t_client	*next;
 };
 
-typedef struct s_actions t_actions;
-
-struct	s_actions
+typedef struct	s_actions
 {
   int		time_left;
   char		**av;
   t_client	*client;
-  t_actions	*next;
-};
+}		t_actions;
 
 typedef struct		s_kernel
 {
   struct s_options	options;
   struct s_game		game;
-  struct s_actions	*actions;
+  struct s_list		*actions;
   struct s_client	*clients;
   t_buffer		*buff_node;
   /*penser a rajouter le logger*/
