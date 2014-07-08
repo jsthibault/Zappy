@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Fri Jul  4 15:31:13 2014 arnaud drain
+** Last update Tue Jul  8 10:46:27 2014 arnaud drain
 */
 
 #ifndef SERVEUR_H_
@@ -25,7 +25,8 @@ typedef enum
   {
     GRAPHIC = 0,
     CLIENT,
-    AUTH
+    AUTH,
+    SPECIAL
   } t_type;
 
 typedef struct	s_functions

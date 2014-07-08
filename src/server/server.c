@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jul  7 18:21:52 2014 arnaud drain
+** Last update Tue Jul  8 12:49:24 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -24,6 +24,7 @@
 #include "buffer.h"
 #include "map.h"
 #include "client_action.h"
+#include "logger.h"
 
 static const t_functions g_functions[] =
     {
@@ -51,6 +52,7 @@ static const t_functions g_functions[] =
       {"incantation", cmd_incantation, CLIENT, 0},
       {"fork", cmd_fork, CLIENT, 42},
       {"connect_nbr", cmd_connect_nbr, CLIENT, 0},
+      {"elevation", incantation, SPECIAL, 0},
       {NULL, NULL, AUTH, 0}
     };
 
@@ -168,13 +170,14 @@ static void	pop_action(t_kernel *kernel, t_actions *action)
 
   actions_tmp = kernel->actions;
   if (actions_tmp == action)
-    kernel->actions = NULL;
+    kernel->actions = actions_tmp->next;
   else
     {
       while (actions_tmp->next != action)
 	actions_tmp = actions_tmp->next;
+      action = actions_tmp->next;
       actions_tmp->next = actions_tmp->next->next;
-      actions_tmp = actions_tmp->next;
+      actions_tmp = action;
     }
   freetab(actions_tmp->av);
   free(actions_tmp);
@@ -238,7 +241,6 @@ static int	manage_actions(t_kernel *kernel)
 	  actions = actions->next;
 	}
     }
-  (void)kernel;
   return (0);
 }
 

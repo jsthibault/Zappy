@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
-** Last update lun. juil. 07 18:38:11 2014 lefloc_l
+** Last update Tue Jul  8 00:46:58 2014 arnaud drain
 */
 
 #include "client_action.h"
@@ -37,7 +37,7 @@ static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     if (player->id != cl->player->id)
     {
       player->pos = new_pos;
-      write_socket(player->fd, buffer);
+      write_socket(player->client->fd, buffer);
       send_position_to_graphic(kernel, player);
     }
     node = node->next;

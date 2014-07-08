@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. juil. 04 15:38:31 2014 lefloc_l
-** Last update sam. juil. 05 16:58:01 2014 lefloc_l
+** Last update Tue Jul  8 12:27:57 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -54,4 +54,41 @@ void		send_pose_to_graphic(t_kernel *kernel, t_player *player,
     int item)
 {
   prend_pose(kernel, player, item, "pdr");
+}
+
+void		send_elevation_to_graphic(t_kernel *kernel, t_case *c, t_player *player)
+{
+  char		buffer[BUFFER_SIZE];
+  t_node	*node;
+
+  sprintf(buffer, "pic %d %d %d", player->pos.x, player->pos.y, player->level);
+  node = c->players->head;
+  while (node)
+    {
+      sprintf(buffer, "%s %d", buffer, ((t_player *)node->data)->id);
+      node = node->next;
+    }
+  sprintf(buffer, "%s\n", buffer);
+  write_all_graphic(kernel, buffer);
+}
+
+void		send_finish_elevation_to_graphic(t_kernel *kernel, t_case *c, t_player *player, int statut)
+{
+  char		buffer[BUFFER_SIZE];
+  t_node	*node;
+  int		*items;
+
+  sprintf(buffer, "pie %d %d %d\n", player->pos.x, player->pos.y, statut);
+  write_all_graphic(kernel, buffer);
+  node = c->players->head;
+  while (node)
+    {
+      sprintf(buffer, "plv %d %d\n", ((t_player *)node->data)->id, ((t_player *)node->data)->level);
+      write_all_graphic(kernel, buffer);
+      node = node->next;
+    }
+  items = c->inventory.items;
+  sprintf(buffer, "bct %d %d %d %d %d %d %d %d %d\n", player->pos.x, player->pos.y,
+	  items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
+  write_all_graphic(kernel, buffer);
 }

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update mer. juil. 02 22:55:55 2014 lefloc_l
+** Last update Tue Jul  8 13:08:00 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -42,17 +42,17 @@ void		list_add_node(t_list **list, t_node *node, void *data)
   }
 }
 
-void		list_pop_node(t_list *list, t_node *node)
+void		list_pop_node(t_list **list, t_node *node)
 {
-  if (list->head == node)
-    list_pop_front(&list);
-  else if (list->tail == node)
-    list_pop_back(&list);
+  if ((*list)->head == node)
+    list_pop_front(list);
+  else if ((*list)->tail == node)
+    list_pop_back(list);
   else
   {
     node->prev->next = node->next;
     node->next->prev = node->prev;
     free(node);
-    list->size--;
+    (*list)->size--;
   }
 }

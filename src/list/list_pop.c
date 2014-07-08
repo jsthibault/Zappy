@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update jeu. juil. 03 17:30:33 2014 lefloc_l
+** Last update Tue Jul  8 13:08:41 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void		list_pop(t_list **list, void *data)
   {
     if (node->data == data)
     {
-      list_pop_node((*list), node);
+      list_pop_node(list, node);
       break ;
     }
     node = node->next;
@@ -76,7 +76,7 @@ void		list_pop_func(t_list **list, ptrbv func)
     node = node->next;
   }
   if (node)
-    list_pop_node((*list), node);
+    list_pop_node(list, node);
 }
 
 void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
@@ -87,9 +87,7 @@ void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
     return;
   node = (*list)->head;
   while (node && (*func)(node->data, arg) == FALSE)
-  {
     node = node->next;
-  }
   if (node)
-    list_pop_node((*list), node);
+    list_pop_node(list, node);
 }
