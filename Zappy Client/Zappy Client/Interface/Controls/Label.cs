@@ -23,6 +23,8 @@ namespace Zappy_Client.Interface
 
         private String Font { get; set; }
 
+        private Color TextColor { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -36,6 +38,7 @@ namespace Zappy_Client.Interface
             : base(engine, name)
         {
             this.Font = "TrebuchetMS";
+            this.TextColor = Color.White;
         }
 
         /// <summary>
@@ -51,6 +54,7 @@ namespace Zappy_Client.Interface
             this.X = x;
             this.Y = y;
             this.Font = "TrebuchetMS";
+            this.TextColor = Color.White;
         }
 
         /// <summary>
@@ -68,6 +72,7 @@ namespace Zappy_Client.Interface
             this.Y = y;
             this.Text = text;
             this.Font = "TrebuchetMS";
+            this.TextColor = Color.White;
         }
 
         /// <summary>
@@ -86,6 +91,26 @@ namespace Zappy_Client.Interface
             this.Y = y;
             this.Text = text;
             this.Font = font;
+            this.TextColor = Color.White;
+        }
+
+        /// <summary>
+        /// Initialize a label with text, position and font
+        /// </summary>
+        /// <param name="engine">UI engine pointer</param>
+        /// <param name="name">Control name</param>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        /// <param name="text">Label text</param>
+        /// <param name="font">Label font</param>
+        public Label(UI engine, String name, Int32 x, Int32 y, String text, String font, Color color)
+            : base(engine, name)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Text = text;
+            this.Font = font;
+            this.TextColor = color;
         }
 
         #endregion
@@ -111,7 +136,7 @@ namespace Zappy_Client.Interface
         /// <param name="spriteBatch">Engine spriteBatch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(this.Engine.Fonts[this.Font], this.Text, this.Position, Color.White);
+            spriteBatch.DrawString(this.Engine.Fonts[this.Font], this.Text, this.Position, this.TextColor);
         }
 
         #endregion

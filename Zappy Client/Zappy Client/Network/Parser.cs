@@ -33,6 +33,7 @@ namespace Zappy_Client
         static Parser()
         {
             AuthorizedItems = new List<Regex>();
+            AuthorizedItems.Add(new Regex("^BIENVENUE\n$"));
             AuthorizedItems.Add(new Regex("^msz [\\d]* [\\d]*\n$"));
             AuthorizedItems.Add(new Regex("^bct( \\d*){8}\n$"));
             AuthorizedItems.Add(new Regex("^tna \\w*\\n$"));

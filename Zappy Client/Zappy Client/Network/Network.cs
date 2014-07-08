@@ -74,17 +74,17 @@ namespace Zappy_Client
         /// </summary>
         /// <param name="host"></param>
         /// <param name="port"></param>
-        public void Connect(String host, String port)
+        public Boolean Connect(String host, String port)
         {
             Int32 _port = 0;
 
             if (Int32.TryParse(port, out _port) == false)
             {
-                // send error
-                return;
+                return false;
             }
             this.Socket.Connect(host, _port);
             this.Connected = true;
+            return true;
         }
 
         /// <summary>

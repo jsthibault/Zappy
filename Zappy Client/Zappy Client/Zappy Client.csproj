@@ -103,6 +103,7 @@
     <Content Include="Content\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\animation_cast.png" />
     <Content Include="Content\Characters\chocobo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -256,6 +257,7 @@
     <Content Include="Content\Theme\Window\WndTile11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\wallpaper.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -376,5 +376,11 @@ namespace Zappy_Client
             }
             return false;
         }
+
+        private Boolean AnswerWelcome(List<String> items)
+        {
+            this.SendMessage("GRAPHICS");
+            return false;
+        }
     }
 }

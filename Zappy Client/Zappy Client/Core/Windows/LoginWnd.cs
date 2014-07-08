@@ -108,11 +108,14 @@ namespace Zappy_Client.Core
         void Connect_OnClick(object sender)
         {
             /* NEW */
-            //Network.Instance.Connect(this.Host.Text, this.Port.Text);
+            if (Network.Instance.Connect(this.HostInput.Text, this.PortInput.Text) == false)
+            {
+                (this.Engine.GetContainer("Popup") as Popup).Show("Cannot connect to server!");
+            }
 
             /* OLD */
-            (this.Game.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
-            this.Game.ScreenManager.SetCurrentScreen("GameScreen");
+            //(this.Game.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
+            //this.Game.ScreenManager.SetCurrentScreen("GameScreen");
         }
 
         /// <summary>
