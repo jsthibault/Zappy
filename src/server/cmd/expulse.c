@@ -6,11 +6,11 @@
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
 <<<<<<< HEAD
-** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+** Last update mar. juil. 08 16:13:16 2014 lefloc_l
 ||||||| merged common ancestors
-** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+** Last update mar. juil. 08 16:13:16 2014 lefloc_l
 =======
-** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+** Last update mar. juil. 08 16:13:16 2014 lefloc_l
 >>>>>>> eda795d96624337ec1bf6263b968477236df0de3
 */
 
@@ -37,17 +37,32 @@ static int	get_k(t_pos a, t_pos b)
   return (3);
 }
 
-static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
+static void	send_to_client_expulse(t_kernel *kernel, t_player *player,
+    t_client *cl, t_pos new_pos)
+{
+  char		buffer[BUFFER_SIZE];
+
+  player->pos = new_pos;
+  sprintf(buffer, "deplacement: %d\n",
+  get_k(get_dir(cl->player->orientation),
+  get_dir(player->orientation)));
+  logger_debug("player: %d: %s", player->id, buffer);
+  write_socket(player->client->fd, buffer);
+  send_position_to_graphic(kernel, player);
+}
+
+static int	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     t_pos new_pos)
 {
   t_node	*node;
   t_player	*player;
-  char		buffer[BUFFER_SIZE];
+  int		res;
 
+  res = 0;
   if (!players)
   {
     logger_warning("send_expulse: list empty.");
-    return ;
+    return 0;
   }
   node = players->head;
   send_expulse_to_graphic(kernel, cl->player->id);
@@ -56,16 +71,12 @@ static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     player = (t_player *)node->data;
     if (player->id != cl->player->id)
     {
-      player->pos = new_pos;
-      sprintf(buffer, "deplacement: %d\n",
-          get_k(get_dir(cl->player->orientation),
-            get_dir(player->orientation)));
-      logger_debug("player: %d: %s", player->id, buffer);
-      write_socket(player->client->fd, buffer);
-      send_position_to_graphic(kernel, player);
+      send_to_client_expulse(kernel, player, cl, new_pos);
+      res++;
     }
     node = node->next;
   }
+  return (res);
 }
 
 int		cmd_expulse(char **av, t_client *cl, t_kernel *kernel)
@@ -78,6 +89,7 @@ int		cmd_expulse(char **av, t_client *cl, t_kernel *kernel)
   new_pos = get_dir(cl->player->orientation);
   new_pos.x += cl->player->pos.x;
   new_pos.y += cl->player->pos.y;
-  send_expulse(kernel, cl, c->players, new_pos);
+  write_socket(cl->fd,
+      (send_expulse(kernel, cl, c->players, new_pos) == 0) ? "ko\n" : "ok\n");
   return (0);
 }

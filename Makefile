@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  mar. juil. 08 14:19:39 2014 lefloc_l
+## Last update  mar. juil. 08 15:00:37 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -110,7 +110,7 @@ LDFLAGS+=	$(LIBPATH) $(LIB)
 all:	$(SERVER) $(CLIENT)
 
 $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER)
-	$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
+	@$(CC) -o $(SERVER) $(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER) $(CFLAGS) $(CDEBUG) $(LDFLAGS)
 	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)
@@ -118,23 +118,22 @@ $(CLIENT):	$(OBJ_CLIENT)
 
 $(DIR_OBJ_SERVER)/%.o: $(DIR_SERVER)/%.c
 	@mkdir -p $(@D)
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(DIR_OBJ_LIST)/%.o: $(DIR_LIST)/%.c
 	@mkdir -p $(@D)
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(DIR_OBJ_CLIENT)/%.o: $(DIR_CLIENT)/%.c
 	@mkdir -p $(@D)
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(DIR_OBJ_BUFFER)/%.o: $(DIR_BUFFER)/%.c
 	@mkdir -p $(@D)
-	$(CC) -o $@ -c $< $(CFLAGS)
-
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_LIST)
+	@$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_LIST)
 	@$(ECHO) '\033[0;31m> Directory cleaned\033[0m'
 
 fclean:	clean

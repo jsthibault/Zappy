@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:57 2014 lefloc_l
-** Last update Mon Jul  7 17:05:57 2014 arnaud drain
+** Last update mar. juil. 08 16:12:38 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -45,5 +45,6 @@ int		cmd_broadcast_texte(char **av, t_client *cl, t_kernel *kernel)
     send_to_clients(kernel, av[i], cl->player);
   }
   send_to_clients(kernel, "\n", cl->player);
+  write_socket(cl->fd, "ok\n");
   return (0);
 }
