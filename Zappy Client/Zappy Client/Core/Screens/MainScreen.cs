@@ -50,7 +50,7 @@ namespace Zappy_Client.Core
         /// <returns></returns>
         public override Boolean Initialize()
         {
-            this.Background = this.ScreenManagerInstance.GameInstance.Content.Load<Texture2D>("Background.png");
+            this.Background = this.ScreenManagerInstance.GameInstance.Content.Load<Texture2D>("wallpaper2.jpg");
             return base.Initialize();
         }
 

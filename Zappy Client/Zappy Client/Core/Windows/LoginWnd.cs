@@ -108,9 +108,15 @@ namespace Zappy_Client.Core
         void Connect_OnClick(object sender)
         {
             /* NEW */
+            if (String.IsNullOrEmpty(this.HostInput.Text) == true || String.IsNullOrEmpty(this.PortInput.Text) == true)
+            {
+                (this.Engine.GetContainer("Popup") as Popup).Show("Host or port missing");
+                return;
+            }
             if (Network.Instance.Connect(this.HostInput.Text, this.PortInput.Text) == false)
             {
                 (this.Engine.GetContainer("Popup") as Popup).Show("Cannot connect to server!");
+                return;
             }
 
             /* OLD */
