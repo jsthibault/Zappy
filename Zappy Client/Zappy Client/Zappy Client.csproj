@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
+    <Compile Include="Core\2DEngine\FrameContent.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\AudioManager.cs" />
     <Compile Include="Core\Windows\Popup.cs" />
@@ -258,9 +259,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\wallpaper.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\wallpaper2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

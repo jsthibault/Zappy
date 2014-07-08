@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using Zappy_Client.Core.Windows;
 
 /*--------------------------------------------------------
  * Network.cs - file description
@@ -82,7 +83,14 @@ namespace Zappy_Client
             {
                 return false;
             }
-            this.Socket.Connect(host, _port);
+            try
+            {
+                this.Socket.Connect(host, _port);
+            }
+            catch
+            {
+                (Zappy.instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
+            }
             this.Connected = true;
             return true;
         }
@@ -103,7 +111,11 @@ namespace Zappy_Client
                     _size = this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
                     _message = Encoding.Default.GetString(_buffer);
                     Console.WriteLine(_message);
-                    this.ExecAnswer(_message);
+                    String[] Commands = _message.Split('\n');
+                    foreach (String Command in Commands)
+                    {
+                        this.ExecAnswer(Command);
+                    }
                 }
             }
         }

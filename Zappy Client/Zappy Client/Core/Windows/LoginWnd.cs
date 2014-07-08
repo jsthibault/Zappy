@@ -81,6 +81,11 @@ namespace Zappy_Client.Core
             this.Leave = new Button(this.Engine, "LeaveButton", 185, 160, 110, 0, "Quitter");
             this.Leave.OnClick += Leave_OnClick;
             
+            //TO REMOVE
+            this.HostInput.Text = "10.41.178.226";
+            this.PortInput.Text = "4246";
+            //TO REMOVE
+
             // Add to container
             this.AddControl(this.Host);
             this.AddControl(this.HostInput);

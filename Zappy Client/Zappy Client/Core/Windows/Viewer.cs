@@ -82,11 +82,11 @@ namespace Zappy_Client.Core
 
             // Ressources label
             this.Phiras = new Label(this.Engine, "Phiras", 88, 254, "0");
-            this.Deraumere = new Label(this.Engine, "Deraumere", 115, 296, "1");
-            this.Mendiane = new Label(this.Engine, "Mendiane", 110, 275, "2");
-            this.Sibur = new Label(this.Engine, "Sibur", 180, 254, "3");
-            this.Thystame = new Label(this.Engine, "Thystame", 203, 275, "4");
-            this.Linemate = new Label(this.Engine, "Linemate", 201, 296, "5");
+            this.Deraumere = new Label(this.Engine, "Deraumere", 115, 296, "0");
+            this.Mendiane = new Label(this.Engine, "Mendiane", 110, 275, "0");
+            this.Sibur = new Label(this.Engine, "Sibur", 180, 254, "0");
+            this.Thystame = new Label(this.Engine, "Thystame", 203, 275, "0");
+            this.Linemate = new Label(this.Engine, "Linemate", 201, 296, "0");
             this.AddControl(this.Phiras);
             this.AddControl(this.Sibur);
             this.AddControl(this.Mendiane);
@@ -104,6 +104,7 @@ namespace Zappy_Client.Core
         public override void Update(GameTime gameTime)
         {
             this.UpdatePlayersLabel();
+            this.UpdateFramesContent();
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));
             base.Update(gameTime);
         }
@@ -115,7 +116,7 @@ namespace Zappy_Client.Core
         {
             GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
 
-            this.Players.Text = "";
+           this.Players.Text = "";
            foreach (Character character in Screen.Map.Characters)
            {
                if (character.X == this.MapX && character.Y == this.MapY)
@@ -123,6 +124,24 @@ namespace Zappy_Client.Core
                    this.Players.Text += character.Name;
                }
            }
+        }
+
+        public void UpdateFramesContent()
+        {
+            GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
+
+            foreach (FrameContent frame in Screen.Map.Frames)
+            {
+                if (frame.X == this.MapX && frame.Y == this.MapY)
+                {
+                    this.Linemate.Text = frame.GetItemValue(ItemType.LINEMATE).ToString();
+                    this.Deraumere.Text = frame.GetItemValue(ItemType.DERAUMERE).ToString();
+                    this.Sibur.Text = frame.GetItemValue(ItemType.SIBUR).ToString();
+                    this.Mendiane.Text = frame.GetItemValue(ItemType.MENDIANE).ToString();
+                    this.Phiras.Text = frame.GetItemValue(ItemType.PHIRAS).ToString();
+                    this.Thystame.Text = frame.GetItemValue(ItemType.THYSTAME).ToString();
+                }
+            }
         }
 
         /// <summary>

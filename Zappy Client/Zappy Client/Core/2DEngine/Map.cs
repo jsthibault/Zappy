@@ -36,6 +36,7 @@ namespace Zappy_Client.Core._2DEngine
         public event Interface.MonoGameEventHandler OnCursorClick;
 
         public List<Character> Characters { get; private set; }
+        public List<FrameContent> Frames { get; private set; }
 
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }
@@ -85,6 +86,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             this.Characters = new List<Character>();
+            this.Frames = new List<FrameContent>();
             // Create object list
         }
 
@@ -217,6 +219,28 @@ namespace Zappy_Client.Core._2DEngine
                     spriteBatch.Draw(this.Water, new Vector2(i * 32, j * 32), Color.White);
                 }
             }
+        }
+
+        /// <summary>
+        /// Add a new item in a frame
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        public void AddInFrame(Int32 X, Int32 Y, ItemType type, Int32 value)
+        {
+            foreach(FrameContent frame in this.Frames)
+            {
+                if (frame.X == X && frame.Y == Y)
+                {
+                    frame.AddItem(type, value);
+                    return;
+                }
+            }
+            FrameContent newFrame = new FrameContent(X, Y);
+            newFrame.AddItem(type, value);
+            this.Frames.Add(newFrame);
         }
 
         /// <summary>

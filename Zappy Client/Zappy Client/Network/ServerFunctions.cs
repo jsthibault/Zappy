@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zappy_Client.Core;
+using Zappy_Client.Core._2DEngine;
+using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
  * ServerFunctions.cs - file description
@@ -25,11 +28,8 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerMsz(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
-            return false;
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).InitializeMap(Int32.Parse(items[1]), Int32.Parse(items[2]));
+            return true;
         }
 
         /// <summary>
@@ -40,10 +40,13 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerBct(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.FOOD, Int32.Parse(items[3]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.LINEMATE, Int32.Parse(items[4]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.DERAUMERE, Int32.Parse(items[5]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.SIBUR, Int32.Parse(items[6]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.MENDIANE, Int32.Parse(items[7]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.PHIRAS, Int32.Parse(items[8]));
+            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.THYSTAME, Int32.Parse(items[9]));
             return false;
         }
 
@@ -379,8 +382,10 @@ namespace Zappy_Client
 
         private Boolean AnswerWelcome(List<String> items)
         {
-            this.SendMessage("GRAPHICS");
-            return false;
+            (Zappy.instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
+            Zappy.instance.ScreenManager.SetCurrentScreen("GameScreen");
+            this.SendMessage("GRAPHIC");
+            return true;
         }
     }
 }

@@ -18,6 +18,17 @@ using Zappy_Client.Core._2DEngine;
 
 namespace Zappy_Client.Core
 {
+    public enum ItemType
+    {
+        FOOD = 0,
+        LINEMATE,
+        DERAUMERE,
+        SIBUR,
+        MENDIANE,
+        PHIRAS,
+        THYSTAME
+    }
+
     public class GameScreen : AScreen
     {
         #region FIELDS
@@ -54,12 +65,16 @@ namespace Zappy_Client.Core
         /// <returns></returns>
         public override bool Initialize()
         {
+            //this.Map.AddCharacter(new Character(this.Map, 0, 0, "Shyro"));
+            return base.Initialize();
+        }
+
+        public void InitializeMap(Int32 X, Int32 Y)
+        {
             this.Camera = new Camera(this.ScreenManagerInstance.GameInstance.GraphicsDevice, Zappy.Width, Zappy.Height);
             this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 20, 20, this.Camera);
             this.Map.Initialize();
             this.Map.OnCursorClick += Map_OnCursorClick;
-            this.Map.AddCharacter(new Character(this.Map, 0, 0, "Shyro"));
-            return base.Initialize();
         }
 
         /// <summary>
@@ -67,7 +82,10 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Update()
         {
-            this.Map.Update();
+            if (this.Map != null)
+            {
+                this.Map.Update();
+            }
         }
 
         /// <summary>
@@ -75,7 +93,10 @@ namespace Zappy_Client.Core
         /// </summary>
         public override void Draw()
         {
-            this.Map.Draw(this.SpriteBatch);
+            if (this.Map != null)
+            {
+                this.Map.Draw(this.SpriteBatch);
+            }
         }
 
         /// <summary>

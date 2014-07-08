@@ -53,7 +53,7 @@ namespace Zappy_Client
                 {"smg", Network.Instance.AnswerSmg},
                 {"suc", Network.Instance.AnswerSuc},
                 {"sbp", Network.Instance.AnswerSbp},
-                {"BIENVENUE\n", Network.Instance.AnswerWelcome}
+                {"BIENVENUE", Network.Instance.AnswerWelcome}
             };
             this.AskFunctions = new Dictionary<String, CmdFunction>()
             {
