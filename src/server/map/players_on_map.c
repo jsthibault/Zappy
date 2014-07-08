@@ -5,7 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
+<<<<<<< HEAD
 ** Last update mar. juil. 08 14:51:11 2014 lefloc_l
+||||||| merged common ancestors
+** Last update Mon Jul  7 17:58:39 2014 arnaud drain
+=======
+** Last update Tue Jul  8 13:04:56 2014 arnaud drain
+>>>>>>> eda795d96624337ec1bf6263b968477236df0de3
 */
 
 #include "kernel.h"
@@ -38,6 +44,8 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
     logger_error("Invalid case on remove_player_on_map");
   if (c && list_is_empty(c->players) == FALSE)
     list_pop_func_arg(&c->players, &find_player_to_remove, player);
+  if (c->players == NULL)
+    printf("plus de players\n");
 }
 
 void		add_player_on_map(t_kernel *kernel, t_player *player,

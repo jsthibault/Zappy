@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Mon Jul  7 17:49:13 2014 arnaud drain
+** Last update Tue Jul  8 12:26:24 2014 arnaud drain
 ** Last update lun. juil. 07 15:48:33 2014 lefloc_l
 */
 
@@ -42,6 +42,8 @@ void		send_deconnexion_to_graphic(t_kernel *, t_player *);
 void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
 void		send_expulse_to_graphic(t_kernel *, int);
+void		send_elevation_to_graphic(t_kernel *, t_case *, t_player *);
+void		send_finish_elevation_to_graphic(t_kernel *, t_case *, t_player *, int status);
 
 /*
 ** grahic print functions.
@@ -88,6 +90,7 @@ int		cmd_pose_objet(char **av, t_client *, t_kernel *kernel);
 int		cmd_expulse(char **av, t_client *, t_kernel *kernel);
 int		cmd_broadcast_texte(char **av, t_client *, t_kernel *kernel);
 int		cmd_incantation(char **av, t_client *, t_kernel *kernel);
+int		incantation(char **av, t_client *, t_kernel *kernel);
 int		cmd_fork(char **av, t_client *, t_kernel *kernel);
 int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 

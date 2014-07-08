@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:47:09 2014 lefloc_l
-** Last update Thu Jul  3 23:22:09 2014 thibau_j
+** Last update Tue Jul  8 13:08:09 2014 arnaud drain
 */
 
 #ifndef LIST_H_
@@ -39,7 +39,7 @@ typedef t_bool	(*ptrbvv)(void *, void *);
 typedef void	(*ptrvnv)(t_list *, t_node *, void *);
 
 void		list_add_node(t_list **list, t_node *node, void *data);
-void		list_pop_node(t_list *list, t_node *node);
+void		list_pop_node(t_list **list, t_node *node);
 
 t_node		*list_create_node(void *data);
 

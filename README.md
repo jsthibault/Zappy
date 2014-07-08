@@ -45,4 +45,15 @@ y x ou x y partout :)
 il faut faire un choix corneliens. choisi le bon cote de la force.
 
 faire en sorte que les actions attendent bien gentiment à la queue leu leu
-corriger le boug sur avance qui fait touuuut planter
+
+corriger le boug sur avance qui fait touuuut planter -> listes chainés génériques en carton, tout va bien.
+
+segfoult sur voir :x
+
+si quelqu'un bouge d'une case en train d'incanter, on arette l'incantation
+
+expulse
+
+incantation
+
+fork

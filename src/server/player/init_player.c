@@ -5,13 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-<<<<<<< HEAD
-** Last update mar. juil. 08 12:32:24 2014 lefloc_l
-||||||| merged common ancestors
-** Last update mar. juil. 08 12:32:24 2014 lefloc_l
-=======
-** Last update mar. juil. 08 12:32:24 2014 lefloc_l
->>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
+** Last update mar. juil. 08 14:56:27 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -76,7 +70,7 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   player->team = team;
   add_player_on_map(kernel, player, pos.x, pos.y);
   player->level = 1;
-  player->fd = cl->fd;
+  player->client = cl;
   player->orientation = rand() % 4 + 1;
   player->food_time = 126;
   init_inventory(&(player->inventory));

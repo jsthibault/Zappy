@@ -5,7 +5,13 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
-** Last update mar. juil. 08 14:04:39 2014 lefloc_l
+<<<<<<< HEAD
+** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+||||||| merged common ancestors
+** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+=======
+** Last update mar. juil. 08 14:55:38 2014 lefloc_l
+>>>>>>> eda795d96624337ec1bf6263b968477236df0de3
 */
 
 #include "client_action.h"
@@ -50,13 +56,12 @@ static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     player = (t_player *)node->data;
     if (player->id != cl->player->id)
     {
-      player->pos.x = new_pos.x;
-      player->pos.y = new_pos.y;
+      player->pos = new_pos;
       sprintf(buffer, "deplacement: %d\n",
           get_k(get_dir(cl->player->orientation),
             get_dir(player->orientation)));
       logger_debug("player: %d: %s", player->id, buffer);
-      write_socket(player->fd, buffer);
+      write_socket(player->client->fd, buffer);
       send_position_to_graphic(kernel, player);
     }
     node = node->next;
