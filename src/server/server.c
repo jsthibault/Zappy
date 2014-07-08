@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update Tue Jul  8 17:29:26 2014 arnaud drain
+** Last update Tue Jul  8 23:14:14 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -103,8 +103,9 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
     {
       if (!(client->player = init_player_with_teamname(kernel, av[0], client)))
 	{
+	  pop_client(client->fd, kernel);
 	  freetab(av);
-	  return (0);
+	  return (1);
 	}
       team = find_team(kernel, av[0]);
       sprintf(buf, "%d\n%d %d\n",
