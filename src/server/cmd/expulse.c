@@ -6,11 +6,11 @@
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
 <<<<<<< HEAD
-** Last update mar. juil. 08 16:13:16 2014 lefloc_l
+** Last update mar. juil. 08 17:41:09 2014 lefloc_l
 ||||||| merged common ancestors
-** Last update mar. juil. 08 16:13:16 2014 lefloc_l
+** Last update mar. juil. 08 17:41:09 2014 lefloc_l
 =======
-** Last update mar. juil. 08 16:13:16 2014 lefloc_l
+** Last update mar. juil. 08 17:41:09 2014 lefloc_l
 >>>>>>> eda795d96624337ec1bf6263b968477236df0de3
 */
 
@@ -42,10 +42,9 @@ static void	send_to_client_expulse(t_kernel *kernel, t_player *player,
 {
   char		buffer[BUFFER_SIZE];
 
-  player->pos = new_pos;
+  move_player_on_map(kernel, player, new_pos.y, new_pos.x);
   sprintf(buffer, "deplacement: %d\n",
-  get_k(get_dir(cl->player->orientation),
-  get_dir(player->orientation)));
+      get_k(get_dir(cl->player->orientation), get_dir(player->orientation)));
   logger_debug("player: %d: %s", player->id, buffer);
   write_socket(player->client->fd, buffer);
   send_position_to_graphic(kernel, player);
