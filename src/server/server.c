@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Mon Jul  7 16:40:47 2014 arnaud drain
+** Last update mar. juil. 08 12:15:35 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -199,7 +199,7 @@ static int	manage_food(t_kernel *kernel)
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}
-	      --(client->player->inventory.items[FOOD]);
+	      //--(client->player->inventory.items[FOOD]);
 	      client->player->food_time = 126;
 	    }
 	}

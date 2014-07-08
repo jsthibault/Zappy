@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-** Last update Sun Jul  6 14:15:45 2014 arnaud drain
+** Last update mar. juil. 08 14:26:09 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -21,7 +21,6 @@ int	cmd_avance(char **av, t_client *client, t_kernel *kernel)
   t_pos	pos;
 
   (void)av;
-  logger_debug("%d avance !", client->player->id);
   pos = client->player->pos;
   if (client->player->orientation == NORTH)
     pos.y--;
@@ -38,5 +37,6 @@ int	cmd_avance(char **av, t_client *client, t_kernel *kernel)
       pos.x);
   write_socket(client->fd, "ok\n");
   send_position_to_graphic(kernel, client->player);
+  logger_debug("%d avance !", client->player->id);
   return (0);
 }

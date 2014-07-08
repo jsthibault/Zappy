@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:57:09 2014 lefloc_l
-** Last update Thu Jun 26 16:57:54 2014 arnaud drain
+** Last update mar. juil. 08 14:22:20 2014 lefloc_l
 */
 
 #include "list.h"
@@ -15,7 +15,7 @@ void		list_push_front(t_list **list, void *data)
 {
   t_node	*node;
 
-  if (!*list)
+  if (!(*list))
     *list = list_create();
   node = list_create_node(data);
   node->next = (*list)->head;
@@ -31,7 +31,7 @@ void		list_push_back(t_list **list, void *data)
 {
   t_node	*node;
 
-  if (!*list)
+  if (!(*list))
     *list = list_create();
   node = list_create_node(data);
   node->prev = (*list)->tail;

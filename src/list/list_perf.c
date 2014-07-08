@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 02 22:51:47 2014 lefloc_l
-** Last update jeu. juil. 03 17:28:37 2014 lefloc_l
+** Last update mar. juil. 08 14:43:01 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@ void		list_pop_verification(t_list **list)
 {
   if (!list || !(*list))
     return;
-  if (!(*list)->head)
+  if (list_is_empty(*list))
   {
     logger_debug("free");
     free(*list);

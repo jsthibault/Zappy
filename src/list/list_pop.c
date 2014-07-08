@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-** Last update jeu. juil. 03 17:30:33 2014 lefloc_l
+** Last update mar. juil. 08 14:41:46 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -68,8 +68,8 @@ void		list_pop_func(t_list **list, ptrbv func)
 {
   t_node	*node;
 
-  if (!(*list))
-    return;
+  if (list_is_empty(*list) == TRUE)
+    return ;
   node = (*list)->head;
   while (node && (*func)(node->data) == FALSE)
   {
@@ -83,13 +83,21 @@ void		list_pop_func_arg(t_list **list, ptrbvv func, void *arg)
 {
   t_node	*node;
 
-  if (!(*list))
-    return;
+  printf("pop func arg\n");
+  if (list_is_empty(*list) == TRUE)
+    return ;
+  if (!arg)
+  {
+    fprintf(stderr, "list_pop_func_arg: arg is null.");
+    return ;
+  }
   node = (*list)->head;
-  while (node && (*func)(node->data, arg) == FALSE)
+  while (node && node->data && (*func)(node->data, arg) == FALSE)
   {
     node = node->next;
+    printf("node on list_pop_func_arg\n");
   }
-  if (node)
+  if (node && node->data)
     list_pop_node((*list), node);
+  list_pop_verification(list);
 }

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
-** Last update lun. juil. 07 18:38:11 2014 lefloc_l
+** Last update mar. juil. 08 14:04:39 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -15,6 +15,21 @@
 #include "map.h"
 #include "list.h"
 #include "logger.h"
+
+static int	get_k(t_pos a, t_pos b)
+{
+  // same direction
+  if (a.x == b.x && a.y == b.y)
+    return (1);
+  // inverse direction
+  else if ((a.x + b.x == 0 && a.y == b.y)
+      || (a.y + b.y == 0 && a.x == b.x))
+    return (5);
+  else if (a.x == b.x) // right
+    return (7);
+  // left
+  return (3);
+}
 
 static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     t_pos new_pos)
@@ -29,14 +44,18 @@ static void	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     return ;
   }
   node = players->head;
-  sprintf(buffer, "deplacement: %d\n", cl->player->orientation);
   send_expulse_to_graphic(kernel, cl->player->id);
   while (node)
   {
     player = (t_player *)node->data;
     if (player->id != cl->player->id)
     {
-      player->pos = new_pos;
+      player->pos.x = new_pos.x;
+      player->pos.y = new_pos.y;
+      sprintf(buffer, "deplacement: %d\n",
+          get_k(get_dir(cl->player->orientation),
+            get_dir(player->orientation)));
+      logger_debug("player: %d: %s", player->id, buffer);
       write_socket(player->fd, buffer);
       send_position_to_graphic(kernel, player);
     }

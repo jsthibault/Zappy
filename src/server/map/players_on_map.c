@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update Sun Jul  6 16:21:01 2014 arnaud drain
+** Last update mar. juil. 08 14:36:56 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -16,6 +16,8 @@ static t_bool	find_player_to_remove(void *c, void *p)
   t_player	*current;
   t_player	*player;
 
+  if (!c || !p)
+    return (FALSE);
   current = (t_player *)c;
   player = (t_player *)p;
   if (current->id == player->id)
@@ -28,7 +30,9 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
   t_case	*c;
 
   c = get_case(kernel, player->pos.y, player->pos.x);
-  if (c && c->players)
+  if (!c)
+    logger_error("Invalid case on remove_player_on_map");
+  if (c && list_is_empty(c->players) == FALSE)
     list_pop_func_arg(&c->players, &find_player_to_remove, player);
 }
 
