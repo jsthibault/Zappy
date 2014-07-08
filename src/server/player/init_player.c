@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Tue Jul  8 17:22:08 2014 arnaud drain
+** Last update Tue Jul  8 17:37:13 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -92,11 +92,27 @@ static t_bool	remove_player_on_team(void *c, void *p)
   return (FALSE);
 }
 
+static t_bool	remove_action_from_player(void *c, void *p)
+{
+  t_player	*player;
+  t_actions	*action;
+
+  player = (t_player *)p;
+  action = (t_actions *)c;
+  if (player->id == action->client->player->id)
+    {
+      freetab(action->av);
+      free(action);
+      return (TRUE);
+    }
+  return (FALSE);
+}
+
 void	remove_player(t_kernel *kernel, t_player *player)
 {
   send_deconnexion_to_graphic(kernel, player);
   list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
-  //passer les actions en liste générique et les poper
+  list_pop_func_arg(&kernel->actions, &remove_action_from_player, player);
   remove_player_on_map(kernel, player);
   list_pop_func_arg(&kernel->game.players, &remove_player_on_team, player);
   free(player);
