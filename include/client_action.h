@@ -5,13 +5,8 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-<<<<<<< HEAD
+** Last update Mon Jul  7 17:49:13 2014 arnaud drain
 ** Last update lun. juil. 07 15:48:33 2014 lefloc_l
-||||||| merged common ancestors
-** Last update lun. juil. 07 15:48:33 2014 lefloc_l
-=======
-** Last update lun. juil. 07 15:48:33 2014 lefloc_l
->>>>>>> 04438f3006363055e0a474fd1e56af9cc8bb1dc3
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -20,11 +15,19 @@
 #include "struct.h"
 #include "server.h"
 
-typedef struct	e_tab_func
+typedef struct	s_tab_func
 {
   char		*command;
   int		(*p)(char **av, t_client *, t_kernel *kernel);
 }		t_tab_func;
+
+#define MAX_LVL	7
+
+typedef struct	s_incantation
+{
+  int		nb_player;
+  int		res[6];
+}		t_incantation;
 
 int		add_action(t_kernel *, int, t_client *, char **);
 int		graphic(char **, t_client *, t_kernel *);
@@ -92,5 +95,6 @@ int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 ** client utils functions.
 */
 int		get_k_value(t_player *, t_player *);
+int		ko(int fd);
 
 #endif /* !CLIENT_ACTION_H_ */

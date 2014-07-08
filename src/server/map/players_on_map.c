@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update mar. juil. 08 14:36:56 2014 lefloc_l
+** Last update mar. juil. 08 14:51:11 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -21,7 +21,11 @@ static t_bool	find_player_to_remove(void *c, void *p)
   current = (t_player *)c;
   player = (t_player *)p;
   if (current->id == player->id)
-    return (TRUE);
+    {
+      printf("true\n");
+      return (TRUE);
+    }
+  printf("false\n");
   return (FALSE);
 }
 
