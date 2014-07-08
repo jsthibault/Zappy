@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update Tue Jul  8 23:14:14 2014 arnaud drain
+** Last update Wed Jul  9 00:14:45 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -214,7 +214,7 @@ static int	manage_food(t_kernel *kernel)
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}
-	      --(client->player->inventory.items[FOOD]);
+	      //--(client->player->inventory.items[FOOD]);
 	      client->player->food_time = 126;
 	    }
 	}

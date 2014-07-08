@@ -13,18 +13,8 @@ cette famille.
 Délai de ponte : 42 / t
 Délai entre la ponte et l’éclosion : 600 / t
 
-Broadcast
--
-
-
-Expulsion
--
-
-
 Gestion de fin de jeu
 -
-
-faire un truc pour les listes avec les NULL A VERIFIER
 
 faire les free / close de la fin -> Arnaud
 

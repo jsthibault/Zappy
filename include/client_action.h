@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Tue Jul  8 12:26:24 2014 arnaud drain
+** Last update Tue Jul  8 23:13:25 2014 arnaud drain
 ** Last update lun. juil. 07 15:48:33 2014 lefloc_l
 */
 
@@ -97,7 +97,7 @@ int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 /*
 ** client utils functions.
 */
-int		get_k_value(t_player *, t_player *);
+int		get_k_value(t_player *, t_player *, int, int);
 int		ko(int fd);
 
 #endif /* !CLIENT_ACTION_H_ */
