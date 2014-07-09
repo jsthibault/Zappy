@@ -59,8 +59,7 @@ namespace Zappy_Client
             Network.Instance.Create();
 
             // Set the Current screen to "GameScreen"
-            this.ScreenManager.SetCurrentScreen("GameScreen");
-            (this.ScreenManager["GameScreen"] as GameScreen).InitializeMap(20, 20);
+            this.ScreenManager.SetCurrentScreen("MainScreen");
 
             base.Initialize();
         }

@@ -392,17 +392,16 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="team">Character's team</param>
         public void AddCharacter(String team, Character character)
         {
-            //if (this.Teams.ContainsKey(team) == false)
-            //{
-            //    throw new Exception("Team " + team + " doesn't exist");
-            //}
-            //if (this.Teams[team].Characters.Contains(character) == false)
-            //{
-            this.Teams.Add(team, new Team(team));
+            if (this.Teams.ContainsKey(team) == false)
+            {
+                throw new Exception("Team " + team + " doesn't exist");
+            }
+            if (this.Teams[team].Characters.Contains(character) == false)
+            {
                 character.Initialize(this.CastAnim, this.DeadAnim);
                 character.Texture = this.Character;
                 this.Teams[team].Characters.Add(character);
-            //}
+            }
         }
 
         /// <summary>
