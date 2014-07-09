@@ -52,7 +52,7 @@ namespace Zappy_Client.Core
             //this.Players.AddItem(new ListBoxItem("thibau_j", null));
             this.AddControl(this.Players);
 
-            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Show");
+            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Select a team");
             this.ShowInventory.Enabled = false;
             this.ShowInventory.OnClick += ShowInventory_OnClick;
             this.Players.OnSelectedItem += Players_OnSelectedItem;

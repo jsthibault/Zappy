@@ -104,7 +104,6 @@ namespace Zappy_Client.Core._2DEngine
         public Boolean Initialize()
         {
             this.InitializeTexture();
-            this.AddCharacter("test", new Character(this, 5, 5, 1, Direction.Left));
             return true;
         }
 
