@@ -51,6 +51,10 @@ namespace Zappy_Client.Core._2DEngine
         private Int32 MoveVal { get; set; }
         private Boolean Moving { get; set; }
 
+        private Animation[] Animations { get; set; }
+
+        private Boolean Casting { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -66,6 +70,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Y = 0;
             this.Level = 0;
             this.Items = new Int32[7];
+            this.Casting = false;
         }
 
         /// <summary>
@@ -81,6 +86,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Y = y;
             this.Level = 0;
             this.Items = new Int32[7];
+            this.Casting = false;
         }
 
         /// <summary>
@@ -99,6 +105,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Direction = orientation;
             this.Level = 0;
             this.Items = new Int32[7];
+            this.Casting = false;
         }
 
         #endregion
@@ -108,7 +115,7 @@ namespace Zappy_Client.Core._2DEngine
         /// <summary>
         /// Initialize the character properties
         /// </summary>
-        public void Initialize()
+        public void Initialize(Texture2D cast, Texture2D die)
         {
             this.HitBox = new Rectangle(this.X * 32, this.Y * 32, 64, 64);
             this.Direction = Direction.Down;
@@ -116,6 +123,9 @@ namespace Zappy_Client.Core._2DEngine
             this.FrameLine = 1;
             this.Timer = 0;
             this.Animation = true;
+            this.Animations = new Animation[2];
+            this.Animations[(Int32)AnimationType.Cast] = new Animation(4, 5, cast, 3);
+            this.Animations[(Int32)AnimationType.Die] = new Animation(8, 5, die, 3);
         }
 
         /// <summary>
@@ -123,6 +133,12 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Update()
         {
+            if (this.Casting == true && this.Animations[(Int32)AnimationType.Cast].Playing == false)
+            {
+                this.PlayAnimation(AnimationType.Cast);
+            }
+            this.Animations[(Int32)AnimationType.Cast].Update();
+            this.Animations[(Int32)AnimationType.Die].Update();
             if (this.Moving == true)
             {
                 switch (this.Direction)
@@ -184,6 +200,8 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
+            this.Animations[(Int32)AnimationType.Cast].Draw(spriteBatch);
+            this.Animations[(Int32)AnimationType.Die].Draw(spriteBatch);
             spriteBatch.Draw(this.Texture, new Rectangle(this.Map.OffsetX +  this.HitBox.X, this.Map.OffsetY + this.HitBox.Y, 32, 32),
                 new Rectangle((this.FrameColumn - 1) * 32, (this.FrameLine - 1) * 32, 32, 32), 
                 Color.White);
@@ -197,7 +215,6 @@ namespace Zappy_Client.Core._2DEngine
         {
             this.Direction = direction;
             this.Moving = true;
-            //this.MoveVal = 0;
         }
 
         /// <summary>
@@ -223,7 +240,7 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Die()
         {
-            //Do die animation
+            this.PlayAnimation(AnimationType.Die);
         }
 
         /// <summary>
@@ -231,7 +248,8 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void StartCast(Int32 futureLevel)
         {
-            //Do start cast animation
+            this.Casting = true;
+            this.PlayAnimation(AnimationType.Cast);
         }
 
         /// <summary>
@@ -239,7 +257,7 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void EndCast(Int32 state)
         {
-            //Do end cast animation
+            this.Casting = false;
         }
 
         /// <summary>
@@ -272,6 +290,11 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
+        private void PlayAnimation(AnimationType type)
+        {
+            this.Animations[(Int32)type].Play(this.X * Map2D.Case + this.Map.OffsetX, this.Y * Map2D.Case + this.Map.OffsetY);
+        }
+
         #endregion
     }
 
@@ -281,5 +304,11 @@ namespace Zappy_Client.Core._2DEngine
         Right,
         Down,
         Left
+    }
+
+    public enum AnimationType
+    {
+        Cast = 0,
+        Die
     }
 }
