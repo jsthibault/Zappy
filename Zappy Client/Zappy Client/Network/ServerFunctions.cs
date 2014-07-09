@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Zappy_Client.Core;
 using Zappy_Client.Core._2DEngine;
+using Zappy_Client.Core.Windows;
 using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
@@ -391,6 +392,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSeg(List<String> items)
         {
+            (Zappy.instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Team '" + items[1] + "' wins !");
             return false;
         }
 
