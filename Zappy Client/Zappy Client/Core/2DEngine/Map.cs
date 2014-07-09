@@ -183,6 +183,10 @@ namespace Zappy_Client.Core._2DEngine
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            this.DrawItems(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             foreach (Team team in this.Teams.Values)
             {
                 foreach (Character character in team.Characters)
