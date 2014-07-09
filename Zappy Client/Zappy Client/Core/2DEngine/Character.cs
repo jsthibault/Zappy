@@ -208,10 +208,10 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
+            this.Animations[(Int32)AnimationType.Cast].Draw(spriteBatch);
             spriteBatch.Draw(this.Texture, new Rectangle(this.Map.OffsetX +  this.HitBox.X, this.Map.OffsetY + this.HitBox.Y, 32, 32),
                 new Rectangle((this.FrameColumn - 1) * 32, (this.FrameLine - 1) * 32, 32, 32),
                 Color.White);
-            this.Animations[(Int32)AnimationType.Cast].Draw(spriteBatch);
             this.Animations[(Int32)AnimationType.Die].Draw(spriteBatch);
         }
 

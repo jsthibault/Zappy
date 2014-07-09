@@ -104,6 +104,7 @@ namespace Zappy_Client.Core._2DEngine
         public Boolean Initialize()
         {
             this.InitializeTexture();
+            this.AddCharacter("test", new Character(this, 5, 5, 1, Direction.Left));
             return true;
         }
 
@@ -146,6 +147,15 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.ClickMap();
                 }
+            }
+
+            if (_state.IsKeyDown(Keys.A) == true)
+            {
+                this.Teams["test"].Characters[0].StartCast(0);
+            }
+            if (_state.IsKeyDown(Keys.Z) == true)
+            {
+                this.Teams["test"].Characters[0].EndCast(0);
             }
             foreach (Team team in this.Teams.Values)
             {
