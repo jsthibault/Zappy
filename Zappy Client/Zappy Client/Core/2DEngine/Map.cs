@@ -47,7 +47,7 @@ namespace Zappy_Client.Core._2DEngine
         private Texture2D Cursor { get; set; }
         private Texture2D Character { get; set; }
         private Texture2D Grid { get; set; }
-        private Texture2D HealAnim { get; set; }
+        private Texture2D CastAnim { get; set; }
         private Texture2D DeadAnim { get; set; }
         private SpriteFont Debug { get; set; }
 
@@ -203,8 +203,8 @@ namespace Zappy_Client.Core._2DEngine
             this.Cursor = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
             this.Character = this.GameInstance.Content.Load<Texture2D>("Characters//chocobo.png");
             this.Grid = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
-            this.HealAnim = this.GameInstance.Content.Load<Texture2D>("Characters//heal_003.png");
-            this.DeadAnim = this.GameInstance.Content.Load<Texture2D>("Characters//animation_cast.png");
+            this.CastAnim = this.GameInstance.Content.Load<Texture2D>("Characters//cast.png");
+            this.DeadAnim = this.GameInstance.Content.Load<Texture2D>("Characters//die.png");
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
@@ -351,7 +351,7 @@ namespace Zappy_Client.Core._2DEngine
             }
             if (this.Teams[team].Characters.Contains(character) == false)
             {
-                character.Initialize(this.HealAnim, this.DeadAnim);
+                character.Initialize(this.CastAnim, this.DeadAnim);
                 character.Texture = this.Character;
                 this.Teams[team].Characters.Add(character);
             }
