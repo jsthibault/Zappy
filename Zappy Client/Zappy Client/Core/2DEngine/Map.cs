@@ -329,6 +329,10 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
+        /// <summary>
+        /// Draw items on map
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void DrawItems(SpriteBatch spriteBatch)
         {
             for (Int32 i = 0; i < this.Width; ++i)
