@@ -15,6 +15,8 @@ namespace Zappy_Client
         public const Int32 Width = 1310;
         public const Int32 Height = 930;
 
+        public Int32 TimeUnit;
+
         public UI InterfaceEngine;
         public ScreenManager ScreenManager;
 
@@ -43,9 +45,6 @@ namespace Zappy_Client
             // Initialize window parameters
             this.InitializeWindow();
 
-            // Creates the network instance
-            Network.Instance.Create();
-
             // Initialize the interface
             this.InitializeInterface();
 
@@ -55,6 +54,10 @@ namespace Zappy_Client
             this.ScreenManager["MainScreen"] = new MainScreen(this.InterfaceEngine);
             // Initialize the GameScreen
             this.ScreenManager["GameScreen"] = new GameScreen(this.InterfaceEngine);
+
+            // Creates the network instance
+            Network.Instance.Create();
+
             // Set the Current screen to "GameScreen"
             this.ScreenManager.SetCurrentScreen("MainScreen");
 

@@ -28,7 +28,9 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerMsz(List<String> items)
         {
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).InitializeMap(Int32.Parse(items[1]), Int32.Parse(items[2]));
+            Game.InitializeMap(Int32.Parse(items[1]), Int32.Parse(items[2]));
+            (Zappy.instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
+            Zappy.instance.ScreenManager.SetCurrentScreen("GameScreen");
             return true;
         }
 
@@ -40,244 +42,279 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerBct(List<String> items)
         {
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.FOOD, Int32.Parse(items[3]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.LINEMATE, Int32.Parse(items[4]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.DERAUMERE, Int32.Parse(items[5]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.SIBUR, Int32.Parse(items[6]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.MENDIANE, Int32.Parse(items[7]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.PHIRAS, Int32.Parse(items[8]));
-            (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.THYSTAME, Int32.Parse(items[9]));
-            return false;
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.FOOD, Int32.Parse(items[3]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.LINEMATE, Int32.Parse(items[4]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.DERAUMERE, Int32.Parse(items[5]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.SIBUR, Int32.Parse(items[6]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.MENDIANE, Int32.Parse(items[7]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.PHIRAS, Int32.Parse(items[8]));
+            Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.THYSTAME, Int32.Parse(items[9]));
+            return true;
         }
 
         /// <summary>
         /// Answer tna from server
         /// Get team name
+        /// tna N
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerTna(List<String> items)
         {
-            foreach (String item in items)
+            if (Game.Map.Teams.ContainsKey(items[1]) == false)
             {
-                Console.Write(item + " ");
+                Game.Map.Teams[items[1]] = new Team(items[1]);
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pnw from server
         /// New player connected
+        /// pnw #n X Y O L N
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPnw(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
-            return false;
+            Game.Map.Teams[items[6]].Characters.Add(new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4])));
+            return true;
         }
 
         /// <summary>
         /// Answer ppo from server
         /// Get position of a player
+        /// ppo #n X Y O
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPpo(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.X = Int32.Parse(items[2]);
+                        character.Y = Int32.Parse(items[3]);
+                        character.Direction = (Direction)Int32.Parse(items[4]);
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer plv from server
         /// Get level of a player
+        /// plv #n L
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPlv(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.Level = Int32.Parse(items[2]);
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pin from server
         /// Get player inventory
+        /// pin #n X Y q q q q q q q
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPin(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.X = Int32.Parse(items[2]);
+                        character.Y = Int32.Parse(items[3]);
+                        character.Food = Int32.Parse(items[4]);
+                        character.Linemate = Int32.Parse(items[5]);
+                        character.Deraumere = Int32.Parse(items[6]);
+                        character.Sibur = Int32.Parse(items[7]);
+                        character.Mendiane = Int32.Parse(items[8]);
+                        character.Phiras = Int32.Parse(items[9]);
+                        character.Thystame = Int32.Parse(items[10]);
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pex from server
         /// Player kicked from server
+        /// pex #n
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPex(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.Die();
+                        team.Characters.Remove(character);
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pbc from server
         /// Player did a broadcast
+        /// pbc #n M
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPbc(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer pic from server
         /// player did a cast for all other player of his place
+        /// pic X Y L (#n -x fois-)
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPic(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    for (Int32 i = 4; i < items.Count; i++)
+                    {
+                        if (character.Id == Int32.Parse(items[i]))
+                        {
+                            character.StartCast(Int32.Parse(items[3]));
+                        }
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pie from server
-        /// Cast of a player in a place ended
+        /// Cast of all players in a frame ended
+        /// pie X Y R
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPie(List<String> items)
         {
-            foreach (String item in items)
+            foreach (Team team in Game.Map.Teams.Values)
             {
-                Console.Write(item + " ");
+                foreach (Character character in team.Characters)
+                {
+                    if (character.X == Int32.Parse(items[1]) && character.Y == Int32.Parse(items[2]))
+                    {
+                        character.EndCast(Int32.Parse(items[3]));
+                    }
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
         /// Answer pfk from server
         /// Player got an egg
+        /// pfk #n
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPfk(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer pdr from server
         /// Player drop a ressource
+        /// pdr #n i
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPdr(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer pgt from server
         /// Player picked up a ressource
+        /// pgt #n i
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPgt(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer pdi from server
         /// Player died of hungry
+        /// pdi #n
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPdi(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer enw from server
         /// Player put an egg in a place
+        /// enw #e #n X Y
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEnw(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer eht from server
         /// Egg hatched
+        /// eht #e
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEht(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer ebo from server
         /// A player connected for egg
+        /// ebo #e
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
@@ -293,97 +330,85 @@ namespace Zappy_Client
         /// <summary>
         /// Answer edi from server
         /// Hatched egg died of hungry
+        /// edi #e
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEdi(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer sgt from server
         /// Get server's time unity
+        /// sgt T
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSgt(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
-            return false;
+            Zappy.instance.TimeUnit = Int32.Parse(items[1]);
+            return true;
         }
 
         /// <summary>
         /// Answer seg from server
         /// End of game, given team won
+        /// seg N
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSeg(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer smg from server
         /// Message from server
+        /// smg M
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSmg(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer suc from server
         /// Unknown command
+        /// suc
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSuc(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
         /// <summary>
         /// Answer sbp from server
         /// Bad parameter for command
+        /// sbp
         /// </summary>
         /// <param name="items">List of command's items</param>
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSbp(List<String> items)
         {
-            foreach (String item in items)
-            {
-                Console.Write(item + " ");
-            }
             return false;
         }
 
+        /// <summary>
+        /// Answer welcome from server
+        /// First command sent by server to trust the connection
+        /// BONJOUR
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         private Boolean AnswerWelcome(List<String> items)
         {
-            (Zappy.instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
-            Zappy.instance.ScreenManager.SetCurrentScreen("GameScreen");
             this.SendMessage("GRAPHIC");
             return true;
         }

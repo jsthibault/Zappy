@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using Zappy_Client.Core;
 using Zappy_Client.Core.Windows;
 
 /*--------------------------------------------------------
@@ -44,6 +45,7 @@ namespace Zappy_Client
 
         private Socket Socket { get; set; }
         private Boolean Connected { get; set; }
+        private GameScreen Game { get; set; }
 
         #endregion
 
@@ -54,6 +56,7 @@ namespace Zappy_Client
         /// </summary>
         public Network()
         {
+            this.Game = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
             this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             this.Connected = false;
         }

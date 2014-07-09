@@ -117,11 +117,14 @@ namespace Zappy_Client.Core
             GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
 
            this.Players.Text = "";
-           foreach (Character character in Screen.Map.Characters)
+           foreach (Team team in (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
            {
-               if (character.X == this.MapX && character.Y == this.MapY)
+               foreach (Character character in team.Characters)
                {
-                   this.Players.Text += character.Name;
+                   if (character.X == this.MapX && character.Y == this.MapY)
+                   {
+                       this.Players.Text += character.Id.ToString();
+                   }
                }
            }
         }

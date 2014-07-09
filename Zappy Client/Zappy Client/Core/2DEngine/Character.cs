@@ -24,7 +24,16 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 X { get; set; }
         public Int32 Y { get; set; }
-        public String Name { get; set; }
+
+        public Int32 Level { get; set; }
+
+        public Int32 Food { get; set; }
+        public Int32 Linemate { get; set; }
+        public Int32 Deraumere { get; set; }
+        public Int32 Sibur { get; set; }
+        public Int32 Mendiane { get; set; }
+        public Int32 Phiras { get; set; }
+        public Int32 Thystame { get; set; }
 
         public Texture2D Texture { get; set; }
 
@@ -32,7 +41,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public Map2D Map { get; set; }
 
-        private static UInt32 Ids = 0;
+        public Int32 Id { get; private set; }
 
         /* Animation */
         private Rectangle HitBox;
@@ -61,7 +70,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Map = map;
             this.X = 0;
             this.Y = 0;
-            this.Name = "Player #" + (++Ids);
+            this.Level = 0;
         }
 
         /// <summary>
@@ -75,7 +84,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Map = map;
             this.X = x;
             this.Y = y;
-            this.Name = "Player #" + (++Ids);
+            this.Level = 0;
         }
 
         /// <summary>
@@ -85,12 +94,14 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="x">X position</param>
         /// <param name="y">Y position</param>
         /// <param name="name">Player name</param>
-        public Character(Map2D map, Int32 x, Int32 y, String name)
+        public Character(Map2D map, Int32 x, Int32 y, Int32 id, Direction orientation)
         {
             this.Map = map;
             this.X = x;
             this.Y = y;
-            this.Name = name;
+            this.Id = id;
+            this.Direction = orientation;
+            this.Level = 0;
         }
 
         #endregion
@@ -193,6 +204,30 @@ namespace Zappy_Client.Core._2DEngine
         }
 
         /// <summary>
+        /// Animation of die
+        /// </summary>
+        public void Die()
+        {
+            //Do die animation
+        }
+
+        /// <summary>
+        /// Animation of cast start
+        /// </summary>
+        public void StartCast(Int32 futureLevel)
+        {
+            //Do start cast animation
+        }
+
+        /// <summary>
+        /// Animation of cast end
+        /// </summary>
+        public void EndCast(Int32 state)
+        {
+            //Do end cast animation
+        }
+
+        /// <summary>
         /// Animate the character
         /// </summary>
         public void Animate()
@@ -227,9 +262,9 @@ namespace Zappy_Client.Core._2DEngine
 
     public enum Direction
     {
-        Up,
+        Up = 1,
+        Right,
         Down,
-        Left,
-        Right
+        Left
     }
 }

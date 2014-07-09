@@ -35,7 +35,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public event Interface.MonoGameEventHandler OnCursorClick;
 
-        public List<Character> Characters { get; private set; }
+        public Dictionary<String, Team> Teams { get; private set; }
         public List<FrameContent> Frames { get; private set; }
 
         private Game GameInstance { get; set; }
@@ -85,7 +85,7 @@ namespace Zappy_Client.Core._2DEngine
             this.CurrentCursorY = 0;
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
-            this.Characters = new List<Character>();
+            this.Teams = new Dictionary<String, Team>();
             this.Frames = new List<FrameContent>();
             // Create object list
         }
@@ -128,10 +128,6 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
-            else if (_state.IsKeyDown(Keys.D) == true)
-            {
-                this.Characters[0].Move(Direction.Right);
-            }
             MouseState _mouseState = Mouse.GetState();
 
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
@@ -148,9 +144,12 @@ namespace Zappy_Client.Core._2DEngine
                     this.ClickMap();
                 }
             }
-            foreach (Character character in this.Characters)
+            foreach (Team team in this.Teams.Values)
             {
-                character.Update();
+                foreach (Character character in team.Characters)
+                {
+                    character.Update();
+                }
             }
         }
 
@@ -181,15 +180,14 @@ namespace Zappy_Client.Core._2DEngine
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
-            foreach (Character character in this.Characters)
+            foreach (Team team in this.Teams.Values)
             {
-                character.Draw(spriteBatch);
+                foreach (Character character in team.Characters)
+                {
+                    character.Draw(spriteBatch);
+                }
             }
             spriteBatch.End();
-            
-            //spriteBatch.Begin();
-            //spriteBatch.DrawString(this.Debug, "Cursor : " + this.CursorX + "/" + this.CursorY, new Vector2(0, 0), Color.Black);
-            //spriteBatch.End();
         }
 
         /// <summary>
@@ -340,13 +338,18 @@ namespace Zappy_Client.Core._2DEngine
         /// Add a new player on the map
         /// </summary>
         /// <param name="character">Character to add</param>
-        public void AddCharacter(Character character)
+        /// <param name="team">Character's team</param>
+        public void AddCharacter(String team, Character character)
         {
-            if (this.Characters.Contains(character) == false)
+            if (this.Teams.ContainsKey(team) == false)
+            {
+                throw new Exception("Team " + team + " doesn't exist");
+            }
+            if (this.Teams[team].Characters.Contains(character) == false)
             {
                 character.Initialize();
                 character.Texture = this.Character;
-                this.Characters.Add(character);
+                this.Teams[team].Characters.Add(character);
             }
         }
 
@@ -354,13 +357,17 @@ namespace Zappy_Client.Core._2DEngine
         /// Remove a character of the map
         /// </summary>
         /// <param name="name">Character name</param>
-        public void RemoveCharacter(String name)
+        public void RemoveCharacter(String team, Int32 id)
         {
-            foreach (Character character in this.Characters)
+            if (this.Teams.ContainsKey(team) == false)
             {
-                if (character.Name == name)
+                throw new Exception("Team " + team + " doesn't exist");
+            }
+            foreach (Character character in this.Teams[team].Characters)
+            {
+                if (character.Id == id)
                 {
-                    this.Characters.Remove(character);
+                    this.Teams[team].Characters.Remove(character);
                     break;
                 }
             }

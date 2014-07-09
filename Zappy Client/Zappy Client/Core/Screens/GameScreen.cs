@@ -72,7 +72,7 @@ namespace Zappy_Client.Core
         public void InitializeMap(Int32 X, Int32 Y)
         {
             this.Camera = new Camera(this.ScreenManagerInstance.GameInstance.GraphicsDevice, Zappy.Width, Zappy.Height);
-            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, 20, 20, this.Camera);
+            this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, X, Y, this.Camera);
             this.Map.Initialize();
             this.Map.OnCursorClick += Map_OnCursorClick;
         }
