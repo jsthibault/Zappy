@@ -17,7 +17,6 @@ namespace Zappy_Client.Core._2DEngine
 {
     public class FrameContent
     {
-
         #region FIELDS
 
         public Int32 X { get; set; }
@@ -89,6 +88,24 @@ namespace Zappy_Client.Core._2DEngine
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Get item count on frame
+        /// </summary>
+        /// <returns></returns>
+        public Int32 GetItemCount()
+        {
+            Int32 _count = 0;
+
+            for (Int32 i = 0; i < (Int32)ItemType.THYSTAME; ++i)
+            {
+                if (this.GetItemValue((ItemType)i) > 0)
+                {
+                    ++_count;
+                }
+            }
+            return _count;
         }
 
         #endregion

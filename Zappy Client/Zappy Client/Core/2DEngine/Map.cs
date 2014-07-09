@@ -49,7 +49,7 @@ namespace Zappy_Client.Core._2DEngine
         private Texture2D Grid { get; set; }
         private Texture2D CastAnim { get; set; }
         private Texture2D DeadAnim { get; set; }
-        private Texture2D Cristal { get; set; }
+        private Texture2D[] Cristals { get; set; }
         private SpriteFont Debug { get; set; }
 
         public const Int32 Case = 32;
@@ -210,7 +210,13 @@ namespace Zappy_Client.Core._2DEngine
             this.Grid = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
             this.CastAnim = this.GameInstance.Content.Load<Texture2D>("Characters//cast.png");
             this.DeadAnim = this.GameInstance.Content.Load<Texture2D>("Characters//die.png");
-            this.Cristal = this.GameInstance.Content.Load<Texture2D>("Characters//cristal.png");
+            this.Cristals = new Texture2D[7];
+            Int32 _j = 7;
+            for (Int32 i = 0; i < 7; ++i)
+            {
+                this.Cristals[i] = this.GameInstance.Content.Load<Texture2D>("Characters//cristal_" + (_j).ToString() + ".png");
+                --_j;
+            }
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
@@ -347,7 +353,11 @@ namespace Zappy_Client.Core._2DEngine
                     {
                         if (frame.X == i && frame.Y == j && frame.HasItems() == true)
                         {
-                            spriteBatch.Draw(this.Cristal, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                            Int32 _itemsCount = frame.GetItemCount();
+                            if (_itemsCount > 0)
+                            {
+                                spriteBatch.Draw(this.Cristals[_itemsCount - 1], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                            }
                         }
                     }
                 }
