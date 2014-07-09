@@ -27,13 +27,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 Level { get; set; }
 
-        public Int32 Food { get; set; }
-        public Int32 Linemate { get; set; }
-        public Int32 Deraumere { get; set; }
-        public Int32 Sibur { get; set; }
-        public Int32 Mendiane { get; set; }
-        public Int32 Phiras { get; set; }
-        public Int32 Thystame { get; set; }
+        public Int32 []Items;
 
         public Texture2D Texture { get; set; }
 
@@ -71,6 +65,7 @@ namespace Zappy_Client.Core._2DEngine
             this.X = 0;
             this.Y = 0;
             this.Level = 0;
+            this.Items = new Int32[7];
         }
 
         /// <summary>
@@ -85,6 +80,7 @@ namespace Zappy_Client.Core._2DEngine
             this.X = x;
             this.Y = y;
             this.Level = 0;
+            this.Items = new Int32[7];
         }
 
         /// <summary>
@@ -102,6 +98,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Id = id;
             this.Direction = orientation;
             this.Level = 0;
+            this.Items = new Int32[7];
         }
 
         #endregion
@@ -201,6 +198,24 @@ namespace Zappy_Client.Core._2DEngine
             this.Direction = direction;
             this.Moving = true;
             //this.MoveVal = 0;
+        }
+
+        /// <summary>
+        /// Drop item animation
+        /// </summary>
+        /// <param name="index"></param>
+        public void DropItem(Int32 index)
+        {
+            this.Items[index] -= 1;
+        }
+
+        /// <summary>
+        /// pick item animation
+        /// </summary>
+        /// <param name="index"></param>
+        public void PickItem(Int32 index)
+        {
+            this.Items[index] += 1;
         }
 
         /// <summary>

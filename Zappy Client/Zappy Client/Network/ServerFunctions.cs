@@ -144,13 +144,13 @@ namespace Zappy_Client
                     {
                         character.X = Int32.Parse(items[2]);
                         character.Y = Int32.Parse(items[3]);
-                        character.Food = Int32.Parse(items[4]);
-                        character.Linemate = Int32.Parse(items[5]);
-                        character.Deraumere = Int32.Parse(items[6]);
-                        character.Sibur = Int32.Parse(items[7]);
-                        character.Mendiane = Int32.Parse(items[8]);
-                        character.Phiras = Int32.Parse(items[9]);
-                        character.Thystame = Int32.Parse(items[10]);
+                        character.Items[0] = Int32.Parse(items[4]);
+                        character.Items[1] = Int32.Parse(items[5]);
+                        character.Items[2] = Int32.Parse(items[6]);
+                        character.Items[3] = Int32.Parse(items[7]);
+                        character.Items[4] = Int32.Parse(items[8]);
+                        character.Items[5] = Int32.Parse(items[9]);
+                        character.Items[6] = Int32.Parse(items[10]);
                     }
                 }
             }
@@ -260,7 +260,17 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPdr(List<String> items)
         {
-            return false;
+            foreach (Team team in Game.Map.Teams.Values)
+            {
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.DropItem(Int32.Parse(items[2]));
+                    }
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -272,7 +282,17 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPgt(List<String> items)
         {
-            return false;
+            foreach (Team team in Game.Map.Teams.Values)
+            {
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.PickItem(Int32.Parse(items[2]));
+                    }
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -284,6 +304,16 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPdi(List<String> items)
         {
+            foreach (Team team in Game.Map.Teams.Values)
+            {
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        character.Die();
+                    }
+                }
+            }
             return false;
         }
 
