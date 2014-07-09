@@ -5,12 +5,12 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Wed Jul  9 09:50:30 2014 arnaud drain
+** Last update mer. juil. 09 17:36:48 2014 lefloc_l
 */
 
-#include <signal.h>
 #include <stdlib.h>
 #include <time.h>
+#include <signal.h>
 #include "options.h"
 #include "server.h"
 #include "kernel.h"

@@ -5,13 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:01:42 2014 lefloc_l
-<<<<<<< HEAD
-** Last update mar. juil. 08 14:54:36 2014 lefloc_l
-||||||| merged common ancestors
-** Last update mar. juil. 08 14:54:36 2014 lefloc_l
-=======
-** Last update mar. juil. 08 14:54:36 2014 lefloc_l
->>>>>>> eda795d96624337ec1bf6263b968477236df0de3
+** Last update mer. juil. 09 17:38:43 2014 lefloc_l
 */
 
 #include <stdlib.h>

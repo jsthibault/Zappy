@@ -5,13 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-<<<<<<< HEAD
-** Last update Tue Jul  8 16:21:44 2014 arnaud drain
-||||||| merged common ancestors
-** Last update Mon Jul  7 17:58:39 2014 arnaud drain
-=======
-** Last update Tue Jul  8 13:04:56 2014 arnaud drain
->>>>>>> eda795d96624337ec1bf6263b968477236df0de3
+** Last update mer. juil. 09 17:40:20 2014 lefloc_l
 */
 
 #include "kernel.h"

@@ -5,8 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Tue Jul  8 23:13:25 2014 arnaud drain
-** Last update lun. juil. 07 15:48:33 2014 lefloc_l
+** Last update mer. juil. 09 17:33:27 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -43,7 +42,8 @@ void		send_connexion_to_graphic(t_kernel *, t_player *);
 void		send_egg_connexion_to_graphic(t_kernel *, t_player *, int);
 void		send_expulse_to_graphic(t_kernel *, int);
 void		send_elevation_to_graphic(t_kernel *, t_case *, t_player *);
-void		send_finish_elevation_to_graphic(t_kernel *, t_case *, t_player *, int status);
+void		send_finish_elevation_to_graphic(t_kernel *, t_case *,
+    t_player *, int status);
 
 /*
 ** grahic print functions.

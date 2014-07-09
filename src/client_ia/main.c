@@ -1,16 +1,16 @@
 /*
-** main.c for client_ia in /home/drain_a/rendu/Zappy/src/client_ia
-** 
-** Made by arnaud drain
-** Login   <drain_a@epitech.net>
-** 
-** Started on  Sat Jul  5 14:59:20 2014 arnaud drain
-** Last update Sun Jul  6 13:30:23 2014 Rodrigue Canquery
+** main.c for client_ia in /home/loic/dev/epitech/c/Zappy/src/client_ia
+**
+** Made by lefloc_l
+** Login <lefloc_l@epitech.eu>
+**
+** Started on  mer. juil. 09 17:37:51 2014 lefloc_l
+** Last update mer. juil. 09 17:37:57 2014 lefloc_l
 */
 
-#include "client_option.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "client_option.h"
 
 t_bool		is_num(char *str)
 {
@@ -31,7 +31,8 @@ t_bool		is_num(char *str)
 
 void	print_man()
 {
-  fprintf(stderr, "Usage : \n-n : nom d'equipe\n-p port du serveur\n-h nom de la machine\n");
+  fprintf(stderr, "Usage : \n-n : nom d'equipe\n");
+  fprintf(stderr, "-p port du serveur\n-h nom de la machine\n");
 }
 
 int		main(int ac, char **av)

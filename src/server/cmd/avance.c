@@ -4,14 +4,8 @@
 ** Made by lefloc_l
 ** Login <lefloc_l@epitech.eu>
 **
-** Started on  ven. mai 16 17:35:52 2014 lefloc_l
-<<<<<<< HEAD
-** Last update mar. juil. 08 14:26:09 2014 lefloc_l
-||||||| merged common ancestors
-** Last update Sun Jul  6 14:15:45 2014 arnaud drain
-=======
-** Last update Tue Jul  8 12:36:18 2014 arnaud drain
->>>>>>> eda795d96624337ec1bf6263b968477236df0de3
+** Started on  mer. juil. 09 17:39:00 2014 lefloc_l
+** Last update mer. juil. 09 17:39:03 2014 lefloc_l
 */
 
 #include <stdlib.h>

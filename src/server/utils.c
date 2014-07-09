@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update Wed Jul  9 09:50:47 2014 arnaud drain
+** Last update mer. juil. 09 17:45:58 2014 lefloc_l
 */
 
 #include <sys/types.h>
@@ -61,11 +61,6 @@ t_bool		is_float(char *str)
     }
   }
   return (TRUE);
-}
-
-int		write_socket(int fd, char *str)
-{
-  return (send(fd, str, strlen(str), MSG_NOSIGNAL));
 }
 
 void	*xmalloc(size_t size)
