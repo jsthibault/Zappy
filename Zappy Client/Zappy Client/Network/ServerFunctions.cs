@@ -160,7 +160,7 @@ namespace Zappy_Client
 
         /// <summary>
         /// Answer pex from server
-        /// Player kicked from server
+        /// Kick other players of the frame
         /// pex #n
         /// </summary>
         /// <param name="items">List of command's items</param>

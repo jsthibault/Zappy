@@ -210,11 +210,11 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(this.Texture, new Rectangle(this.Map.OffsetX +  this.HitBox.X, this.Map.OffsetY + this.HitBox.Y, 32, 32),
+                new Rectangle((this.FrameColumn - 1) * 32, (this.FrameLine - 1) * 32, 32, 32),
+                Color.White);
             this.Animations[(Int32)AnimationType.Cast].Draw(spriteBatch);
             this.Animations[(Int32)AnimationType.Die].Draw(spriteBatch);
-            spriteBatch.Draw(this.Texture, new Rectangle(this.Map.OffsetX +  this.HitBox.X, this.Map.OffsetY + this.HitBox.Y, 32, 32),
-                new Rectangle((this.FrameColumn - 1) * 32, (this.FrameLine - 1) * 32, 32, 32), 
-                Color.White);
         }
 
         /// <summary>
@@ -320,6 +320,16 @@ namespace Zappy_Client.Core._2DEngine
         private void PlayAnimation(AnimationType type)
         {
             this.Animations[(Int32)type].Play(this.X * Map2D.Case + this.Map.OffsetX, this.Y * Map2D.Case + this.Map.OffsetY);
+        }
+
+        /// <summary>
+        /// Move to a frame
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="orientation"></param>
+        public void moveTo(Int32 x, Int32 y, Direction orientation)
+        {
         }
 
         #endregion
