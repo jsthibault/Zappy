@@ -106,7 +106,7 @@ namespace Zappy_Client.Core._2DEngine
             this.X = x;
             this.Y = y;
             this.Id = id;
-            this.ChangeDirection(orientation);
+            this.Direction = orientation;
             this.Level = 0;
             this.Items = new Int32[7];
             this.Casting = false;
@@ -123,9 +123,7 @@ namespace Zappy_Client.Core._2DEngine
         public void Initialize(Texture2D cast, Texture2D die)
         {
             this.HitBox = new Rectangle(this.X * 32, this.Y * 32, 64, 64);
-            this.Direction = Direction.Down;
-            this.FrameColumn = 2;
-            this.FrameLine = 1;
+            this.ChangeDirection(this.Direction);
             this.Timer = 0;
             this.Animation = true;
             this.Animations = new Animation[2];
@@ -267,6 +265,7 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Die()
         {
+            this.Dead = true;
             this.PlayAnimation(AnimationType.Die);
         }
 

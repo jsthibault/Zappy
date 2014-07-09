@@ -214,7 +214,7 @@ namespace Zappy_Client.Core._2DEngine
             Int32 _j = 7;
             for (Int32 i = 0; i < 7; ++i)
             {
-                this.Cristals[i] = this.GameInstance.Content.Load<Texture2D>("Characters//cristal_" + (_j).ToString() + ".png");
+                this.Cristals[i] = this.GameInstance.Content.Load<Texture2D>("Characters//items//cristal_" + (_j).ToString() + ".png");
                 --_j;
             }
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
