@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:13 2014 lefloc_l
-** Last update Wed Jul  9 20:25:57 2014 arnaud drain
+** Last update Thu Jul 10 01:23:46 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -121,7 +121,7 @@ int		cmd_incantation(char **av, t_client *cl, t_kernel *kernel)
   if (!(av2[0] = strdup("elevation")))
     return (-1);
   av2[1] = NULL;
-  if (add_action(kernel, 300, cl, av2))
+  if (add_action(300, cl->player, av2, 1))
     return (-1);
   return (launch_elevation(c));
 }

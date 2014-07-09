@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 09 17:44:35 2014 lefloc_l
-** Last update Wed Jul  9 21:40:51 2014 arnaud drain
+** Last update Thu Jul 10 01:12:38 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -26,20 +26,17 @@ static t_bool	remove_player_on_team(void *c, void *p)
   return (FALSE);
 }
 
-static t_bool	remove_action_from_player(void *c, void *p)
+static void	delete_actions(t_list *actions)
 {
-  t_player	*player;
   t_actions	*action;
 
-  player = (t_player *)p;
-  action = (t_actions *)c;
-  if (player->id == action->client->player->id)
+  while (!list_is_empty(actions))
     {
+      action = (t_actions *)list_get_front(actions);
       freetab(action->av);
       free(action);
-      return (TRUE);
+      list_pop_front(&actions);
     }
-  return (FALSE);
 }
 
 void	remove_player(t_kernel *kernel, t_player *player)
@@ -48,7 +45,7 @@ void	remove_player(t_kernel *kernel, t_player *player)
   list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
   if (!(player->from_egg))
     ++(player->team->place_left);
-  list_pop_func_arg(&kernel->actions, &remove_action_from_player, player);
+  delete_actions(player->actions);
   remove_player_on_map(kernel, player);
   list_pop_func_arg(&kernel->game.players, &remove_player_on_team, player);
   free(player);

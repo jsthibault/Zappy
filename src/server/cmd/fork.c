@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:23 2014 lefloc_l
-** Last update Wed Jul  9 11:38:56 2014 arnaud drain
+** Last update Thu Jul 10 01:25:00 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -37,7 +37,7 @@ int		cmd_fork(char **av, t_client *cl, t_kernel *kernel)
   if (!(av2[0] = strdup("pond")))
     return (-1);
   av2[1] = NULL;
-  if (add_action(kernel, 42, cl, av2))
+  if (add_action(42, cl->player, av2, 1))
     return (-1);
   return (0);
 }

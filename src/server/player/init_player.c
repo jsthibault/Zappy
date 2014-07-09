@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Wed Jul  9 21:41:13 2014 arnaud drain
+** Last update Thu Jul 10 00:58:48 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -66,6 +66,7 @@ static void	init_player_const_value(t_player *player)
   player->level = 1;
   player->orientation = rand() % 4 + 1;
   player->food_time = 126;
+  player->actions = NULL;
 }
 
 t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,

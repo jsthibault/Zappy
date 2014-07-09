@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:33:47 2014 lefloc_l
-** Last update Wed Jul  9 09:53:25 2014 arnaud drain
+** Last update Thu Jul 10 01:11:22 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -32,25 +32,11 @@ static void	delete_server(t_kernel *kernel)
     close(kernel->sfd);
 }
 
-static void	delete_actions(t_kernel *kernel)
-{
-  t_actions	*action;
-
-  while (!list_is_empty(kernel->actions))
-    {
-      action = (t_actions *)list_get_front(kernel->actions);
-      freetab(action->av);
-      free(action);
-      list_pop_front(&(kernel->actions));
-    }
-}
-
 void	delete_kernel(t_kernel *kernel)
 {
   if (kernel)
     {
       delete_server(kernel);
-      delete_actions(kernel);
       delete_game(kernel);
       logger_message("{KERNEL} Deleted");
     }

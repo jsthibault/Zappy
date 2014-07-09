@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 03 16:26:34 2014 lefloc_l
-** Last update Tue Jul  8 17:05:58 2014 arnaud drain
+** Last update Thu Jul 10 01:30:08 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -13,16 +13,18 @@
 #include "utils.h"
 #include "enum.h"
 
-int		add_action(t_kernel *kernel, int time, t_client *client, char **av)
+int		add_action(int time, t_player *player, char **av, int front)
 {
   t_actions	*actions;
 
-  if (!(actions = malloc(sizeof(*(kernel->actions)))))
+  if (!(actions = malloc(sizeof(*(actions)))))
     return (-1);
   actions->time_left = time;
-  actions->client = client;
   actions->av = av;
-  list_push_front(&(kernel->actions), actions);
+  if (front)
+    list_push_front(&(player->actions), actions);
+  else
+    list_push_back(&(player->actions), actions);
   return (0);
 }
 

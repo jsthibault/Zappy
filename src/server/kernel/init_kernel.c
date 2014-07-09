@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:35:55 2014 lefloc_l
-** Last update Wed Jul  9 11:00:34 2014 arnaud drain
+** Last update Thu Jul 10 00:58:55 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -17,7 +17,6 @@
 t_bool		init_kernel(const int argc, const char **argv, t_kernel *kernel)
 {
   logger_message("{KERNEL} Initialisation");
-  kernel->actions = NULL;
   kernel->clients = NULL;
   kernel->sfd = 0;
   pre_fill_game(kernel);

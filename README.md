@@ -13,9 +13,6 @@ cette famille.
 Délai de ponte : 42 / t
 Délai entre la ponte et l’éclosion : 600 / t
 
-faire en sorte que les actions attendent bien gentiment à la queue leu leu
-_
-
 Pourquoi "bind: adress already in use" après avoir tout close ? oO
 
 vérifier tout les free / close in game

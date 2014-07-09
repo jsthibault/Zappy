@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Wed Jul  9 11:34:38 2014 arnaud drain
+** Last update Thu Jul 10 01:17:04 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -58,6 +58,7 @@ typedef struct		s_player
   int			pv;
   int			level;
   struct s_client	*client;
+  struct s_list		*actions;
   int			food_time;
   t_orientation		orientation;
   t_inventory		inventory;
@@ -92,14 +93,12 @@ typedef struct	s_actions
 {
   int		time_left;
   char		**av;
-  t_client	*client;
 }		t_actions;
 
 typedef struct		s_kernel
 {
   struct s_options	options;
   struct s_game		game;
-  struct s_list		*actions;
   struct s_client	*clients;
   t_buffer		*buff_node;
   int			sfd;

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Wed Jul  9 21:40:15 2014 arnaud drain
+** Last update Thu Jul 10 01:31:50 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -115,7 +115,7 @@ static int	call_cmd(int i, t_client *client, char **av, t_kernel *kernel)
 
   if (g_functions[i].type == CLIENT && client->player)
     {
-      if (add_action(kernel, g_functions[i].timeout, client, av))
+      if (add_action(g_functions[i].timeout, client->player, av, 0))
 	ret = -1;
     }
   else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
@@ -177,13 +177,6 @@ static int	cmd_client(t_client *client, t_kernel *kernel,
   return (launch_cmd(buffer, client, kernel));
 }
 
-static void	pop_action(t_kernel *kernel, t_node *node)
-{
-  freetab(((t_actions *)node->data)->av);
-  free(node->data);
-  list_pop_node(&(kernel->actions), node);
-}
-
 static int	manage_food(t_kernel *kernel)
 {
   t_client	*client;
@@ -211,22 +204,19 @@ static int	manage_food(t_kernel *kernel)
   return (0);
 }
 
-static int	launch_action(t_actions *action,
-			       t_node **node, t_kernel *kernel)
+static int	launch_action(t_actions *action, t_player *player, t_kernel *kernel)
 {
   int		i;
-  t_node	*node_tmp;
 
   i = 0;
   while (action->av[0] && g_functions[i].name &&
 	 strcmp(action->av[0], g_functions[i].name))
     ++i;
   if (action->av[0] && g_functions[i].name)
-    if (g_functions[i].function(action->av, action->client, kernel))
+    if (g_functions[i].function(action->av, player->client, kernel))
       return (-1);
-  node_tmp = *node;
-  *node = (*node)->next;
-  pop_action(kernel, node_tmp);
+  freetab(action->av);
+  list_pop(&(player->actions), action);
   return (0);
 }
 
@@ -238,21 +228,19 @@ static int	manage_actions(t_kernel *kernel)
   if (manage_food(kernel))
     return (1);
   node = NULL;
-  if (kernel->actions)
-    node = kernel->actions->head;
+  if (kernel->game.players)
+    node = kernel->game.players->head;
   while (node)
     {
-      action = (t_actions *)node->data;
-      if (!(action->time_left))
+      action = list_get_front(((t_player *)node->data)->actions);
+      if (action && !(action->time_left))
 	{
-	  if (launch_action(action, &node, kernel))
+	  if (launch_action(action, (t_player *)node->data, kernel))
 	    return (-1);
 	}
-      else
-	{
-	  --(action->time_left);
-	  node = node->next;
-	}
+      else if (action)
+	--(action->time_left);
+      node = node->next;
     }
   return (0);
 }

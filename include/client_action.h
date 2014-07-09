@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Wed Jul  9 21:38:30 2014 arnaud drain
+** Last update Thu Jul 10 01:23:50 2014 arnaud drain
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -28,7 +28,7 @@ typedef struct	s_incantation
   int		res[6];
 }		t_incantation;
 
-int		add_action(t_kernel *, int, t_client *, char **);
+int		add_action(int, t_player *, char **, int);
 int		graphic(char **, t_client *, t_kernel *);
 
 /*
