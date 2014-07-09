@@ -73,6 +73,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Level = 0;
             this.Items = new Int32[7];
             this.Casting = false;
+            this.Dead = false;
         }
 
         /// <summary>
@@ -89,6 +90,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Level = 0;
             this.Items = new Int32[7];
             this.Casting = false;
+            this.Dead = false;
         }
 
         /// <summary>
@@ -108,6 +110,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Level = 0;
             this.Items = new Int32[7];
             this.Casting = false;
+            this.Dead = false;
         }
 
         #endregion
