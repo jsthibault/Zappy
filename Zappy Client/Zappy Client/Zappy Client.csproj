@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\2DEngine\Animation.cs" />
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\FrameContent.cs" />
@@ -109,6 +110,7 @@
     <Content Include="Content\Characters\chocobo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\heal_003.png" />
     <Content Include="Content\Music\game.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
