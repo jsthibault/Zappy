@@ -6,7 +6,7 @@
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
 <<<<<<< HEAD
-** Last update mar. juil. 08 17:41:09 2014 lefloc_l
+** Last update Wed Jul  9 09:52:54 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 17:41:09 2014 lefloc_l
 =======
@@ -24,16 +24,13 @@
 
 static int	get_k(t_pos a, t_pos b)
 {
-  // same direction
   if (a.x == b.x && a.y == b.y)
     return (1);
-  // inverse direction
   else if ((a.x + b.x == 0 && a.y == b.y)
       || (a.y + b.y == 0 && a.x == b.x))
     return (5);
-  else if (a.x == b.x) // right
+  else if (a.x == b.x)
     return (7);
-  // left
   return (3);
 }
 

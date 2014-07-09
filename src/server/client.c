@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Wed Jul  9 01:57:58 2014 arnaud drain
+** Last update Wed Jul  9 09:47:52 2014 arnaud drain
 */
 
 #include <sys/socket.h>
@@ -63,7 +63,7 @@ int			add_client(int sfd, t_kernel *kernel)
   if (!(address = strdup(inet_ntoa(sin_client.sin_addr))))
     return (return_error("strdup", 1));
   printf("[\033[32;1mOK\033[0m] Connection from %s\n", address);
-  write(cfd, "BIENVENUE\n", strlen("BIENVENUE\n"));
+  write_socket(cfd, "BIENVENUE\n");
   if (push_client(cfd, kernel, address))
     {
       close(cfd);

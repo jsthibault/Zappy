@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:33:47 2014 lefloc_l
-** Last update Wed Jul  9 02:56:51 2014 arnaud drain
+** Last update Wed Jul  9 09:53:25 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -49,7 +49,6 @@ void	delete_kernel(t_kernel *kernel)
 {
   if (kernel)
     {
-      /* TODO : Rajouter tout les free manquants possibles */
       delete_server(kernel);
       delete_actions(kernel);
       delete_game(kernel);

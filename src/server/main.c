@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update Wed Jul  9 02:02:42 2014 arnaud drain
+** Last update Wed Jul  9 09:50:30 2014 arnaud drain
 */
 
 #include <signal.h>
@@ -41,7 +41,7 @@ static t_kernel		*get_kernel(t_kernel *tmp_kernel)
 static void	sigtruc(int sig)
 {
   (void)sig;
-  printf("SIGNAL\n");
+  printf("EXITING WITH SIGINT\n");
   delete_kernel(get_kernel(NULL));
   exit(EXIT_FAILURE);
 }
@@ -50,9 +50,6 @@ int		main(const int argc, const char *argv[])
 {
   t_kernel	kernel;
 
-  //TODO : Ask lab Astek about SIGPIPE
-  signal(SIGPIPE, sigtruc);
-  //signal(SIGPIPE, SIG_IGN);
   signal(SIGINT, sigtruc);
   if (!logger_init("test.log", TRUE))
     return (EXIT_FAILURE);
