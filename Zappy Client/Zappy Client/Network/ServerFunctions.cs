@@ -97,9 +97,7 @@ namespace Zappy_Client
                 {
                     if (character.Id == Int32.Parse(items[1]))
                     {
-                        character.X = Int32.Parse(items[2]);
-                        character.Y = Int32.Parse(items[3]);
-                        character.Direction = (Direction)Int32.Parse(items[4]);
+                        character.moveTo(Int32.Parse(items[2]), Int32.Parse(items[3]), (Direction)Int32.Parse(items[4]));
                     }
                 }
             }

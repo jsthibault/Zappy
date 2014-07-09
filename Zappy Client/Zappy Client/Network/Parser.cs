@@ -38,7 +38,7 @@ namespace Zappy_Client
             AuthorizedItems.Add(new Regex("^bct( \\d*){9}$"));
             AuthorizedItems.Add(new Regex("^tna \\w*$"));
             AuthorizedItems.Add(new Regex("^pnw \\d*( \\d*){2} \\d \\d* \\w*$"));
-            AuthorizedItems.Add(new Regex("^ppo \\d*( \\d*){2} [N|O|S|E]:\\d$"));
+            AuthorizedItems.Add(new Regex("^ppo \\d*( \\d*){2} \\d$"));
             AuthorizedItems.Add(new Regex("^plv \\d* \\d*$"));
             AuthorizedItems.Add(new Regex("^pin \\d*( \\d*){9}$"));
             AuthorizedItems.Add(new Regex("^pex \\d*$"));

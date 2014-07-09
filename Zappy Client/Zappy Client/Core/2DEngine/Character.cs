@@ -330,6 +330,22 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="orientation"></param>
         public void moveTo(Int32 x, Int32 y, Direction orientation)
         {
+            Int32 nbMoves = 0;
+
+            if (orientation == Direction.Up)
+                nbMoves = this.Y - y;
+            else if (orientation == Direction.Right)
+                nbMoves = x - this.X;
+            else if (orientation == Direction.Down)
+                nbMoves = y - this.Y;
+            else if (orientation == Direction.Left)
+                nbMoves = this.X - x;
+            this.ChangeDirection(orientation);
+            while (nbMoves > 0)
+            {
+                this.Move(orientation);
+                nbMoves--;
+            }
         }
 
         #endregion
