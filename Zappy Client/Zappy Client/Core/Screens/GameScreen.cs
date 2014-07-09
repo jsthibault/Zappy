@@ -54,7 +54,6 @@ namespace Zappy_Client.Core
         /// <returns></returns>
         public override bool Initialize()
         {
-            //this.Map.AddCharacter(new Character(this.Map, 0, 0, "Shyro"));
             return base.Initialize();
         }
 
@@ -64,6 +63,7 @@ namespace Zappy_Client.Core
             this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, X, Y, this.Camera);
             this.Map.Initialize();
             this.Map.OnCursorClick += Map_OnCursorClick;
+            Network.Instance.SendMessage("tna\n");
         }
 
         /// <summary>

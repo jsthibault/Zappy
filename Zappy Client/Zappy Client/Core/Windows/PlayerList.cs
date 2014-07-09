@@ -18,7 +18,7 @@ using Zappy_Client.Interface;
 
 namespace Zappy_Client.Core
 {
-    public class WndPlayerList : Window
+    public class WndTeamsList : Window
     {
         #region FIELDS
 
@@ -30,8 +30,8 @@ namespace Zappy_Client.Core
 
         #region CONSTRUCTORS
 
-        public WndPlayerList(UI engine)
-            : base(engine, "PlayerList", 50, 100, 250, 330, "Player List")
+        public WndTeamsList(UI engine)
+            : base(engine, "TeamsListWindow", 50, 100, 250, 330, "Teams List")
         {
             this.Initialize();
         }
@@ -43,19 +43,27 @@ namespace Zappy_Client.Core
         public override void Initialize()
         {
             this.CloseButton = false;
-            this.Players = new ListBox(this.Engine, "PlayerList", 15, 30, 220, 250);
-            this.Players.AddItem(new ListBoxItem("gomesp_f", null));
-            this.Players.AddItem(new ListBoxItem("ouache_s", null));
-            this.Players.AddItem(new ListBoxItem("lefloc_l", null));
-            this.Players.AddItem(new ListBoxItem("canque_r", null));
-            this.Players.AddItem(new ListBoxItem("drain_a", null));
-            this.Players.AddItem(new ListBoxItem("thibau_j", null));
+            this.Players = new ListBox(this.Engine, "TeamsList", 15, 30, 220, 250);
+            //this.Players.AddItem(new ListBoxItem("gomesp_f", null));
+            //this.Players.AddItem(new ListBoxItem("ouache_s", null));
+            //this.Players.AddItem(new ListBoxItem("lefloc_l", null));
+            //this.Players.AddItem(new ListBoxItem("canque_r", null));
+            //this.Players.AddItem(new ListBoxItem("drain_a", null));
+            //this.Players.AddItem(new ListBoxItem("thibau_j", null));
             this.AddControl(this.Players);
 
-            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Show Inventory");
+            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Show");
+            this.ShowInventory.Enabled = false;
             this.ShowInventory.OnClick += ShowInventory_OnClick;
+            this.Players.OnSelectedItem += Players_OnSelectedItem;
             this.AddControl(this.ShowInventory);
             base.Initialize();
+        }
+
+        void Players_OnSelectedItem(object sender)
+        {
+            this.ShowInventory.Enabled = true;
+            this.ShowInventory.Text = "Show " + (sender as ListBox).SelectedItem.ItemText + "'s members";
         }
 
         private void ShowInventory_OnClick(object sender)
@@ -71,6 +79,11 @@ namespace Zappy_Client.Core
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        public void AddItem(String name, Object obj)
+        {
+            this.Players.AddItem(new ListBoxItem(name, obj));
         }
 
         #endregion

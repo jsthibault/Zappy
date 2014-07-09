@@ -65,6 +65,8 @@ namespace Zappy_Client
             if (Game.Map.Teams.ContainsKey(items[1]) == false)
             {
                 Game.Map.Teams[items[1]] = new Team(items[1]);
+                WndTeamsList lst = (Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList); 
+                lst.AddItem(items[1], Game.Map.Teams[items[1]]);
             }
             return true;
         }
@@ -165,17 +167,27 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPex(List<String> items)
         {
-            //foreach (Team team in Game.Map.Teams.Values)
-            //{
-            //    foreach (Character character in team.Characters)
-            //    {
-            //        if (character.Id == Int32.Parse(items[1]))
-            //        {
-            //            character.Die();
-            //            return true;
-            //        }
-            //    }
-            //}
+            foreach (Team team in Game.Map.Teams.Values)
+            {
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        foreach (Team teamToKick in Game.Map.Teams.Values)
+                        {
+                            foreach (Character characterToKick in teamToKick.Characters)
+                            {
+                                if (character.X == characterToKick.X && character.Y == characterToKick.Y && characterToKick != character)
+                                {
+                                    characterToKick.ChangeDirection(character.Direction);
+                                    //characterToKick.Move(character.Direction);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return true;
         }
 
@@ -288,6 +300,7 @@ namespace Zappy_Client
                     if (character.Id == Int32.Parse(items[1]))
                     {
                         character.PickItem(Int32.Parse(items[2]));
+                        Game.Map.RetriveItem(character.X, character.Y, (ItemType)Int32.Parse(items[2]));
                     }
                 }
             }

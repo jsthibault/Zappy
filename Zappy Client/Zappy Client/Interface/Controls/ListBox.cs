@@ -26,6 +26,8 @@ namespace Zappy_Client.Interface
 
         public ListBoxItem SelectedItem { get; set; }
 
+        public event MonoGameEventHandler OnSelectedItem;
+
         private Int32 MaxItems { get; set; }
 
         #endregion
@@ -207,6 +209,12 @@ namespace Zappy_Client.Interface
             }
         }
 
+        private void DoOnSelectedItem()
+        {
+            if (this.OnSelectedItem != null)
+                this.OnSelectedItem(this);
+        }
+
         #endregion
 
         #region EVENTS
@@ -225,6 +233,7 @@ namespace Zappy_Client.Interface
                     _mousePosition.Y >= this.Position.Y + _offsetX && _mousePosition.Y <= this.Position.Y + _offsetX + 10)
                 {
                     this.SelectedItem = item;
+                    this.DoOnSelectedItem();
                     break;
                 }
                 _offsetX += 15;

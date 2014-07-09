@@ -77,7 +77,7 @@ namespace Zappy_Client.Core
         public override void OnChangeScreen()
         {
             this.InterfaceEngine.GetContainer("LoginWindow").Visible = false;
-            this.InterfaceEngine.GetContainer("PlayerList").Visible = true;
+            this.InterfaceEngine.GetContainer("TeamsListWindow").Visible = true;
             this.InterfaceEngine.GetContainer("Inventory").Visible = true;
             this.InterfaceEngine.GetContainer("Options").Visible = false;
             AudioManager.Instance.Stop();

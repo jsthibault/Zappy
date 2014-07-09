@@ -248,12 +248,12 @@ namespace Zappy_Client.Core._2DEngine
             {
                 if (frame.X == X && frame.Y == Y)
                 {
-                    frame.AddItem(type, value);
+                    frame.SetItem(type, value);
                     return;
                 }
             }
             FrameContent newFrame = new FrameContent(X, Y);
-            newFrame.AddItem(type, value);
+            newFrame.SetItem(type, value);
             this.Frames.Add(newFrame);
         }
 
@@ -410,6 +410,40 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.Teams[team].Characters.Remove(character);
                     break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add an item in a frame
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="index"></param>
+        public void AddItem(Int32 x, Int32 y, ItemType index)
+        {
+            foreach (FrameContent frame in this.Frames)
+            {
+                if (frame.X == x && frame.Y == y)
+                {
+                    frame.AddItem(index, 1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Retrive an item from a frame
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="index"></param>
+        public void RetriveItem(Int32 x, Int32 y, ItemType index)
+        {
+            foreach (FrameContent frame in this.Frames)
+            {
+                if (frame.X == x && frame.Y == y)
+                {
+                    frame.RetriveItem(index, 1);
                 }
             }
         }

@@ -48,16 +48,29 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         /// <param name="type"></param>
         /// <param name="value"></param>
+        public void SetItem(ItemType type, Int32 value)
+        {
+            this.Content[type] = value;
+        }
+
+        /// <summary>
+        /// retrive an item from the frame
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        public void RetriveItem(ItemType type, Int32 value)
+        {
+            this.Content[type] -= value;
+        }
+
+        /// <summary>
+        /// Add an item in the frame
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
         public void AddItem(ItemType type, Int32 value)
         {
-            if (this.Content.ContainsKey(type))
-            {
-                this.Content[type] += value;
-            }
-            else
-            {
-                this.Content[type] = value;
-            }
+            this.Content[type] += value;
         }
 
         /// <summary>
