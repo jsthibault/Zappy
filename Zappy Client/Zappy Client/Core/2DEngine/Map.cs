@@ -104,6 +104,7 @@ namespace Zappy_Client.Core._2DEngine
         public Boolean Initialize()
         {
             this.InitializeTexture();
+            this.AddCharacter("test", new Character(this, 5, 5, 1, Direction.Left));
             return true;
         }
 
@@ -146,6 +147,15 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.ClickMap();
                 }
+            }
+
+            if (_state.IsKeyDown(Keys.A) == true)
+            {
+                this.Teams["test"].Characters[0].StartCast(0);
+            }
+            if (_state.IsKeyDown(Keys.Z) == true)
+            {
+                this.Teams["test"].Characters[0].EndCast(0);
             }
             foreach (Team team in this.Teams.Values)
             {
@@ -382,16 +392,17 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="team">Character's team</param>
         public void AddCharacter(String team, Character character)
         {
-            if (this.Teams.ContainsKey(team) == false)
-            {
-                throw new Exception("Team " + team + " doesn't exist");
-            }
-            if (this.Teams[team].Characters.Contains(character) == false)
-            {
+            //if (this.Teams.ContainsKey(team) == false)
+            //{
+            //    throw new Exception("Team " + team + " doesn't exist");
+            //}
+            //if (this.Teams[team].Characters.Contains(character) == false)
+            //{
+            this.Teams.Add(team, new Team(team));
                 character.Initialize(this.CastAnim, this.DeadAnim);
                 character.Texture = this.Character;
                 this.Teams[team].Characters.Add(character);
-            }
+            //}
         }
 
         /// <summary>
