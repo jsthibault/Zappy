@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:21:09 2014 lefloc_l
-** Last update Thu Jun 26 17:15:20 2014 arnaud drain
+** Last update Wed Jul  9 11:30:21 2014 arnaud drain
 */
 
 #include <string.h>
@@ -20,6 +20,7 @@ void		add_team(t_kernel *kernel, char *teamname)
   team = xmalloc(sizeof(t_team));
   strcpy(team->name, teamname);
   team->players = list_create();
+  team->place_left = kernel->options.max_clients;
   list_push_back(&(kernel->game.teams), team);
   logger_message("{TEAM} Create %s", teamname);
 }

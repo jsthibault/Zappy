@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:49 2014 lefloc_l
-** Last update lun. juil. 07 15:59:10 2014 lefloc_l
+** Last update Wed Jul  9 11:38:42 2014 arnaud drain
 */
 
 #include "client_action.h"
@@ -17,12 +17,10 @@
 int		cmd_connect_nbr(char **av, t_client *cl, t_kernel *kernel)
 {
   char		buffer[BUFFER_SIZE];
-  int		nb;
 
   (void)av;
-  // TODO -> mettre la bonne formule :)
-  nb = kernel->options.max_clients - list_size(cl->player->team->players);
-  sprintf(buffer, "%d", nb);
+  (void)kernel;
+  sprintf(buffer, "%d\n", cl->player->team->place_left);
   write_socket(cl->fd, buffer);
   return (0);
 }

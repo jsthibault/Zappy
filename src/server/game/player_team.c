@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:19:53 2014 lefloc_l
-** Last update Fri Jul  4 17:05:42 2014 arnaud drain
+** Last update Wed Jul  9 19:58:23 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -16,6 +16,8 @@ t_bool		player_in_team(t_team *team, t_player *player)
   t_node	*node;
   t_player	*p;
 
+  if (!(team->players))
+    return (FALSE);
   node = team->players->head;
   while (node)
   {
@@ -41,6 +43,7 @@ void		add_player_to_team(t_kernel *kernel, char *teamname,
     {
       list_push_back(&(team->players), player);
       player->team = team;
+      --(team->place_left);
     }
     else
       logger_error("{PLAYER} already joined team \"%s\"", teamname);

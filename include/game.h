@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:13:20 2014 lefloc_l
-** Last update Tue Jun 17 16:37:08 2014 arnaud drain
+** Last update Wed Jul  9 20:26:16 2014 arnaud drain
 */
 
 #ifndef GAME_H_
@@ -17,8 +17,12 @@
 # include "team.h"
 # include "player.h"
 
+# define END_LVL 2
+# define PLAYER_REQUIRED 1
+
 void	init_game(t_kernel *);
 void	delete_game(t_kernel *);
 void	pre_fill_game(t_kernel *);
+int	check_victory(t_kernel *);
 
 #endif /* !GAME_H_ */

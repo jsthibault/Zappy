@@ -5,19 +5,39 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:23 2014 lefloc_l
-** Last update Thu Jun 26 16:26:26 2014 arnaud drain
+** Last update Wed Jul  9 11:38:56 2014 arnaud drain
 */
 
+#include <stdlib.h>
+#include <string.h>
 #include "client_action.h"
 #include "server.h"
 #include "utils.h"
 #include "enum.h"
 #include "map.h"
 
-int		cmd_fork(char **av, t_client *cl, t_kernel *kernel)
+int		cmd_pond(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
   (void)cl;
   (void)kernel;
+  return (0);
+}
+
+int		cmd_fork(char **av, t_client *cl, t_kernel *kernel)
+{
+  char		buffer[BUFFER_SIZE];
+  char		**av2;
+
+  (void)av;
+  sprintf(buffer, "pfk %d\n", cl->player->id);
+  write_all_graphic(kernel, buffer);
+  if (!(av2 = malloc(sizeof(*av2) * 2)))
+    return (-1);
+  if (!(av2[0] = strdup("pond")))
+    return (-1);
+  av2[1] = NULL;
+  if (add_action(kernel, 42, cl, av2))
+    return (-1);
   return (0);
 }

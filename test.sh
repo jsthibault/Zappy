@@ -3,9 +3,11 @@
 {
 echo "dewd"
 sleep 1
-echo "avance"
-echo "avance"
-echo "avance"
-echo "avance"
+i=5000
+while [ "$i" -gt 1 ]
+do
+    echo -n "trolooooololo"
+done
+echo ""
 sleep 2
 } | telnet $1 $2

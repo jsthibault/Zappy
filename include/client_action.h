@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Tue Jul  8 23:13:25 2014 arnaud drain
+** Last update Wed Jul  9 11:07:04 2014 arnaud drain
 ** Last update lun. juil. 07 15:48:33 2014 lefloc_l
 */
 
@@ -92,6 +92,7 @@ int		cmd_broadcast_texte(char **av, t_client *, t_kernel *kernel);
 int		cmd_incantation(char **av, t_client *, t_kernel *kernel);
 int		incantation(char **av, t_client *, t_kernel *kernel);
 int		cmd_fork(char **av, t_client *, t_kernel *kernel);
+int		cmd_pond(char **av, t_client *, t_kernel *kernel);
 int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 
 /*

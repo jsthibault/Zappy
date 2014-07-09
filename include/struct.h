@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Wed Jul  9 01:58:55 2014 arnaud drain
+** Last update Wed Jul  9 11:34:38 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -37,6 +37,7 @@ typedef struct	s_team
 {
   t_list	*players;
   char		name[TEAM_NAME_SIZE];
+  int		place_left;
 }		t_team;
 
 /*
@@ -60,12 +61,19 @@ typedef struct		s_player
   int			food_time;
   t_orientation		orientation;
   t_inventory		inventory;
+  int			from_egg;
 }			t_player;
+
+typedef struct	s_egg
+{
+  int		test;
+}		t_egg;
 
 typedef struct	s_game
 {
   struct s_list	*teams;
   struct s_list	*players;
+  struct s_list	*eggs;
   struct s_map	*map;
 }		t_game;
 

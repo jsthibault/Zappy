@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Wed Jul  9 03:54:50 2014 arnaud drain
+** Last update Wed Jul  9 19:57:11 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -83,11 +83,12 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   player->id = get_max_id(kernel) + 1;
   player->pos.x = rand() % kernel->options.width;
   player->pos.y = rand() % kernel->options.height;
-  list_push_back(&(team->players), player);
+  add_player_to_team(kernel, teamname, player);
   list_push_back(&(kernel->game.players), player);
   player->team = team;
   add_player_on_map(kernel, player, player->pos.x, player->pos.y);
   player->client = cl;
+  player->from_egg = 0;
   init_inventory(&(player->inventory));
   send_connexion_to_graphic(kernel, player);
   return (player);
@@ -125,6 +126,8 @@ void	remove_player(t_kernel *kernel, t_player *player)
 {
   send_deconnexion_to_graphic(kernel, player);
   list_pop_func_arg(&player->team->players, &remove_player_on_team, player);
+  if (!(player->from_egg))
+    ++(player->team->place_left);
   list_pop_func_arg(&kernel->actions, &remove_action_from_player, player);
   remove_player_on_map(kernel, player);
   list_pop_func_arg(&kernel->game.players, &remove_player_on_team, player);

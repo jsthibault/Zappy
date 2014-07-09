@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update Wed Jul  9 03:57:39 2014 arnaud drain
+** Last update Wed Jul  9 20:25:28 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -56,9 +56,10 @@ static const t_functions g_functions[] =
       {"expulse", cmd_expulse, CLIENT, 7},
       {"broadcast", cmd_broadcast_texte, CLIENT, 7},
       {"incantation", cmd_incantation, CLIENT, 0},
-      {"fork", cmd_fork, CLIENT, 42},
+      {"fork", cmd_fork, CLIENT, 0},
       {"connect_nbr", cmd_connect_nbr, CLIENT, 0},
       {"elevation", incantation, SPECIAL, 0},
+      {"pond", cmd_pond, SPECIAL, 0},
       {NULL, NULL, AUTH, 0}
     };
 
@@ -108,8 +109,7 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 	  return (1);
 	}
       team = find_team(kernel, av[0]);
-      sprintf(buf, "%d\n%d %d\n",
-	      (int)(kernel->options.max_clients - list_size(team->players)),
+      sprintf(buf, "%d\n%d %d\n", team->place_left,
 	      (int)kernel->options.width, (int)kernel->options.height);
       write_socket(client->fd, buf);
     }
@@ -230,8 +230,8 @@ static int	manage_food(t_kernel *kernel)
   return (0);
 }
 
-static t_node	*launch_action(t_actions *action,
-			       t_node *node, t_kernel *kernel)
+static int	launch_action(t_actions *action,
+			       t_node **node, t_kernel *kernel)
 {
   int		i;
   t_node	*node_tmp;
@@ -241,11 +241,12 @@ static t_node	*launch_action(t_actions *action,
 	 strcmp(action->av[0], g_functions[i].name))
     ++i;
   if (action->av[0] && g_functions[i].name)
-    g_functions[i].function(action->av, action->client, kernel);
-  node_tmp = node;
-  node = node->next;
+    if (g_functions[i].function(action->av, action->client, kernel))
+      return (-1);
+  node_tmp = *node;
+  *node = (*node)->next;
   pop_action(kernel, node_tmp);
-  return (node);
+  return (0);
 }
 
 static int	manage_actions(t_kernel *kernel)
@@ -262,7 +263,10 @@ static int	manage_actions(t_kernel *kernel)
     {
       action = (t_actions *)node->data;
       if (!(action->time_left))
-	node = launch_action(action, node, kernel);
+	{
+	  if (launch_action(action, &node, kernel))
+	    return (-1);
+	}
       else
 	{
 	  --(action->time_left);

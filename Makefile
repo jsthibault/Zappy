@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Wed Jul  9 03:12:06 2014 arnaud drain
+## Last update Wed Jul  9 20:17:00 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -61,6 +61,7 @@ SRC_SERVER=	options/init_options.c \
 		cmd/expulse.c \
 		cmd/broadcast_texte.c \
 		cmd/incantation.c \
+		cmd/victory.c \
 		cmd/fork.c \
 		cmd/connect_nbr.c \
 		kernel/init_kernel.c \

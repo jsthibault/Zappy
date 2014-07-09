@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:13 2014 lefloc_l
-** Last update Wed Jul  9 03:21:37 2014 arnaud drain
+** Last update Wed Jul  9 20:25:57 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -84,7 +84,7 @@ int		incantation(char **av, t_client *cl, t_kernel *kernel)
     check = 1;
   finish_elevation(c, cl->player->level + check);
   send_finish_elevation_to_graphic(kernel, c, cl->player, check);
-  return (0);
+  return (check_victory(kernel));
 }
 
 static int	launch_elevation(t_case *c)

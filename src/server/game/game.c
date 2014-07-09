@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update Wed Jul  9 03:06:45 2014 arnaud drain
+** Last update Wed Jul  9 11:00:44 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -14,6 +14,7 @@
 
 void	delete_game(t_kernel *kernel)
 {
+  //free des oeufs ;)
   if (kernel->game.teams)
   {
     list_foreach(kernel->game.teams, delete_team);
@@ -38,6 +39,7 @@ void	init_game(t_kernel *kernel)
 void	pre_fill_game(t_kernel *kernel)
 {
   kernel->game.teams = NULL;
+  kernel->game.eggs = NULL;
   kernel->game.players = list_create();
   kernel->game.map = NULL;
 }
