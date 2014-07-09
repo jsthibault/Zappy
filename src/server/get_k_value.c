@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  lun. juil. 07 15:50:07 2014 lefloc_l
-** Last update Wed Jul  9 01:09:56 2014 arnaud drain
+** Last update Wed Jul  9 03:18:24 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -40,7 +40,8 @@ static int	adapt_orientation(int orientation, int val)
   return (val);
 }
 
-int		get_k_value(t_player *origin, t_player *player, int x_max, int y_max)
+int		get_k_value(t_player *origin, t_player *player,
+			    int x_max, int y_max)
 {
   t_pos		vec;
 

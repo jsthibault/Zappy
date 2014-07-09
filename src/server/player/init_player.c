@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Tue Jul  8 17:37:13 2014 arnaud drain
+** Last update Wed Jul  9 03:54:50 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -49,32 +49,45 @@ void	init_inventory(t_inventory *inventory)
   items[FOOD] = 10;
 }
 
+static t_team	*check_init_player(t_kernel *kernel, char *teamname)
+{
+  t_team	*team;
+
+  if (!(team = find_team(kernel, teamname)))
+    return (NULL);
+  if ((kernel->options.max_clients - list_size(team->players)) <= 0)
+    return (NULL);
+  return (team);
+}
+
+static void	init_player_const_value(t_player *player)
+{
+  player->pv = DEFAULT_PV;
+  player->level = 1;
+  player->orientation = rand() % 4 + 1;
+  player->food_time = 126;
+}
+
 t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
     t_client *cl)
 {
   t_team	*team;
   t_player	*player;
-  t_pos		pos;
 
-  if (!(team = find_team(kernel, teamname)))
+  if (!(team = check_init_player(kernel, teamname)))
     return (NULL);
   logger_debug("Adding a player to the team %s", teamname);
   if (!(player = malloc(sizeof(*player))))
     return (NULL);
+  init_player_const_value(player);
   player->id = get_max_id(kernel) + 1;
-  player->pv = DEFAULT_PV;
-  pos.x = rand() % kernel->options.width;
-  pos.y = rand() % kernel->options.height;
-  player->pos.x = pos.x;
-  player->pos.y = pos.y;
+  player->pos.x = rand() % kernel->options.width;
+  player->pos.y = rand() % kernel->options.height;
   list_push_back(&(team->players), player);
   list_push_back(&(kernel->game.players), player);
   player->team = team;
-  add_player_on_map(kernel, player, pos.x, pos.y);
-  player->level = 1;
+  add_player_on_map(kernel, player, player->pos.x, player->pos.y);
   player->client = cl;
-  player->orientation = rand() % 4 + 1;
-  player->food_time = 126;
   init_inventory(&(player->inventory));
   send_connexion_to_graphic(kernel, player);
   return (player);

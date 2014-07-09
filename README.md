@@ -16,9 +16,12 @@ Délai entre la ponte et l’éclosion : 600 / t
 Gestion de fin de jeu
 -
 
-faire les free / close de la fin -> Arnaud
+faire en sorte que les actions attendent bien gentiment à la queue leu leu
+_
 
-vérifier tout les free / close
+Pourquoi "bind: adress already in use" après avoir tout close ? oO
+
+vérifier tout les free / close in game
 
 vérifier tout les appels system (ainsi que les fonctions en héritant)
 
@@ -27,8 +30,8 @@ vérifier la norme
 virer les todo et fence
 
 y x ou x y partout :)
-il faut faire un choi cornelien. choisi le bon cote de la force.
+il faut faire un choix cornelien. choisi le bon cote de la force.
 
-faire en sorte que les actions attendent bien gentiment à la queue leu leu
+changer le depot
 
-si quelqu'un bouge d'une case en train d'incanter, on arette l'incantation
+checker tout les header

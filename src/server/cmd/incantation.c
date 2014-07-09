@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:13 2014 lefloc_l
-** Last update Tue Jul  8 13:10:00 2014 arnaud drain
+** Last update Wed Jul  9 03:21:37 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -96,7 +96,8 @@ static int	launch_elevation(t_case *c)
   node = c->players->head;
   while (node)
     {
-      if (write_socket(((t_player *)node->data)->client->fd, "elevation en cours\n") <= 0)
+      if (write_socket(((t_player *)node->data)->client->fd,
+		       "elevation en cours\n") <= 0)
 	ret = 1;
       node = node->next;
     }

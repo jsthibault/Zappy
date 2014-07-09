@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update sam. juil. 05 16:56:41 2014 lefloc_l
+** Last update Wed Jul  9 02:02:42 2014 arnaud drain
 */
 
 #include <signal.h>
@@ -29,11 +29,20 @@ static void	print_man()
 	  COLOR_BLUE, COLOR_NORMAL);
 }
 
+static t_kernel		*get_kernel(t_kernel *tmp_kernel)
+{
+  static t_kernel	*kernel = NULL;
+
+  if (tmp_kernel)
+    kernel = tmp_kernel;
+  return (kernel);
+}
+
 static void	sigtruc(int sig)
 {
   (void)sig;
-  printf("SIGPIPE\n");
-  logger_delete();
+  printf("SIGNAL\n");
+  delete_kernel(get_kernel(NULL));
   exit(EXIT_FAILURE);
 }
 
@@ -41,7 +50,9 @@ int		main(const int argc, const char *argv[])
 {
   t_kernel	kernel;
 
+  //TODO : Ask lab Astek about SIGPIPE
   signal(SIGPIPE, sigtruc);
+  //signal(SIGPIPE, SIG_IGN);
   signal(SIGINT, sigtruc);
   if (!logger_init("test.log", TRUE))
     return (EXIT_FAILURE);
@@ -51,6 +62,7 @@ int		main(const int argc, const char *argv[])
       delete_kernel(&kernel);
       return (EXIT_FAILURE);
     }
+  get_kernel(&kernel);
   srand(time(NULL));
   launch_srv(&kernel);
   delete_kernel(&kernel);

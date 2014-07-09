@@ -6,7 +6,7 @@
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
 <<<<<<< HEAD
-** Last update Wed Jul  9 00:14:45 2014 arnaud drain
+** Last update Wed Jul  9 03:57:39 2014 arnaud drain
 ||||||| merged common ancestors
 ** Last update mar. juil. 08 14:56:40 2014 lefloc_l
 =======
@@ -121,11 +121,32 @@ static int	game_auth(char **av, t_client *client, t_kernel *kernel)
 
 static char	*find_end(char *line)
 {
-  while (line && *line && *line != '\n')
+  while (line && *line && *line != '\n' && *line != '\r')
     ++line;
-  while (line && *line == '\n')
+  while (line && (*line == '\n' || *line == '\r'))
     ++line;
   return (line);
+}
+
+static int	call_cmd(int i, t_client *client, char **av, t_kernel *kernel)
+{
+  int		ret;
+
+  if (g_functions[i].type == CLIENT && client->player)
+    {
+      if (add_action(kernel, g_functions[i].timeout, client, av))
+	ret = -1;
+    }
+  else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
+	   (g_functions[i].type == AUTH && !(client->graphic) &&
+	    !(client->player)))
+    {
+      ret = g_functions[i].function(av, client, kernel);
+      freetab(av);
+    }
+  if (ret)
+    return (ret);
+  return (0);
 }
 
 static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
@@ -139,26 +160,13 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
       if (!(av = my_str_to_wordtab(line)))
 	return (-1);
       i = 0;
-      ret = 0;
-      while (!ret && av[0] && g_functions[i].name)
+      ret = -1;
+      while (ret == -1 && av[0] && g_functions[i].name)
 	{
 	  if (!strcmp(av[0], g_functions[i].name))
 	    {
-	      if (g_functions[i].type == CLIENT && client->player)
-		{
-		  if (add_action(kernel, g_functions[i].timeout, client, av))
-		    ret = -1;
-		}
-	      else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
-		       (g_functions[i].type == AUTH && !(client->graphic) &&
-			!(client->player)))
-		{
-		  ret = g_functions[i].function(av, client, kernel);
-		  freetab(av);
-		}
-	      if (ret)
+	      if ((ret = call_cmd(i, client, av, kernel)))
 		return (ret);
-	      ret = 1;
 	    }
 	  ++i;
 	}
@@ -181,7 +189,6 @@ static int	cmd_client(t_client *client, t_kernel *kernel,
   else if (buffer == (void *)2)
     {
       printf("[\033[31;1mOK\033[0m] Deconnection from %s\n", client->ip);
-      close(client->fd);
       pop_client(client->fd, kernel);
       return (1);
     }
@@ -214,7 +221,7 @@ static int	manage_food(t_kernel *kernel)
 		  pop_client(client->fd, kernel);
 		  return (1);
 		}
-	      //--(client->player->inventory.items[FOOD]);
+	      --(client->player->inventory.items[FOOD]);
 	      client->player->food_time = 126;
 	    }
 	}
@@ -223,11 +230,27 @@ static int	manage_food(t_kernel *kernel)
   return (0);
 }
 
-static int	manage_actions(t_kernel *kernel)
+static t_node	*launch_action(t_actions *action,
+			       t_node *node, t_kernel *kernel)
 {
   int		i;
-  t_node	*node;
   t_node	*node_tmp;
+
+  i = 0;
+  while (action->av[0] && g_functions[i].name &&
+	 strcmp(action->av[0], g_functions[i].name))
+    ++i;
+  if (action->av[0] && g_functions[i].name)
+    g_functions[i].function(action->av, action->client, kernel);
+  node_tmp = node;
+  node = node->next;
+  pop_action(kernel, node_tmp);
+  return (node);
+}
+
+static int	manage_actions(t_kernel *kernel)
+{
+  t_node	*node;
   t_actions	*action;
 
   if (manage_food(kernel))
@@ -239,17 +262,7 @@ static int	manage_actions(t_kernel *kernel)
     {
       action = (t_actions *)node->data;
       if (!(action->time_left))
-	{
-	  i = 0;
-	  while (action->av[0] && g_functions[i].name &&
-		 strcmp(action->av[0], g_functions[i].name))
-	    ++i;
-	  if (action->av[0] && g_functions[i].name)
-	    g_functions[i].function(action->av, action->client, kernel);
-	  node_tmp = node;
-	  node = node->next;
-	  pop_action(kernel, node_tmp);
-	}
+	node = launch_action(action, node, kernel);
       else
 	{
 	  --(action->time_left);
@@ -291,12 +304,11 @@ static int	server(int sfd, t_kernel *kernel, struct timeval *tv)
 int			launch_srv(t_kernel *kernel)
 {
   struct timeval	tv;
-  int			sfd;
   t_buffer		buff;
 
   buff.next = NULL;
   kernel->buff_node = &buff;
-  if ((sfd = init(kernel->options.port)) == -1)
+  if ((kernel->sfd = init(kernel->options.port)) == -1)
     return (-1);
   printf("[\033[32;1mOK\033[0m] Serveur started\n");
   tv.tv_sec = 0;
@@ -310,11 +322,8 @@ int			launch_srv(t_kernel *kernel)
 	  if (tv.tv_sec)
 	    tv.tv_usec -= 1000000 * tv.tv_sec;
 	}
-      if (server(sfd, kernel, &tv) < 0)
-	{
-	  close(sfd);
-	  return (1);
-	}
+      if (server(kernel->sfd, kernel, &tv) < 0)
+	return (1);
     }
   return (0);
 }

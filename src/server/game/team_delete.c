@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:56:38 2014 lefloc_l
-** Last update Tue Jun 17 16:19:34 2014 arnaud drain
+** Last update Wed Jul  9 03:04:35 2014 arnaud drain
 */
 
 #include <string.h>
@@ -42,8 +42,6 @@ void		delete_team(void *data)
   team = (t_team *)data;
   if (!team)
     return ;
-  if (team->players)
-    list_delete(team->players);
   logger_message("{TEAM} Delete %s", team->name);
 }
 

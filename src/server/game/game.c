@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update Fri Jul  4 16:18:12 2014 arnaud drain
+** Last update Wed Jul  9 03:06:45 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -24,6 +24,7 @@ void	delete_game(t_kernel *kernel)
     list_foreach(kernel->game.players, delete_player);
     list_delete(kernel->game.players);
   }
+  delete_map(kernel);
   logger_message("{GAME} Deleted");
 }
 

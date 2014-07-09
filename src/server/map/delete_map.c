@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 14:48:05 2014 lefloc_l
-** Last update Wed Jun 25 23:33:45 2014 arnaud drain
+** Last update Wed Jul  9 03:09:14 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -21,9 +21,9 @@ void	delete_map(t_kernel *kernel)
   {
     for (j = 0; j < kernel->game.map->width; ++j)
     {
-      list_delete(kernel->game.map->map[i][j].players);
+      list_clear(kernel->game.map->map[i][j].players);
     }
     free(kernel->game.map->map[i]);
   }
- free(kernel->game.map->map);
+  free(kernel->game.map->map);
 }

@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Sat Apr 19 14:20:12 2014 arnaud drain
-** Last update Tue Jul  8 17:15:35 2014 arnaud drain
+** Last update Wed Jul  9 03:17:59 2014 arnaud drain
 */
 
 #include <string.h>
@@ -181,6 +181,7 @@ static int	print_mct(int fd, t_kernel *kernel)
 	    return (-1);
 	}
     }
+  printf("end\n");
   return (0);
 }
 
@@ -216,7 +217,8 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
   if (cl->player)
     return (0);
   cl->graphic = TRUE;
-  sprintf(buf, "msz %d %d\n", (int)kernel->options.width, (int)kernel->options.height);
+  sprintf(buf, "msz %d %d\n", (int)kernel->options.width,
+	  (int)kernel->options.height);
   if (write_socket(cl->fd, buf) <= 0)
     return (1);
   sprintf(buf, "sgt %d\n", (int)kernel->options.delai);
