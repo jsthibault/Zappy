@@ -106,7 +106,7 @@ namespace Zappy_Client.Core._2DEngine
             this.X = x;
             this.Y = y;
             this.Id = id;
-            this.Direction = orientation;
+            this.ChangeDirection(orientation);
             this.Level = 0;
             this.Items = new Int32[7];
             this.Casting = false;
