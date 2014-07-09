@@ -18,17 +18,6 @@ using Zappy_Client.Core._2DEngine;
 
 namespace Zappy_Client.Core
 {
-    public enum ItemType
-    {
-        FOOD = 0,
-        LINEMATE,
-        DERAUMERE,
-        SIBUR,
-        MENDIANE,
-        PHIRAS,
-        THYSTAME
-    }
-
     public class GameScreen : AScreen
     {
         #region FIELDS

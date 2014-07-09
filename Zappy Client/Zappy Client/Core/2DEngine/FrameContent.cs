@@ -75,7 +75,34 @@ namespace Zappy_Client.Core._2DEngine
             return (0);
         }
 
+        /// <summary>
+        /// Check if the frame contains items
+        /// </summary>
+        /// <returns></returns>
+        public Boolean HasItems()
+        {
+            for (Int32 i = 0; i < (Int32)ItemType.THYSTAME; ++i)
+            {
+                if (this.GetItemValue((ItemType)i) > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #endregion
 
+    }
+
+    public enum ItemType
+    {
+        FOOD = 0,
+        LINEMATE,
+        DERAUMERE,
+        SIBUR,
+        MENDIANE,
+        PHIRAS,
+        THYSTAME
     }
 }
