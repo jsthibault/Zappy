@@ -228,6 +228,23 @@ namespace Zappy_Client.Core._2DEngine
         }
 
         /// <summary>
+        /// Change the character's direction
+        /// </summary>
+        /// <param name="direction"></param>
+        public void ChangeDirection(Direction direction)
+        {
+            this.Direction = direction;
+            switch (this.Direction)
+            {
+                case Direction.Up: this.FrameLine = 4; break;
+                case Direction.Down: this.FrameLine = 1; break;
+                case Direction.Left: this.FrameLine = 2; break;
+                case Direction.Right: this.FrameLine = 3; break;
+            }
+            this.FrameColumn = 1;
+        }
+
+        /// <summary>
         /// Drop item animation
         /// </summary>
         /// <param name="index"></param>
