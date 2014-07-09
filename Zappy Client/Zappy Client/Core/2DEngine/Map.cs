@@ -149,9 +149,9 @@ namespace Zappy_Client.Core._2DEngine
             }
             foreach (Team team in this.Teams.Values)
             {
-                foreach (Character character in team.Characters)
+                for (Int32 i = 0; i < team.Characters.Count; ++i)
                 {
-                    character.Update();
+                    team.Characters[i].Update();
                 }
             }
         }
