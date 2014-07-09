@@ -4,12 +4,8 @@
 ** Made by lefloc_l
 ** Login <lefloc_l@epitech.eu>
 **
-** Started on  ven. mai 16 17:39:57 2014 lefloc_l
-<<<<<<< HEAD
-** Last update Wed Jul  9 03:51:10 2014 arnaud drain
-=======
-** Last update mar. juil. 08 16:12:38 2014 lefloc_l
->>>>>>> 1cecae3a6718b4147bc8aa084a166e8f81c90063
+** Started on  mer. juil. 09 17:39:16 2014 lefloc_l
+** Last update mer. juil. 09 17:39:20 2014 lefloc_l
 */
 
 #include "client_action.h"

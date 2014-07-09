@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Wed Jul  9 20:17:00 2014 arnaud drain
+## Last update Wed Jul  9 21:38:21 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -41,6 +41,8 @@ SRC_SERVER=	options/init_options.c \
 		options/options_with_int.c \
 		options/parse_options.c \
 		utils.c \
+		reseau/write_socket.c \
+		reseau/write_all_graphic.c \
 		map/dump_map.c \
 		map/rock_on_map.c \
 		map/food_on_map.c \
@@ -72,10 +74,12 @@ SRC_SERVER=	options/init_options.c \
 		game/player.c \
 		game/player_team.c \
 		player/init_player.c \
+		player/remove_player.c \
 		player/get_player.c \
 		event/action.c \
 		event/connexion.c \
 		event/expulse.c \
+		event/pose_prend.c \
 
 SRC_LIST=	list_add.c \
 		list.c \

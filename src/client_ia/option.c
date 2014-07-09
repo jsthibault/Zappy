@@ -1,11 +1,11 @@
 /*
 ** option.c for option in /home/canque_r/Zappy/src/client_ia
-** 
+**
 ** Made by Rodrigue Canquery
 ** Login   <canque_r@Ubuntu-laptop>
-** 
+**
 ** Started on  Sun Jul  6 09:24:58 2014 Rodrigue Canquery
-** Last update Sun Jul  6 11:46:25 2014 Rodrigue Canquery
+** Last update mer. juil. 09 17:38:23 2014 lefloc_l
 */
 
 #include <string.h>
@@ -16,10 +16,10 @@ t_tabfunctions	tabfunctions[] = {
   { "-p", &option_p },
   { "-h", &option_h },
   { "-n", &option_n },
-  { NULL, NULL },
+  { NULL, NULL }
 };
 
-t_bool		parse_option(int ac,char *av[], t_option *options)
+t_bool		parse_option(int ac, char *av[], t_option *options)
 {
   int		i;
   size_t	j;
@@ -41,7 +41,8 @@ t_bool		parse_option(int ac,char *av[], t_option *options)
       if (!check)
 	return (FALSE);
     }
-  if (options->port <= 1 || strlen(options->host) <= 0 || strlen(options->team) <= 0)
+  if (options->port <= 1 || strlen(options->host) <= 0
+      || strlen(options->team) <= 0)
     return (FALSE);
   return (TRUE);
 }

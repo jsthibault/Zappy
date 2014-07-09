@@ -1,11 +1,11 @@
 /*
 ** client_option.h for client_option in /home/canque_r/Zappy/src/client_ia
-** 
+**
 ** Made by Rodrigue Canquery
 ** Login   <canque_r@Ubuntu-laptop>
-** 
+**
 ** Started on  Sun Jul  6 09:18:33 2014 Rodrigue Canquery
-** Last update Sun Jul  6 13:39:24 2014 Rodrigue Canquery
+** Last update mer. juil. 09 17:33:58 2014 lefloc_l
 */
 
 #ifndef CLIENT_OPTION_H_
@@ -34,13 +34,10 @@ typedef struct	s_tabfunctions
 
 t_bool	parse_option(int ac, char *av[], t_option *option);
 t_bool	convert_to_int(char *av[], int ac, int *i, size_t *n);
-
 t_bool	option_n(char **, int, int *, t_option *);
 t_bool	option_p(char **, int, int *, t_option *);
 t_bool	option_h(char **, int, int *, t_option *);
-
-
-t_bool		is_num(char *);
+t_bool	is_num(char *);
 int	init_client(t_option *option);
 
 #endif /* !CLIENT_OPTION_H_ */

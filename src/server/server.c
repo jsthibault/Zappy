@@ -5,13 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-<<<<<<< HEAD
-** Last update Wed Jul  9 20:25:28 2014 arnaud drain
-||||||| merged common ancestors
-** Last update mar. juil. 08 14:56:40 2014 lefloc_l
-=======
-** Last update mar. juil. 08 14:56:40 2014 lefloc_l
->>>>>>> eda795d96624337ec1bf6263b968477236df0de3
+** Last update Wed Jul  9 21:40:15 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -62,19 +56,6 @@ static const t_functions g_functions[] =
       {"pond", cmd_pond, SPECIAL, 0},
       {NULL, NULL, AUTH, 0}
     };
-
-void		write_all_graphic(t_kernel *kernel, char *str)
-{
-  t_client	*client;
-
-  client = kernel->clients;
-  while (client)
-    {
-      if (client->graphic)
-	write_socket(client->fd, str);
-      client = client->next;
-    }
-}
 
 static int	init_select(fd_set *fd_in, int sfd, t_client *clients)
 {
