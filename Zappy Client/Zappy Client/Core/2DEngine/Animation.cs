@@ -86,10 +86,8 @@ namespace Zappy_Client.Core._2DEngine
         {
             if (this.Playing == true)
             {
-                spriteBatch.Begin();
                 spriteBatch.Draw(this.Texture, this.Position, new Rectangle((this.FrameColumn) * this.FrameHeight,
                     (this.FrameLine) * this.FrameWidth, this.FrameWidth, this.FrameHeight), Color.White);
-                spriteBatch.End();
             }
             else
             {

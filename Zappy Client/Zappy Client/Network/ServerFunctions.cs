@@ -78,7 +78,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPnw(List<String> items)
         {
-            Game.Map.Teams[items[6]].Characters.Add(new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4])));
+            Game.Map.AddCharacter(items[6], new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4])));
             return true;
         }
 
@@ -174,7 +174,7 @@ namespace Zappy_Client
                     if (character.Id == Int32.Parse(items[1]))
                     {
                         character.Die();
-                        team.Characters.Remove(character);
+                        return true;
                     }
                 }
             }

@@ -377,6 +377,22 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
+        /// <summary>
+        /// Remove a character of the map
+        /// </summary>
+        /// <param name="character"></param>
+        public void RemoveCharacter(Character character)
+        {
+            foreach (Team team in this.Teams.Values)
+            {
+                if (team.Characters.Contains(character))
+                {
+                    team.Characters.Remove(character);
+                    return;
+                }
+            }
+        }
+
         #endregion
     }
 }

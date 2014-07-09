@@ -27,6 +27,8 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 Level { get; set; }
 
+        public Boolean Dead { get; set; }
+
         public Int32 []Items;
 
         public Texture2D Texture { get; set; }
@@ -136,6 +138,11 @@ namespace Zappy_Client.Core._2DEngine
             if (this.Casting == true && this.Animations[(Int32)AnimationType.Cast].Playing == false)
             {
                 this.PlayAnimation(AnimationType.Cast);
+            }
+            if (this.Dead == true && this.Animations[(Int32)AnimationType.Die].Playing == false)
+            {
+                Map.RemoveCharacter(this);
+                return;
             }
             this.Animations[(Int32)AnimationType.Cast].Update();
             this.Animations[(Int32)AnimationType.Die].Update();
