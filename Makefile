@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Thu Jul 10 23:56:51 2014 arnaud drain
+## Last update  ven. juil. 11 00:11:22 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -28,6 +28,7 @@ SRC_BUFFER=	buffer.c \
 
 SRC_SERVER=	options/init_options.c \
 		server.c \
+		server_command.c \
 		my_str_to_wordtab.c \
 		main.c \
 		client.c \
@@ -44,6 +45,8 @@ SRC_SERVER=	options/init_options.c \
 		reseau/write_socket.c \
 		reseau/write_all_graphic.c \
 		reseau/send_message.c \
+		reseau/init_select.c \
+		reseau/game_auth.c \
 		map/dump_map.c \
 		map/rock_on_map.c \
 		map/food_on_map.c \

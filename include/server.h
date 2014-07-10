@@ -5,12 +5,18 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 18:42:10 2014 arnaud drain
-** Last update Tue Jul  8 10:46:27 2014 arnaud drain
+** Last update ven. juil. 11 00:15:04 2014 lefloc_l
 */
 
 #ifndef SERVEUR_H_
 # define SERVEUR_H_
 
+# include <sys/select.h>
+# include <sys/time.h>
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
 # include "kernel.h"
 # include "options.h"
 # include "player.h"
@@ -46,5 +52,9 @@ int	init(size_t port);
 int	add_client(int sfd, t_kernel *kernel);
 void	pop_client(int fd, t_kernel *kernel);
 void	write_all_graphic(t_kernel *, char *);
+int	launch_action(t_actions *, t_player *, t_kernel *);
+int	game_auth(char **av, t_client *client, t_kernel *kernel);
+int	cmd_client(t_client *, t_kernel *, t_buffer *);
+int	init_select(fd_set *, int, t_client *);
 
 #endif /* !SERVEUR_H_ */
