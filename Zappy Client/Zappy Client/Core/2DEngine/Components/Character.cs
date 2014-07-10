@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zappy_Client.Interface;
 
 /*--------------------------------------------------------
  * Character.cs - file description
@@ -100,14 +101,14 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="x">X position</param>
         /// <param name="y">Y position</param>
         /// <param name="name">Player name</param>
-        public Character(Map2D map, Int32 x, Int32 y, Int32 id, Direction orientation)
+        public Character(Map2D map, Int32 x, Int32 y, Int32 id, Direction orientation, Int32 level)
         {
             this.Map = map;
             this.X = x;
             this.Y = y;
             this.Id = id;
             this.Direction = orientation;
-            this.Level = 0;
+            this.Level = level;
             this.Items = new Int32[7];
             this.Casting = false;
             this.Dead = false;
@@ -266,8 +267,11 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Die()
         {
+            WndTeamsList window = Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList;
+
             this.Dead = true;
             this.PlayAnimation(AnimationType.Die);
+            window.UpdatePlayersContent();
         }
 
         /// <summary>

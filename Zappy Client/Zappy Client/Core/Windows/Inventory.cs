@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
+using Zappy_Client.Core._2DEngine;
 
 /*--------------------------------------------------------
  * Inventory.cs - file description
@@ -155,6 +156,18 @@ namespace Zappy_Client.Core
             {
                 spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Position, GetOffset(this.Levels[i]), Color.White);
             }
+        }
+
+        public void UpdateInfos(Character character)
+        {
+            this.updateControl<Label>("LabelPhiras", character.Items[(int)ItemType.PHIRAS]);
+            this.updateControl<Label>("LabelSibur", character.Items[(int)ItemType.SIBUR]);
+            this.updateControl<Label>("LabelMendiane", character.Items[(int)ItemType.MENDIANE]);
+            this.updateControl<Label>("LabelThystame", character.Items[(int)ItemType.THYSTAME]);
+            this.updateControl<Label>("LabelMendiane", character.Items[(int)ItemType.MENDIANE]);
+            this.updateControl<Label>("LabelSibur", character.Items[(int)ItemType.SIBUR]);
+            this.updateControl<ProgressBar>("Food", character.Items[(int)ItemType.FOOD]);
+            this.SetLevel(character.Level);
         }
 
         public void SetLevel(Int32 level)
