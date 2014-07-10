@@ -80,7 +80,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPnw(List<String> items)
         {
-            Game.Map.AddCharacter(items[6], new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4])));
+            Game.Map.AddCharacter(items[6], new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4]), Int32.Parse(items[5])));
             return true;
         }
 
@@ -137,6 +137,8 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPin(List<String> items)
         {
+            Inventory inventory = Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory;
+
             foreach (Team team in Game.Map.Teams.Values)
             {
                 foreach (Character character in team.Characters)
@@ -152,6 +154,7 @@ namespace Zappy_Client
                         character.Items[4] = Int32.Parse(items[8]);
                         character.Items[5] = Int32.Parse(items[9]);
                         character.Items[6] = Int32.Parse(items[10]);
+                        inventory.UpdateInfos(character);
                     }
                 }
             }
@@ -281,6 +284,7 @@ namespace Zappy_Client
                     if (character.Id == Int32.Parse(items[1]))
                     {
                         character.DropItem(Int32.Parse(items[2]));
+                        (Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory).UpdateInfos(character);
                     }
                 }
             }
@@ -303,6 +307,7 @@ namespace Zappy_Client
                     if (character.Id == Int32.Parse(items[1]))
                     {
                         character.PickItem(Int32.Parse(items[2]));
+                        (Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory).UpdateInfos(character);
                         Game.Map.RetriveItem(character.X, character.Y, (ItemType)Int32.Parse(items[2]));
                     }
                 }

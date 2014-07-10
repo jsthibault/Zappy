@@ -94,7 +94,7 @@ namespace Zappy_Client.Core.Windows
             this.Message = new Label(this.Engine, "Message", 140, 13, "Options");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
-            this.X = 150; //Zappy.Width / 2 - this.Background.Width / 2;
+            this.X = Zappy.Width - this.Background.Width;
             this.Y = 250; //Zappy.Height / 2 - this.Background.Height / 2;
             this.Save = new Button(this.Engine, "SaveButton", 52, 160, 110, 0, "Sauvegarder");
             this.Save.OnClick += Save_OnClick;

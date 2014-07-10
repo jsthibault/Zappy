@@ -69,8 +69,8 @@ namespace Zappy_Client.Core
             this.Background = this.Engine.Content.Load<Texture2D>("Theme//viewer.png");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
-            this.X = 150;
-            this.Y = 50;
+            this.X = Zappy.Width - this.Background.Width;
+            this.Y = 200;
             this.Circle = new ImageBox(this.Engine, "Circle", this.Engine.Content.Load<Texture2D>("Theme//Viewer//circle.png"), 35, 70);
             this.Legend = new ImageBox(this.Engine, "Legend", this.Engine.Content.Load<Texture2D>("Theme//Viewer//legend.png"), 40, 250);
             this.SetMouvableZone(new Rectangle(this.X, this.Y, this.Width, 37));

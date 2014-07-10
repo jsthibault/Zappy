@@ -72,19 +72,26 @@ namespace Zappy_Client.Core
 
         private void ShowInventory_OnClick(object sender)
         {
-            (this.Engine.GetContainer("PlayersListWindow") as WndPlayersList).Clear();
+            this.UpdatePlayersContent();
+        }
+
+        public void UpdatePlayersContent()
+        {
+            WndPlayersList window = (this.Engine.GetContainer("PlayersListWindow") as WndPlayersList);
+
+            window.Clear();
             foreach (Team team in (Zappy.Instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
             {
-                if ((this.Engine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem.ItemText == team.Name)
+                if (this.Teams.SelectedItem.ItemText == team.Name)
                 {
                     foreach (Character character in team.Characters)
                     {
-                        (this.Engine.GetContainer("PlayersListWindow") as WndPlayersList).AddItem(character.Id.ToString(), character);
+                        window.AddItem(character.Id.ToString(), character);
                     }
                 }
             }
-            this.Engine.GetContainer("PlayersListWindow").Visible = true;
-            this.Engine.GetContainer("PlayersListWindow").SetFocus();
+            window.Visible = true;
+            window.SetFocus();
         }
 
         public override void Update(GameTime gameTime)

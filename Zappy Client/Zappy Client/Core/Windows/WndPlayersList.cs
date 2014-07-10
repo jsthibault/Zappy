@@ -27,6 +27,10 @@ namespace Zappy_Client.Core
 
         private Button ShowInventory { get; set; }
 
+        private static Int32 Count = 0;
+
+        private Character LastPlayer { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -44,13 +48,8 @@ namespace Zappy_Client.Core
         public override void Initialize()
         {
             this.CloseButton = false;
+            this.LastPlayer = null;
             this.Players = new ListBox(this.Engine, "PlayersList", 15, 30, 220, 250);
-            //this.Players.AddItem(new ListBoxItem("gomesp_f", null));
-            //this.Players.AddItem(new ListBoxItem("ouache_s", null));
-            //this.Players.AddItem(new ListBoxItem("lefloc_l", null));
-            //this.Players.AddItem(new ListBoxItem("canque_r", null));
-            //this.Players.AddItem(new ListBoxItem("drain_a", null));
-            //this.Players.AddItem(new ListBoxItem("thibau_j", null));
             this.AddControl(this.Players);
 
             this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Select a player");
@@ -77,22 +76,25 @@ namespace Zappy_Client.Core
 
         private void ShowInventory_OnClick(object sender)
         {
-            Character player = this.Players.SelectedItem.ItemObject as Character;
-            Inventory inventory = this.Engine.GetContainer("Inventory") as Inventory;
-
-            inventory.updateControl<Label>("LabelPhiras", player.Items[(int)ItemType.PHIRAS]);
-            inventory.updateControl<Label>("LabelSibur", player.Items[(int)ItemType.SIBUR]);
-            inventory.updateControl<Label>("LabelMendiane", player.Items[(int)ItemType.MENDIANE]);
-            inventory.updateControl<Label>("LabelThystame", player.Items[(int)ItemType.THYSTAME]);
-            inventory.updateControl<Label>("LabelMendiane", player.Items[(int)ItemType.MENDIANE]);
-            inventory.updateControl<Label>("LabelSibur", player.Items[(int)ItemType.SIBUR]);
-            inventory.updateControl<ProgressBar>("Food", player.Items[(int)ItemType.FOOD]);
-
-            inventory.SetLevel(7);
+            if ((this.Players.SelectedItem.ItemObject as Character) != this.LastPlayer)
+            {
+                Character player = this.Players.SelectedItem.ItemObject as Character;
+                this.LastPlayer = player;
+                Network.Instance.SendMessage("pin " + player.Id.ToString() + "\n");
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (Count >= 130)
+            {
+                if (LastPlayer != null)
+                {
+                    Network.Instance.SendMessage("pin " + LastPlayer.Id.ToString() + "\n");
+                }
+                Count = 0;
+            }
+            Count++;
             base.Update(gameTime);
         }
 

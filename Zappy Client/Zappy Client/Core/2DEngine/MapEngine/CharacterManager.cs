@@ -37,6 +37,7 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     (Zappy.Instance.InterfaceEngine.GetContainer("PlayersListWindow") as WndPlayersList).AddItem(character.Id.ToString(), character);
                 }
+                Network.Instance.SendMessage("pin " + character.Id.ToString() + "\n");
             }
         }
 
