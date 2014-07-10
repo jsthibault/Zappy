@@ -13,8 +13,6 @@ cette famille.
 Délai de ponte : 42 / t
 Délai entre la ponte et l’éclosion : 600 / t
 
-Pourquoi "bind: adress already in use" après avoir tout close ? oO
-
 vérifier tout les free / close in game
 
 vérifier tout les appels system (ainsi que les fonctions en héritant)
@@ -22,9 +20,6 @@ vérifier tout les appels system (ainsi que les fonctions en héritant)
 vérifier la norme
 
 virer les todo et fence
-
-y x ou x y partout :)
-il faut faire un choix cornelien. choisi le bon cote de la force.
 
 changer le depot
 
@@ -38,9 +33,6 @@ retour en cascade:
 
 
   verif les retour de write_socket ?
-
-
-  verif retour en cascade des functions cmd_avance / cmd_expulse etc dans server.c
 
 
   DONE

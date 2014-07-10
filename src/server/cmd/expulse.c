@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:39:34 2014 lefloc_l
-** Last update jeu. juil. 10 16:21:05 2014 lefloc_l
+** Last update Thu Jul 10 22:45:08 2014 arnaud drain
 */
 
 #include "client_action.h"
@@ -47,28 +47,27 @@ static int	send_expulse(t_kernel *kernel, t_client *cl, t_list *players,
     t_pos new_pos)
 {
   t_node	*node;
+  t_node	*node_tmp;
   t_player	*player;
   int		res;
 
   res = 0;
   if (!players)
-  {
-    logger_warning("send_expulse: list empty.");
-    return 0;
-  }
+    return (0);
   node = players->head;
   send_expulse_to_graphic(kernel, cl->player->id);
   while (node)
-  {
-    player = (t_player *)node->data;
-    if (player->id != cl->player->id)
     {
-      if (FALSE == send_to_client_expulse(kernel, player, cl, new_pos))
-        return (-1);
-      res++;
+      player = (t_player *)node->data;
+      node_tmp = node->next;
+      if (player->id != cl->player->id)
+	{
+	  if (FALSE == send_to_client_expulse(kernel, player, cl, new_pos))
+	    return (-1);
+	  res++;
+	}
+      node = node_tmp;
     }
-    node = node->next;
-  }
   return (res);
 }
 
