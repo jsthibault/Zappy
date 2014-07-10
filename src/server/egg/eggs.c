@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Thu Jul 10 23:21:32 2014 arnaud drain
-** Last update Fri Jul 11 00:14:02 2014 arnaud drain
+** Last update Fri Jul 11 01:26:55 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -90,6 +90,7 @@ void	manage_eggs(t_kernel *kernel)
 	  --(egg->time_left);
 	  if (!egg->time_left)
 	    {
+	      ++(egg->team->place_left);
 	      sprintf(buffer, "eht %d\n", egg->id);
 	      write_all_graphic(kernel, buffer);
 	    }

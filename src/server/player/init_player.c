@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Thu Jul 10 23:42:24 2014 arnaud drain
+** Last update Fri Jul 11 01:26:01 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -13,6 +13,7 @@
 #include "kernel.h"
 #include "client_action.h"
 #include "logger.h"
+#include "egg.h"
 
 int		get_max_id(t_kernel *kernel)
 {
@@ -55,7 +56,7 @@ static t_team	*check_init_player(t_kernel *kernel, char *teamname)
 
   if (!(team = find_team(kernel, teamname)))
     return (NULL);
-  if ((kernel->options.max_clients - list_size(team->players)) <= 0)
+  if (team->place_left <= 0)
     return (NULL);
   return (team);
 }
@@ -67,6 +68,7 @@ static void	init_player_const_value(t_player *player)
   player->orientation = rand() % 4 + 1;
   player->food_time = 126;
   player->actions = NULL;
+  player->from_egg = 0;
 }
 
 t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
@@ -78,6 +80,8 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   if (!(team = check_init_player(kernel, teamname)))
     return (NULL);
   logger_debug("Adding a player to the team %s", teamname);
+  if ((player = init_player_with_egg(kernel, team, cl)))
+    return (player);
   if (!(player = malloc(sizeof(*player))))
     return (NULL);
   init_player_const_value(player);
@@ -92,7 +96,6 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   if (FALSE == add_player_on_map(kernel, player, player->pos.x, player->pos.y))
     return (NULL);
   player->client = cl;
-  player->from_egg = 0;
   init_inventory(&(player->inventory));
   send_connexion_to_graphic(kernel, player);
   return (player);

@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. juil. 11 00:11:22 2014 lefloc_l
+## Last update Fri Jul 11 00:44:38 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -36,7 +36,8 @@ SRC_SERVER=	options/init_options.c \
 		init.c \
 		action.c \
 		get_k_value.c \
-		eggs.c \
+		egg/eggs.c \
+		egg/player_eggs.c \
 		player/get_orientation.c \
 		options/options_other.c \
 		options/options_with_int.c \
