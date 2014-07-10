@@ -5,13 +5,13 @@
 ** Login   <canque_r@Ubuntu-laptop>
 **
 ** Started on  Sun Jul  6 09:18:33 2014 Rodrigue Canquery
-** Last update mer. juil. 09 17:33:58 2014 lefloc_l
+** Last update jeu. juil. 10 22:31:58 2014 lefloc_l
 */
 
 #ifndef CLIENT_OPTION_H_
 # define CLIENT_OPTION_H_
 
-#include <stddef.h>
+# include <stddef.h>
 
 typedef enum	e_bool
 {

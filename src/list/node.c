@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update jeu. juil. 10 16:02:09 2014 lefloc_l
+** Last update jeu. juil. 10 22:36:14 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -45,7 +45,7 @@ t_bool		list_add_node(t_list **list, t_node *node, void *data)
   return (TRUE);
 }
 
-void		list_pop_node(t_list **list, t_node *node)
+void	list_pop_node(t_list **list, t_node *node)
 {
   if ((*list)->head == node)
     list_pop_front(list);

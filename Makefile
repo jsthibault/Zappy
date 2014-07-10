@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Wed Jul  9 21:38:21 2014 arnaud drain
+## Last update  jeu. juil. 10 23:23:15 2014 lefloc_l
 ##
 
 CC=	gcc
@@ -33,7 +33,6 @@ SRC_SERVER=	options/init_options.c \
 		client.c \
 		error.c \
 		init.c \
-		functions.c \
 		action.c \
 		get_k_value.c \
 		player/get_orientation.c \
@@ -43,6 +42,7 @@ SRC_SERVER=	options/init_options.c \
 		utils.c \
 		reseau/write_socket.c \
 		reseau/write_all_graphic.c \
+		reseau/send_message.c \
 		map/dump_map.c \
 		map/rock_on_map.c \
 		map/food_on_map.c \
@@ -80,6 +80,32 @@ SRC_SERVER=	options/init_options.c \
 		event/connexion.c \
 		event/expulse.c \
 		event/pose_prend.c \
+		graphic_actions/bct.c \
+		graphic_actions/ebo.c \
+		graphic_actions/edi.c \
+		graphic_actions/eht.c \
+		graphic_actions/enw.c \
+		graphic_actions/graphic.c \
+		graphic_actions/ko.c \
+		graphic_actions/mct.c \
+		graphic_actions/msz.c \
+		graphic_actions/pdi.c \
+		graphic_actions/pdr.c \
+		graphic_actions/pex.c \
+		graphic_actions/pfk.c \
+		graphic_actions/pgt.c \
+		graphic_actions/pie.c \
+		graphic_actions/pnw.c \
+		graphic_actions/print_players.c \
+		graphic_actions/sbp.c \
+		graphic_actions/seg.c \
+		graphic_actions/smg.c \
+		graphic_actions/tna.c \
+		graphic_actions/ppo.c \
+		graphic_actions/plv.c \
+		graphic_actions/sgt.c \
+		graphic_actions/sst.c \
+		graphic_actions/pin.c \
 
 SRC_LIST=	list_add.c \
 		list.c \
@@ -147,4 +173,3 @@ fclean:	clean
 	@$(ECHO) '\033[0;31m> Remove executable\033[0m'
 
 re:	fclean all
-

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:16:38 2014 lefloc_l
-** Last update jeu. juil. 10 15:55:04 2014 lefloc_l
+** Last update jeu. juil. 10 22:33:59 2014 lefloc_l
 */
 
 #ifndef TEAM_H_
@@ -16,6 +16,6 @@
 
 t_bool	init_team(t_kernel *kernel);
 void	delete_team(void *data);
-t_team		*find_team(t_kernel *kernel, char *name);
+t_team	*find_team(t_kernel *kernel, char *name);
 
 #endif /* !TEAM_H_ */
