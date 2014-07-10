@@ -333,13 +333,50 @@ namespace Zappy_Client.Core._2DEngine
             Int32 nbMoves = 0;
 
             if (orientation == Direction.Up)
-                nbMoves = this.Y - y;
+            {
+                if (this.Y == 0)
+                {
+                    this.Y = this.Map.Height - 1;
+                    this.HitBox.Y = this.Y * Map2D.Case;
+                }
+                else
+                {
+                    nbMoves = this.Y - y;
+                }
+            }
             else if (orientation == Direction.Right)
-                nbMoves = x - this.X;
+            {
+                if (this.X == this.Map.Width - 1)
+                {
+                    this.X = 0;
+                    this.HitBox.X = this.X * Map2D.Case;
+                }
+                else
+                {
+                    nbMoves = x - this.X;
+                }
+            }
             else if (orientation == Direction.Down)
-                nbMoves = y - this.Y;
+            {
+                if (this.Y == this.Map.Height - 1)
+                {
+                    this.Y = 0;
+                    this.HitBox.Y = this.Y * Map2D.Case;
+                }
+                else
+                {
+                    nbMoves = y - this.Y;
+                }
+            }
             else if (orientation == Direction.Left)
+            {
                 nbMoves = this.X - x;
+                if (this.X == 0 && nbMoves == 0)
+                {
+                    this.X = this.Map.Width - 1;
+                    this.HitBox.X = this.X * Map2D.Case;
+                }
+            }
             this.ChangeDirection(orientation);
             while (nbMoves > 0)
             {
