@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 02 22:51:47 2014 lefloc_l
-** Last update jeu. juil. 10 22:35:56 2014 lefloc_l
+** Last update Fri Jul 11 00:20:44 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -18,7 +18,6 @@ void	list_pop_verification(t_list **list)
     return;
   if (list_is_empty(*list))
   {
-    logger_debug("free");
     free(*list);
     (*list) = NULL;
   }

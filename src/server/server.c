@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul 10 21:41:47 2014 arnaud drain
+** Last update Fri Jul 11 00:17:34 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -25,6 +25,7 @@
 #include "map.h"
 #include "client_action.h"
 #include "logger.h"
+#include "egg.h"
 
 static const t_functions g_functions[] =
     {
@@ -226,6 +227,7 @@ static int	manage_actions(t_kernel *kernel)
   t_node	*node;
   t_actions	*action;
 
+  manage_eggs(kernel);
   if (manage_food(kernel))
     return (1);
   node = NULL;

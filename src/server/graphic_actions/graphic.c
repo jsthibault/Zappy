@@ -5,9 +5,10 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:46:17 2014 lefloc_l
-** Last update jeu. juil. 10 23:41:27 2014 lefloc_l
+** Last update Fri Jul 11 00:03:16 2014 arnaud drain
 */
 
+#include "egg.h"
 #include "kernel.h"
 #include "server.h"
 #include "client_action.h"
@@ -33,5 +34,6 @@ int	graphic(char **av, t_client *cl, t_kernel *kernel)
     return (1);
   if (print_players(cl->fd, kernel) < 0)
     return (1);
+  print_all_eggs(kernel);
   return (0);
 }

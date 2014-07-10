@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 ** 
 ** Started on  Thu Jul 10 23:21:32 2014 arnaud drain
-** Last update Thu Jul 10 23:53:43 2014 arnaud drain
+** Last update Fri Jul 11 00:14:02 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -48,7 +48,8 @@ int	add_egg(t_kernel *kernel, t_player *player)
   egg->time_left = 600;
   if (list_push_front(&(kernel->game.eggs), egg) == FALSE)
     return (-1);
-  sprintf(buffer, "enw %d %d %d %d\n", egg->id, player->id, egg->pos.x, egg->pos.y);
+  sprintf(buffer, "enw %d %d %d %d\n", egg->id, player->id,
+	  egg->pos.x, egg->pos.y);
   write_all_graphic(kernel, buffer);
   return (0);
 }
@@ -65,8 +66,34 @@ void		print_all_eggs(t_kernel *kernel)
   while (node)
     {
       egg = (t_egg *)node->data;
-      sprintf(buffer, "enw %d %d %d %d\n", egg->id, egg->player_id, egg->pos.x, egg->pos.y);
+      sprintf(buffer, "enw %d %d %d %d\n", egg->id, egg->player_id,
+	      egg->pos.x, egg->pos.y);
       write_all_graphic(kernel, buffer);
+      node = node->next;
+    }
+}
+
+void	manage_eggs(t_kernel *kernel)
+{
+  char		buffer[BUFFER_SIZE];
+  t_egg		*egg;
+  t_node	*node;
+
+  node = NULL;
+  if (kernel->game.eggs)
+    node = kernel->game.eggs->head;
+  while (node)
+    {
+      egg = (t_egg *)node->data;
+      if (egg->time_left > 0)
+	{
+	  --(egg->time_left);
+	  if (!egg->time_left)
+	    {
+	      sprintf(buffer, "eht %d\n", egg->id);
+	      write_all_graphic(kernel, buffer);
+	    }
+	}
       node = node->next;
     }
 }
