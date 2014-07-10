@@ -5,19 +5,24 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:57:09 2014 lefloc_l
-** Last update mar. juil. 08 14:22:20 2014 lefloc_l
+** Last update jeu. juil. 10 16:03:51 2014 lefloc_l
 */
 
 #include "list.h"
 #include "utils.h"
+#include "enum.h"
 
-void		list_push_front(t_list **list, void *data)
+t_bool		list_push_front(t_list **list, void *data)
 {
   t_node	*node;
 
   if (!(*list))
-    *list = list_create();
-  node = list_create_node(data);
+  {
+    if (!(*list = list_create()))
+      return (FALSE);
+  }
+  if (!(node = list_create_node(data)))
+    return (FALSE);
   node->next = (*list)->head;
   if ((*list)->head)
     (*list)->head->prev = node;
@@ -25,15 +30,20 @@ void		list_push_front(t_list **list, void *data)
   if ((*list)->size == 0)
     (*list)->tail = node;
   (*list)->size++;
+  return (TRUE);
 }
 
-void		list_push_back(t_list **list, void *data)
+t_bool		list_push_back(t_list **list, void *data)
 {
   t_node	*node;
 
   if (!(*list))
-    *list = list_create();
-  node = list_create_node(data);
+  {
+    if (!(*list = list_create()))
+      return (FALSE);
+  }
+  if (!(node = list_create_node(data)))
+    return (FALSE);
   node->prev = (*list)->tail;
   if ((*list)->tail)
     (*list)->tail->next = node;
@@ -41,4 +51,5 @@ void		list_push_back(t_list **list, void *data)
   if ((*list)->size == 0)
     (*list)->head = node;
   (*list)->size++;
+  return (TRUE);
 }

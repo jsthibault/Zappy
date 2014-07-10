@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 15:55:19 2014 lefloc_l
-** Last update Wed Jul  9 02:45:48 2014 arnaud drain
+** Last update jeu. juil. 10 16:03:06 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -16,7 +16,8 @@ t_list		*list_create()
 {
   t_list	*list;
 
-  list = xmalloc(sizeof(t_list));
+  if (!(list = malloc(sizeof(t_list))))
+    return (NULL);
   list->size = 0;
   list->head = NULL;
   list->tail = NULL;

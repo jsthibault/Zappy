@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:13:20 2014 lefloc_l
-** Last update Wed Jul  9 21:45:30 2014 arnaud drain
+** Last update jeu. juil. 10 16:25:53 2014 lefloc_l
 */
 
 #ifndef GAME_H_
@@ -20,9 +20,9 @@
 # define END_LVL 8
 # define PLAYER_REQUIRED 6
 
-void	init_game(t_kernel *);
+t_bool	init_game(t_kernel *);
 void	delete_game(t_kernel *);
-void	pre_fill_game(t_kernel *);
+t_bool	pre_fill_game(t_kernel *);
 int	check_victory(t_kernel *);
 
 #endif /* !GAME_H_ */

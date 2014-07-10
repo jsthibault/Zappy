@@ -5,38 +5,48 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:21:09 2014 lefloc_l
-** Last update Wed Jul  9 11:30:21 2014 arnaud drain
+** Last update jeu. juil. 10 16:27:28 2014 lefloc_l
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include "kernel.h"
 #include "utils.h"
 #include "logger.h"
 
-void		add_team(t_kernel *kernel, char *teamname)
+static t_bool	add_team(t_kernel *kernel, char *teamname)
 {
   t_team	*team;
 
-  team = xmalloc(sizeof(t_team));
+  if (!(team = malloc(sizeof(t_team))))
+    return (FALSE);
   strcpy(team->name, teamname);
-  team->players = list_create();
+  if (!(team->players = list_create()))
+    return (FALSE);
   team->place_left = kernel->options.max_clients;
-  list_push_back(&(kernel->game.teams), team);
+  if (FALSE == list_push_back(&(kernel->game.teams), team))
+    return (FALSE);
   logger_message("{TEAM} Create %s", teamname);
+  return (TRUE);
 }
 
-void		init_team(t_kernel *kernel)
+t_bool		init_team(t_kernel *kernel)
 {
   size_t	i;
 
-  kernel->game.teams = list_create();
+  if (!(kernel->game.teams = list_create()))
+    return (FALSE);
   for (i = 0; i < kernel->options.nb_team_names; i++)
   {
     if (!find_team(kernel, kernel->options.team_names[i]))
-      add_team(kernel, kernel->options.team_names[i]);
+    {
+      if (FALSE == add_team(kernel, kernel->options.team_names[i]))
+        return (FALSE);
+    }
     else
       logger_warning("{TEAM} %s already exists");
   }
+  return (TRUE);
 }
 
 static t_bool	name_equal(void *data, void *arg)

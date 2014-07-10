@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:29:59 2014 lefloc_l
-** Last update Thu Jul 10 00:58:48 2014 arnaud drain
+** Last update jeu. juil. 10 16:37:04 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -84,10 +84,13 @@ t_player	*init_player_with_teamname(t_kernel *kernel, char *teamname,
   player->id = get_max_id(kernel) + 1;
   player->pos.x = rand() % kernel->options.width;
   player->pos.y = rand() % kernel->options.height;
-  add_player_to_team(kernel, teamname, player);
-  list_push_back(&(kernel->game.players), player);
+  if (FALSE == add_player_to_team(kernel, teamname, player))
+    return (NULL);
+  if (FALSE == list_push_back(&(kernel->game.players), player))
+    return (NULL);
   player->team = team;
-  add_player_on_map(kernel, player, player->pos.x, player->pos.y);
+  if (FALSE == add_player_on_map(kernel, player, player->pos.x, player->pos.y))
+    return (NULL);
   player->client = cl;
   player->from_egg = 0;
   init_inventory(&(player->inventory));

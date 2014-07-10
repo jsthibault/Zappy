@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:16:38 2014 lefloc_l
-** Last update Tue Jun 17 15:59:05 2014 arnaud drain
+** Last update jeu. juil. 10 15:55:04 2014 lefloc_l
 */
 
 #ifndef TEAM_H_
@@ -14,10 +14,8 @@
 # include "struct.h"
 # include "list.h"
 
-void	init_team(t_kernel *kernel);
-void	add_team(t_kernel *kernel, char *teamname);
+t_bool	init_team(t_kernel *kernel);
 void	delete_team(void *data);
-
 t_team		*find_team(t_kernel *kernel, char *name);
 
 #endif /* !TEAM_H_ */

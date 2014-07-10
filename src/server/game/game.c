@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update Wed Jul  9 11:00:44 2014 arnaud drain
+** Last update jeu. juil. 10 16:26:21 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -29,17 +29,21 @@ void	delete_game(t_kernel *kernel)
   logger_message("{GAME} Deleted");
 }
 
-void	init_game(t_kernel *kernel)
+t_bool	init_game(t_kernel *kernel)
 {
   logger_message("{GAME} Initialisation");
   init_map(kernel, kernel->options.width, kernel->options.height);
-  init_team(kernel);
+  if (FALSE == init_team(kernel))
+    return (FALSE);
+  return (TRUE);
 }
 
-void	pre_fill_game(t_kernel *kernel)
+t_bool	pre_fill_game(t_kernel *kernel)
 {
   kernel->game.teams = NULL;
   kernel->game.eggs = NULL;
-  kernel->game.players = list_create();
+  if (!(kernel->game.players = list_create()))
+    return (FALSE);
   kernel->game.map = NULL;
+  return (TRUE);
 }

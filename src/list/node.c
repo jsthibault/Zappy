@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 16:09:14 2014 lefloc_l
-** Last update Tue Jul  8 13:08:00 2014 arnaud drain
+** Last update jeu. juil. 10 16:02:09 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -16,30 +16,33 @@ t_node		*list_create_node(void *data)
 {
   t_node	*node;
 
-  node = xmalloc(sizeof(t_node));
+  if (!(node = malloc(sizeof(t_node))))
+    return (NULL);
   node->prev = NULL;
   node->next = NULL;
   node->data = data;
   return (node);
 }
 
-void		list_add_node(t_list **list, t_node *node, void *data)
+t_bool		list_add_node(t_list **list, t_node *node, void *data)
 {
   t_node	*tmp;
 
   if (!node)
-    list_push_front(list, data);
+    return list_push_front(list, data);
   else if (!node->next)
-    list_push_back(list, data);
+    return list_push_back(list, data);
   else
   {
-    tmp = list_create_node(data);
+    if (!(tmp = list_create_node(data)))
+      return (FALSE);
     tmp->prev = node;
     tmp->next = node->next;
     tmp->next->prev = tmp;
     node->next = tmp;
     ((*list)->size++);
   }
+  return (TRUE);
 }
 
 void		list_pop_node(t_list **list, t_node *node)

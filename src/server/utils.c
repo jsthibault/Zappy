@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:24:36 2014 lefloc_l
-** Last update mer. juil. 09 17:45:58 2014 lefloc_l
+** Last update jeu. juil. 10 15:59:11 2014 lefloc_l
 */
 
 #include <sys/types.h>
@@ -61,15 +61,6 @@ t_bool		is_float(char *str)
     }
   }
   return (TRUE);
-}
-
-void	*xmalloc(size_t size)
-{
-  void	*ptr;
-
-  if (!(ptr = malloc(size)))
-    return (NULL);
-  return (ptr);
 }
 
 void	print_error(char *str)

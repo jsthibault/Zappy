@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:20:41 2014 lefloc_l
-** Last update Tue Jul  8 16:16:11 2014 arnaud drain
+** Last update jeu. juil. 10 16:15:00 2014 lefloc_l
 */
 
 #ifndef PLAYER_H_
@@ -16,7 +16,7 @@
 
 # define DEFAULT_PV	10
 
-void			add_player_to_team(t_kernel *, char *, t_player *);
+t_bool			add_player_to_team(t_kernel *, char *, t_player *);
 void			delete_player(void *);
 void			delete_player_by_id(t_kernel *, int);
 void			remove_player(t_kernel *, t_player *);

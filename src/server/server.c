@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update Thu Jul 10 01:31:50 2014 arnaud drain
+** Last update jeu. juil. 10 16:35:26 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -115,7 +115,7 @@ static int	call_cmd(int i, t_client *client, char **av, t_kernel *kernel)
 
   if (g_functions[i].type == CLIENT && client->player)
     {
-      if (add_action(g_functions[i].timeout, client->player, av, 0))
+      if (FALSE == add_action(g_functions[i].timeout, client->player, av, 0))
 	ret = -1;
     }
   else if ((g_functions[i].type == GRAPHIC && client->graphic) ||
@@ -146,6 +146,7 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 	{
 	  if (!strcmp(av[0], g_functions[i].name))
 	    {
+              // TODO verif retourn en cascade (si on recoit -1)
 	      if ((ret = call_cmd(i, client, av, kernel)))
 		return (ret);
 	    }

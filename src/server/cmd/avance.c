@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 09 17:39:00 2014 lefloc_l
-** Last update mer. juil. 09 17:39:03 2014 lefloc_l
+** Last update jeu. juil. 10 16:21:31 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -31,10 +31,11 @@ int	cmd_avance(char **av, t_client *client, t_kernel *kernel)
   else
     pos.x--;
   get_right_position(kernel, &pos.y, &pos.x);
-  move_player_on_map(kernel,
+  if (FALSE == move_player_on_map(kernel,
       client->player,
       pos.y,
-      pos.x);
+      pos.x))
+    return (-1);
   write_socket(client->fd, "ok\n");
   send_position_to_graphic(kernel, client->player);
   logger_debug("%d avance !", client->player->id);

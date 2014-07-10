@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:36:26 2014 lefloc_l
-** Last update mer. juil. 09 17:36:48 2014 lefloc_l
+** Last update jeu. juil. 10 15:58:28 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -16,18 +16,6 @@
 #include "kernel.h"
 #include "logger.h"
 #include "list.h"
-
-static void	print_man()
-{
-  fprintf(stderr, "%sUsage:%s\n \
-      -p numero de port\n \
-      -x largeur du Monde\n \
-      -y hauteur du Monde\n \
-      -n nom_de_equipe_1 nom_de_equipe_2 ...\n \
-      -c nombre de clients par équipe autorisés au commencement du jeu \n \
-      -t delai temporel d’execution des actions\n",
-	  COLOR_BLUE, COLOR_NORMAL);
-}
 
 static t_kernel		*get_kernel(t_kernel *tmp_kernel)
 {
@@ -55,7 +43,6 @@ int		main(const int argc, const char *argv[])
     return (EXIT_FAILURE);
   if (!init_kernel(argc, argv, &kernel))
     {
-      print_man();
       delete_kernel(&kernel);
       return (EXIT_FAILURE);
     }

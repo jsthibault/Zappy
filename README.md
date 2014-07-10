@@ -29,3 +29,28 @@ il faut faire un choix cornelien. choisi le bon cote de la force.
 changer le depot
 
 checker tout les header
+
+====
+retour en cascade:
+
+  list_push_front / list_push_back
+
+
+
+
+
+
+  verif retour en cascade des functions cmd_avance / cmd_expulse etc dans server.c
+
+
+  DONE
+ ===
+  add_player_to_team
+  init_player_with_teamname
+ init_team
+list_add_node
+  add_player_on_map
+  list_create
+ move_player_on_map
+  add_action -> check FALSE et plus -1
+
