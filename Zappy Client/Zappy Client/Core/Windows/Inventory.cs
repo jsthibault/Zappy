@@ -84,15 +84,15 @@ namespace Zappy_Client.Core
             this.Food = new ProgressBar(this.Engine, "Food",
                 Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
                 Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 31,
-                131, ProgressBarColor.Green, 100);
+                131, ProgressBarColor.Green, 0);
             this.Xp = new ProgressBar(this.Engine, "Xp",
                 Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
                 Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 45,
-                131, ProgressBarColor.Blue, 50);
+                131, ProgressBarColor.Blue, 0);
             this.Cast = new ProgressBar(this.Engine, "Cast",
                 Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
                 Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 59,
-                131, ProgressBarColor.Red, 60);
+                131, ProgressBarColor.Red, 0);
             this.AddControl(this.Food);
             this.AddControl(this.Xp);
             this.AddControl(this.Cast);
@@ -108,6 +108,20 @@ namespace Zappy_Client.Core
         }
 
         /// <summary>
+        /// Clear all items of the object
+        /// </summary>
+        public override void Clear()
+        {
+            this.Cast.Value = 0;
+            this.Food.Value = 0;
+            this.Xp.Value = 0;
+            for (Int32 i = 0; i < 8; i++)
+            {
+                this.Levels[i].State = ControlState.Normal;
+            }
+        }
+
+        /// <summary>
         /// Draw the Inventory window
         /// </summary>
         /// <param name="spriteBatch"></param>
@@ -118,6 +132,11 @@ namespace Zappy_Client.Core
             {
                 spriteBatch.Draw(this.Levels[i].Texture, this.Levels[i].Position, GetOffset(this.Levels[i]), Color.White);
             }
+        }
+
+        public void SetLevel(Int32 level, ControlState state)
+        {
+            this.Levels[level - 1].State = state;
         }
 
         /// <summary>

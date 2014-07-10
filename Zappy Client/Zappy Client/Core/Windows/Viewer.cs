@@ -99,6 +99,20 @@ namespace Zappy_Client.Core
         }
 
         /// <summary>
+        /// Clear all items of the object
+        /// </summary>
+        public override void Clear()
+        {
+            this.Linemate.Text = "0";
+            this.Deraumere.Text = "0";
+            this.Sibur.Text = "0";
+            this.Mendiane.Text = "0";
+            this.Phiras.Text = "0";
+            this.Thystame.Text = "0";
+            this.Players.Text = "";
+        }
+
+        /// <summary>
         /// Update the Viewer window
         /// </summary>
         public override void Update(GameTime gameTime)

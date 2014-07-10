@@ -57,7 +57,6 @@ namespace Zappy_Client
         public Network()
         {
             this.Game = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
-            this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             this.Connected = false;
         }
 
@@ -88,14 +87,24 @@ namespace Zappy_Client
             }
             try
             {
+                this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 this.Socket.Connect(host, _port);
             }
             catch
             {
                 (Zappy.instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
+                return false;
             }
             this.Connected = true;
             return true;
+        }
+
+        public void Disconnect()
+        {
+            this.Connected = false;
+            this.Socket.Close();
+            this.Socket.Dispose();
+            this.Socket = null;
         }
 
         /// <summary>

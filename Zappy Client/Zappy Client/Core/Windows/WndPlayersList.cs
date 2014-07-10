@@ -18,7 +18,7 @@ using Zappy_Client.Interface;
 
 namespace Zappy_Client.Core
 {
-    public class WndTeamsList : Window
+    public class WndPlayersList : Window
     {
         #region FIELDS
 
@@ -30,8 +30,8 @@ namespace Zappy_Client.Core
 
         #region CONSTRUCTORS
 
-        public WndTeamsList(UI engine)
-            : base(engine, "TeamsListWindow", 50, 100, 250, 330, "Teams List")
+        public WndPlayersList(UI engine)
+            : base(engine, "PlayersListWindow", 50, 460, 250, 330, "Players List")
         {
             this.Initialize();
         }
@@ -43,7 +43,7 @@ namespace Zappy_Client.Core
         public override void Initialize()
         {
             this.CloseButton = false;
-            this.Players = new ListBox(this.Engine, "TeamsList", 15, 30, 220, 250);
+            this.Players = new ListBox(this.Engine, "PlayersList", 15, 30, 220, 250);
             //this.Players.AddItem(new ListBoxItem("gomesp_f", null));
             //this.Players.AddItem(new ListBoxItem("ouache_s", null));
             //this.Players.AddItem(new ListBoxItem("lefloc_l", null));
@@ -52,7 +52,7 @@ namespace Zappy_Client.Core
             //this.Players.AddItem(new ListBoxItem("thibau_j", null));
             this.AddControl(this.Players);
 
-            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Select a team");
+            this.ShowInventory = new Button(this.Engine, "ShowInventoryButton", 25, 290, 200, 0, "Select a player");
             this.ShowInventory.Enabled = false;
             this.ShowInventory.OnClick += ShowInventory_OnClick;
             this.Players.OnSelectedItem += Players_OnSelectedItem;
@@ -60,15 +60,25 @@ namespace Zappy_Client.Core
             base.Initialize();
         }
 
+        /// <summary>
+        /// Clear all items of the object
+        /// </summary>
+        public override void Clear()
+        {
+            this.Players.Items.Clear();
+        }
+
         void Players_OnSelectedItem(object sender)
         {
             this.ShowInventory.Enabled = true;
-            this.ShowInventory.Text = "Show " + (sender as ListBox).SelectedItem.ItemText + "'s members";
+            this.ShowInventory.Text = "Show " + (sender as ListBox).SelectedItem.ItemText + "'s inventory";
         }
 
         private void ShowInventory_OnClick(object sender)
         {
-            System.Windows.Forms.MessageBox.Show("Hey du calme ! C'est pas encore au point. Mais tu veux voir l'inventaire de " + this.Players.SelectedItem.ItemText);
+            Inventory inventory = this.Engine.GetContainer("Inventory") as Inventory;
+
+            inventory.SetLevel(1, ControlState.Hover);
         }
 
         public override void Update(GameTime gameTime)

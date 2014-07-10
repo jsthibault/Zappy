@@ -33,7 +33,7 @@ namespace Zappy_Client.Interface
 
         public Control ParentControl { get; set; }
         protected UI Engine { get; set; }
-        public ControlState State { get; protected set; }
+        public ControlState State { get; set; }
 
         public event MonoGameEventHandler OnHover;
         public event MonoGameEventHandler OnClick;

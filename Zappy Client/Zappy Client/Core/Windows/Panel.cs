@@ -90,14 +90,19 @@ namespace Zappy_Client.Core.Windows
 
         private void onClickDisconnect(object sender)
         {
+            this.Engine.GetContainer("Inventory").Clear();
+            this.Engine.GetContainer("Viewer").Clear();
+            this.Engine.GetContainer("PlayersListWindow").Clear();
+            this.Engine.GetContainer("TeamsListWindow").Clear();
+            Network.Instance.Disconnect();
             Zappy.instance.ScreenManager.SetCurrentScreen("MainScreen");
         }
 
         private void onClickOptions(object sender)
         {
             this.Engine.SetCurrentContainer("Options");
-            this.Engine.GetContainer("LoginWindow").Visible = false;
             this.Engine.GetContainer("Options").Visible = true;
+            this.Engine.GetContainer("Options").SetFocus();
         }
         #endregion
 
