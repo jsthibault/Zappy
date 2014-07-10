@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. juin 24 15:02:11 2014 lefloc_l
-** Last update jeu. juil. 10 16:06:39 2014 lefloc_l
+** Last update Fri Jul 11 01:55:42 2014 arnaud drain
 */
 
 #include "kernel.h"
@@ -37,7 +37,7 @@ void		remove_player_on_map(t_kernel *kernel, t_player *player)
 }
 
 t_bool		add_player_on_map(t_kernel *kernel, t_player *player,
-    int y, int x)
+    int x, int y)
 {
   t_case	*c;
 
@@ -56,7 +56,7 @@ t_bool		move_player_on_map(t_kernel *kernel, t_player *player,
     int y, int x)
 {
   remove_player_on_map(kernel, player);
-  if (FALSE == add_player_on_map(kernel, player, y, x))
+  if (FALSE == add_player_on_map(kernel, player, x, y))
     return (FALSE);
   logger_message("move player %d: %d/%d", player->id, x, y);
   return (TRUE);
