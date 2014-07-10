@@ -338,6 +338,16 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEnw(List<String> items)
         {
+            String _e = items[1];
+            Int32 _quantity = Convert.ToInt32(items[2]);
+            Int32 _x = Convert.ToInt32(items[3]);
+            Int32 _y = Convert.ToInt32(items[4]);
+
+            for (Int32 i = 0; i < _quantity; ++i)
+            {
+                Egg _egg = new Egg(this.Game.Map, _e, _x, _y);
+                this.Game.Map.AddEgg(_egg);
+            }
             return false;
         }
 
@@ -350,6 +360,13 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEht(List<String> items)
         {
+            String _e = items[1];
+            Egg _egg = this.Game.Map.GetEgg(_e);
+
+            if (_egg != null)
+            {
+                _egg.State = EggState.Open;
+            }
             return false;
         }
 
@@ -362,9 +379,13 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEbo(List<String> items)
         {
-            foreach (String item in items)
+            String _e = items[1];
+            Egg _egg = this.Game.Map.GetEgg(_e);
+
+            if (_egg != null)
             {
-                Console.Write(item + " ");
+                _egg.HasCharacter = true;
+                _egg.State = EggState.Full;
             }
             return false;
         }
@@ -378,6 +399,13 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerEdi(List<String> items)
         {
+            String _e = items[1];
+            Egg _egg = this.Game.Map.GetEgg(_e);
+
+            if (_egg != null)
+            {
+                _egg.State = EggState.Dead;
+            }
             return false;
         }
 

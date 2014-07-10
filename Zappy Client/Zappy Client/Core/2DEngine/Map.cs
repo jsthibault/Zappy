@@ -37,6 +37,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public Dictionary<String, Team> Teams { get; private set; }
         public List<FrameContent> Frames { get; private set; }
+        public List<Egg> Eggs { get; private set; }
 
         private Game GameInstance { get; set; }
         private Camera Camera { get; set; }
@@ -49,6 +50,10 @@ namespace Zappy_Client.Core._2DEngine
         private Texture2D Grid { get; set; }
         private Texture2D CastAnim { get; set; }
         private Texture2D DeadAnim { get; set; }
+        public Texture2D Egg { get; set; }
+        public Texture2D EggDead { get; set; }
+        public Texture2D EggOpen { get; set; }
+        public Texture2D EggEmpty { get; set; }
         private Texture2D[] Cristals { get; set; }
         private SpriteFont Debug { get; set; }
 
@@ -90,7 +95,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             this.Teams = new Dictionary<String, Team>();
             this.Frames = new List<FrameContent>();
-            // Create object list
+            this.Eggs = new List<Egg>();
         }
 
         #endregion
@@ -104,6 +109,7 @@ namespace Zappy_Client.Core._2DEngine
         public Boolean Initialize()
         {
             this.InitializeTexture();
+            this.AddEgg(new Egg(this, "1", 5, 5));
             return true;
         }
 
@@ -112,6 +118,7 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Update()
         {
+            // Update camera
             this.Camera.Update();
             KeyboardState _state = Keyboard.GetState();
 
@@ -131,15 +138,19 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
+            if (_state.IsKeyDown(Keys.A) == true)
+            {
+                this.Eggs[0].State = EggState.Open;
+            }
             MouseState _mouseState = Mouse.GetState();
 
+            // Camera zoom
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
 
+            // Update mouse click
             Vector2 vec = Vector2.Transform(new Vector2(_mouseState.GetPosition().X, _mouseState.GetPosition().Y), Matrix.Invert(this.Camera.GetTransformation()));
-
             this.CursorX = (Convert.ToInt32(vec.X) - this.OffsetX) / Case;
             this.CursorY = (Convert.ToInt32(vec.Y) - this.OffsetY) / Case;
-
             if (_mouseState.MouseClick(MouseButton.LeftButton) == true)
             {
                 if (this.CursorX >= 0 && this.CursorY >= 0 && this.CursorX < this.Width && this.CursorY < this.Height)
@@ -147,21 +158,20 @@ namespace Zappy_Client.Core._2DEngine
                     this.ClickMap();
                 }
             }
-
-            if (_state.IsKeyDown(Keys.A) == true)
-            {
-                this.Teams["test"].Characters[0].StartCast(0);
-            }
-            if (_state.IsKeyDown(Keys.Z) == true)
-            {
-                this.Teams["test"].Characters[0].EndCast(0);
-            }
+            
+            // Update teams and characters
             foreach (Team team in this.Teams.Values)
             {
                 for (Int32 i = 0; i < team.Characters.Count; ++i)
                 {
                     team.Characters[i].Update();
                 }
+            }
+
+            // Update eggs
+            for (Int32 i = 0; i < this.Eggs.Count; ++i)
+            {
+                this.Eggs[i].Update();
             }
         }
 
@@ -204,6 +214,13 @@ namespace Zappy_Client.Core._2DEngine
                 }
             }
             spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            for (Int32 i = 0; i < this.Eggs.Count; ++i)
+            {
+                this.Eggs[i].Draw(spriteBatch);
+            }
+            spriteBatch.End();
         }
 
         /// <summary>
@@ -219,6 +236,10 @@ namespace Zappy_Client.Core._2DEngine
             this.Grid = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
             this.CastAnim = this.GameInstance.Content.Load<Texture2D>("Characters//cast.png");
             this.DeadAnim = this.GameInstance.Content.Load<Texture2D>("Characters//die.png");
+            this.Egg = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg.png");
+            this.EggDead = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_dead.png");
+            this.EggOpen = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
+            this.EggEmpty = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
             this.Cristals = new Texture2D[7];
             Int32 _j = 7;
             for (Int32 i = 0; i < 7; ++i)
@@ -471,6 +492,47 @@ namespace Zappy_Client.Core._2DEngine
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// Add an egg to the map
+        /// </summary>
+        /// <param name="egg"></param>
+        public void AddEgg(Egg egg)
+        {
+            if (this.Eggs.Contains(egg) == false)
+            {
+                this.Eggs.Add(egg);
+            }
+        }
+
+        /// <summary>
+        /// Remove an egg from the map
+        /// </summary>
+        /// <param name="egg"></param>
+        public void RemoveEgg(Egg egg)
+        {
+            if (this.Eggs.Contains(egg) == true)
+            {
+                this.Eggs.Remove(egg);
+            }
+        }
+
+        /// <summary>
+        /// Get an egg by name
+        /// </summary>
+        /// <param name="name">Egg name</param>
+        /// <returns></returns>
+        public Egg GetEgg(String name)
+        {
+            foreach (Egg egg in this.Eggs)
+            {
+                if (egg.Name == name)
+                {
+                    return egg;
+                }
+            }
+            return null;
         }
 
         #endregion

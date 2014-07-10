@@ -38,6 +38,7 @@
     <Compile Include="Core\2DEngine\Animation.cs" />
     <Compile Include="Core\2DEngine\Camera.cs" />
     <Compile Include="Core\2DEngine\Character.cs" />
+    <Compile Include="Core\2DEngine\Egg.cs" />
     <Compile Include="Core\2DEngine\FrameContent.cs" />
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\2DEngine\Team.cs" />
@@ -115,6 +116,18 @@
     <Content Include="Content\Characters\cast.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\eggs\egg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\eggs\egg_dead.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\eggs\egg_eclos.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\eggs\egg_empty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Characters\items\cristal_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -140,6 +153,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\login.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturesMap\portal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\TexturesMap\cursor.png">
