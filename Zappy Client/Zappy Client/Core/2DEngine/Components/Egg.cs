@@ -102,11 +102,11 @@ namespace Zappy_Client.Core._2DEngine
         {
             switch (this.State)
             {
-                case EggState.Alive: spriteBatch.Draw(this.Map.EggEmpty, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
-                case EggState.Full: spriteBatch.Draw(this.Map.Egg, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
-                case EggState.Dead: spriteBatch.Draw(this.Map.EggDead, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
-                case EggState.Open: spriteBatch.Draw(this.Map.EggOpen, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
-                case EggState.DeadOpen: spriteBatch.Draw(this.Map.EggDeadOpen, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.Alive: spriteBatch.Draw(TextureManager.Instance["EggEmpty"], new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.Full: spriteBatch.Draw(TextureManager.Instance["Egg"], new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.Dead: spriteBatch.Draw(TextureManager.Instance["EggDead"], new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.Open: spriteBatch.Draw(TextureManager.Instance["EggOpen"], new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.DeadOpen: spriteBatch.Draw(TextureManager.Instance["EggDeadOpen"], new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
             }
         }
 

@@ -120,15 +120,16 @@ namespace Zappy_Client.Core._2DEngine
         /// <summary>
         /// Initialize the character properties
         /// </summary>
-        public void Initialize(Texture2D cast, Texture2D die)
+        public void Initialize()
         {
             this.HitBox = new Rectangle(this.X * 32, this.Y * 32, 64, 64);
             this.ChangeDirection(this.Direction);
             this.Timer = 0;
+            this.Texture = TextureManager.Instance["Chocobo"];
             this.Animation = true;
             this.Animations = new Animation[2];
-            this.Animations[(Int32)AnimationType.Cast] = new Animation(4, 5, cast, 3);
-            this.Animations[(Int32)AnimationType.Die] = new Animation(8, 5, die, 3);
+            this.Animations[(Int32)AnimationType.Cast] = new Animation(4, 5, TextureManager.Instance["Cast"], 3);
+            this.Animations[(Int32)AnimationType.Die] = new Animation(8, 5, TextureManager.Instance["Die"], 3);
         }
 
         /// <summary>
@@ -327,7 +328,7 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="orientation"></param>
-        public void moveTo(Int32 x, Int32 y, Direction orientation)
+        public void MoveTo(Int32 x, Int32 y, Direction orientation)
         {
             Int32 nbMoves = 0;
 
