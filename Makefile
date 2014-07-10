@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update  ven. juil. 11 00:11:22 2014 lefloc_l
+## Last update Fri Jul 11 00:48:35 2014 Rodrigue Canquery
 ##
 
 CC=	gcc
@@ -150,7 +150,7 @@ $(SERVER):	$(OBJ_SERVER) $(OBJ_LIST) $(OBJ_BUFFER)
 	@$(ECHO) '\033[0;32m> Compiled\033[0m'
 
 $(CLIENT):	$(OBJ_CLIENT)
-	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS) -llua -lm -ldl
+	$(CC) -o $(CLIENT) $(OBJ_CLIENT) $(CFLAGS) $(LDFLAGS) -lm -ldl
 
 $(DIR_OBJ_SERVER)/%.o: $(DIR_SERVER)/%.c
 	@mkdir -p $(@D)
