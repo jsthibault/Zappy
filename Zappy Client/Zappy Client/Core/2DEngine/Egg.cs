@@ -22,7 +22,8 @@ namespace Zappy_Client.Core._2DEngine
         Alive = 0,
         Full,
         Dead,
-        Open
+        Open,
+        DeadOpen
     }
 
     public class Egg
@@ -80,7 +81,7 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Update()
         {
-            if (this.State == EggState.Dead || this.State == EggState.Open)
+            if (this.State == EggState.Dead || this.State == EggState.Open || this.State == EggState.DeadOpen)
             {
                 if (this.Time < TimeLimit)
                 {
@@ -105,6 +106,7 @@ namespace Zappy_Client.Core._2DEngine
                 case EggState.Full: spriteBatch.Draw(this.Map.Egg, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
                 case EggState.Dead: spriteBatch.Draw(this.Map.EggDead, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
                 case EggState.Open: spriteBatch.Draw(this.Map.EggOpen, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
+                case EggState.DeadOpen: spriteBatch.Draw(this.Map.EggDeadOpen, new Vector2(this.X * Map2D.Case + this.Map.OffsetX + 3, this.Y * Map2D.Case + this.Map.OffsetY + 1), Color.White); break;
             }
         }
 

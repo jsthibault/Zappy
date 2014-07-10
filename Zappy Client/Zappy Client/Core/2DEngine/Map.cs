@@ -54,8 +54,10 @@ namespace Zappy_Client.Core._2DEngine
         public Texture2D EggDead { get; set; }
         public Texture2D EggOpen { get; set; }
         public Texture2D EggEmpty { get; set; }
+        public Texture2D EggDeadOpen { get; set; }
         private Texture2D[] Cristals { get; set; }
         private SpriteFont Debug { get; set; }
+        private List<Animation> Portals { get; set; }
 
         public const Int32 Case = 32;
 
@@ -109,6 +111,7 @@ namespace Zappy_Client.Core._2DEngine
         public Boolean Initialize()
         {
             this.InitializeTexture();
+            this.InitializePortals();
             this.AddEgg(new Egg(this, "1", 5, 5));
             return true;
         }
@@ -140,7 +143,7 @@ namespace Zappy_Client.Core._2DEngine
             }
             if (_state.IsKeyDown(Keys.A) == true)
             {
-                this.Eggs[0].State = EggState.Open;
+                //this.Eggs[0].State = EggState.DeadOpen;
             }
             MouseState _mouseState = Mouse.GetState();
 
@@ -172,6 +175,12 @@ namespace Zappy_Client.Core._2DEngine
             for (Int32 i = 0; i < this.Eggs.Count; ++i)
             {
                 this.Eggs[i].Update();
+            }
+
+            // Update portals
+            foreach (Animation portal in this.Portals)
+            {
+                portal.Update();
             }
         }
 
@@ -221,6 +230,9 @@ namespace Zappy_Client.Core._2DEngine
                 this.Eggs[i].Draw(spriteBatch);
             }
             spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            this.DrawPortals(spriteBatch);
+            spriteBatch.End();
         }
 
         /// <summary>
@@ -240,6 +252,7 @@ namespace Zappy_Client.Core._2DEngine
             this.EggDead = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_dead.png");
             this.EggOpen = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
             this.EggEmpty = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
+            this.EggDeadOpen = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos_dead.png");
             this.Cristals = new Texture2D[7];
             Int32 _j = 7;
             for (Int32 i = 0; i < 7; ++i)
@@ -248,6 +261,47 @@ namespace Zappy_Client.Core._2DEngine
                 --_j;
             }
             this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
+        }
+
+        /// <summary>
+        /// Initialize portals
+        /// </summary>
+        private void InitializePortals()
+        {
+            Texture2D _portalTexture = this.GameInstance.Content.Load<Texture2D>("TexturesMap//portal.png");
+            this.Portals = new List<Animation>();
+
+            // top
+            for (Int32 i = 0; i < this.Width; ++i)
+            {
+                Animation _portal = new Animation(1, 4, _portalTexture, 5);
+                _portal.Play(i * Case + this.OffsetX, this.OffsetY - (Case + 16), true);
+                this.Portals.Add(_portal);
+            }
+
+            // bottom
+            for (Int32 i = 0; i < this.Width; ++i)
+            {
+                Animation _portal = new Animation(1, 4, _portalTexture, 5);
+                _portal.Play(i * Case + this.OffsetX, this.OffsetY + (Case * this.Height) + 16, true);
+                this.Portals.Add(_portal);
+            }
+
+            // left
+            for (Int32 i = 0; i < this.Height; ++i)
+            {
+                Animation _portal = new Animation(1, 4, _portalTexture, 5);
+                _portal.Play(this.OffsetX - (Case + 16), i * Case + this.OffsetY, true);
+                this.Portals.Add(_portal);
+            }
+
+            // right
+            for (Int32 i = 0; i < this.Height; ++i)
+            {
+                Animation _portal = new Animation(1, 4, _portalTexture, 5);
+                _portal.Play(this.OffsetX + (Case * this.Width + 16), i * Case + this.OffsetY, true);
+                this.Portals.Add(_portal);
+            }
         }
 
         /// <summary>
@@ -391,6 +445,18 @@ namespace Zappy_Client.Core._2DEngine
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Draw portals
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void DrawPortals(SpriteBatch spriteBatch)
+        {
+            foreach (Animation portal in this.Portals)
+            {
+                portal.Draw(spriteBatch);
             }
         }
 

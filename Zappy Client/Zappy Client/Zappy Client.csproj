@@ -126,6 +126,9 @@
     <Content Include="Content\Characters\eggs\egg_eclos.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\eggs\egg_eclos_dead.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Characters\eggs\egg_empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

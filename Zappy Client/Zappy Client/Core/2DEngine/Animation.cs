@@ -30,6 +30,8 @@ namespace Zappy_Client.Core._2DEngine
 
         private Vector2 Position { get; set; }
 
+        private Boolean AlwaysPlay { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -46,6 +48,7 @@ namespace Zappy_Client.Core._2DEngine
             this.Timer = 0;
             this.FrameHeight = this.Texture.Height / this.FrameLineCount;
             this.FrameWidth = this.Texture.Width / this.FrameColumnCount;
+            this.AlwaysPlay = false;
         }
 
         #endregion
@@ -77,7 +80,7 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.FrameLine = 0;
                     this.FrameColumn = 0;
-                    this.Playing = false;
+                    this.Playing = this.AlwaysPlay == true ? true : false;
                 }
             }
         }
@@ -94,11 +97,12 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
-        public void Play(Int32 x, Int32 y)
+        public void Play(Int32 x, Int32 y, Boolean alwaysPlay = false)
         {
             if (this.Playing == false)
             {
                 this.Playing = true;
+                this.AlwaysPlay = alwaysPlay;
                 this.Position = new Vector2(x, y);
             }
         }
