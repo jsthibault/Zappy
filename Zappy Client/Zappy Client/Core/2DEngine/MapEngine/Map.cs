@@ -27,6 +27,8 @@ namespace Zappy_Client.Core._2DEngine
     {
         #region FIELDS
 
+        public const Int32 Case = 32;
+
         public Int32 Width { get; set; }
         public Int32 Height { get; set; }
 
@@ -38,37 +40,16 @@ namespace Zappy_Client.Core._2DEngine
         public Dictionary<String, Team> Teams { get; private set; }
         public List<FrameContent> Frames { get; private set; }
         public List<Egg> Eggs { get; private set; }
-
-        private Game GameInstance { get; set; }
-        private Camera Camera { get; set; }
-
-        private Texture2D Grass { get; set; }
-        private Texture2D Water { get; set; }
-        private Texture2D Moutain { get; set; }
-        private Texture2D Cursor { get; set; }
-        private Texture2D Character { get; set; }
-        private Texture2D Grid { get; set; }
-        private Texture2D CastAnim { get; set; }
-        private Texture2D DeadAnim { get; set; }
-        public Texture2D Egg { get; set; }
-        public Texture2D EggDead { get; set; }
-        public Texture2D EggOpen { get; set; }
-        public Texture2D EggEmpty { get; set; }
-        public Texture2D EggDeadOpen { get; set; }
-        private Texture2D[] Cristals { get; set; }
-        private SpriteFont Debug { get; set; }
         private List<Animation> Portals { get; set; }
-
-        public const Int32 Case = 32;
-
-        private Int32 WaterWidth { get; set; }
-        private Int32 WaterHeight { get; set; }
 
         public Int32 OffsetX { get; set; }
         public Int32 OffsetY { get; set; }
 
-        private Int32 CurrentCursorX { get; set; }
-        private Int32 CurrentCursorY { get; set; }
+        private Game GameInstance { get; set; }
+        private Camera Camera { get; set; }
+
+        private Int32 WaterWidth { get; set; }
+        private Int32 WaterHeight { get; set; }
 
         #endregion
 
@@ -91,8 +72,6 @@ namespace Zappy_Client.Core._2DEngine
             this.OffsetY = ((this.WaterHeight * Case) / 2) - ((this.Height * Case) / 2);
             this.CursorX = -1;
             this.CursorY = -1;
-            this.CurrentCursorX = 0;
-            this.CurrentCursorY = 0;
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             this.Teams = new Dictionary<String, Team>();
@@ -112,7 +91,6 @@ namespace Zappy_Client.Core._2DEngine
         {
             this.InitializeTexture();
             this.InitializePortals();
-            //this.AddEgg(new Egg(this, "1", 5, 5));
             return true;
         }
 
@@ -121,27 +99,24 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         private void InitializeTexture()
         {
-            this.Grass = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grass.png");
-            this.Water = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
-            this.Moutain = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
-            this.Cursor = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
-            this.Character = this.GameInstance.Content.Load<Texture2D>("Characters//chocobo.png");
-            this.Grid = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
-            this.CastAnim = this.GameInstance.Content.Load<Texture2D>("Characters//cast.png");
-            this.DeadAnim = this.GameInstance.Content.Load<Texture2D>("Characters//die.png");
-            this.Egg = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg.png");
-            this.EggDead = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_dead.png");
-            this.EggOpen = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
-            this.EggEmpty = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
-            this.EggDeadOpen = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos_dead.png");
-            this.Cristals = new Texture2D[7];
-            Int32 _j = 7;
-            for (Int32 i = 0; i < 7; ++i)
+            TextureManager.Instance["Grass"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grass.png");
+            TextureManager.Instance["Water"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
+            TextureManager.Instance["Moutain"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
+            TextureManager.Instance["Cursor"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//cursor.png");
+            TextureManager.Instance["Grid"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grid.png");
+            TextureManager.Instance["Chocobo"] = this.GameInstance.Content.Load<Texture2D>("Characters//chocobo.png");
+            TextureManager.Instance["Cast"] = this.GameInstance.Content.Load<Texture2D>("Characters//cast.png");
+            TextureManager.Instance["Die"] = this.GameInstance.Content.Load<Texture2D>("Characters//die.png");
+            TextureManager.Instance["Egg"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg.png");
+            TextureManager.Instance["EggDead"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_dead.png");
+            TextureManager.Instance["EggOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
+            TextureManager.Instance["EggEmpty"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
+            TextureManager.Instance["EggDeadOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos_dead.png");
+
+            for (Int32 i = 0, j = 7; i < 7; ++i, --j)
             {
-                this.Cristals[i] = this.GameInstance.Content.Load<Texture2D>("Characters//items//cristal_" + (_j).ToString() + ".png");
-                --_j;
+                TextureManager.Instance["Cristal" + i.ToString()] = this.GameInstance.Content.Load<Texture2D>("Characters//items//cristal_" + (j).ToString() + ".png");
             }
-            this.Debug = this.GameInstance.Content.Load<SpriteFont>("Theme//Font//TrebuchetMS10");
         }
 
         /// <summary>
@@ -302,9 +277,6 @@ namespace Zappy_Client.Core._2DEngine
             {
                 this.Camera.Move(new Vector2(10, 0));
             }
-            if (_state.IsKeyDown(Keys.A) == true)
-            {
-            }
         }
 
         /// <summary>
@@ -314,7 +286,6 @@ namespace Zappy_Client.Core._2DEngine
         {
             MouseState _mouseState = Mouse.GetState();
             
-            // Camera zoom
             this.Camera.Zoom = _mouseState.ScrollWheelValue / 100;
 
             // Update mouse click

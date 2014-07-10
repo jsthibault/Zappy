@@ -30,8 +30,7 @@ namespace Zappy_Client.Core._2DEngine
             }
             if (this.Teams[team].Characters.Contains(character) == false)
             {
-                character.Initialize(this.CastAnim, this.DeadAnim);
-                character.Texture = this.Character;
+                character.Initialize();
                 this.Teams[team].Characters.Add(character);
                 if ((Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem != null
                     && (Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem.ItemText == team)

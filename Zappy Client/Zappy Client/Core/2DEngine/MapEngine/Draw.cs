@@ -29,7 +29,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 for (Int32 j = -1; j < this.WaterHeight + 1; ++j)
                 {
-                    spriteBatch.Draw(this.Water, new Vector2(i * 32, j * 32), Color.White);
+                    spriteBatch.Draw(TextureManager.Instance["Water"], new Vector2(i * 32, j * 32), Color.White);
                 }
             }
         }
@@ -44,20 +44,20 @@ namespace Zappy_Client.Core._2DEngine
             Rectangle _sourceLeftTop = new Rectangle(0, 0, 16, 16);
             Rectangle _sourceMidTop = new Rectangle(16, 0, 16, 16);
             Rectangle _sourceRightTop = new Rectangle(32, 0, 16, 16);
-            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY) - 16), _sourceLeftTop, Color.White);
+            spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX) - 16, (this.OffsetY) - 16), _sourceLeftTop, Color.White);
             for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY) - 16), _sourceMidTop, Color.White);
+                spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY) - 16), _sourceMidTop, Color.White);
             }
-            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY) - 16), _sourceRightTop, Color.White);
+            spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY) - 16), _sourceRightTop, Color.White);
 
             // mid part
             Rectangle _sourceLeftMid = new Rectangle(0, 16, 16, 16);
             Rectangle _sourceRightMid = new Rectangle(32, 16, 16, 16);
             for (Int32 i = 1; i < (this.Height * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY + (i * 16)) - 16), _sourceLeftMid, Color.White); // Left
-                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (i * 16)) - 16), _sourceRightMid, Color.White); // Right
+                spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX) - 16, (this.OffsetY + (i * 16)) - 16), _sourceLeftMid, Color.White); // Left
+                spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (i * 16)) - 16), _sourceRightMid, Color.White); // Right
             }
 
             // Bottom part
@@ -65,12 +65,12 @@ namespace Zappy_Client.Core._2DEngine
             Rectangle _sourceMidBot = new Rectangle(16, 32, 16, 16);
             Rectangle _sourceRightBot = new Rectangle(32, 32, 16, 16);
 
-            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceLeftBot, Color.White);
+            spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceLeftBot, Color.White);
             for (Int32 i = 1; i < (this.Width * 2) + 1; ++i)
             {
-                spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceMidBot, Color.White);
+                spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX + (i * 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceMidBot, Color.White);
             }
-            spriteBatch.Draw(this.Moutain, new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceRightBot, Color.White);
+            spriteBatch.Draw(TextureManager.Instance["Moutain"], new Vector2((this.OffsetX + (this.Width * 32 + 16)) - 16, (this.OffsetY + (this.Height * 32 + 16)) - 16), _sourceRightBot, Color.White);
 
         }
 
@@ -84,7 +84,7 @@ namespace Zappy_Client.Core._2DEngine
             {
                 for (Int32 j = 0; j < this.Height; ++j)
                 {
-                    spriteBatch.Draw(this.Grass, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                    spriteBatch.Draw(TextureManager.Instance["Grass"], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Zappy_Client.Core._2DEngine
         {
             if (this.CursorX >= 0 && this.CursorY >= 0 && this.CursorX < this.Width && this.CursorY < this.Height)
             {
-                spriteBatch.Draw(this.Cursor, new Vector2(this.OffsetX + this.CursorX * 32, this.OffsetY + this.CursorY * 32), Color.White);
+                spriteBatch.Draw(TextureManager.Instance["Cursor"], new Vector2(this.OffsetX + this.CursorX * 32, this.OffsetY + this.CursorY * 32), Color.White);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     for (Int32 j = 0; j < this.Height; ++j)
                     {
-                        spriteBatch.Draw(this.Grid, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                        spriteBatch.Draw(TextureManager.Instance["Grid"], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                     }
                 }
             }
@@ -136,7 +136,7 @@ namespace Zappy_Client.Core._2DEngine
                             Int32 _itemsCount = frame.GetItemCount();
                             if (_itemsCount > 0)
                             {
-                                spriteBatch.Draw(this.Cristals[_itemsCount - 1], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                                spriteBatch.Draw(TextureManager.Instance["Cristal" + (_itemsCount - 1).ToString()], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                             }
                         }
                     }

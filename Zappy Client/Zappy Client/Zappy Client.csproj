@@ -35,17 +35,18 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core\2DEngine\Animation.cs" />
+    <Compile Include="Core\2DEngine\Components\Animation.cs" />
     <Compile Include="Core\2DEngine\Camera.cs" />
-    <Compile Include="Core\2DEngine\Character.cs" />
-    <Compile Include="Core\2DEngine\Egg.cs" />
-    <Compile Include="Core\2DEngine\FrameContent.cs" />
+    <Compile Include="Core\2DEngine\Components\Character.cs" />
+    <Compile Include="Core\2DEngine\Components\Egg.cs" />
+    <Compile Include="Core\2DEngine\Components\FrameContent.cs" />
     <Compile Include="Core\2DEngine\MapEngine\CharacterManager.cs" />
     <Compile Include="Core\2DEngine\MapEngine\Draw.cs" />
     <Compile Include="Core\2DEngine\MapEngine\EggManager.cs" />
     <Compile Include="Core\2DEngine\MapEngine\ItemManager.cs" />
     <Compile Include="Core\2DEngine\MapEngine\Map.cs" />
-    <Compile Include="Core\2DEngine\Team.cs" />
+    <Compile Include="Core\2DEngine\Components\Team.cs" />
+    <Compile Include="Core\2DEngine\TextureManager.cs" />
     <Compile Include="Core\AudioManager.cs" />
     <Compile Include="Core\Options.cs" />
     <Compile Include="Core\Windows\WndPlayersList.cs" />
