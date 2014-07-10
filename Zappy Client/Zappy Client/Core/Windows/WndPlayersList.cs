@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zappy_Client.Interface;
+using Zappy_Client.Core._2DEngine;
 
 /*--------------------------------------------------------
  * PlayerList.cs - file description
@@ -76,9 +77,18 @@ namespace Zappy_Client.Core
 
         private void ShowInventory_OnClick(object sender)
         {
+            Character player = this.Players.SelectedItem.ItemObject as Character;
             Inventory inventory = this.Engine.GetContainer("Inventory") as Inventory;
 
-            inventory.SetLevel(1, ControlState.Hover);
+            inventory.updateControl<Label>("LabelPhiras", player.Items[(int)ItemType.PHIRAS]);
+            inventory.updateControl<Label>("LabelSibur", player.Items[(int)ItemType.SIBUR]);
+            inventory.updateControl<Label>("LabelMendiane", player.Items[(int)ItemType.MENDIANE]);
+            inventory.updateControl<Label>("LabelThystame", player.Items[(int)ItemType.THYSTAME]);
+            inventory.updateControl<Label>("LabelMendiane", player.Items[(int)ItemType.MENDIANE]);
+            inventory.updateControl<Label>("LabelSibur", player.Items[(int)ItemType.SIBUR]);
+            inventory.updateControl<ProgressBar>("Food", player.Items[(int)ItemType.FOOD]);
+
+            inventory.SetLevel(7);
         }
 
         public override void Update(GameTime gameTime)

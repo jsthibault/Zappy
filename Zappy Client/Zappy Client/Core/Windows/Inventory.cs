@@ -107,9 +107,18 @@ namespace Zappy_Client.Core
 
             
             // Loading Items count
-            this.Phiras = new Label(this.Engine, "LabelHost", this.LevelsBar.Rectangle.X + 623, this.LevelsBar.Rectangle.Y - 53, "0", "TrebuchetMSBold");
+            this.Phiras = new Label(this.Engine, "LabelPhiras", this.LevelsBar.Rectangle.X + 623, this.LevelsBar.Rectangle.Y - 53, "0", "TrebuchetMSBold");
             this.AddControl(this.Phiras);
-
+            this.Sibur = new Label(this.Engine, "LabelSibur", this.LevelsBar.Rectangle.X + 668, this.LevelsBar.Rectangle.Y - 28, "0", "TrebuchetMSBold");
+            this.AddControl(this.Sibur);
+            this.Mendiane = new Label(this.Engine, "LabelMendiane", this.LevelsBar.Rectangle.X + 668, this.LevelsBar.Rectangle.Y + 23, "0", "TrebuchetMSBold");
+            this.AddControl(this.Mendiane);
+            this.Thystame = new Label(this.Engine, "LabelThystame", this.LevelsBar.Rectangle.X + 623, this.LevelsBar.Rectangle.Y + 49, "0", "TrebuchetMSBold");
+            this.AddControl(this.Thystame);
+            this.Mendiane = new Label(this.Engine, "LabelMendiane", this.LevelsBar.Rectangle.X + 578, this.LevelsBar.Rectangle.Y + 23, "0", "TrebuchetMSBold");
+            this.AddControl(this.Mendiane);
+            this.Linemate = new Label(this.Engine, "LabelSibur", this.LevelsBar.Rectangle.X + 578, this.LevelsBar.Rectangle.Y - 28, "0", "TrebuchetMSBold");
+            this.AddControl(this.Linemate);
             base.Initialize();
         }
 
@@ -148,9 +157,16 @@ namespace Zappy_Client.Core
             }
         }
 
-        public void SetLevel(Int32 level, ControlState state)
+        public void SetLevel(Int32 level)
         {
-            this.Levels[level - 1].State = state;
+            for (Int32 i = 0; i < 8; i++)
+            {
+                this.Levels[i].State = ControlState.Normal;
+            }
+            for (Int32 i = 0; i < level; i++)
+            {
+                this.Levels[i].State = ControlState.Hover;
+            }
         }
 
         /// <summary>
