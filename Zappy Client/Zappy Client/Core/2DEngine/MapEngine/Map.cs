@@ -112,7 +112,7 @@ namespace Zappy_Client.Core._2DEngine
         {
             this.InitializeTexture();
             this.InitializePortals();
-            this.AddEgg(new Egg(this, "1", 5, 5));
+            //this.AddEgg(new Egg(this, "1", 5, 5));
             return true;
         }
 
