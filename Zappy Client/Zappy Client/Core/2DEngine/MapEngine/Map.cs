@@ -99,6 +99,10 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         private void InitializeTexture()
         {
+            for (Int32 i = 0, j = 7; i < 7; ++i, --j)
+            {
+                TextureManager.Instance["Cristal" + i.ToString()] = this.GameInstance.Content.Load<Texture2D>("Characters//items//cristal_" + (j).ToString() + ".png");
+            }
             TextureManager.Instance["Grass"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//grass.png");
             TextureManager.Instance["Water"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//water.png");
             TextureManager.Instance["Moutain"] = this.GameInstance.Content.Load<Texture2D>("TexturesMap//moutain.png");
@@ -112,11 +116,6 @@ namespace Zappy_Client.Core._2DEngine
             TextureManager.Instance["EggOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
             TextureManager.Instance["EggEmpty"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
             TextureManager.Instance["EggDeadOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos_dead.png");
-
-            for (Int32 i = 0, j = 7; i < 7; ++i, --j)
-            {
-                TextureManager.Instance["Cristal" + i.ToString()] = this.GameInstance.Content.Load<Texture2D>("Characters//items//cristal_" + (j).ToString() + ".png");
-            }
         }
 
         /// <summary>
@@ -242,17 +241,6 @@ namespace Zappy_Client.Core._2DEngine
         }
 
         /// <summary>
-        /// Fire the delegate if not null
-        /// </summary>
-        private void ClickMap()
-        {
-            if (this.OnCursorClick != null)
-            {
-                this.OnCursorClick(this);
-            }
-        }
-
-        /// <summary>
         /// Update keyboard input
         /// </summary>
         private void UpdateKeyboard()
@@ -298,6 +286,17 @@ namespace Zappy_Client.Core._2DEngine
                 {
                     this.ClickMap();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Fire the delegate if not null
+        /// </summary>
+        private void ClickMap()
+        {
+            if (this.OnCursorClick != null)
+            {
+                this.OnCursorClick(this);
             }
         }
 
