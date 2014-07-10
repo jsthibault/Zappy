@@ -334,47 +334,42 @@ namespace Zappy_Client.Core._2DEngine
 
             if (orientation == Direction.Up)
             {
-                if (this.Y == 0)
+                nbMoves = Math.Abs(this.Y - y);
+                if (this.Y == 0 && nbMoves > 0)
                 {
                     this.Y = this.Map.Height - 1;
                     this.HitBox.Y = this.Y * Map2D.Case;
-                }
-                else
-                {
-                    nbMoves = this.Y - y;
+                    return;
                 }
             }
             else if (orientation == Direction.Right)
             {
-                if (this.X == this.Map.Width - 1)
+                nbMoves = Math.Abs(this.X - x);
+                if (this.X == this.Map.Width - 1 && nbMoves > 0)
                 {
                     this.X = 0;
                     this.HitBox.X = this.X * Map2D.Case;
-                }
-                else
-                {
-                    nbMoves = x - this.X;
+                    return;
                 }
             }
             else if (orientation == Direction.Down)
             {
-                if (this.Y == this.Map.Height - 1)
+                nbMoves = Math.Abs(this.Y - y);
+                if (this.Y == this.Map.Height - 1 && nbMoves > 0)
                 {
                     this.Y = 0;
                     this.HitBox.Y = this.Y * Map2D.Case;
-                }
-                else
-                {
-                    nbMoves = y - this.Y;
+                    return;
                 }
             }
             else if (orientation == Direction.Left)
             {
-                nbMoves = this.X - x;
-                if (this.X == 0 && nbMoves == 0)
+                nbMoves = Math.Abs(this.X - x);
+                if (this.X == 0 && nbMoves > 0)
                 {
                     this.X = this.Map.Width - 1;
                     this.HitBox.X = this.X * Map2D.Case;
+                    return;
                 }
             }
             this.ChangeDirection(orientation);
