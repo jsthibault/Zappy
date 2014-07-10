@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update jeu. juil. 10 23:53:42 2014 lefloc_l
+** Last update ven. juil. 11 00:15:45 2014 lefloc_l
 */
 
 #include <string.h>
@@ -49,24 +49,24 @@ static char	*check_line(t_kernel *kernel, t_pos init,
   pos.x = init.x - (dir.x * range);
   i = 0;
   while (i < (range * 2 + 1))
-    {
-      if (!(tmp = dump_case(kernel, cl, pos)) ||
-	  !(buffer = my_strcat(buffer, tmp, 1)))
-	return (NULL);
-      pos.y += dir.y;
-      pos.x += dir.x;
-      ++i;
-      if ((range < (cl->player->level) || i < (range * 2 + 1)) &&
-	  !(buffer = my_strcat(buffer, ",", 0)))
-	return (NULL);
-    }
+  {
+    if (!(tmp = dump_case(kernel, cl, pos)) ||
+        !(buffer = my_strcat(buffer, tmp, 1)))
+      return (NULL);
+    pos.y += dir.y;
+    pos.x += dir.x;
+    ++i;
+    if ((range < (cl->player->level) || i < (range * 2 + 1)) &&
+        !(buffer = my_strcat(buffer, ",", 0)))
+      return (NULL);
+  }
   init.x += dir.y;
   init.y -= dir.x;
   if (!(tmp = check_line(kernel, init, cl, range + 1)))
-    {
-      free(buffer);
-      return (NULL);
-    }
+  {
+    free(buffer);
+    return (NULL);
+  }
   return (my_strcat(buffer, tmp, 1));
 }
 
