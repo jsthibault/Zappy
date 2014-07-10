@@ -307,8 +307,8 @@ namespace Zappy_Client
                     if (character.Id == Int32.Parse(items[1]))
                     {
                         character.PickItem(Int32.Parse(items[2]));
-                        (Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory).UpdateInfos(character);
                         Game.Map.RetriveItem(character.X, character.Y, (ItemType)Int32.Parse(items[2]));
+                        (Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory).UpdateInfos(character);
                     }
                 }
             }

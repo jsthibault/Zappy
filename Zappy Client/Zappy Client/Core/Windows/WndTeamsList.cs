@@ -82,7 +82,7 @@ namespace Zappy_Client.Core
             window.Clear();
             foreach (Team team in (Zappy.Instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
             {
-                if (this.Teams.SelectedItem.ItemText == team.Name)
+                if (this.Teams.SelectedItem != null && this.Teams.SelectedItem.ItemText == team.Name)
                 {
                     foreach (Character character in team.Characters)
                     {
