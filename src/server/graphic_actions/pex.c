@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:52:04 2014 lefloc_l
-** Last update jeu. juil. 10 22:52:15 2014 lefloc_l
+** Last update jeu. juil. 10 23:31:54 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -17,5 +17,4 @@ t_bool	pex(int fd, int player_id)
   sprintf(res, "pex %d\n", player_id);
   return (send_message(fd, res));
 }
-
 

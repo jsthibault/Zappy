@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:47:55 2014 lefloc_l
-** Last update jeu. juil. 10 23:10:19 2014 lefloc_l
+** Last update jeu. juil. 10 23:31:43 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -13,7 +13,7 @@
 
 int	print_mct(int fd, t_kernel *kernel)
 {
-  t_pos		pos;
+  t_pos	pos;
 
   for (pos.y = 0; pos.y < kernel->game.map->height; ++pos.y)
     {

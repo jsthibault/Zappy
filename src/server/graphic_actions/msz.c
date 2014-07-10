@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:45:49 2014 lefloc_l
-** Last update jeu. juil. 10 23:01:52 2014 lefloc_l
+** Last update jeu. juil. 10 23:32:43 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -13,9 +13,9 @@
 
 int	msz(char **av, t_client *cl, t_kernel *kernel)
 {
-  char  buff[BUFFER_SIZE];
-  int   x;
-  int   y;
+  char	buff[BUFFER_SIZE];
+  int	x;
+  int	y;
 
   (void)av;
   x = kernel->options.width;

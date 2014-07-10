@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:48:18 2014 lefloc_l
-** Last update ven. juil. 04 17:24:13 2014 lefloc_l
+** Last update jeu. juil. 10 23:35:45 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -33,8 +33,8 @@ static char	*logger_get_colorlvl(t_log_level lvl)
 
 void	logger_write_on_file(t_log_level lvl, char *msg, va_list av)
 {
-  char		buffer[LOGGER_BUFFER_SIZE];
-  char		tmp[LOGGER_BUFFER_SIZE];
+  char	buffer[LOGGER_BUFFER_SIZE];
+  char	tmp[LOGGER_BUFFER_SIZE];
 
   snprintf(tmp, LOGGER_BUFFER_SIZE, "%s%s:%s %s", logger_get_colorlvl(lvl),
          logger_get_namelvl(lvl), COLOR_NORMAL, msg);

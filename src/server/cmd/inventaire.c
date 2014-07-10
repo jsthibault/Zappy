@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:53 2014 lefloc_l
-** Last update Tue Jul  8 11:00:51 2014 arnaud drain
+** Last update jeu. juil. 10 23:37:58 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -14,10 +14,10 @@
 #include "enum.h"
 #include "map.h"
 
-int		cmd_inventaire(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_inventaire(char **av, t_client *cl, t_kernel *kernel)
 {
-  int		*items;
-  char		buffer[BUFFER_SIZE];
+  int	*items;
+  char	buffer[BUFFER_SIZE];
 
   (void)av;
   (void)kernel;

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 23:19:46 2014 lefloc_l
-** Last update jeu. juil. 10 23:23:29 2014 lefloc_l
+** Last update jeu. juil. 10 23:32:25 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -14,9 +14,9 @@
 
 int		pin(char **av, t_client *cl, t_kernel *kernel)
 {
-  int           nb_player;
-  t_player      *tmp_player;
-  char          buff[BUFFER_SIZE];
+  int		nb_player;
+  t_player	*tmp_player;
+  char		buff[BUFFER_SIZE];
   int		*items;
 
   if (av_length(av) != 2)

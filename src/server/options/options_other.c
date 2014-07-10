@@ -5,14 +5,14 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:20:14 2014 lefloc_l
-** Last update Fri Jul  4 17:01:15 2014 arnaud drain
+** Last update jeu. juil. 10 23:36:13 2014 lefloc_l
 */
 
 #include <string.h>
 #include <stdlib.h>
 #include "options.h"
 
-t_bool		option_n(char **av, int ac, int *i, t_options *options)
+t_bool	option_n(char **av, int ac, int *i, t_options *options)
 {
   ++(*i);
   if (*i >= ac || av[*i][0] == '-')

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:44:42 2014 lefloc_l
-** Last update jeu. juil. 10 23:02:43 2014 lefloc_l
+** Last update jeu. juil. 10 23:34:57 2014 lefloc_l
 */
 
 #include <string.h>
@@ -14,8 +14,8 @@
 
 int		print_tna(int fd, t_kernel *kernel)
 {
-  char          buff[BUFFER_SIZE];
-  t_node        *tempory_team;
+  char		buff[BUFFER_SIZE];
+  t_node	*tempory_team;
 
   if (!(kernel->game.teams))
     return (0);
@@ -33,8 +33,8 @@ int		print_tna(int fd, t_kernel *kernel)
 
 int		tna(char **av, t_client *cl, t_kernel *kernel)
 {
-  char          buff[BUFFER_SIZE];
-  t_node        *tempory_team;
+  char		buff[BUFFER_SIZE];
+  t_node	*tempory_team;
 
   (void)av;
   if (!(kernel->game.teams))

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 23:18:29 2014 lefloc_l
-** Last update jeu. juil. 10 23:23:46 2014 lefloc_l
+** Last update jeu. juil. 10 23:33:36 2014 lefloc_l
 */
 
 #include <string.h>
@@ -15,9 +15,9 @@
 
 int		ppo(char **av, t_client *cl, t_kernel *kernel)
 {
-  int           nb_player;
-  t_player      *tempory_player;
-  char          buff[BUFFER_SIZE];
+  int		nb_player;
+  t_player	*tempory_player;
+  char		buff[BUFFER_SIZE];
 
   if (av_length(av) != 2)
     return (sbp(cl->fd));

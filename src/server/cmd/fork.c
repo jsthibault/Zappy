@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:23 2014 lefloc_l
-** Last update jeu. juil. 10 16:34:47 2014 lefloc_l
+** Last update jeu. juil. 10 23:37:37 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@
 #include "enum.h"
 #include "map.h"
 
-int		cmd_pond(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_pond(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
   (void)cl;
@@ -24,10 +24,10 @@ int		cmd_pond(char **av, t_client *cl, t_kernel *kernel)
   return (0);
 }
 
-int		cmd_fork(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_fork(char **av, t_client *cl, t_kernel *kernel)
 {
-  char		buffer[BUFFER_SIZE];
-  char		**av2;
+  char	buffer[BUFFER_SIZE];
+  char	**av2;
 
   (void)av;
   sprintf(buffer, "pfk %d\n", cl->player->id);

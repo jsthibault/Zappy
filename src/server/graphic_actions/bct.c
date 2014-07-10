@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 22:47:31 2014 lefloc_l
-** Last update jeu. juil. 10 23:09:44 2014 lefloc_l
+** Last update jeu. juil. 10 23:39:15 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -13,10 +13,10 @@
 #include "server.h"
 #include "client_action.h"
 
-int		print_bct(int fd, t_case *map_case, int x, int y)
+int	print_bct(int fd, t_case *map_case, int x, int y)
 {
-  char		buf[BUFFER_SIZE];
-  int		*items;
+  char	buf[BUFFER_SIZE];
+  int	*items;
 
   items = map_case->inventory.items;
   sprintf(buf, "bct %d %d %d %d %d %d %d %d %d\n", x, y, items[0],

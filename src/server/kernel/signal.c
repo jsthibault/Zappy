@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:32:08 2014 lefloc_l
-** Last update sam. mai 17 18:22:41 2014 lefloc_l
+** Last update jeu. juil. 10 23:35:25 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -13,8 +13,6 @@
 #include "map.h"
 #include "utils.h"
 #include "kernel.h"
-
-extern t_map	g_map;
 
 static void	signal_exit_prog(__attribute__((__unused__))int sig)
 {

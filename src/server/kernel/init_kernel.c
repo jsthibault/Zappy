@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 13:35:55 2014 lefloc_l
-** Last update jeu. juil. 10 16:26:36 2014 lefloc_l
+** Last update jeu. juil. 10 23:35:09 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -26,7 +26,7 @@ static void	print_man()
 	  COLOR_BLUE, COLOR_NORMAL);
 }
 
-t_bool		init_kernel(const int argc, const char **argv, t_kernel *kernel)
+t_bool	init_kernel(const int argc, const char **argv, t_kernel *kernel)
 {
   logger_message("{KERNEL} Initialisation");
   kernel->clients = NULL;

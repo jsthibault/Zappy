@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 23:20:47 2014 lefloc_l
-** Last update jeu. juil. 10 23:22:29 2014 lefloc_l
+** Last update jeu. juil. 10 23:34:19 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -13,10 +13,10 @@
 #include "kernel.h"
 #include "client_action.h"
 
-int		sst(char **av, t_client *cl, t_kernel *kernel)
+int	sst(char **av, t_client *cl, t_kernel *kernel)
 {
-  char          buff[BUFFER_SIZE];
-  int           new_delai;
+  char	buff[BUFFER_SIZE];
+  int	new_delai;
 
   if (av_length(av) != 2)
     return (sbp(cl->fd));

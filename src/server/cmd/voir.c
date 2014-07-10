@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update Thu Jul 10 22:47:21 2014 arnaud drain
+** Last update jeu. juil. 10 23:30:34 2014 lefloc_l
 */
 
 #include <string.h>
@@ -88,7 +88,7 @@ static char	*my_strcat(char *first, char *second, int do_free)
   if (!second)
     return (first);
   if (!(first = realloc(first,
-			(strlen(first) + strlen(second) + 1) * sizeof(*first))))
+          (strlen(first) + strlen(second) + 1) * sizeof(*first))))
     return (NULL);
   strcat(first, second);
   if (do_free)

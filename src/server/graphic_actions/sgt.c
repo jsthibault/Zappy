@@ -5,15 +5,15 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 23:20:18 2014 lefloc_l
-** Last update jeu. juil. 10 23:20:30 2014 lefloc_l
+** Last update jeu. juil. 10 23:34:01 2014 lefloc_l
 */
 
 #include "kernel.h"
 #include "client_action.h"
 
-int		sgt(char **av, t_client *cl, t_kernel *kernel)
+int	sgt(char **av, t_client *cl, t_kernel *kernel)
 {
-  char          buff[BUFFER_SIZE];
+  char	buff[BUFFER_SIZE];
 
   (void)av;
   sprintf(buff, "sgt %d\n", (int)kernel->options.delai);

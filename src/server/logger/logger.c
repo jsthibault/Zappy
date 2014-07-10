@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:16:56 2014 lefloc_l
-** Last update Thu Jul 10 22:48:47 2014 arnaud drain
+** Last update jeu. juil. 10 23:35:35 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 
 t_logger	*g_logger = NULL;
 
-t_bool		logger_init(char *filename, t_bool verbose)
+t_bool	logger_init(char *filename, t_bool verbose)
 {
   logger_delete();
   if (!(g_logger = malloc(sizeof(t_logger))))
@@ -36,7 +36,7 @@ t_bool		logger_init(char *filename, t_bool verbose)
   return (TRUE);
 }
 
-void		logger_delete()
+void	logger_delete()
 {
   if (g_logger)
   {
