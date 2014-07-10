@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:33 2014 lefloc_l
-** Last update ven. juil. 11 00:15:45 2014 lefloc_l
+** Last update Fri Jul 11 00:35:36 2014 arnaud drain
 */
 
 #include <string.h>
@@ -31,35 +31,48 @@ static void	get_vec(t_orientation orientation, t_pos *dir)
     dir->y = -1;
 }
 
+static char	*dump_cases(t_kernel *kernel, t_client *cl,
+			    t_pos *init, int range)
+{
+  int		i;
+  char		*buffer;
+  char		*tmp;
+  t_pos		pos;
+  t_pos		dir;
+
+  i = 0;
+  if (!(buffer = strdup("")))
+    return (NULL);
+  get_vec(cl->player->orientation, &dir);
+  pos.y = init->y - (dir.y * range);
+  pos.x = init->x - (dir.x * range);
+  while (i < (range * 2 + 1))
+    {
+      if (!(tmp = dump_case(kernel, cl, pos)) ||
+	  !(buffer = my_strcat(buffer, tmp, 1)))
+	return (NULL);
+      pos.y += dir.y;
+      pos.x += dir.x;
+      ++i;
+      if ((range < (cl->player->level) || i < (range * 2 + 1)) &&
+	  !(buffer = my_strcat(buffer, ",", 0)))
+	return (NULL);
+    }
+  return (buffer);
+}
+
 static char	*check_line(t_kernel *kernel, t_pos init,
 			   t_client *cl, int range)
 {
   char		*buffer;
   char		*tmp;
-  t_pos		pos;
   t_pos		dir;
-  int		i;
 
-  if (!(buffer = strdup("")))
-    return (NULL);
   if (range == cl->player->level + 1)
-    return (buffer);
+    return (strdup(""));
   get_vec(cl->player->orientation, &dir);
-  pos.y = init.y - (dir.y * range);
-  pos.x = init.x - (dir.x * range);
-  i = 0;
-  while (i < (range * 2 + 1))
-  {
-    if (!(tmp = dump_case(kernel, cl, pos)) ||
-        !(buffer = my_strcat(buffer, tmp, 1)))
-      return (NULL);
-    pos.y += dir.y;
-    pos.x += dir.x;
-    ++i;
-    if ((range < (cl->player->level) || i < (range * 2 + 1)) &&
-        !(buffer = my_strcat(buffer, ",", 0)))
-      return (NULL);
-  }
+  if (!(buffer = dump_cases(kernel, cl, &init, range)))
+    return (NULL);
   init.x += dir.y;
   init.y -= dir.x;
   if (!(tmp = check_line(kernel, init, cl, range + 1)))
