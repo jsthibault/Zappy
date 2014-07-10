@@ -69,8 +69,8 @@ namespace Zappy_Client.Core
             this.Background = this.Engine.Content.Load<Texture2D>("Theme//window.png");
             this.Width = this.Background.Width;
             this.Height = this.Background.Height;
-            this.X = 150;
-            this.Y = 250;
+            this.X = Zappy.Width / 2 - this.Background.Width / 2;
+            this.Y = Zappy.Height / 2 - this.Background.Height / 2;
             this.Host = new Label(this.Engine, "LabelHost", 55, 90, "Host : ");
             this.HostInput = new TextBox(this.Engine, "InputHost", 95, 90, 150);
             this.Port = new Label(this.Engine, "LabelPort", 55, 120, "Port : ");
@@ -82,7 +82,7 @@ namespace Zappy_Client.Core
             this.Leave.OnClick += Leave_OnClick;
             
             //TO REMOVE
-            this.HostInput.Text = "192.168.204.128";
+            this.HostInput.Text = "192.168.248.128";
             this.PortInput.Text = "4242";
             //TO REMOVE
 

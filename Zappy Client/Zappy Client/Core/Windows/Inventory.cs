@@ -35,6 +35,14 @@ namespace Zappy_Client.Core
         private ProgressBar Cast { get; set; }
         private ProgressBar Xp { get; set; }
 
+        // Items count
+        private Label Phiras { get; set; }
+        private Label Linemate { get; set; }
+        private Label Deraumere { get; set; }
+        private Label Sibur { get; set; }
+        private Label Mendiane { get; set; }
+        private Label Thystame { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -82,20 +90,26 @@ namespace Zappy_Client.Core
 
             // Loading and initializing dynamic items
             this.Food = new ProgressBar(this.Engine, "Food",
-                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 31,
+                this.LevelsBar.Rectangle.X + 413,
+                this.LevelsBar.Rectangle.Y + 31,
                 131, ProgressBarColor.Green, 0);
             this.Xp = new ProgressBar(this.Engine, "Xp",
-                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 45,
+                this.LevelsBar.Rectangle.X + 413,
+                this.LevelsBar.Rectangle.Y + 45,
                 131, ProgressBarColor.Blue, 0);
             this.Cast = new ProgressBar(this.Engine, "Cast",
-                Int32.Parse(this.LevelsBar.Rectangle.X.ToString()) + 413,
-                Int32.Parse(this.LevelsBar.Rectangle.Y.ToString()) + 59,
+                this.LevelsBar.Rectangle.X + 413,
+                this.LevelsBar.Rectangle.Y + 59,
                 131, ProgressBarColor.Red, 0);
             this.AddControl(this.Food);
             this.AddControl(this.Xp);
             this.AddControl(this.Cast);
+
+            
+            // Loading Items count
+            this.Phiras = new Label(this.Engine, "LabelHost", this.LevelsBar.Rectangle.X + 623, this.LevelsBar.Rectangle.Y - 53, "0", "TrebuchetMSBold");
+            this.AddControl(this.Phiras);
+
             base.Initialize();
         }
 

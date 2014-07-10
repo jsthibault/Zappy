@@ -67,6 +67,7 @@ namespace Zappy_Client.Core
         {
             this.ShowInventory.Enabled = true;
             this.ShowInventory.Text = "Show " + (sender as ListBox).SelectedItem.ItemText + "'s members";
+            this.Engine.GetContainer("PlayersListWindow").Text = (sender as ListBox).SelectedItem.ItemText + "'s players list";
         }
 
         private void ShowInventory_OnClick(object sender)
