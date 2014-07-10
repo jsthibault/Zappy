@@ -37,7 +37,7 @@ retour en cascade:
 
 
 
-
+  verif les retour de write_socket ?
 
 
   verif retour en cascade des functions cmd_avance / cmd_expulse etc dans server.c

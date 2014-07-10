@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update jeu. juil. 10 16:35:26 2014 lefloc_l
+** Last update jeu. juil. 10 17:18:11 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -205,7 +205,8 @@ static int	manage_food(t_kernel *kernel)
   return (0);
 }
 
-static int	launch_action(t_actions *action, t_player *player, t_kernel *kernel)
+static int	launch_action(t_actions *action, t_player *player,
+    t_kernel *kernel)
 {
   int		i;
 

@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:16:56 2014 lefloc_l
-** Last update jeu. juil. 10 16:44:25 2014 lefloc_l
+** Last update jeu. juil. 10 17:20:53 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ t_bool		logger_init(char *filename, t_bool verbose)
   strncpy(g_logger->filename, filename, LOGGER_FILENAME_SIZE);
   if (NULL == (g_logger->file = fopen(g_logger->filename, LOGGER_FILE_RIGHTS)))
   {
-    printf("Error: %s\n", strerror(errno));
+    fprintf(stderr, "Error: %s\n", strerror(errno));
     return (FALSE);
   }
   g_logger->verbose = verbose;
