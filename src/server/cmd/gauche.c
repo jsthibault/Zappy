@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:38:18 2014 lefloc_l
-** Last update sam. juil. 05 15:45:37 2014 lefloc_l
+** Last update jeu. juil. 10 23:37:43 2014 lefloc_l
 */
 
 #include "client_action.h"
@@ -14,11 +14,10 @@
 #include "enum.h"
 #include "map.h"
 
-int		cmd_gauche(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_gauche(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
   (void)kernel;
-
   if (cl->player->orientation == 1)
     cl->player->orientation = 4;
   else

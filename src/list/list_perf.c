@@ -5,14 +5,14 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 02 22:51:47 2014 lefloc_l
-** Last update mar. juil. 08 14:43:01 2014 lefloc_l
+** Last update jeu. juil. 10 22:35:56 2014 lefloc_l
 */
 
 #include <stdlib.h>
 #include "list.h"
 #include "logger.h"
 
-void		list_pop_verification(t_list **list)
+void	list_pop_verification(t_list **list)
 {
   if (!list || !(*list))
     return;

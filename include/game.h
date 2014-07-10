@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:13:20 2014 lefloc_l
-** Last update jeu. juil. 10 16:25:53 2014 lefloc_l
+** Last update jeu. juil. 10 22:32:20 2014 lefloc_l
 */
 
 #ifndef GAME_H_
@@ -17,8 +17,8 @@
 # include "team.h"
 # include "player.h"
 
-# define END_LVL 8
-# define PLAYER_REQUIRED 6
+# define END_LVL		8
+# define PLAYER_REQUIRED	6
 
 t_bool	init_game(t_kernel *);
 void	delete_game(t_kernel *);

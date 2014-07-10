@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Fri Jul  4 16:59:24 2014 arnaud drain
+** Last update jeu. juil. 10 22:33:16 2014 lefloc_l
 */
 
 #ifndef OPTIONS_H_
@@ -45,7 +45,6 @@ t_bool	option_p(char **, int, int *, t_options *);
 t_bool	option_x(char **, int, int *, t_options *);
 t_bool	option_y(char **, int, int *, t_options *);
 t_bool	option_c(char **, int, int *, t_options *);
-
 t_bool	option_n(char **, int, int *, t_options *);
 t_bool	option_t(char **, int, int *, t_options *);
 

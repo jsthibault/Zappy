@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 15:25:01 2014 lefloc_l
-** Last update jeu. juil. 10 15:59:20 2014 lefloc_l
+** Last update jeu. juil. 10 22:34:18 2014 lefloc_l
 */
 
 #ifndef UTILS_H_

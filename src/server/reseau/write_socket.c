@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. juil. 09 17:46:07 2014 lefloc_l
-** Last update mer. juil. 09 17:46:54 2014 lefloc_l
+** Last update jeu. juil. 10 23:36:51 2014 lefloc_l
 */
 
 #include <sys/types.h>
@@ -19,7 +19,7 @@
 #include "kernel.h"
 #include "map.h"
 
-int		write_socket(int fd, char *str)
+int	write_socket(int fd, char *str)
 {
   return (send(fd, str, strlen(str), MSG_NOSIGNAL));
 }

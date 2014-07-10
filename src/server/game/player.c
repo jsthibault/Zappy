@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 18:36:43 2014 lefloc_l
-** Last update Wed Jul  9 03:03:43 2014 arnaud drain
+** Last update jeu. juil. 10 23:38:47 2014 lefloc_l
 */
 
 #include "kernel.h"
@@ -23,12 +23,12 @@ static void	delete_by_id(t_list *list, t_node *node, void *arg)
     delete_player(node->data);
 }
 
-void		delete_player_by_id(t_kernel *kernel, int id)
+void	delete_player_by_id(t_kernel *kernel, int id)
 {
   list_recur_action(kernel->game.players, delete_by_id, &id);
 }
 
-void		delete_player(void *data)
+void	delete_player(void *data)
 {
   t_player	*player;
 

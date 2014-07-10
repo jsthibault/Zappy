@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Thu Jul 10 23:50:49 2014 arnaud drain
+** Last update Thu Jul 10 23:54:56 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -106,7 +106,6 @@ typedef struct		s_kernel
   struct s_client	*clients;
   t_buffer		*buff_node;
   int			sfd;
-  /*penser a rajouter le logger*/
 }			t_kernel;
 
 typedef struct		s_case

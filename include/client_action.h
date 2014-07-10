@@ -5,22 +5,22 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update Thu Jul 10 01:23:50 2014 arnaud drain
+** Last update jeu. juil. 10 23:15:53 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
 # define CLIENT_ACTION_H_
 
-#include "struct.h"
-#include "server.h"
+# include "struct.h"
+# include "server.h"
+
+# define MAX_LVL	7
 
 typedef struct	s_tab_func
 {
   char		*command;
   int		(*p)(char **av, t_client *, t_kernel *kernel);
 }		t_tab_func;
-
-#define MAX_LVL	7
 
 typedef struct	s_incantation
 {
@@ -75,7 +75,11 @@ t_bool		pdi(int, int);
 t_bool		pfk(int, int);
 t_bool		seg(int, char *);
 t_bool		smg(int, char *);
-
+t_bool		pnw(int, t_player *);
+int		sbp(int);
+int		print_mct(int, t_kernel *);
+int		print_bct(int, t_case *, int, int);
+int		print_players(int, t_kernel *);
 /*
 ** client command.
 */
@@ -100,5 +104,6 @@ int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
 */
 int		get_k_value(t_player *, t_player *, int, int);
 int		ko(int fd);
+t_bool		send_message(int, char *);
 
 #endif /* !CLIENT_ACTION_H_ */

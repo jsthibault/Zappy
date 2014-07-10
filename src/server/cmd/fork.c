@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 17:40:23 2014 lefloc_l
-** Last update Thu Jul 10 23:24:59 2014 arnaud drain
+** Last update Thu Jul 10 23:55:03 2014 arnaud drain
 */
 
 #include <stdlib.h>
@@ -17,16 +17,16 @@
 #include "map.h"
 #include "egg.h"
 
-int		cmd_pond(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_pond(char **av, t_client *cl, t_kernel *kernel)
 {
   (void)av;
   return (add_egg(kernel, cl->player));
 }
 
-int		cmd_fork(char **av, t_client *cl, t_kernel *kernel)
+int	cmd_fork(char **av, t_client *cl, t_kernel *kernel)
 {
-  char		buffer[BUFFER_SIZE];
-  char		**av2;
+  char	buffer[BUFFER_SIZE];
+  char	**av2;
 
   (void)av;
   sprintf(buffer, "pfk %d\n", cl->player->id);

@@ -5,7 +5,7 @@
 ** Login <thibau_j@epitech.net>
 **
 ** Started on Sun May 25 17:48:54 2014 thibau_j
-** Last update sam. juil. 05 16:56:08 2014 lefloc_l
+** Last update jeu. juil. 10 22:35:07 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ static void	init_buffer(t_buffer *ptr)
 
 static void	copy_on(char dest[SIZE + 1], char src[SIZE + 1])
 {
-  int	i;
+  int		i;
 
   i = 0;
   while (src[i] != '\0')

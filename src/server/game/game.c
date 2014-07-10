@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  sam. mai 17 17:22:33 2014 lefloc_l
-** Last update jeu. juil. 10 16:45:45 2014 lefloc_l
+** Last update jeu. juil. 10 23:42:07 2014 lefloc_l
 */
 
 #include <stdlib.h>
@@ -14,7 +14,6 @@
 
 void	delete_game(t_kernel *kernel)
 {
-  //free des oeufs ;)
   if (kernel->game.teams)
   {
     list_foreach(kernel->game.teams, delete_team);
