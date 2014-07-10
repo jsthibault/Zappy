@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 16:16:56 2014 lefloc_l
-** Last update ven. juil. 04 17:22:58 2014 lefloc_l
+** Last update jeu. juil. 10 16:44:25 2014 lefloc_l
 */
 
 #include <stdio.h>
@@ -19,7 +19,8 @@ t_logger	*g_logger = NULL;
 t_bool		logger_init(char *filename, t_bool verbose)
 {
   logger_delete();
-  g_logger = xmalloc(sizeof(t_logger));
+  if(!(g_logger = malloc(sizeof(t_logger))))
+    return (FALSE);
   memset(g_logger, 0, sizeof(t_logger));
   if (!filename)
     filename = LOGGER_DEFAULT_FILENAME;

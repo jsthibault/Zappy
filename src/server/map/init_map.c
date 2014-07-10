@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mer. mai 14 19:16:51 2014 lefloc_l
-** Last update Fri Jul  4 16:41:37 2014 arnaud drain
+** Last update jeu. juil. 10 16:46:41 2014 lefloc_l
 */
 
 #include <string.h>
@@ -26,19 +26,24 @@ int	random_res()
   return (0);
 }
 
-void	init_map(t_kernel *kernel, int width, int height)
+t_bool	init_map(t_kernel *kernel, int width, int height)
 {
   int	i;
   int	j;
   int	it;
 
-  kernel->game.map = xmalloc(sizeof(t_map));
+  if (!(kernel->game.map = malloc(sizeof(t_map))))
+    return (FALSE);
   kernel->game.map->width = width;
   kernel->game.map->height = height;
-  kernel->game.map->map = (t_case **)xmalloc(sizeof(t_case *) * (height) + 1);
+  if (!(kernel->game.map->map
+        = (t_case **)malloc(sizeof(t_case *) * (height) + 1)))
+    return (FALSE);
   for (i = 0; i < height; i++)
   {
-    kernel->game.map->map[i] = (t_case *)xmalloc(sizeof(t_case) * (width + 1));
+    if (!(kernel->game.map->map[i]
+          = (t_case *)malloc(sizeof(t_case) * (width + 1))))
+      return (FALSE);
     for (j = 0; j < width; j++)
       {
 	for (it = 0; it < ITEM_TYPE; ++it)
@@ -47,4 +52,5 @@ void	init_map(t_kernel *kernel, int width, int height)
       }
   }
   logger_message("{MAP} Initialisation");
+  return (TRUE);
 }

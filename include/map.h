@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 19:33:23 2014 lefloc_l
-** Last update jeu. juil. 10 16:06:57 2014 lefloc_l
+** Last update jeu. juil. 10 16:45:19 2014 lefloc_l
 */
 
 #ifndef MAP_H_
@@ -19,7 +19,7 @@
 # include "list.h"
 # include "player.h"
 
-void	init_map(struct s_kernel *, int, int);
+t_bool	init_map(struct s_kernel *, int, int);
 void	dump_map(struct s_kernel *);
 t_case	*get_case(struct s_kernel *, int, int);
 t_bool	incr_food_on_case(struct s_kernel *, int, int);
