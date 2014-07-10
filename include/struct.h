@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Tue Jun 17 13:53:33 2014 arnaud drain
-** Last update Thu Jul 10 01:17:04 2014 arnaud drain
+** Last update Thu Jul 10 23:50:49 2014 arnaud drain
 */
 
 #ifndef STRUCT_H_
@@ -67,7 +67,11 @@ typedef struct		s_player
 
 typedef struct	s_egg
 {
-  int		test;
+  int		id;
+  int		player_id;
+  t_team	*team;
+  t_pos		pos;
+  int		time_left;
 }		t_egg;
 
 typedef struct	s_game
