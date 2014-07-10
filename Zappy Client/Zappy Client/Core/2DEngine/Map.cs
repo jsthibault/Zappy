@@ -143,7 +143,6 @@ namespace Zappy_Client.Core._2DEngine
             }
             if (_state.IsKeyDown(Keys.A) == true)
             {
-                //this.Eggs[0].State = EggState.DeadOpen;
             }
             MouseState _mouseState = Mouse.GetState();
 

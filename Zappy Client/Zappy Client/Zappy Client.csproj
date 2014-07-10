@@ -314,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Theme\Cursors\" />
+    <Folder Include="Core\2DEngine\MapEngine\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Theme\Font\Arial Black9.xnb">
