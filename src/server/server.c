@@ -5,7 +5,7 @@
 ** Login   <drain_a@epitech.net>
 **
 ** Started on  Fri Apr 18 13:25:28 2014 arnaud drain
-** Last update jeu. juil. 10 17:18:11 2014 lefloc_l
+** Last update Thu Jul 10 21:41:47 2014 arnaud drain
 */
 
 #include <stdio.h>
@@ -146,7 +146,6 @@ static int	launch_cmd(char *line, t_client *client, t_kernel *kernel)
 	{
 	  if (!strcmp(av[0], g_functions[i].name))
 	    {
-              // TODO verif retourn en cascade (si on recoit -1)
 	      if ((ret = call_cmd(i, client, av, kernel)))
 		return (ret);
 	    }
