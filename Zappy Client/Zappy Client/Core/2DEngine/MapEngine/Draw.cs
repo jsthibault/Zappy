@@ -136,7 +136,7 @@ namespace Zappy_Client.Core._2DEngine
                             Int32 _itemsCount = frame.GetItemCount();
                             if (_itemsCount > 0)
                             {
-                                spriteBatch.Draw(TextureManager.Instance["Cristal" + (_itemsCount - 1).ToString()], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                                spriteBatch.Draw(TextureManager.Instance["Cristal" + _itemsCount.ToString()], new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
                             }
                         }
                     }

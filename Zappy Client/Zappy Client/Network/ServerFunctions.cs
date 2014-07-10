@@ -167,27 +167,27 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPex(List<String> items)
         {
-            //foreach (Team team in Game.Map.Teams.Values)
-            //{
-            //    foreach (Character character in team.Characters)
-            //    {
-            //        if (character.Id == Int32.Parse(items[1]))
-            //        {
-            //            foreach (Team teamToKick in Game.Map.Teams.Values)
-            //            {
-            //                foreach (Character characterToKick in teamToKick.Characters)
-            //                {
-            //                    if (character.X == characterToKick.X && character.Y == characterToKick.Y && characterToKick != character)
-            //                    {
-            //                        characterToKick.ChangeDirection(character.Direction);
-            //                        //characterToKick.Move(character.Direction);
-            //                        return true;
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            foreach (Team team in Game.Map.Teams.Values)
+            {
+                foreach (Character character in team.Characters)
+                {
+                    if (character.Id == Int32.Parse(items[1]))
+                    {
+                        foreach (Team teamToKick in Game.Map.Teams.Values)
+                        {
+                            foreach (Character characterToKick in teamToKick.Characters)
+                            {
+                                if (character.X == characterToKick.X && character.Y == characterToKick.Y && characterToKick != character)
+                                {
+                                    characterToKick.ChangeDirection(character.Direction);
+                                    //characterToKick.Move(character.Direction);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return true;
         }
 
@@ -216,11 +216,14 @@ namespace Zappy_Client
             {
                 foreach (Character character in team.Characters)
                 {
-                    for (Int32 i = 4; i < items.Count; i++)
+                    if (character.X == Convert.ToInt32(items[1]) && character.Y == Convert.ToInt32(items[2]))
                     {
-                        if (character.Id == Int32.Parse(items[i]))
+                        for (Int32 i = 4; i < items.Count; i++)
                         {
-                            character.StartCast(Int32.Parse(items[3]));
+                            if (character.Id == Int32.Parse(items[i]))
+                            {
+                                character.StartCast(Int32.Parse(items[3]));
+                            }
                         }
                     }
                 }

@@ -44,7 +44,7 @@ namespace Zappy_Client
             AuthorizedItems.Add(new Regex("^pex \\d*$"));
             AuthorizedItems.Add(new Regex("^pbc \\d* .*$"));
             AuthorizedItems.Add(new Regex("^smg .*$"));
-            AuthorizedItems.Add(new Regex("^pie( \\d*){2}[0|1]$"));
+            AuthorizedItems.Add(new Regex("^pie( \\d*){3}$"));
             AuthorizedItems.Add(new Regex("^pfk \\d*$"));
             AuthorizedItems.Add(new Regex("^pdr \\d* \\d*$"));
             AuthorizedItems.Add(new Regex("^pgt \\d* \\d*$"));
@@ -55,7 +55,7 @@ namespace Zappy_Client
             AuthorizedItems.Add(new Regex("^edi \\d*$"));
             AuthorizedItems.Add(new Regex("^sgt \\d*$"));
             AuthorizedItems.Add(new Regex("^seg \\w*$"));
-            AuthorizedItems.Add(new Regex("^pic \\d* \\d* \\d*( #\\d{1,}){1,}$"));
+            AuthorizedItems.Add(new Regex("^pic \\d* \\d* \\d*( \\d{1,}){1,}$"));
             AuthorizedItems.Add(new Regex("^suc$"));
             AuthorizedItems.Add(new Regex("^sbp$"));
         }
