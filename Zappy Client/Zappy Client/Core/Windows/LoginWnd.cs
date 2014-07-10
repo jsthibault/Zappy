@@ -104,7 +104,7 @@ namespace Zappy_Client.Core
         /// <param name="sender"></param>
         void Leave_OnClick(object sender)
         {
-            Zappy.instance.ExitGame();
+            Zappy.Instance.ExitGame();
         }
 
         /// <summary>

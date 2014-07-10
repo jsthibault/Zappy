@@ -30,8 +30,8 @@ namespace Zappy_Client
         private Boolean AnswerMsz(List<String> items)
         {
             Game.InitializeMap(Int32.Parse(items[1]), Int32.Parse(items[2]));
-            (Zappy.instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
-            Zappy.instance.ScreenManager.SetCurrentScreen("GameScreen");
+            (Zappy.Instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
+            Zappy.Instance.ScreenManager.SetCurrentScreen("GameScreen");
             return true;
         }
 
@@ -65,7 +65,7 @@ namespace Zappy_Client
             if (Game.Map.Teams.ContainsKey(items[1]) == false)
             {
                 Game.Map.Teams[items[1]] = new Team(items[1]);
-                WndTeamsList lst = (Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList); 
+                WndTeamsList lst = (Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList); 
                 lst.AddItem(items[1], Game.Map.Teams[items[1]]);
             }
             return true;
@@ -418,7 +418,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSgt(List<String> items)
         {
-            Zappy.instance.TimeUnit = Int32.Parse(items[1]);
+            Zappy.Instance.TimeUnit = Int32.Parse(items[1]);
             return true;
         }
 
@@ -431,7 +431,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSeg(List<String> items)
         {
-            (Zappy.instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Team '" + items[1] + "' wins !");
+            (Zappy.Instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Team '" + items[1] + "' wins !");
             return false;
         }
 

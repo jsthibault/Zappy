@@ -59,7 +59,7 @@ namespace Zappy_Client
         /// </summary>
         public Network()
         {
-            this.Game = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
+            this.Game = Zappy.Instance.ScreenManager["GameScreen"] as GameScreen;
             this.Connected = false;
             this.Message = "";
         }
@@ -96,7 +96,7 @@ namespace Zappy_Client
             }
             catch
             {
-                (Zappy.instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
+                (Zappy.Instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
                 return false;
             }
             this.Connected = true;

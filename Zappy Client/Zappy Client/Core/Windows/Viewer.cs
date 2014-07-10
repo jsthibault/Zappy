@@ -128,10 +128,10 @@ namespace Zappy_Client.Core
         /// </summary>
         public void UpdatePlayersLabel()
         {
-            GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
+            GameScreen Screen = Zappy.Instance.ScreenManager["GameScreen"] as GameScreen;
 
            this.Players.Text = "";
-           foreach (Team team in (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
+           foreach (Team team in (Zappy.Instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
            {
                foreach (Character character in team.Characters)
                {
@@ -145,7 +145,7 @@ namespace Zappy_Client.Core
 
         public void UpdateFramesContent()
         {
-            GameScreen Screen = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
+            GameScreen Screen = Zappy.Instance.ScreenManager["GameScreen"] as GameScreen;
 
             foreach (FrameContent frame in Screen.Map.Frames)
             {

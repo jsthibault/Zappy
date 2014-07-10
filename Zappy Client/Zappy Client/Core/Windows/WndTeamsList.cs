@@ -73,7 +73,7 @@ namespace Zappy_Client.Core
         private void ShowInventory_OnClick(object sender)
         {
             (this.Engine.GetContainer("PlayersListWindow") as WndPlayersList).Clear();
-            foreach (Team team in (Zappy.instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
+            foreach (Team team in (Zappy.Instance.ScreenManager["GameScreen"] as GameScreen).Map.Teams.Values)
             {
                 if ((this.Engine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem.ItemText == team.Name)
                 {

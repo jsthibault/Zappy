@@ -32,10 +32,10 @@ namespace Zappy_Client.Core._2DEngine
             {
                 character.Initialize();
                 this.Teams[team].Characters.Add(character);
-                if ((Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem != null
-                    && (Zappy.instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem.ItemText == team)
+                if ((Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem != null
+                    && (Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList).Teams.SelectedItem.ItemText == team)
                 {
-                    (Zappy.instance.InterfaceEngine.GetContainer("PlayersListWindow") as WndPlayersList).AddItem(character.Id.ToString(), character);
+                    (Zappy.Instance.InterfaceEngine.GetContainer("PlayersListWindow") as WndPlayersList).AddItem(character.Id.ToString(), character);
                 }
             }
         }

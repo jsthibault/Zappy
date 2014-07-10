@@ -85,7 +85,7 @@ namespace Zappy_Client.Core.Windows
 
         private void onClickQuit(object sender)
         {
-            Zappy.instance.ExitGame();
+            Zappy.Instance.ExitGame();
         }
 
         private void onClickDisconnect(object sender)
@@ -95,7 +95,7 @@ namespace Zappy_Client.Core.Windows
             this.Engine.GetContainer("PlayersListWindow").Clear();
             this.Engine.GetContainer("TeamsListWindow").Clear();
             Network.Instance.Disconnect();
-            Zappy.instance.ScreenManager.SetCurrentScreen("MainScreen");
+            Zappy.Instance.ScreenManager.SetCurrentScreen("MainScreen");
         }
 
         private void onClickOptions(object sender)
