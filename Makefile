@@ -5,7 +5,7 @@
 ## Login   <lefloc_l@epitech.net>
 ##
 ## Started on  Sun Apr 27 11:04:42 2014 loic lefloch
-## Last update Thu Jul 10 23:54:35 2014 arnaud drain
+## Last update Thu Jul 10 23:56:51 2014 arnaud drain
 ##
 
 CC=	gcc
@@ -58,6 +58,7 @@ SRC_SERVER=	options/init_options.c \
 		cmd/droite.c \
 		cmd/gauche.c \
 		cmd/voir.c \
+		cmd/voir2.c \
 		cmd/inventaire.c \
 		cmd/prend_objet.c \
 		cmd/pose_objet.c \

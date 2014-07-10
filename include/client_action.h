@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  ven. mai 16 14:27:40 2014 lefloc_l
-** Last update jeu. juil. 10 23:15:53 2014 lefloc_l
+** Last update jeu. juil. 10 23:54:45 2014 lefloc_l
 */
 
 #ifndef CLIENT_ACTION_H_
@@ -98,6 +98,8 @@ int		incantation(char **av, t_client *, t_kernel *kernel);
 int		cmd_fork(char **av, t_client *, t_kernel *kernel);
 int		cmd_pond(char **av, t_client *, t_kernel *kernel);
 int		cmd_connect_nbr(char **av, t_client *, t_kernel *kernel);
+char		*my_strcat(char *, char *, int);
+char		*dump_case(t_kernel *, t_client *, t_pos);
 
 /*
 ** client utils functions.
