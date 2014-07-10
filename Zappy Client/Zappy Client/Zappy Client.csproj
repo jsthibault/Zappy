@@ -40,7 +40,11 @@
     <Compile Include="Core\2DEngine\Character.cs" />
     <Compile Include="Core\2DEngine\Egg.cs" />
     <Compile Include="Core\2DEngine\FrameContent.cs" />
-    <Compile Include="Core\2DEngine\Map.cs" />
+    <Compile Include="Core\2DEngine\MapEngine\CharacterManager.cs" />
+    <Compile Include="Core\2DEngine\MapEngine\Draw.cs" />
+    <Compile Include="Core\2DEngine\MapEngine\EggManager.cs" />
+    <Compile Include="Core\2DEngine\MapEngine\ItemManager.cs" />
+    <Compile Include="Core\2DEngine\MapEngine\Map.cs" />
     <Compile Include="Core\2DEngine\Team.cs" />
     <Compile Include="Core\AudioManager.cs" />
     <Compile Include="Core\Options.cs" />
@@ -314,7 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Theme\Cursors\" />
-    <Folder Include="Core\2DEngine\MapEngine\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Theme\Font\Arial Black9.xnb">
