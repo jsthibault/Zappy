@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -47,6 +48,8 @@ namespace Zappy_Client
         private Boolean Connected { get; set; }
         private GameScreen Game { get; set; }
 
+        private String Message { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -58,6 +61,7 @@ namespace Zappy_Client
         {
             this.Game = Zappy.instance.ScreenManager["GameScreen"] as GameScreen;
             this.Connected = false;
+            this.Message = "";
         }
 
         #endregion
@@ -99,6 +103,9 @@ namespace Zappy_Client
             return true;
         }
 
+        /// <summary>
+        /// Disconnect the socket
+        /// </summary>
         public void Disconnect()
         {
             this.Connected = false;
@@ -118,15 +125,23 @@ namespace Zappy_Client
                 {
                     Byte[] _buffer = null;
                     String _message = null;
-                    Int32 _size = 0;
 
-                    _size = this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
-                    _message = Encoding.Default.GetString(_buffer);
+                    this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
+                    _message = Encoding.UTF8.GetString(_buffer);
                     Console.WriteLine(_message);
-                    String[] Commands = _message.Split('\n');
-                    foreach (String Command in Commands)
+                    if (String.IsNullOrEmpty(_message) == false)
                     {
-                        this.ExecAnswer(Command);
+                        Char _last = _message.Last();
+                        this.Message += _message;
+                        if (_last == '\n')
+                        {
+                            String[] _commands = this.Message.Split('\n');
+                            foreach (String Command in _commands)
+                            {
+                                this.ExecAnswer(Command);
+                            }
+                            this.Message = "";
+                        }
                     }
                 }
             }
