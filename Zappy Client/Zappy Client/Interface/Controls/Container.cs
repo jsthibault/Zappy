@@ -144,6 +144,10 @@ namespace Zappy_Client.Interface
             }
         }
 
+        public virtual void Clear()
+        {
+        }
+
         /// <summary>
         /// Remove a control from the container
         /// </summary>
@@ -170,6 +174,11 @@ namespace Zappy_Client.Interface
                     break;
                 }
             }
+        }
+
+        public void SetFocus()
+        {
+            this.Engine.CurrentContainer = this;
         }
 
         public Control GetControl(String controlName)

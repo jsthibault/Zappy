@@ -103,8 +103,6 @@ namespace Zappy_Client.Core.Windows
 
         void Quit_OnClick(object sender)
         {
-            this.Engine.SetCurrentContainer("LoginWindow");
-            this.Engine.GetContainer("LoginWindow").Visible = true;
             this.Visible = false;
         }
 

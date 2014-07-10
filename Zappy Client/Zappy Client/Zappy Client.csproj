@@ -43,6 +43,7 @@
     <Compile Include="Core\2DEngine\Map.cs" />
     <Compile Include="Core\2DEngine\Team.cs" />
     <Compile Include="Core\AudioManager.cs" />
+    <Compile Include="Core\Windows\WndPlayersList.cs" />
     <Compile Include="Core\Windows\Popup.cs" />
     <Compile Include="Core\Windows\Panel.cs" />
     <Compile Include="Core\Windows\Options.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Core\ScreenManager\ScreenManager.cs" />
     <Compile Include="Core\Screens\GameScreen.cs" />
     <Compile Include="Core\Screens\MainScreen.cs" />
-    <Compile Include="Core\Windows\PlayerList.cs" />
+    <Compile Include="Core\Windows\WndTeamsList.cs" />
     <Compile Include="Interface\Controls\ImageBox.cs" />
     <Compile Include="Interface\Controls\ListBox.cs" />
     <Compile Include="MainZappy.cs" />

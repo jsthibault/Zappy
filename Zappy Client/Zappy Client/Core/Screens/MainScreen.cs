@@ -78,6 +78,7 @@ namespace Zappy_Client.Core
         {
             this.InterfaceEngine.GetContainer("LoginWindow").Visible = false;
             this.InterfaceEngine.GetContainer("TeamsListWindow").Visible = true;
+            this.InterfaceEngine.GetContainer("PlayersListWindow").Visible = false;
             this.InterfaceEngine.GetContainer("Inventory").Visible = true;
             this.InterfaceEngine.GetContainer("Options").Visible = false;
             AudioManager.Instance.Stop();

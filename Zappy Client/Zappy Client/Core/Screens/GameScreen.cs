@@ -63,7 +63,6 @@ namespace Zappy_Client.Core
             this.Map = new Map2D(this.ScreenManagerInstance.GameInstance, X, Y, this.Camera);
             this.Map.Initialize();
             this.Map.OnCursorClick += Map_OnCursorClick;
-            Network.Instance.SendMessage("tna\n");
         }
 
         /// <summary>
@@ -99,7 +98,8 @@ namespace Zappy_Client.Core
             this.InterfaceEngine.GetContainer("Inventory").Visible = false;
             this.InterfaceEngine.GetContainer("Viewer").Visible = false;
             this.InterfaceEngine.GetContainer("LoginWindow").Visible = true;
-            this.InterfaceEngine.GetContainer("PlayerList").Visible = false;
+            this.InterfaceEngine.GetContainer("TeamsListWindow").Visible = false;
+            this.InterfaceEngine.GetContainer("PlayersListWindow").Visible = false;
             this.InterfaceEngine.GetContainer("Options").Visible = false;
         }
 
@@ -118,6 +118,7 @@ namespace Zappy_Client.Core
                 this.RessourcesViewer.MapY = Convert.ToInt32(_map.CursorY);
                 this.RessourcesViewer.UpdatePlayersLabel();
                 this.RessourcesViewer.Visible = true;
+                this.RessourcesViewer.SetFocus();
             }
         }
 

@@ -26,7 +26,8 @@ namespace Zappy_Client
         private LoginWnd LoginWindow;
         private Inventory InventoryWindow;
         private Viewer RessourcesViewer;
-        private WndTeamsList PlayerList;
+        private WndTeamsList TeamsList;
+        private WndPlayersList PlayerList;
         private Options OptionsWindow;
         private Panel PanelWindow;
         private Popup PopupWindow;
@@ -138,8 +139,11 @@ namespace Zappy_Client
             this.InterfaceEngine = new UI(this.Content, this.GraphicsDevice, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
             // Create the Login Window
             this.LoginWindow = new LoginWnd(this.InterfaceEngine, this);
-            // Create the player list window
-            this.PlayerList = new WndTeamsList(this.InterfaceEngine);
+            // Create the teams list window
+            this.TeamsList = new WndTeamsList(this.InterfaceEngine);
+            this.TeamsList.Visible = false;
+            // Create the players list window
+            this.PlayerList = new WndPlayersList(this.InterfaceEngine);
             this.PlayerList.Visible = false;
             // Create the popup window
             this.PopupWindow = new Popup(this.InterfaceEngine);
@@ -161,6 +165,8 @@ namespace Zappy_Client
             this.InventoryWindow.Visible = false;
             // Add the Login Window to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.LoginWindow);
+            // Add the Teams List Window to the InterfaceEngine
+            this.InterfaceEngine.AddContainer(this.TeamsList);
             // Add the Player List Window to the InterfaceEngine
             this.InterfaceEngine.AddContainer(this.PlayerList);
             // Add the Player inventory to the InterfaceEngine

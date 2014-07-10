@@ -97,13 +97,14 @@ namespace Zappy_Client.Core
             base.Initialize();
         }
 
+
         /// <summary>
         /// Leave click
         /// </summary>
         /// <param name="sender"></param>
         void Leave_OnClick(object sender)
         {
-            (this.Engine.GetContainer("Popup") as Popup).Show("Cannot initiate connexion with server.");
+            Zappy.instance.ExitGame();
         }
 
         /// <summary>
@@ -116,11 +117,13 @@ namespace Zappy_Client.Core
             if (String.IsNullOrEmpty(this.HostInput.Text) == true || String.IsNullOrEmpty(this.PortInput.Text) == true)
             {
                 (this.Engine.GetContainer("Popup") as Popup).Show("Host or port missing");
+                this.Engine.GetContainer("Popup").SetFocus();
                 return;
             }
             if (Network.Instance.Connect(this.HostInput.Text, this.PortInput.Text) == false)
             {
                 (this.Engine.GetContainer("Popup") as Popup).Show("Cannot connect to server!");
+                this.Engine.GetContainer("Popup").SetFocus();
                 return;
             }
 
