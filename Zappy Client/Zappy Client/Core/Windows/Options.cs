@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zappy_Client.Interface;
+using Microsoft.Xna.Framework.Media;
 
 /*--------------------------------------------------------
  * Options.cs - Options window
@@ -146,8 +147,9 @@ namespace Zappy_Client.Core.Windows
         private void Save_OnClick(object sender)
         {
             OptionVal.Instance.ShowGrid = this.GridBox.Checked;
-            OptionVal.Instance.VolumeSound = this.MusicBar.Value / 100;
-            OptionVal.Instance.VolumeEffects = this.EffectsBar.Value / 100;
+            OptionVal.Instance.VolumeSound = this.MusicBar.Value / 100f;
+            OptionVal.Instance.VolumeEffects = this.EffectsBar.Value / 100f;
+            MediaPlayer.Volume = OptionVal.Instance.VolumeSound;
             this.Visible = false;
         }
 
