@@ -47,6 +47,7 @@ namespace Zappy_Client.Core.Windows
         public Options(UI engine)
             : base(engine, "Options")
         {
+            OptionVal.Instance.ShowGrid = false;
             this.Initialize();
         }
 
@@ -60,14 +61,16 @@ namespace Zappy_Client.Core.Windows
         public override void Initialize()
         {
             // Grid
-            this.GridBox = new CheckBox(this.Engine, "GridBox",55, 80, "Afficher la grille");
+            this.GridBox = new CheckBox(this.Engine, "GridBox",55, 80, "Afficher la grille", false);
             this.AddControl(this.GridBox);
 
             // Volume Music
             this.MusicLabel = new Label(this.Engine, "MusicLabel", 55, 105, "Vol. Musique:");
             this.MusicMin = new Button(this.Engine, "MusicMin", 145, 100, 20, 0, "-");
+            this.MusicMin.OnClick += MusicMin_OnClick;
             this.MusicBar = new ProgressBar(this.Engine, "MusicBar", 168, 107, 100, ProgressBarColor.Blue, 100);
             this.MusicPlus = new Button(this.Engine, "MusicPlus", 271, 100, 20, 0, "+");
+            this.MusicPlus.OnClick += MusicPlus_OnClick;
             this.AddControl(this.MusicPlus);
             this.AddControl(this.MusicBar);
             this.AddControl(this.MusicMin);
@@ -76,8 +79,10 @@ namespace Zappy_Client.Core.Windows
             // Volume Effects
             this.EffectsLabel = new Label(this.Engine, "EffectsLabel", 55, 135, "Vol. Effets:");
             this.EffectsMin = new Button(this.Engine, "EffectsMin", 145, 130, 20, 0, "-");
+            this.EffectsMin.OnClick += EffectsMin_OnClick;
             this.EffectsBar = new ProgressBar(this.Engine, "EffectscBar", 168, 137, 100, ProgressBarColor.Blue, 100);
             this.EffectsPlus = new Button(this.Engine, "EffectsPlus", 271, 130, 20, 0, "+");
+            this.EffectsPlus.OnClick += EffectsPlus_OnClick;
             this.AddControl(this.EffectsPlus);
             this.AddControl(this.EffectsBar);
             this.AddControl(this.EffectsMin);
@@ -101,15 +106,48 @@ namespace Zappy_Client.Core.Windows
             base.Initialize();
         }
 
-        void Quit_OnClick(object sender)
+        private void EffectsPlus_OnClick(object sender)
+        {
+            if (this.EffectsBar.Value < 100)
+            {
+                this.EffectsBar.Value += 10;
+            }
+        }
+
+        private void EffectsMin_OnClick(object sender)
+        {
+            if (this.EffectsBar.Value > 0)
+            {
+                this.EffectsBar.Value -= 10;
+            }
+        }
+
+        private void MusicPlus_OnClick(object sender)
+        {
+            if (this.MusicBar.Value < 100)
+            {
+                this.MusicBar.Value += 10;
+            }
+        }
+
+        private void MusicMin_OnClick(object sender)
+        {
+            if (this.MusicBar.Value > 0)
+            {
+                this.MusicBar.Value -= 10;
+            }
+        }
+
+        private void Quit_OnClick(object sender)
         {
             this.Visible = false;
         }
 
-        void Save_OnClick(object sender)
+        private void Save_OnClick(object sender)
         {
-            this.Engine.SetCurrentContainer("LoginWindow");
-            this.Engine.GetContainer("LoginWindow").Visible = true;
+            OptionVal.Instance.ShowGrid = this.GridBox.Checked;
+            OptionVal.Instance.VolumeSound = this.MusicBar.Value / 100;
+            OptionVal.Instance.VolumeEffects = this.EffectsBar.Value / 100;
             this.Visible = false;
         }
 

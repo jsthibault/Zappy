@@ -157,9 +157,6 @@ namespace Zappy_Client
             // Create the options window
             this.OptionsWindow = new Options(this.InterfaceEngine);
             this.OptionsWindow.Visible = false;
-            // Create the options window
-            this.OptionsWindow = new Options(this.InterfaceEngine);
-            this.OptionsWindow.Visible = false;
             // Create the player list window
             this.InventoryWindow = new Inventory(this.InterfaceEngine);
             this.InventoryWindow.Visible = false;

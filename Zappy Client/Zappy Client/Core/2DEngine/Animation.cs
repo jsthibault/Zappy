@@ -36,6 +36,13 @@ namespace Zappy_Client.Core._2DEngine
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Creates a new animation
+        /// </summary>
+        /// <param name="frameLineCount">Number of lines on the animation sprite sheet</param>
+        /// <param name="frameColumnCount">Number of columns on the animation sprite sheet</param>
+        /// <param name="texture">Animation texture</param>
+        /// <param name="animationSpeed">Animation speed</param>
         public Animation(Int32 frameLineCount, Int32 frameColumnCount, Texture2D texture, Int32 animationSpeed)
         {
             this.Texture = texture;
@@ -55,6 +62,9 @@ namespace Zappy_Client.Core._2DEngine
 
         #region METHODS
 
+        /// <summary>
+        /// Update the animation
+        /// </summary>
         public void Update()
         {
             if (this.Playing == true)
@@ -85,6 +95,10 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
+        /// <summary>
+        /// Draw the animation
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             if (this.Playing == true)
@@ -97,6 +111,12 @@ namespace Zappy_Client.Core._2DEngine
             }
         }
 
+        /// <summary>
+        /// Play the animation at a position
+        /// </summary>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        /// <param name="alwaysPlay">Play loop</param>
         public void Play(Int32 x, Int32 y, Boolean alwaysPlay = false)
         {
             if (this.Playing == false)

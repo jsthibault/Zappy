@@ -414,11 +414,14 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="spriteBatch"></param>
         public void DrawGrid(SpriteBatch spriteBatch)
         {
-            for (Int32 i = 0; i < this.Width; ++i)
+            if (OptionVal.Instance.ShowGrid == true)
             {
-                for (Int32 j = 0; j < this.Height; ++j)
+                for (Int32 i = 0; i < this.Width; ++i)
                 {
-                    spriteBatch.Draw(this.Grid, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                    for (Int32 j = 0; j < this.Height; ++j)
+                    {
+                        spriteBatch.Draw(this.Grid, new Vector2(this.OffsetX + i * 32, this.OffsetY + j * 32), Color.White);
+                    }
                 }
             }
         }
