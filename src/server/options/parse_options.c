@@ -5,21 +5,22 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  mar. mai 13 13:59:34 2014 lefloc_l
-** Last update Sat Jul  5 16:04:09 2014 arnaud drain
+** Last update Fri Jul 11 00:37:03 2014 arnaud drain
 */
 
 #include <string.h>
 #include "options.h"
 
-static const t_tabfunctions	tabfunctions[] = {
-  { "-p", &option_p },
-  { "-x", &option_x },
-  { "-y", &option_y },
-  { "-n", &option_n },
-  { "-c", &option_c },
-  { "-t", &option_t },
-  { NULL, NULL },
-};
+static const t_tabfunctions	tabfunctions[] =
+  {
+    { "-p", &option_p },
+    { "-x", &option_x },
+    { "-y", &option_y },
+    { "-n", &option_n },
+    { "-c", &option_c },
+    { "-t", &option_t },
+    { NULL, NULL },
+  };
 
 static t_bool	check_options(t_options *options)
 {
