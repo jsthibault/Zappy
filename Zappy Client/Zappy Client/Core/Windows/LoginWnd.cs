@@ -83,7 +83,7 @@ namespace Zappy_Client.Core
             
             //TO REMOVE
             this.HostInput.Text = "192.168.204.128";
-            this.PortInput.Text = "4242";
+            this.PortInput.Text = "4243";
             //TO REMOVE
 
             // Add to container
