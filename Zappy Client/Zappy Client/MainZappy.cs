@@ -225,6 +225,16 @@ namespace Zappy_Client
         {
             this.Window.SetPosition(new Point(50, 50));
         }
+
+        public void Disconnect()
+        {
+            this.InterfaceEngine.GetContainer("Inventory").Clear();
+            this.InterfaceEngine.GetContainer("Viewer").Clear();
+            this.InterfaceEngine.GetContainer("PlayersListWindow").Clear();
+            this.InterfaceEngine.GetContainer("TeamsListWindow").Clear();
+            Network.Instance.Disconnect();
+            Zappy.Instance.ScreenManager.SetCurrentScreen("MainScreen");
+        }
     }
 
     public static class GameExtention

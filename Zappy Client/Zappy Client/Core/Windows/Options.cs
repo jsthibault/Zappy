@@ -41,6 +41,11 @@ namespace Zappy_Client.Core.Windows
         private ProgressBar EffectsBar { get; set; }
 
         private CheckBox GridBox {get; set; }
+
+        //Save
+        private Boolean GridSave { get; set; }
+        private float MusicSave { get; set; }
+        private float EffectsSave { get; set; }
         #endregion
 
         #region CONSTRUCTORS
@@ -104,6 +109,9 @@ namespace Zappy_Client.Core.Windows
             this.AddControl(this.Save);
             this.AddControl(this.Quit);
             this.AddControl(this.Message);
+            this.GridSave = this.GridBox.Checked;
+            this.MusicSave = this.MusicBar.Value;
+            this.EffectsSave = this.EffectsBar.Value;
             base.Initialize();
         }
 
@@ -142,6 +150,12 @@ namespace Zappy_Client.Core.Windows
         private void Quit_OnClick(object sender)
         {
             this.Visible = false;
+            this.GridBox.Checked = this.GridSave;
+            this.MusicBar.Value = (Int32)(this.MusicSave);
+            this.EffectsBar.Value = (Int32)(this.EffectsSave);
+            OptionVal.Instance.ShowGrid = this.GridSave;
+            OptionVal.Instance.VolumeSound = this.MusicSave;
+            OptionVal.Instance.VolumeEffects = this.EffectsSave;
         }
 
         private void Save_OnClick(object sender)
@@ -151,6 +165,9 @@ namespace Zappy_Client.Core.Windows
             OptionVal.Instance.VolumeEffects = this.EffectsBar.Value / 100f;
             MediaPlayer.Volume = OptionVal.Instance.VolumeSound;
             this.Visible = false;
+            this.GridSave = OptionVal.Instance.ShowGrid;
+            this.MusicSave = OptionVal.Instance.VolumeSound;
+            this.EffectsSave = OptionVal.Instance.VolumeEffects;
         }
 
         /// <summary>

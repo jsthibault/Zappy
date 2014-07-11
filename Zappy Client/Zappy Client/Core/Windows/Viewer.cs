@@ -33,6 +33,7 @@ namespace Zappy_Client.Core
         public Label Mendiane { get; set; }
         public Label Thystame { get; set; }
         public Label Deraumere { get; set; }
+        public Label Food { get; set; }
         public Label Linemate { get; set; }
         private Label Players { get; set; }
         public Button close { get; set; }
@@ -87,6 +88,8 @@ namespace Zappy_Client.Core
             this.Sibur = new Label(this.Engine, "Sibur", 180, 254, "0");
             this.Thystame = new Label(this.Engine, "Thystame", 203, 275, "0");
             this.Linemate = new Label(this.Engine, "Linemate", 201, 296, "0");
+            this.Food = new Label(this.Engine, "Food", 149, 317, "0");
+            this.AddControl(this.Food);
             this.AddControl(this.Phiras);
             this.AddControl(this.Sibur);
             this.AddControl(this.Mendiane);
@@ -109,6 +112,7 @@ namespace Zappy_Client.Core
             this.Mendiane.Text = "0";
             this.Phiras.Text = "0";
             this.Thystame.Text = "0";
+            this.Food.Text = "0";
             this.Players.Text = "";
         }
 
@@ -157,6 +161,7 @@ namespace Zappy_Client.Core
                     this.Mendiane.Text = frame.GetItemValue(ItemType.MENDIANE).ToString();
                     this.Phiras.Text = frame.GetItemValue(ItemType.PHIRAS).ToString();
                     this.Thystame.Text = frame.GetItemValue(ItemType.THYSTAME).ToString();
+                    this.Food.Text = frame.GetItemValue(ItemType.FOOD).ToString();
                 }
             }
         }

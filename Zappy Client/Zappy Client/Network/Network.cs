@@ -24,7 +24,7 @@ namespace Zappy_Client
         #region SINGLETON
 
         private static Object NetworkLock = new Object();
-        private static Network instance;
+        public static Network instance;
         public static Network Instance
         {
             get
@@ -50,6 +50,8 @@ namespace Zappy_Client
 
         private String Message { get; set; }
 
+        public Boolean Started { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -62,6 +64,7 @@ namespace Zappy_Client
             this.Game = Zappy.Instance.ScreenManager["GameScreen"] as GameScreen;
             this.Connected = false;
             this.Message = "";
+            this.Started = false;
         }
 
         #endregion
@@ -147,6 +150,7 @@ namespace Zappy_Client
                         }
                     }
                 }
+   
             }
         }
 
@@ -157,10 +161,18 @@ namespace Zappy_Client
         public void SendMessage(String message)
         {
             Byte[] _buffer = Encoding.Default.GetBytes(message);
+            Int32 _send = -1;
 
             if (this.Connected == true && this.Socket.Connected == true)
             {
-                Int32 _send = this.Socket.Send(_buffer);
+                try
+                {
+                    _send = this.Socket.Send(_buffer);
+                }
+                catch
+                {
+                    Zappy.Instance.Disconnect();
+                }
                 if (_send == -1)
                 {
                     // error pop-up
@@ -192,11 +204,16 @@ namespace Zappy_Client
         public Boolean ExecAnswer(String cmd)
         {
             List<String> _items = new List<String>();
-
             if (this.Connected == false)
+            {
+                Network.instance.Started = false; 
                 return false;
+            }
             if ((_items = Parser.GetCmdItems(cmd)) == null)
+            {
+                Network.instance.Started = false;
                 return false;
+            }
             return AnswerFunctions[_items.First()](_items);
         }
 
