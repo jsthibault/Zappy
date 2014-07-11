@@ -5,7 +5,7 @@
 ** Login <lefloc_l@epitech.eu>
 **
 ** Started on  jeu. juil. 10 23:52:11 2014 lefloc_l
-** Last update jeu. juil. 10 23:53:52 2014 lefloc_l
+** Last update Fri Jul 11 04:08:25 2014 arnaud drain
 */
 
 #include <string.h>
@@ -50,7 +50,6 @@ char	*dump_case(t_kernel *kernel, t_client *cl, t_pos pos)
   char		buffer[BUFFER_SIZE] = {0};
 
   i = 0;
-  logger_debug("%d %d\n", pos.x, pos.y);
   c = get_case(kernel, pos.y, pos.x);
   if (!c)
     return (NULL);
