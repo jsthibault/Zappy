@@ -169,7 +169,7 @@ namespace Zappy_Client.Core
             this.updateControl<Label>("LabelThystame", character.Items[(int)ItemType.THYSTAME]);
             this.updateControl<Label>("LabelMendiane", character.Items[(int)ItemType.MENDIANE]);
             this.updateControl<Label>("LabelSibur", character.Items[(int)ItemType.SIBUR]);
-            this.updateControl<ProgressBar>("Food", character.Items[(int)ItemType.FOOD]);
+            this.updateControl<ProgressBar>("Food", (character.Items[(int)ItemType.FOOD] >= 100) ? 100 : character.Items[(int)ItemType.FOOD]);
             this.SetLevel(character.Level);
         }
 

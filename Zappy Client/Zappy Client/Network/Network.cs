@@ -126,7 +126,14 @@ namespace Zappy_Client
                     Byte[] _buffer = null;
                     String _message = null;
 
-                    this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
+                    try
+                    {
+                        this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
+                    }
+                    catch
+                    {
+                        Zappy.Instance.Disconnect();
+                    }
                     _message = Encoding.UTF8.GetString(_buffer);
                     Console.WriteLine(_message);
                     if (String.IsNullOrEmpty(_message) == false)
@@ -144,6 +151,7 @@ namespace Zappy_Client
                         }
                     }
                 }
+   
             }
         }
 
@@ -154,10 +162,18 @@ namespace Zappy_Client
         public void SendMessage(String message)
         {
             Byte[] _buffer = Encoding.Default.GetBytes(message);
+            Int32 _send = -1;
 
             if (this.Connected == true && this.Socket.Connected == true)
             {
-                Int32 _send = this.Socket.Send(_buffer);
+                try
+                {
+                    _send = this.Socket.Send(_buffer);
+                }
+                catch
+                {
+                    Zappy.Instance.Disconnect();
+                }
                 if (_send == -1)
                 {
                     // error pop-up

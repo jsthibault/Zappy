@@ -40,8 +40,6 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 Id { get; private set; }
 
-        public Int32 CurrentCast { get; private set; }
-
         /* Animation */
         private Rectangle HitBox;
 
@@ -58,7 +56,7 @@ namespace Zappy_Client.Core._2DEngine
 
         private Animation[] Animations { get; set; }
 
-        private Boolean Casting { get; set; }
+        public Boolean Casting { get; set; }
 
         #endregion
 
@@ -128,7 +126,6 @@ namespace Zappy_Client.Core._2DEngine
             this.HitBox = new Rectangle(this.X * 32, this.Y * 32, 64, 64);
             this.ChangeDirection(this.Direction);
             this.Timer = 0;
-            this.CurrentCast = 0;
             this.Texture = TextureManager.Instance["Chocobo"];
             this.Animation = true;
             this.Animations = new Animation[2];
@@ -290,8 +287,9 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void EndCast(Int32 state)
         {
+            Inventory inventory = Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory;
+
             this.Casting = false;
-            this.CurrentCast = 0;
         }
 
         /// <summary>

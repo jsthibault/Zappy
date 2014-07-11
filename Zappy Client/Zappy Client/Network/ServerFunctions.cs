@@ -121,7 +121,14 @@ namespace Zappy_Client
                 {
                     if (character.Id == Int32.Parse(items[1]))
                     {
+                        Inventory inventory = Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory;
+                        WndPlayersList playersWin = Zappy.Instance.InterfaceEngine.GetContainer("PlayersListWindow") as WndPlayersList;
+
                         character.Level = Int32.Parse(items[2]);
+                        if (playersWin.Players.SelectedItem != null && (playersWin.Players.SelectedItem.ItemObject) as Character == character)
+                        {
+                            inventory.UpdateInfos(character);
+                        }
                     }
                 }
             }
@@ -439,7 +446,8 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSeg(List<String> items)
         {
-            (Zappy.Instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("Team '" + items[1] + "' wins !");
+            (Zappy.Instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("You have been disconnected by server.");
+            Zappy.Instance.Disconnect();
             return false;
         }
 
