@@ -249,6 +249,58 @@ namespace Zappy_Client.Core._2DEngine
             this.FrameColumn = 1;
         }
 
+        public void Kick()
+        {
+            if (this.Direction == Direction.Up)
+            {
+                if (this.Y == 0)
+                {
+                    this.Y = this.Map.Height - 1;
+                }
+                else
+                {
+                    this.Y -= 1;
+                }
+                this.HitBox.Y = this.Y * Map2D.Case;
+            }
+            else if (this.Direction == Direction.Right)
+            {
+                if (this.X == this.Map.Width - 1)
+                {
+                    this.X = 0;
+                }
+                else
+                {
+                    this.X += 1;
+                }
+                this.HitBox.X = this.X * Map2D.Case;
+            }
+            else if (this.Direction == Direction.Down)
+            {
+                if (this.Y == this.Map.Height - 1)
+                {
+                    this.Y = 0;
+                }
+                else
+                {
+                    this.Y += 1;
+                }
+                this.HitBox.Y = this.Y * Map2D.Case;
+            }
+            else if (this.Direction == Direction.Left)
+            {
+                if (this.X == 0)
+                {
+                    this.X = this.Map.Width - 1;
+                }
+                else
+                {
+                    this.X -= 1;
+                }
+                this.HitBox.X = this.X * Map2D.Case;
+            }
+        }
+
         /// <summary>
         /// Drop item animation
         /// </summary>

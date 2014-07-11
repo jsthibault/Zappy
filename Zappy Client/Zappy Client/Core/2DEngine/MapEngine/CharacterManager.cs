@@ -56,6 +56,7 @@ namespace Zappy_Client.Core._2DEngine
                 if (character.Id == id)
                 {
                     this.Teams[team].Characters.Remove(character);
+                    ++this.DeadCount;
                     break;
                 }
             }
@@ -79,6 +80,7 @@ namespace Zappy_Client.Core._2DEngine
                         inventory.Clear();
                     }
                     team.Characters.Remove(character);
+                    ++this.DeadCount;
                     return;
                 }
             }

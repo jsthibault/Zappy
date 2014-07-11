@@ -147,7 +147,7 @@ namespace Zappy_Client
             this.graphics.PreferredBackBufferWidth = Width;
             this.graphics.PreferredBackBufferHeight = Height;
             this.graphics.ApplyChanges();
-            this.Window.Title = "Final Zappy";
+            this.Window.Title = "Final Zappy - KFC";
             this.CenterWindow();
 
             // Set event Exit delegate

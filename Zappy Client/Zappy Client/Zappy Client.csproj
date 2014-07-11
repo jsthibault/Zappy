@@ -40,6 +40,7 @@
     <Compile Include="Core\2DEngine\Components\Character.cs" />
     <Compile Include="Core\2DEngine\Components\Egg.cs" />
     <Compile Include="Core\2DEngine\Components\FrameContent.cs" />
+    <Compile Include="Core\2DEngine\Components\Pikachu.cs" />
     <Compile Include="Core\2DEngine\MapEngine\CharacterManager.cs" />
     <Compile Include="Core\2DEngine\MapEngine\Draw.cs" />
     <Compile Include="Core\2DEngine\MapEngine\EggManager.cs" />
@@ -157,6 +158,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\items\cristal_7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\pikachu_danse.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\pikachu\pikachu_run.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\pikachu\pikachu_surf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\pikachu_vol.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\game.wav">

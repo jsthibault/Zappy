@@ -119,28 +119,31 @@ namespace Zappy_Client
         /// </summary>
         public void Update()
         {
-            if (this.Connected == true)
+            if (this.Connected == true && this.Socket.Connected == true)
             {
                 if (this.Socket.Poll(10, SelectMode.SelectRead) == true)
                 {
                     Byte[] _buffer = null;
                     String _message = null;
 
-                    this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
-                    _message = Encoding.UTF8.GetString(_buffer);
-                    Console.WriteLine(_message);
-                    if (String.IsNullOrEmpty(_message) == false)
+                    if (this.Socket.Connected == true)
                     {
-                        Char _last = _message.Last();
-                        this.Message += _message;
-                        if (_last == '\n')
+                        this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
+                        _message = Encoding.UTF8.GetString(_buffer);
+                        Console.WriteLine(_message);
+                        if (String.IsNullOrEmpty(_message) == false)
                         {
-                            String[] _commands = this.Message.Split('\n');
-                            foreach (String Command in _commands)
+                            Char _last = _message.Last();
+                            this.Message += _message;
+                            if (_last == '\n')
                             {
-                                this.ExecAnswer(Command);
+                                String[] _commands = this.Message.Split('\n');
+                                foreach (String Command in _commands)
+                                {
+                                    this.ExecAnswer(Command);
+                                }
+                                this.Message = "";
                             }
-                            this.Message = "";
                         }
                     }
                 }

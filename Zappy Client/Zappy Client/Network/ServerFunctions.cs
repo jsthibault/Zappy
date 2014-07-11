@@ -182,8 +182,7 @@ namespace Zappy_Client
                             {
                                 if (character.X == characterToKick.X && character.Y == characterToKick.Y && characterToKick != character)
                                 {
-                                    characterToKick.ChangeDirection(character.Direction);
-                                    //characterToKick.Move(character.Direction);
+                                    characterToKick.Kick();
                                     return true;
                                 }
                             }

@@ -28,7 +28,7 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 AnimationSpeed { get; set; }
 
-        private Vector2 Position { get; set; }
+        public Vector2 Position { get; set; }
 
         private Boolean AlwaysPlay { get; set; }
 
@@ -103,8 +103,8 @@ namespace Zappy_Client.Core._2DEngine
         {
             if (this.Playing == true)
             {
-                spriteBatch.Draw(this.Texture, this.Position, new Rectangle((this.FrameColumn) * this.FrameHeight,
-                    (this.FrameLine) * this.FrameWidth, this.FrameWidth, this.FrameHeight), Color.White);
+                spriteBatch.Draw(this.Texture, this.Position, new Rectangle((this.FrameColumn) * this.FrameWidth,
+                    (this.FrameLine) * this.FrameHeight, this.FrameWidth, this.FrameHeight), Color.White);
             }
             else
             {

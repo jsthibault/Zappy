@@ -51,6 +51,12 @@ namespace Zappy_Client.Core._2DEngine
         private Int32 WaterWidth { get; set; }
         private Int32 WaterHeight { get; set; }
 
+        private PikachuSurf PikaSurf { get; set; }
+
+        private Int32 DeadCount { get; set; }
+
+        private Boolean PikaStart = false;
+
         #endregion
 
         #region CONSTRUCTORS
@@ -72,6 +78,7 @@ namespace Zappy_Client.Core._2DEngine
             this.OffsetY = ((this.WaterHeight * Case) / 2) - ((this.Height * Case) / 2);
             this.CursorX = -1;
             this.CursorY = -1;
+            this.DeadCount = 0;
             this.Camera = camera;
             this.Camera.SetPosition(new Vector2(this.OffsetX + (Zappy.Width / 4), this.OffsetX));
             this.Teams = new Dictionary<String, Team>();
@@ -91,6 +98,7 @@ namespace Zappy_Client.Core._2DEngine
         {
             this.InitializeTexture();
             this.InitializePortals();
+            this.PikaSurf = new PikachuSurf(this);
             return true;
         }
 
@@ -116,6 +124,8 @@ namespace Zappy_Client.Core._2DEngine
             TextureManager.Instance["EggOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos.png");
             TextureManager.Instance["EggEmpty"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_empty.png");
             TextureManager.Instance["EggDeadOpen"] = this.GameInstance.Content.Load<Texture2D>("Characters//eggs//egg_eclos_dead.png");
+            TextureManager.Instance["PikachuSurf"] = this.GameInstance.Content.Load<Texture2D>("Characters//pikachu//pikachu_surf.png");
+            TextureManager.Instance["PikachuRun"] = this.GameInstance.Content.Load<Texture2D>("Characters//pikachu//pikachu_run.png");
         }
 
         /// <summary>
@@ -187,6 +197,13 @@ namespace Zappy_Client.Core._2DEngine
             {
                 portal.Update();
             }
+
+            if (this.DeadCount >= 4 && this.PikaStart == false)
+            {
+                this.PikaStart = true;
+                this.PikaSurf.Surf();
+            }
+            this.PikaSurf.Update();
         }
 
         /// <summary>
@@ -235,8 +252,13 @@ namespace Zappy_Client.Core._2DEngine
                 this.Eggs[i].Draw(spriteBatch);
             }
             spriteBatch.End();
+
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
             this.DrawPortals(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, this.Camera.GetTransformation());
+            this.PikaSurf.Draw(spriteBatch);
             spriteBatch.End();
         }
 
