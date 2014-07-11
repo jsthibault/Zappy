@@ -93,7 +93,7 @@ namespace Zappy_Client.Core._2DEngine
         /// <returns></returns>
         public Boolean HasItems()
         {
-            for (Int32 i = 0; i < (Int32)ItemType.THYSTAME; ++i)
+            for (Int32 i = 0; i <= (Int32)ItemType.THYSTAME; ++i)
             {
                 if (this.GetItemValue((ItemType)i) > 0)
                 {
@@ -111,7 +111,7 @@ namespace Zappy_Client.Core._2DEngine
         {
             Int32 _count = 0;
 
-            for (Int32 i = 0; i < (Int32)ItemType.THYSTAME; ++i)
+            for (Int32 i = 0; i <= (Int32)ItemType.THYSTAME; ++i)
             {
                 if (this.GetItemValue((ItemType)i) > 0)
                 {

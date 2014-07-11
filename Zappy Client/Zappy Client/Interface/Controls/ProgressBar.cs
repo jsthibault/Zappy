@@ -127,13 +127,21 @@ namespace Zappy_Client.Interface
 
                 /* Draw main */
                 Int32 _prct = (this.Width * this.Value) / 100;
-                spriteBatch.Draw(this.Texture, 
+                spriteBatch.Draw(this.Texture,
                     new Rectangle(_posX + 4, _posY, _prct - (4 * 2), this.Height),
                     new Rectangle(4, 0, 1, this.Height), Color.White);
 
                 /* Draw last piece of pgb */
-                spriteBatch.Draw(this.Texture, new Rectangle(_posX + _prct - 5, _posY, 4, this.Height),
-                    new Rectangle(this.Texture.Width - 4, 0, 4, this.Height), Color.White);
+                if (this.Value <= 4)
+                {
+                    spriteBatch.Draw(this.Texture, new Rectangle(_posX + 2, _posY, 4, this.Height),
+                        new Rectangle(this.Texture.Width - 4, 0, 4, this.Height), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(this.Texture, new Rectangle(_posX + _prct - 5, _posY, 4, this.Height),
+                        new Rectangle(this.Texture.Width - 4, 0, 4, this.Height), Color.White);
+                }
             }
         }
 
