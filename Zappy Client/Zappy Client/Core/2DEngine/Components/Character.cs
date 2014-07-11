@@ -151,63 +151,64 @@ namespace Zappy_Client.Core._2DEngine
             }
             this.Animations[(Int32)AnimationType.Cast].Update();
             this.Animations[(Int32)AnimationType.Die].Update();
-            if (this.Moving == true)
-            {
-                switch (this.Direction)
-                {
-                    case Direction.Up:
-                        this.FrameLine = 4;
-                        this.HitBox.Y -= this.MovingValue;
-                        this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32 - 1)
-                        {
-                            --this.Y;
-                            this.Moving = false;
-                            Network.Instance.Started = false;
-                        }
-                        break;
-                    case Direction.Down:
-                        this.FrameLine = 1;
-                        this.HitBox.Y += this.MovingValue;
-                        this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32 - 1)
-                        {
-                            ++this.Y;
-                            this.Moving = false;
-                            Network.Instance.Started = false;
-                        }
-                        break;
-                    case Direction.Left:
-                        this.FrameLine = 2;
-                        this.HitBox.X -= this.MovingValue;
-                        this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32 - 1)
-                        {
-                            --this.X;
-                            this.Moving = false;
-                            Network.Instance.Started = false;
-                        }
-                        break;
-                    case Direction.Right:
-                        this.FrameLine = 3;
-                        this.HitBox.X += this.MovingValue;
-                        this.MoveVal += this.MovingValue;
-                        if (this.MoveVal > 32 - 1)
-                        {
-                            ++this.X;
-                            this.Moving = false;
-                            Network.Instance.Started = false;
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                this.FrameColumn = 2;
-                this.Timer = 0;
-                this.MoveVal = 0;
-            }
-            this.Animate();
+
+            //if (this.Moving == true)
+            //{
+            //    switch (this.Direction)
+            //    {
+            //        case Direction.Up:
+            //            this.FrameLine = 4;
+            //            this.HitBox.Y -= this.MovingValue;
+            //            this.MoveVal += this.MovingValue;
+            //            if (this.MoveVal > 32 - 1)
+            //            {
+            //                --this.Y;
+            //                this.Moving = false;
+            //                Network.Instance.Started = false;
+            //            }
+            //            break;
+            //        case Direction.Down:
+            //            this.FrameLine = 1;
+            //            this.HitBox.Y += this.MovingValue;
+            //            this.MoveVal += this.MovingValue;
+            //            if (this.MoveVal > 32 - 1)
+            //            {
+            //                ++this.Y;
+            //                this.Moving = false;
+            //                Network.Instance.Started = false;
+            //            }
+            //            break;
+            //        case Direction.Left:
+            //            this.FrameLine = 2;
+            //            this.HitBox.X -= this.MovingValue;
+            //            this.MoveVal += this.MovingValue;
+            //            if (this.MoveVal > 32 - 1)
+            //            {
+            //                --this.X;
+            //                this.Moving = false;
+            //                Network.Instance.Started = false;
+            //            }
+            //            break;
+            //        case Direction.Right:
+            //            this.FrameLine = 3;
+            //            this.HitBox.X += this.MovingValue;
+            //            this.MoveVal += this.MovingValue;
+            //            if (this.MoveVal > 32 - 1)
+            //            {
+            //                ++this.X;
+            //                this.Moving = false;
+            //                Network.Instance.Started = false;
+            //            }
+            //            break;
+            //    }
+            //}
+            //else
+            //{
+            //    this.FrameColumn = 2;
+            //    this.Timer = 0;
+            //    this.MoveVal = 0;
+            //}
+            //this.Animate();
         }
 
         /// <summary>
@@ -230,7 +231,26 @@ namespace Zappy_Client.Core._2DEngine
         public void Move(Direction direction)
         {
             this.Direction = direction;
-            this.Moving = true;
+            switch (this.Direction)
+            {
+                case Direction.Up:
+                    this.FrameLine = 4;
+                    this.HitBox.Y -= 32;
+                    break;
+                case Direction.Down:
+                    this.FrameLine = 1;
+                    this.HitBox.Y += 32;
+                    break;
+                case Direction.Left:
+                    this.FrameLine = 2;
+                    this.HitBox.X -= 32;
+                    break;
+                case Direction.Right:
+                    this.FrameLine = 3;
+                    this.HitBox.X += 32;
+                    break;
+            }
+            this.FrameColumn = 1;
         }
 
         /// <summary>

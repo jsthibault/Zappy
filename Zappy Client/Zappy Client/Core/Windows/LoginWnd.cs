@@ -82,7 +82,7 @@ namespace Zappy_Client.Core
             this.Leave.OnClick += Leave_OnClick;
             
             //TO REMOVE
-            this.HostInput.Text = "10.41.175.34";
+            this.HostInput.Text = "192.168.204.128";
             this.PortInput.Text = "4243";
             //TO REMOVE
 
