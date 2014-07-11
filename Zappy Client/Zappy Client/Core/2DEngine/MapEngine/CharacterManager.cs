@@ -67,10 +67,17 @@ namespace Zappy_Client.Core._2DEngine
         /// <param name="character"></param>
         public void RemoveCharacter(Character character)
         {
+            WndPlayersList window = (Zappy.Instance.InterfaceEngine.GetContainer("PlayersListWindow") as WndPlayersList);
+            Inventory inventory = (Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory);
+
             foreach (Team team in this.Teams.Values)
             {
                 if (team.Characters.Contains(character))
                 {
+                    if (window.Players.SelectedItem != null && window.Players.SelectedItem.ItemText == character.Id.ToString())
+                    {
+                        inventory.Clear();
+                    }
                     team.Characters.Remove(character);
                     return;
                 }

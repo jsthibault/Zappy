@@ -116,8 +116,8 @@ namespace Zappy_Client.Core
             this.AddControl(this.Mendiane);
             this.Thystame = new Label(this.Engine, "LabelThystame", this.LevelsBar.Rectangle.X + 623, this.LevelsBar.Rectangle.Y + 49, "0", "TrebuchetMSBold");
             this.AddControl(this.Thystame);
-            this.Mendiane = new Label(this.Engine, "LabelMendiane", this.LevelsBar.Rectangle.X + 578, this.LevelsBar.Rectangle.Y + 23, "0", "TrebuchetMSBold");
-            this.AddControl(this.Mendiane);
+            this.Deraumere = new Label(this.Engine, "LabelDeraumere", this.LevelsBar.Rectangle.X + 578, this.LevelsBar.Rectangle.Y + 23, "0", "TrebuchetMSBold");
+            this.AddControl(this.Deraumere);
             this.Linemate = new Label(this.Engine, "LabelSibur", this.LevelsBar.Rectangle.X + 578, this.LevelsBar.Rectangle.Y - 28, "0", "TrebuchetMSBold");
             this.AddControl(this.Linemate);
             base.Initialize();
@@ -139,10 +139,13 @@ namespace Zappy_Client.Core
             this.Cast.Value = 0;
             this.Food.Value = 0;
             this.Xp.Value = 0;
-            for (Int32 i = 0; i < 8; i++)
-            {
-                this.Levels[i].State = ControlState.Normal;
-            }
+            this.Thystame.Text = "0";
+            this.Sibur.Text = "0";
+            this.Mendiane.Text = "0";
+            this.Deraumere.Text = "0";
+            this.Linemate.Text = "0";
+            this.Phiras.Text = "0";
+            this.SetLevel(0);
         }
 
         /// <summary>

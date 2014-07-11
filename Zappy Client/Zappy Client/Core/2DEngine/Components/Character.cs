@@ -40,6 +40,8 @@ namespace Zappy_Client.Core._2DEngine
 
         public Int32 Id { get; private set; }
 
+        public Int32 CurrentCast { get; private set; }
+
         /* Animation */
         private Rectangle HitBox;
 
@@ -126,6 +128,7 @@ namespace Zappy_Client.Core._2DEngine
             this.HitBox = new Rectangle(this.X * 32, this.Y * 32, 64, 64);
             this.ChangeDirection(this.Direction);
             this.Timer = 0;
+            this.CurrentCast = 0;
             this.Texture = TextureManager.Instance["Chocobo"];
             this.Animation = true;
             this.Animations = new Animation[2];
@@ -144,7 +147,9 @@ namespace Zappy_Client.Core._2DEngine
             }
             if (this.Dead == true && this.Animations[(Int32)AnimationType.Die].Playing == false)
             {
+                WndTeamsList window = Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList;
                 Map.RemoveCharacter(this);
+                window.UpdatePlayersContent();
                 return;
             }
             this.Animations[(Int32)AnimationType.Cast].Update();
@@ -267,11 +272,8 @@ namespace Zappy_Client.Core._2DEngine
         /// </summary>
         public void Die()
         {
-            WndTeamsList window = Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList;
-
             this.Dead = true;
             this.PlayAnimation(AnimationType.Die);
-            window.UpdatePlayersContent();
         }
 
         /// <summary>
@@ -289,6 +291,7 @@ namespace Zappy_Client.Core._2DEngine
         public void EndCast(Int32 state)
         {
             this.Casting = false;
+            this.CurrentCast = 0;
         }
 
         /// <summary>

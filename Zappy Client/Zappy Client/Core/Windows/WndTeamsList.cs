@@ -90,6 +90,10 @@ namespace Zappy_Client.Core
                     }
                 }
             }
+            if (window.Players.Items.Count == 0)
+            {
+                window.LockButton();
+            }
             window.Visible = true;
             window.SetFocus();
         }

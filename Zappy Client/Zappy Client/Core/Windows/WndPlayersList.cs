@@ -23,7 +23,7 @@ namespace Zappy_Client.Core
     {
         #region FIELDS
 
-        private ListBox Players { get; set; }
+        public ListBox Players { get; set; }
 
         private Button ShowInventory { get; set; }
 
@@ -66,6 +66,12 @@ namespace Zappy_Client.Core
         public override void Clear()
         {
             this.Players.Items.Clear();
+        }
+
+        public void LockButton()
+        {
+            this.ShowInventory.Enabled = false;
+            this.ShowInventory.Text = "Select a player";
         }
 
         void Players_OnSelectedItem(object sender)
