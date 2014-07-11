@@ -106,9 +106,6 @@ namespace Zappy_Client.Core._2DEngine
                 spriteBatch.Draw(this.Texture, this.Position, new Rectangle((this.FrameColumn) * this.FrameHeight,
                     (this.FrameLine) * this.FrameWidth, this.FrameWidth, this.FrameHeight), Color.White);
             }
-            else
-            {
-            }
         }
 
         /// <summary>

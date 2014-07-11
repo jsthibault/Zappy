@@ -163,6 +163,7 @@ namespace Zappy_Client.Core._2DEngine
                         {
                             --this.Y;
                             this.Moving = false;
+                            Network.Instance.Started = false;
                         }
                         break;
                     case Direction.Down:
@@ -173,6 +174,7 @@ namespace Zappy_Client.Core._2DEngine
                         {
                             ++this.Y;
                             this.Moving = false;
+                            Network.Instance.Started = false;
                         }
                         break;
                     case Direction.Left:
@@ -183,6 +185,7 @@ namespace Zappy_Client.Core._2DEngine
                         {
                             --this.X;
                             this.Moving = false;
+                            Network.Instance.Started = false;
                         }
                         break;
                     case Direction.Right:
@@ -193,6 +196,7 @@ namespace Zappy_Client.Core._2DEngine
                         {
                             ++this.X;
                             this.Moving = false;
+                            Network.Instance.Started = false;
                         }
                         break;
                 }
@@ -288,7 +292,7 @@ namespace Zappy_Client.Core._2DEngine
         public void EndCast(Int32 state)
         {
             Inventory inventory = Zappy.Instance.InterfaceEngine.GetContainer("Inventory") as Inventory;
-
+            Network.instance.Started = false;
             this.Casting = false;
         }
 

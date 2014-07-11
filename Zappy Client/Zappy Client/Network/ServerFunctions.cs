@@ -32,6 +32,7 @@ namespace Zappy_Client
             Game.InitializeMap(Int32.Parse(items[1]), Int32.Parse(items[2]));
             (Zappy.Instance.InterfaceEngine.GetContainer("Panel").GetControl("DisconnectButton") as Button).Enabled = true;
             Zappy.Instance.ScreenManager.SetCurrentScreen("GameScreen");
+            Network.instance.Started = false;
             return true;
         }
 
@@ -50,6 +51,7 @@ namespace Zappy_Client
             Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.MENDIANE, Int32.Parse(items[7]));
             Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.PHIRAS, Int32.Parse(items[8]));
             Game.Map.AddInFrame(Int32.Parse(items[1]), Int32.Parse(items[2]), ItemType.THYSTAME, Int32.Parse(items[9]));
+            Network.instance.Started = false;
             return true;
         }
 
@@ -68,6 +70,7 @@ namespace Zappy_Client
                 WndTeamsList lst = (Zappy.Instance.InterfaceEngine.GetContainer("TeamsListWindow") as WndTeamsList); 
                 lst.AddItem(items[1], Game.Map.Teams[items[1]]);
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -81,6 +84,7 @@ namespace Zappy_Client
         private Boolean AnswerPnw(List<String> items)
         {
             Game.Map.AddCharacter(items[6], new Character(Game.Map, Int32.Parse(items[2]), Int32.Parse(items[3]), Int32.Parse(items[1]), (Direction)Int32.Parse(items[4]), Int32.Parse(items[5])));
+            Network.instance.Started = false;
             return true;
         }
 
@@ -103,6 +107,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -132,6 +137,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -165,6 +171,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -191,6 +198,7 @@ namespace Zappy_Client
                                 {
                                     characterToKick.ChangeDirection(character.Direction);
                                     //characterToKick.Move(character.Direction);
+                                    Network.instance.Started = false;
                                     return true;
                                 }
                             }
@@ -198,6 +206,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -210,6 +219,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPbc(List<String> items)
         {
+            Network.instance.Started = false;
             return false;
         }
 
@@ -238,6 +248,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -260,6 +271,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -272,6 +284,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerPfk(List<String> items)
         {
+            Network.instance.Started = false;
             return false;
         }
 
@@ -295,6 +308,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -319,6 +333,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return true;
         }
 
@@ -341,6 +356,7 @@ namespace Zappy_Client
                     }
                 }
             }
+            Network.instance.Started = false;
             return false;
         }
 
@@ -363,6 +379,7 @@ namespace Zappy_Client
                 Egg _egg = new Egg(this.Game.Map, _e, _x, _y);
                 this.Game.Map.AddEgg(_egg);
             }
+            Network.instance.Started = false;
             return false;
         }
 
@@ -382,6 +399,7 @@ namespace Zappy_Client
             {
                 _egg.State = EggState.Open;
             }
+            Network.instance.Started = false;
             return false;
         }
 
@@ -402,6 +420,7 @@ namespace Zappy_Client
                 _egg.HasCharacter = true;
                 _egg.State = EggState.Full;
             }
+            Network.instance.Started = false;
             return false;
         }
 
@@ -421,6 +440,7 @@ namespace Zappy_Client
             {
                 _egg.State = EggState.Dead;
             }
+            Network.instance.Started = false;
             return false;
         }
 
@@ -434,6 +454,7 @@ namespace Zappy_Client
         private Boolean AnswerSgt(List<String> items)
         {
             Zappy.Instance.TimeUnit = Int32.Parse(items[1]);
+            Network.instance.Started = false;
             return true;
         }
 
@@ -448,6 +469,7 @@ namespace Zappy_Client
         {
             (Zappy.Instance.InterfaceEngine.GetContainer("Popup") as Popup).Show("You have been disconnected by server.");
             Zappy.Instance.Disconnect();
+            Network.instance.Started = false;
             return false;
         }
 
@@ -460,6 +482,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSmg(List<String> items)
         {
+            Network.instance.Started = false;
             return false;
         }
 
@@ -472,6 +495,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSuc(List<String> items)
         {
+            Network.instance.Started = false;
             return false;
         }
 
@@ -484,6 +508,7 @@ namespace Zappy_Client
         /// <returns>true if success, false in the other case</returns>
         private Boolean AnswerSbp(List<String> items)
         {
+            Network.instance.Started = false;
             return false;
         }
 
@@ -497,6 +522,7 @@ namespace Zappy_Client
         private Boolean AnswerWelcome(List<String> items)
         {
             this.SendMessage("GRAPHIC");
+            Network.instance.Started = false;
             return true;
         }
     }

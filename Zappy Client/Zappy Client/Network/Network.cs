@@ -24,7 +24,7 @@ namespace Zappy_Client
         #region SINGLETON
 
         private static Object NetworkLock = new Object();
-        private static Network instance;
+        public static Network instance;
         public static Network Instance
         {
             get
@@ -50,6 +50,8 @@ namespace Zappy_Client
 
         private String Message { get; set; }
 
+        public Boolean Started { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -62,6 +64,7 @@ namespace Zappy_Client
             this.Game = Zappy.Instance.ScreenManager["GameScreen"] as GameScreen;
             this.Connected = false;
             this.Message = "";
+            this.Started = false;
         }
 
         #endregion
@@ -126,14 +129,14 @@ namespace Zappy_Client
                     Byte[] _buffer = null;
                     String _message = null;
 
-                    try
-                    {
+                    //try
+                    //{
                         this.Socket.Receive((_buffer = new Byte[this.Socket.Available]));
-                    }
-                    catch
-                    {
-                        Zappy.Instance.Disconnect();
-                    }
+                    //}
+                    //catch
+                    //{
+                      //  Zappy.Instance.Disconnect();
+                    //}
                     _message = Encoding.UTF8.GetString(_buffer);
                     Console.WriteLine(_message);
                     if (String.IsNullOrEmpty(_message) == false)
@@ -143,9 +146,13 @@ namespace Zappy_Client
                         if (_last == '\n')
                         {
                             String[] _commands = this.Message.Split('\n');
-                            foreach (String Command in _commands)
+                            for (Int32 i = 0; i < _commands.Length; i++)
                             {
-                                this.ExecAnswer(Command);
+                                if (this.Started == false)
+                                {
+                                    this.Started = true;
+                                    this.ExecAnswer(_commands[i]);
+                                }
                             }
                             this.Message = "";
                         }
@@ -205,11 +212,16 @@ namespace Zappy_Client
         public Boolean ExecAnswer(String cmd)
         {
             List<String> _items = new List<String>();
-
             if (this.Connected == false)
+            {
+                Network.instance.Started = false; 
                 return false;
+            }
             if ((_items = Parser.GetCmdItems(cmd)) == null)
+            {
+                Network.instance.Started = false;
                 return false;
+            }
             return AnswerFunctions[_items.First()](_items);
         }
 
